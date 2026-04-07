@@ -13,7 +13,7 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <!-- Aggressive trimming -->
     <PublishTrimmed>true</PublishTrimmed>
-    <TrimMode>full</TrimMode>
+    <TrimMode>partial</TrimMode>
   </PropertyGroup>
 
   <ItemGroup>
