@@ -1,0 +1,118 @@
+@page "/"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>BlazingSpire</PageTitle>
+
+<div class="space-y-12">
+
+    <!-- Hero -->
+    <div class="space-y-4">
+        <h1 class="text-4xl font-bold tracking-tight">BlazingSpire</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl">
+            A Blazor component framework inspired by shadcn/ui. Copy-paste components,
+            Tailwind CSS v4, OKLCH color system. You own the code.
+        </p>
+    </div>
+
+    <!-- Buttons -->
+    <section class="space-y-4">
+        <h2 class="text-2xl font-semibold tracking-tight">Button</h2>
+        <div class="flex flex-wrap items-center gap-4">
+            <Button>Default</Button>
+            <Button Variant="Button.ButtonVariant.Secondary">Secondary</Button>
+            <Button Variant="Button.ButtonVariant.Destructive">Destructive</Button>
+            <Button Variant="Button.ButtonVariant.Outline">Outline</Button>
+            <Button Variant="Button.ButtonVariant.Ghost">Ghost</Button>
+            <Button Variant="Button.ButtonVariant.Link">Link</Button>
+        </div>
+
+        <h3 class="text-lg font-medium pt-2">Sizes</h3>
+        <div class="flex flex-wrap items-center gap-4">
+            <Button Size="Button.ButtonSize.Sm">Small</Button>
+            <Button>Default</Button>
+            <Button Size="Button.ButtonSize.Lg">Large</Button>
+            <Button Size="Button.ButtonSize.Icon" aria-label="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </Button>
+        </div>
+
+        <h3 class="text-lg font-medium pt-2">Disabled</h3>
+        <div class="flex flex-wrap items-center gap-4">
+            <Button Disabled="true">Disabled</Button>
+            <Button Variant="Button.ButtonVariant.Outline" Disabled="true">Disabled Outline</Button>
+        </div>
+    </section>
+
+    <!-- Badges -->
+    <section class="space-y-4">
+        <h2 class="text-2xl font-semibold tracking-tight">Badge</h2>
+        <div class="flex flex-wrap items-center gap-4">
+            <Badge>Default</Badge>
+            <Badge Variant="Badge.BadgeVariant.Secondary">Secondary</Badge>
+            <Badge Variant="Badge.BadgeVariant.Destructive">Destructive</Badge>
+            <Badge Variant="Badge.BadgeVariant.Outline">Outline</Badge>
+        </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="space-y-4">
+        <h2 class="text-2xl font-semibold tracking-tight">Card</h2>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Card>
+                <CardHeader>
+                    <CardTitle>Create project</CardTitle>
+                    <CardDescription>Deploy your new project in one-click.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <p class="text-sm text-muted-foreground">
+                        Your new project will be created with the latest .NET 10 Blazor template,
+                        pre-configured with Tailwind CSS v4.
+                    </p>
+                </CardContent>
+                <CardFooter>
+                    <Button>Deploy</Button>
+                </CardFooter>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>Components</CardTitle>
+                    <CardDescription>Browse the component library.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div class="flex flex-wrap gap-2">
+                        <Badge>Button</Badge>
+                        <Badge Variant="Badge.BadgeVariant.Secondary">Card</Badge>
+                        <Badge Variant="Badge.BadgeVariant.Outline">Badge</Badge>
+                        <Badge Variant="Badge.BadgeVariant.Secondary">Dialog</Badge>
+                        <Badge Variant="Badge.BadgeVariant.Outline">Select</Badge>
+                    </div>
+                </CardContent>
+                <CardFooter>
+                    <Button Variant="Button.ButtonVariant.Outline">Browse</Button>
+                </CardFooter>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>Documentation</CardTitle>
+                    <CardDescription>Learn how to use BlazingSpire.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <p class="text-sm text-muted-foreground">
+                        Copy-paste components into your Blazor project. You own the code.
+                        Customize everything.
+                    </p>
+                </CardContent>
+                <CardFooter>
+                    <Button Variant="Button.ButtonVariant.Ghost">Read docs</Button>
+                </CardFooter>
+            </Card>
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,21 @@
+@inherits LayoutComponentBase
+
+<div class="min-h-screen bg-background">
+    <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div class="container mx-auto flex h-14 items-center px-4">
+            <div class="flex items-center gap-2 font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 text-primary">
+                    <path d="m13 2 7 7-7 7" /><path d="m6 9 4 4-4 4" />
+                </svg>
+                <span>BlazingSpire</span>
+            </div>
+            <div class="ml-auto">
+                <ThemeToggle />
+            </div>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        @Body
+    </main>
+</div>
