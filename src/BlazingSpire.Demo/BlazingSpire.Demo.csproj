@@ -22,6 +22,10 @@
     <BlazorWebAssemblyJiterpreter>true</BlazorWebAssemblyJiterpreter>
     <!-- Disable SIMD — not needed for UI components, reduces native wasm size -->
     <WasmEnableSIMD>false</WasmEnableSIMD>
+    <!-- Disable unused runtime features -->
+    <DebuggerSupport>false</DebuggerSupport>
+    <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+    <UseSystemResourceKeys>true</UseSystemResourceKeys>
   </PropertyGroup>
 
   <ItemGroup>
