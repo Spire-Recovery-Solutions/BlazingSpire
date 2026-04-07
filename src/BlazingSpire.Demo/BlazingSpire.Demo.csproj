@@ -22,6 +22,8 @@
     <BlazorWebAssemblyJiterpreter>true</BlazorWebAssemblyJiterpreter>
     <!-- Disable SIMD — not needed for UI components, reduces native wasm size -->
     <WasmEnableSIMD>false</WasmEnableSIMD>
+    <!-- Use try_table instead of deprecated try instruction -->
+    <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
     <!-- Disable unused runtime features -->
     <DebuggerSupport>false</DebuggerSupport>
     <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
