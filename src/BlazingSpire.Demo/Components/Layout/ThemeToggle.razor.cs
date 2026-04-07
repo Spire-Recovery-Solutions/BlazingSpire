@@ -17,7 +17,7 @@ public partial class ThemeToggle
     {
         if (firstRender)
         {
-            _isDark = await JS.InvokeAsync<bool>("eval", "document.documentElement.classList.contains('dark')");
+            _isDark = await JS.InvokeAsync<bool>("blazingSpire.getTheme");
             StateHasChanged();
         }
     }
@@ -25,9 +25,6 @@ public partial class ThemeToggle
     private async Task ToggleTheme()
     {
         _isDark = !_isDark;
-        await JS.InvokeVoidAsync("eval",
-            _isDark
-                ? "document.documentElement.classList.add('dark'); localStorage.setItem('theme','dark')"
-                : "document.documentElement.classList.remove('dark'); localStorage.setItem('theme','light')");
+        await JS.InvokeVoidAsync("blazingSpire.setTheme", _isDark);
     }
 }

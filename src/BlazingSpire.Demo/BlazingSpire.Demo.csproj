@@ -5,16 +5,28 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 
-    <!-- AOT compilation for maximum runtime performance -->
-    <RunAOTCompilation>true</RunAOTCompilation>
-    <!-- Strip IL after AOT — no interpreter fallback, smaller output -->
-    <WasmStripILAfterAOT>true</WasmStripILAfterAOT>
+    <!-- AOT disabled — smaller download, faster boot for simple apps -->
+    <RunAOTCompilation>false</RunAOTCompilation>
     <!-- Skip ICU data — no locale-specific formatting needed -->
     <InvariantGlobalization>true</InvariantGlobalization>
     <!-- Aggressive trimming -->
     <PublishTrimmed>true</PublishTrimmed>
-    <TrimMode>partial</TrimMode>
+    <TrimMode>full</TrimMode>
+    <!-- Strip unused subsystems -->
+    <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+    <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
+    <InvariantTimezone>true</InvariantTimezone>
+    <EventSourceSupport>false</EventSourceSupport>
+    <HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+    <!-- Jiterpreter enabled for interpreted mode perf -->
+    <BlazorWebAssemblyJiterpreter>true</BlazorWebAssemblyJiterpreter>
+    <!-- Disable SIMD — not needed for UI components, reduces native wasm size -->
+    <WasmEnableSIMD>false</WasmEnableSIMD>
   </PropertyGroup>
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="TrimmerRoots.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.0" />
