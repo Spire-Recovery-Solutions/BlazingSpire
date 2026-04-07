@@ -1,0 +1,40 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/BlazingSpire.Demo/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Tailwind CSS
+        working-directory: src/BlazingSpire.Demo
+        run: npm ci
+
+      - name: Build Tailwind CSS
+        working-directory: src/BlazingSpire.Demo
+        run: npx @tailwindcss/cli -i wwwroot/app.css -o wwwroot/app.build.css --minify
+
+      - name: Publish Blazor WASM
+        run: dotnet publish src/BlazingSpire.Demo -c Release -o publish
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy publish/wwwroot --project-name=blazingspire

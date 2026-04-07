@@ -5,11 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <ResourcePreloader />
-    <link rel="stylesheet" href="@Assets["app.build.css"]" />
-    <ImportMap />
+    <link rel="stylesheet" href="app.build.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <HeadOutlet />
+    <title>BlazingSpire</title>
     <script>
         (function() {
             var theme = localStorage.getItem('theme');
@@ -21,8 +19,14 @@
 </head>
 
 <body class="min-h-screen bg-background text-foreground antialiased">
-    <Routes />
-    <script src="@Assets["_framework/blazor.web.js"]"></script>
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui" data-nosnippet>
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">🗙</span>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
 </body>
 
 </html>
