@@ -3,8 +3,3 @@
 <h3 class="@($"text-2xl font-semibold leading-none tracking-tight {Class}")">
     @ChildContent
 </h3>
-
-@code {
-    [Parameter] public RenderFragment? ChildContent { get; set; }
-    [Parameter] public string? Class { get; set; }
-}

@@ -4,6 +4,16 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- AOT compilation for maximum runtime performance -->
+    <RunAOTCompilation>true</RunAOTCompilation>
+    <!-- Strip IL after AOT — no interpreter fallback, smaller output -->
+    <WasmStripILAfterAOT>true</WasmStripILAfterAOT>
+    <!-- Skip ICU data — no locale-specific formatting needed -->
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- Aggressive trimming -->
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>full</TrimMode>
   </PropertyGroup>
 
   <ItemGroup>
