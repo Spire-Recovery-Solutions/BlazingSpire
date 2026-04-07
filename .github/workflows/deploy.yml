@@ -17,6 +17,9 @@ jobs:
         with:
           dotnet-version: '10.x'
 
+      - name: Install wasm-tools workload
+        run: dotnet workload install wasm-tools
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
