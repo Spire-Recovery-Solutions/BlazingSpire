@@ -50,6 +50,9 @@
 }
 
 @layer base {
+  h1:focus {
+    outline: none;
+  }
   *,
   *::before,
   *::after {
