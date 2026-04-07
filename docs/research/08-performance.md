@@ -124,3 +124,160 @@ public async ValueTask DisposeAsync() { _dotNetRef?.Dispose(); ... }
 | blazor.web.js (.NET 10) | ~43KB (76% reduction from .NET 9) |
 | Floating UI | ~3KB |
 | BlazingSpire custom JS | ~300 lines (~5KB minified) |
+
+---
+
+## Validated WASM Boot Optimizations (2026-04-07)
+
+Results from 19 Lighthouse iterations on the demo app, measuring each change in isolation.
+
+### Lighthouse v13 Scoring Weights (Desktop)
+
+| Metric | Weight | Notes |
+|--------|--------|-------|
+| FCP | 10% | |
+| Speed Index | 10% | |
+| **LCP** | **25%** | Main lever for WASM apps |
+| **TBT** | **30%** | |
+| **CLS** | **25%** | |
+| TTI | 0% | Diagnostic only — NOT in the score since Lighthouse v10 |
+
+### AOT vs Interpreter Tradeoff
+
+AOT is **counterproductive** for small/medium apps. The native WASM binary dominates download time:
+
+| Config | Brotli payload | LCP | TTI | Lighthouse Perf |
+|--------|---------------|-----|-----|-----------------|
+| AOT + IL strip + partial trim | 3,419 KB | 4.3s | 4.3s | 75 |
+| AOT + full trim + all flags | 3,308 KB | 4.2s | 4.2s | 75 |
+| **No AOT + Jiterpreter + full trim** | **1,472 KB** | **2.1s** | **2.1s** | **90** |
+
+**Rule of thumb:** Use AOT only when runtime computation is the bottleneck (data grids, charts, crypto). For UI-heavy apps, the interpreter + Jiterpreter provides acceptable runtime speed with half the download.
+
+### Skeleton-Outside-App Pattern
+
+The breakthrough optimization: put the pre-rendered skeleton in a **sibling div outside `#app`**, not inside it.
+
+**Why it works:** Per the W3C LCP spec, a new LCP candidate is emitted whenever a larger element renders. When the skeleton is *inside* `#app`, Blazor replaces it on boot and the new (larger) content becomes LCP at 4.2s. When the skeleton is *outside* `#app`, Blazor renders into a hidden div — the skeleton stays as LCP at 0.5s.
+
+```html
+<!-- Skeleton OUTSIDE #app — Blazor cannot replace it -->
+<div id="skeleton">
+    <nav>...</nav>
+    <main><h1>BlazingSpire</h1><p>Description...</p></main>
+</div>
+
+<!-- Blazor renders here, hidden until ready -->
+<div id="app" style="display:none"></div>
+
+<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script>
+    Blazor.start().then(function () {
+        document.getElementById('skeleton').remove();
+        document.getElementById('app').style.display = '';
+    });
+</script>
+```
+
+| With skeleton inside #app | With skeleton outside #app |
+|--------------------------|---------------------------|
+| LCP = 2.1s, Perf = 90 | LCP = 0.5s, Perf = 100 |
+
+### MSBuild Properties — Validated Minimal Config
+
+These properties produce a 1.35 MB brotli payload with Lighthouse 100/100/100/100:
+
+```xml
+<PropertyGroup>
+  <!-- No AOT — interpreter + Jiterpreter is faster boot for UI apps -->
+  <RunAOTCompilation>false</RunAOTCompilation>
+  <BlazorWebAssemblyJiterpreter>true</BlazorWebAssemblyJiterpreter>
+
+  <!-- Globalization stripping -->
+  <InvariantGlobalization>true</InvariantGlobalization>
+  <InvariantTimezone>true</InvariantTimezone>
+  <BlazorEnableTimeZoneSupport>false</BlazorEnableTimeZoneSupport>
+  <BlazorWebAssemblyPreserveCollationData>false</BlazorWebAssemblyPreserveCollationData>
+
+  <!-- Trimming -->
+  <PublishTrimmed>true</PublishTrimmed>
+  <TrimMode>full</TrimMode>
+  <!-- Requires TrimmerRoots.xml to preserve component constructors -->
+
+  <!-- SIMD not needed for UI -->
+  <WasmEnableSIMD>false</WasmEnableSIMD>
+
+  <!-- Strip unused runtime features -->
+  <EventSourceSupport>false</EventSourceSupport>
+  <HttpActivityPropagationSupport>false</HttpActivityPropagationSupport>
+  <DebuggerSupport>false</DebuggerSupport>
+  <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
+  <UseSystemResourceKeys>true</UseSystemResourceKeys>
+</PropertyGroup>
+
+<ItemGroup>
+  <TrimmerRootDescriptor Include="TrimmerRoots.xml" />
+</ItemGroup>
+```
+
+### Trimming Gotchas
+
+| Property | Effect | Safe? |
+|----------|--------|-------|
+| `TrimMode=full` | Trims all assemblies aggressively | Breaks Blazor components without TrimmerRoots.xml |
+| `JsonSerializerIsReflectionEnabledByDefault=false` | Disables STJ reflection | **Breaks JS interop** — Blazor marshalling needs it |
+| `WasmEnableThreads=true` | Multi-threading | **Breaks Blazor** — renderer assumes single-threaded |
+
+### What We Can't Trim (Framework Floor)
+
+The remaining 32 assemblies at 1.35 MB brotli are all structurally required:
+
+| Assembly | Brotli | Why |
+|----------|--------|-----|
+| System.Private.CoreLib | 434 KB | .NET runtime core |
+| dotnet.native | 404 KB | Mono WASM runtime |
+| System.Text.Json | 121 KB | JS interop marshalling |
+| Microsoft.AspNetCore.Components | 89 KB | Blazor renderer |
+| Everything else | ~300 KB | DI, logging, config, collections |
+
+### .NET 10 WASM Features (defaults)
+
+| Feature | Property | Default | Notes |
+|---------|----------|---------|-------|
+| WASM SIMD | `WasmEnableSIMD` | true | We disable for size |
+| Exception Handling | `WasmEnableExceptionHandling` | true | 20-30% improvement in try/catch |
+| Jiterpreter | `BlazorWebAssemblyJiterpreter` | true | 30-50% runtime improvement |
+| WebCIL | `WasmEnableWebcil` | true | .wasm packaging |
+| Compression | `CompressionEnabled` | true | Brotli + gzip |
+| Threading | `WasmEnableThreads` | false | DO NOT enable for Blazor |
+
+### Unused _Imports.razor Namespaces Pull Dependencies
+
+Default Blazor template includes `System.Net.Http`, `System.Net.Http.Json`, `Microsoft.AspNetCore.Components.Forms`, `Virtualization` in `_Imports.razor`. Removing unused imports helps the trimmer eliminate more code.
+
+### FocusOnNavigate Causes h1 Selection Flash
+
+`<FocusOnNavigate RouteData="routeData" Selector="h1" />` in `App.razor` calls `focus()` on the h1 after navigation. Fix: `h1:focus { outline: none; }` in CSS. Keeps accessibility (screen readers) while hiding the visual artifact.
+
+### JS Interop: Named Functions, Not eval()
+
+`JS.InvokeAsync("eval", "...")` is slower (browser parses each call) and blocks CSP `unsafe-eval`. Use named functions in a `.js` file:
+
+```javascript
+// wwwroot/js/theme.js
+window.blazingSpire = {
+    getTheme: () => document.documentElement.classList.contains('dark'),
+    setTheme: (isDark) => { /* ... */ }
+};
+```
+
+### Blazor Loading Progress Bar
+
+Blazor exposes `--blazor-load-percentage` CSS custom property during boot:
+
+```html
+<div style="position:fixed;top:0;left:0;height:3px;z-index:9999;
+            background:oklch(0.42 0.18 25);
+            width:calc(var(--blazor-load-percentage, 0) * 1%);
+            transition:width 0.3s ease"></div>
+```

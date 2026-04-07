@@ -28,6 +28,13 @@
 | 15 | [CLI Error Handling](15-cli-error-handling.md) | Doctor command, error catalog, edge cases, upgrade path | H5, H6, H1: CLI gaps |
 | 16 | [SSR & Versioning](16-ssr-and-versioning.md) | SSR fallback matrix, API stability, compatibility | H7, H1, M1, M2: SSR + versioning |
 
+### Implementation Findings (Phase 3 — from POC build)
+| # | Document | Domain | Key Finding |
+|---|----------|--------|-------------|
+| 17 | [Deployment](17-deployment.md) | CI/CD, Cloudflare Pages, runner config | Pipeline setup, Cloudflare gotchas for Blazor WASM |
+
+**Note:** Doc 08 (Performance) was updated in-place with validated WASM boot findings — AOT tradeoffs, skeleton-outside-app pattern, Lighthouse scoring weights, MSBuild property matrix.
+
 ## The Thesis
 
 No Blazor component framework combines all three pillars:
