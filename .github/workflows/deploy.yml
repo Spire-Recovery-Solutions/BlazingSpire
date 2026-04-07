@@ -9,12 +9,17 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - name: Setup dotnet PATH
-        run: echo "$HOME/.dotnet" >> $GITHUB_PATH
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
 
       - name: Install Tailwind CSS
         working-directory: src/BlazingSpire.Demo
