@@ -1,0 +1,7 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.PresentationalBase<ToggleVariant>
+
+<button type="button" aria-pressed="@Pressed.ToString().ToLowerInvariant()" data-state="@DataState"
+        disabled="@Disabled" class="@Classes" @onclick="ToggleAsync" @attributes="AdditionalAttributes">
+    @ChildContent
+</button>

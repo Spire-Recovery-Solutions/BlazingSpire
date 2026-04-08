@@ -1,0 +1,9 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (Parent?.IsOpen == true)
+{
+    <div data-state="open" class="@Classes" @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+}

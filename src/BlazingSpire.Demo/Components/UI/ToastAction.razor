@@ -1,0 +1,6 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<button type="button" class="@Classes" @onclick="() => OnClick?.Invoke()" @attributes="AdditionalAttributes">
+    @ChildContent
+</button>

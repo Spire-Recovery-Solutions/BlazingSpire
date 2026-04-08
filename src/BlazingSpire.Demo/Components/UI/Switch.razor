@@ -1,0 +1,8 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<button type="button" role="switch" aria-checked="@Checked.ToString().ToLowerInvariant()" data-state="@DataState"
+        disabled="@Disabled" class="@Classes" @onclick="ToggleAsync" @attributes="AdditionalAttributes">
+    <span class="pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+          data-state="@DataState"></span>
+</button>

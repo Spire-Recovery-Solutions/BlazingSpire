@@ -1,0 +1,40 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<TableHead Class="@Class">
+    @if (Sortable && SortKey is not null)
+    {
+        <button class="flex items-center gap-1 hover:text-foreground transition-colors" @onclick="HandleSortClick">
+            @ChildContent
+            @if (IsSorted)
+            {
+                @if (IsSortedAscending)
+                {
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="m18 15-6-6-6 6"/>
+                    </svg>
+                }
+                else
+                {
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="m6 9 6 6 6-6"/>
+                    </svg>
+                }
+            }
+            else
+            {
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 opacity-50">
+                    <path d="m7 15 5 5 5-5"/>
+                    <path d="m7 9 5-5 5 5"/>
+                </svg>
+            }
+        </button>
+    }
+    else
+    {
+        @ChildContent
+    }
+</TableHead>

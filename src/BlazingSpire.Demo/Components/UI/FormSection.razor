@@ -1,0 +1,14 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<fieldset disabled="@Disabled" class="@Classes" @attributes="AdditionalAttributes">
+    @if (!string.IsNullOrEmpty(Legend))
+    {
+        <legend class="text-lg font-semibold leading-none tracking-tight">@Legend</legend>
+    }
+    @if (!string.IsNullOrEmpty(Description))
+    {
+        <p class="text-sm text-muted-foreground">@Description</p>
+    }
+    @ChildContent
+</fieldset>

@@ -1,0 +1,6 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div role="progressbar" aria-valuenow="@Value" aria-valuemin="0" aria-valuemax="100" class="@Classes" @attributes="AdditionalAttributes">
+    <div class="h-full w-full flex-1 bg-primary transition-all" style="transform: translateX(-@(100 - Value)%)"></div>
+</div>

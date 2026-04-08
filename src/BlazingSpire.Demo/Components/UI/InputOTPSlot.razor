@@ -1,0 +1,15 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div class="@Classes" @attributes="AdditionalAttributes">
+    @if (DisplayChar.HasValue)
+    {
+        @DisplayChar.Value
+    }
+    else if (IsActive)
+    {
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="h-4 w-px animate-pulse bg-foreground"></div>
+        </div>
+    }
+</div>

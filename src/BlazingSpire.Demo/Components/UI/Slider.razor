@@ -1,0 +1,15 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div class="@Classes" @attributes="AdditionalAttributes">
+    <div class="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
+        <div class="absolute h-full bg-primary" style="width: @(Percentage.ToString(System.Globalization.CultureInfo.InvariantCulture))%"></div>
+    </div>
+    <input type="range" min="@Min.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+           max="@Max.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+           step="@Step.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+           value="@Value.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+           disabled="@Disabled"
+           @oninput="OnInput"
+           class="absolute inset-0 h-full w-full cursor-pointer opacity-0" />
+</div>

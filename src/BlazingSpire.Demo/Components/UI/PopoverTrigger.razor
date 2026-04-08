@@ -1,0 +1,15 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentPopover is not null)
+{
+    <div @onclick="OnClickAsync" @ref="ParentPopover.AnchorRef" class="@Classes" @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+}
+else
+{
+    <div @onclick="OnClickAsync" class="@Classes" @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+}

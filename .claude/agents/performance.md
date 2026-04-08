@@ -1494,4 +1494,14 @@ For testing questions, reference the test base class pattern (`BlazingSpireTestB
 - Use `[Theory]`/`[InlineData]` instead of duplicating test methods
 - DOM focus testing requires Playwright, not bUnit
 
+### BenchmarkDotNet Component Benchmark Patterns
+
+When advising on component benchmarks using BenchmarkDotNet + bUnit, always recommend these verified patterns:
+
+- **Shared bUnit context** — benchmarks should inherit `BunitContext` on the benchmark class, set `JSInterop.Mode = JSRuntimeMode.Loose` in the constructor, and use `[IterationCleanup]` calling `DisposeComponentsAsync().GetAwaiter().GetResult()` (the sync `DisposeComponents()` does not exist in bUnit 2.7.x). Do NOT advise creating a fresh `BunitContext` per benchmark call — context construction cost (ms) drowns out component render cost (μs), producing meaningless results.
+- **Return `object` from benchmark methods** — `IRenderedFragment` was removed in bUnit 2.x, and `IRenderedComponent<T>` doesn't resolve in non-Razor SDK projects (`Microsoft.NET.Sdk`). Returning `object` still prevents JIT dead-code elimination.
+- **Use `[ShortRunJob]` not `[SimpleJob]`** for simple component benchmarks — simple components render in microseconds, so `[SimpleJob]` wastes time with unnecessary iterations.
+- **Always include `[MemoryDiagnoser]`** — allocation tracking is critical for component render benchmarks.
+- **Use `AddUnmatched()` for AdditionalAttributes** in benchmark setup — `Add()` throws for `[Parameter(CaptureUnmatchedValues = true)]` parameters.
+
 Use the `/dotnet-test` skill when you need to run tests. Use `/dotnet-diag` skills (microbenchmarking, dotnet-trace-collect, analyzing-dotnet-performance) for performance analysis and diagnostics.

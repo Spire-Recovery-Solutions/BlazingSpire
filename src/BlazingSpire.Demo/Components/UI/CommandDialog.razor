@@ -1,0 +1,10 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<Dialog IsOpen="IsOpen" IsOpenChanged="IsOpenChanged">
+    <DialogContent Class="overflow-hidden p-0 shadow-lg">
+        <Command>
+            @ChildContent
+        </Command>
+    </DialogContent>
+</Dialog>

@@ -1,0 +1,11 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentCombobox?.CurrentIsOpen == true)
+{
+    <div role="listbox" data-state="@ParentCombobox.DataState"
+         data-side="@ParentCombobox.Side.ToString().ToLowerInvariant()"
+         class="@Classes" @attributes="AdditionalAttributes" @ref="ParentCombobox.ContentRef">
+        @ChildContent
+    </div>
+}

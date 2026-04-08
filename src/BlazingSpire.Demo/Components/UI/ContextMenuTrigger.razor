@@ -1,0 +1,7 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div @oncontextmenu="OnContextMenuAsync" @oncontextmenu:preventDefault="true"
+     class="@Classes" @attributes="AdditionalAttributes">
+    @ChildContent
+</div>

@@ -1,0 +1,8 @@
+using BlazingSpire.Demo.Components.Shared;
+
+namespace BlazingSpire.Demo.Components.UI;
+
+public partial class AlertDialogFooter : BlazingSpireComponentBase
+{
+    protected override string BaseClasses => "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2";
+}

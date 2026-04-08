@@ -1,0 +1,9 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentMenu?.IsOpen == true)
+{
+    <div role="menu" class="@Classes" @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+}

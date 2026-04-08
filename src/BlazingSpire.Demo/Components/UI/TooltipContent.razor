@@ -1,0 +1,11 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentTooltip?.CurrentIsOpen == true)
+{
+    <div role="tooltip" data-state="@ParentTooltip.DataState"
+         data-side="@ParentTooltip.Side.ToString().ToLowerInvariant()"
+         class="@Classes" @attributes="AdditionalAttributes" @ref="ParentTooltip.ContentRef">
+        @ChildContent
+    </div>
+}

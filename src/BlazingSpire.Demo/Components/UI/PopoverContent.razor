@@ -1,0 +1,10 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentPopover?.CurrentIsOpen == true)
+{
+    <div data-state="@ParentPopover.DataState" data-side="@ParentPopover.Side.ToString().ToLowerInvariant()"
+         class="@Classes" @attributes="AdditionalAttributes" @ref="ParentPopover.ContentRef">
+        @ChildContent
+    </div>
+}

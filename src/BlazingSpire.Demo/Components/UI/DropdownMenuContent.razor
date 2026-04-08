@@ -1,0 +1,12 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentMenu?.CurrentIsOpen == true)
+{
+    <div role="menu" aria-orientation="vertical"
+         data-state="@ParentMenu.DataState"
+         class="@Classes" @attributes="AdditionalAttributes"
+         @ref="ParentMenu!.ContentRef">
+        @ChildContent
+    </div>
+}

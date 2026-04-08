@@ -1,0 +1,12 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentSelect?.CurrentIsOpen == true)
+{
+    <div role="listbox"
+         data-state="@ParentSelect.DataState"
+         class="@Classes" @attributes="AdditionalAttributes"
+         @ref="ParentSelect!.ContentRef">
+        @ChildContent
+    </div>
+}

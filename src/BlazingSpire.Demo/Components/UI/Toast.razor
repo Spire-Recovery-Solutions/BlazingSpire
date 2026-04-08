@@ -1,0 +1,23 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.PresentationalBase<ToastVariant>
+
+<div class="@Classes" @attributes="AdditionalAttributes">
+    @if (Message is not null)
+    {
+        <div class="grid gap-1">
+            @if (!string.IsNullOrEmpty(Message.Title))
+            {
+                <ToastTitle>@Message.Title</ToastTitle>
+            }
+            @if (!string.IsNullOrEmpty(Message.Description))
+            {
+                <ToastDescription>@Message.Description</ToastDescription>
+            }
+        </div>
+        @if (!string.IsNullOrEmpty(Message.ActionLabel) && Message.OnAction is not null)
+        {
+            <ToastAction OnClick="Message.OnAction">@Message.ActionLabel</ToastAction>
+        }
+    }
+    <ToastClose OnDismiss="OnDismiss" />
+</div>

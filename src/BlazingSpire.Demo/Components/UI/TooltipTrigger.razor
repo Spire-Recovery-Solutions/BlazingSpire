@@ -1,0 +1,17 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<span @onmouseenter="OnMouseEnterAsync" @onmouseleave="OnMouseLeaveAsync"
+      @ref="_spanRef" class="@Classes" @attributes="AdditionalAttributes">
+    @ChildContent
+</span>
+
+@code {
+    private ElementReference _spanRef;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && ParentTooltip is not null)
+            ParentTooltip.AnchorRef = _spanRef;
+    }
+}

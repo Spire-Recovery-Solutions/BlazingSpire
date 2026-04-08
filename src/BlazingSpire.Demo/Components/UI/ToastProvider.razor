@@ -1,0 +1,9 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div class="@Classes" @attributes="AdditionalAttributes">
+    @foreach (var toast in _toasts)
+    {
+        <Toast Message="toast" OnDismiss="() => Dismiss(toast)" />
+    }
+</div>

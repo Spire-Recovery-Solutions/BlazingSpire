@@ -22,6 +22,8 @@
   --color-ring: oklch(0.42 0.18 25);
   --color-card: oklch(1 0 0);
   --color-card-foreground: oklch(0.25 0 0);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.25 0 0);
 
   --radius-sm: calc(0.625rem * 0.6);
   --radius-md: calc(0.625rem * 0.8);
@@ -47,6 +49,8 @@
   --color-ring: oklch(0.55 0.18 25);
   --color-card: oklch(0.20 0 0);
   --color-card-foreground: oklch(0.97 0 0);
+  --color-popover: oklch(0.20 0 0);
+  --color-popover-foreground: oklch(0.97 0 0);
 }
 
 @layer base {

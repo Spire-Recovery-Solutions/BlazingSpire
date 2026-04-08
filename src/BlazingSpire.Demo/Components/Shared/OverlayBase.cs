@@ -26,15 +26,15 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
 
     private bool _internalIsOpen;
     private bool IsControlled => IsOpenChanged.HasDelegate;
-    protected bool CurrentIsOpen => IsControlled ? IsOpen : _internalIsOpen;
-    protected string DataState => CurrentIsOpen ? "open" : "closed";
+    public bool CurrentIsOpen => IsControlled ? IsOpen : _internalIsOpen;
+    public string DataState => CurrentIsOpen ? "open" : "closed";
 
     private static int s_counter;
     protected string OverlayId { get; } = $"bs-overlay-{Interlocked.Increment(ref s_counter)}";
-    protected string TitleId => $"{OverlayId}-title";
-    protected string DescriptionId => $"{OverlayId}-desc";
+    public string TitleId => $"{OverlayId}-title";
+    public string DescriptionId => $"{OverlayId}-desc";
 
-    protected ElementReference ContentRef;
+    public ElementReference ContentRef;
     protected ElementReference TriggerRef;
 
     private IJSObjectReference? _jsModule;
@@ -55,7 +55,7 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
         if (firstRender)
         {
             _jsModule = await JS.InvokeAsync<IJSObjectReference>(
-                "import", "./_content/BlazingSpire.Primitives/overlay.js");
+                "import", "./js/overlay.js");
             _selfRef = DotNetObjectReference.Create(this);
             _isJsReady = true;
         }
@@ -116,7 +116,7 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
             await RequestCloseAsync();
     }
 
-    protected async Task SetIsOpenAsync(bool value)
+    public async Task SetIsOpenAsync(bool value)
     {
         if (CurrentIsOpen == value) return;
         if (IsControlled)
@@ -127,7 +127,7 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
         StateHasChanged();
     }
 
-    protected async Task RequestCloseAsync()
+    public async Task RequestCloseAsync()
     {
         await SetIsOpenAsync(false);
         await OnClose.InvokeAsync();

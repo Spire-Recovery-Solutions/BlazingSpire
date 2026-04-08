@@ -1,0 +1,15 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (Href is not null)
+{
+    <a href="@Href" class="@Classes" aria-current="@(IsActive ? "page" : null)" @attributes="AdditionalAttributes">
+        @ChildContent
+    </a>
+}
+else
+{
+    <button type="button" class="@Classes" aria-current="@(IsActive ? "page" : null)" @attributes="AdditionalAttributes">
+        @ChildContent
+    </button>
+}

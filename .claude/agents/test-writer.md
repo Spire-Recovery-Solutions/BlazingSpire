@@ -102,6 +102,34 @@ Note: Enums are at namespace scope — use `ButtonVariant.Default`, not `Button.
 - Consult `blazor-architecture` for expected ARIA/keyboard behaviors
 - Consult `performance` for benchmark targets and testing strategy
 
+
+## Verified Patterns and Gotchas
+
+These are hard-won learnings from actual test-writing sessions. Follow them to avoid wasted iterations.
+
+### bUnit
+
+- **Use `Render<T>()` not `RenderComponent<T>()`** — the latter is `[Obsolete]` in bUnit 2.x and errors the build.
+- **Use `AddUnmatched()` for AdditionalAttributes** — `Add()` throws for parameters marked `[Parameter(CaptureUnmatchedValues = true)]`.
+- **Check the `.razor` file for the actual HTML element rendered** (e.g., CardTitle renders `<h3>`, CardDescription renders `<p>`) — don't assume `<div>`.
+- **Composition tests via child content strings are shallow** — bUnit doesn't parse child content strings as Blazor components. If you render `<Card><CardHeader>...</CardHeader></Card>` as a string, bUnit treats it as literal text, not nested components.
+- **Use `IsAssignableTo` for inheritance checks** — it handles transitive inheritance (e.g., Button -> ButtonBase -> InteractiveBase -> BlazingSpireComponentBase).
+
+### BenchmarkDotNet
+
+- **Use shared bUnit context** — inherit `BunitContext` on the benchmark class, set `JSInterop.Mode = JSRuntimeMode.Loose` in the constructor. Use `[IterationCleanup]` calling `DisposeComponentsAsync().GetAwaiter().GetResult()` — the sync `DisposeComponents()` does not exist in bUnit 2.7.x. Do NOT create a fresh `BunitContext` per benchmark call — context construction (ms) drowns out component render cost (μs).
+- **Return `object` from benchmark methods** — `IRenderedFragment` was removed in bUnit 2.x, and `IRenderedComponent<T>` doesn't resolve in non-Razor SDK projects (`Microsoft.NET.Sdk`). Returning `object` still prevents JIT dead-code elimination.
+- **Use `[ShortRunJob]` not `[SimpleJob]`** for simple components.
+- **Always include `[MemoryDiagnoser]`**.
+
+### Playwright
+
+- **No `Microsoft.Playwright.Xunit` in 1.52.0** — use `IAsyncLifetime` + manual `IPlaywright`/`IBrowser`/`IPage` lifecycle management.
+- **Tests require `APP_URL` env var** pointing to a running demo app instance.
+- **Add explicit usings** — E2E .csproj may lack `<Using Include="Microsoft.Playwright" />`.
+- **Scope locators to sections** — use `Page.Locator("section").Filter(...)` since terms like "Default", "Outline" appear in multiple component sections on the demo page.
+- **Skeleton div is removed from DOM after boot** — assert with `ToHaveCountAsync(0)`, not `ToBeHiddenAsync()`.
+
 ## After Writing Tests
 
 1. Run tests: use `/dotnet-test:run-tests` skill to verify they pass

@@ -1,0 +1,9 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div role="menuitem" tabindex="-1"
+     data-disabled="@(Disabled ? "true" : null)"
+     class="@Classes" @attributes="AdditionalAttributes"
+     @onclick="OnClickAsync">
+    @ChildContent
+</div>

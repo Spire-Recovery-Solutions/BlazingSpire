@@ -1,0 +1,15 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (IsVisible)
+{
+    <div role="option"
+         aria-selected="false"
+         aria-disabled="@(Disabled ? "true" : null)"
+         data-disabled="@(Disabled ? "" : null)"
+         class="@Classes"
+         @onclick="OnSelect"
+         @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+}

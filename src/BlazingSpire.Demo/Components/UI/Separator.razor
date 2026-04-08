@@ -1,0 +1,11 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (Decorative)
+{
+    <div role="none" class="@Classes" @attributes="AdditionalAttributes"></div>
+}
+else
+{
+    <div role="separator" aria-orientation="@Orientation.ToString().ToLowerInvariant()" class="@Classes" @attributes="AdditionalAttributes"></div>
+}

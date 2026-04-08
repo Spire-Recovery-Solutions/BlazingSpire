@@ -1,0 +1,11 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<CascadingValue Value="this">
+    <div class="@Classes"
+         role="region"
+         aria-roledescription="carousel"
+         @attributes="AdditionalAttributes">
+        @ChildContent
+    </div>
+</CascadingValue>

@@ -1,0 +1,56 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div class="@Classes" @attributes="AdditionalAttributes">
+    <div class="flex items-center justify-between px-1">
+        <button type="button" class="inline-flex h-7 w-7 items-center justify-center rounded-md border border-input bg-transparent text-sm hover:bg-accent hover:text-accent-foreground" @onclick="PreviousMonth" aria-label="Go to previous month">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="text-sm font-medium">@DisplayMonth.ToString("MMMM yyyy")</div>
+        <button type="button" class="inline-flex h-7 w-7 items-center justify-center rounded-md border border-input bg-transparent text-sm hover:bg-accent hover:text-accent-foreground" @onclick="NextMonth" aria-label="Go to next month">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+    </div>
+    <table class="w-full border-collapse mt-2">
+        <thead>
+            <tr>
+                @foreach (var day in new[] { "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa" })
+                {
+                    <th class="w-9 text-center text-[0.8rem] font-normal text-muted-foreground">@day</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var startDow = (int)FirstDayOfMonth.DayOfWeek;
+                var dayNum = 1;
+                for (var row = 0; row < 6 && dayNum <= DaysInMonth; row++)
+                {
+                    <tr>
+                        @for (var col = 0; col < 7; col++)
+                        {
+                            if ((row == 0 && col < startDow) || dayNum > DaysInMonth)
+                            {
+                                <td class="p-0 text-center text-sm"></td>
+                            }
+                            else
+                            {
+                                var d = dayNum;
+                                var selected = IsSelected(d);
+                                var today = IsToday(d);
+                                <td class="p-0 text-center text-sm">
+                                    <button type="button"
+                                            class="@GetDayClasses(selected, today)"
+                                            @onclick="() => SelectDayAsync(d)">
+                                        @d
+                                    </button>
+                                </td>
+                                dayNum++;
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

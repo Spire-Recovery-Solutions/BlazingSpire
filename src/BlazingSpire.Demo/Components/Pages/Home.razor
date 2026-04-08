@@ -1,5 +1,7 @@
 @page "/"
 @using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Shared
+@inject IToastService ToastService
 
 <PageTitle>BlazingSpire</PageTitle>
 
@@ -485,4 +487,2737 @@
         </div>
     </section>
 
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- ALERT -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Alert</h2>
+            <p class="text-sm text-muted-foreground mt-1">Display callout messages for important information or feedback.</p>
+        </div>
+
+        <!-- Default -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="max-w-xl">
+                <Alert>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <rect width="20" height="16" x="2" y="4" rx="2"/>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                    <AlertTitle>Heads up!</AlertTitle>
+                    <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+                </Alert>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Alert&gt;
+    &lt;svg class="h-4 w-4"&gt;...&lt;/svg&gt;
+    &lt;AlertTitle&gt;Heads up!&lt;/AlertTitle&gt;
+    &lt;AlertDescription&gt;You can add components to your app using the CLI.&lt;/AlertDescription&gt;
+&lt;/Alert&gt;</code></pre>
+        </div>
+
+        <!-- Destructive -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Destructive</h3>
+            <div class="max-w-xl">
+                <Alert Variant="AlertVariant.Destructive">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>
+                        <path d="M12 9v4"/><path d="M12 17h.01"/>
+                    </svg>
+                    <AlertTitle>Error</AlertTitle>
+                    <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+                </Alert>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Alert Variant="AlertVariant.Destructive"&gt;
+    &lt;svg class="h-4 w-4"&gt;...&lt;/svg&gt;
+    &lt;AlertTitle&gt;Error&lt;/AlertTitle&gt;
+    &lt;AlertDescription&gt;Your session has expired. Please log in again.&lt;/AlertDescription&gt;
+&lt;/Alert&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- SEPARATOR -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Separator</h2>
+            <p class="text-sm text-muted-foreground mt-1">A visual divider between sections of content. Supports horizontal and vertical orientations.</p>
+        </div>
+
+        <!-- Horizontal -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Horizontal</h3>
+            <div class="space-y-4">
+                <p class="text-sm text-muted-foreground">Content above the separator</p>
+                <Separator />
+                <p class="text-sm text-muted-foreground">Content below the separator</p>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;p&gt;Content above&lt;/p&gt;
+&lt;Separator /&gt;
+&lt;p&gt;Content below&lt;/p&gt;</code></pre>
+        </div>
+
+        <!-- Vertical -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Vertical</h3>
+            <div class="flex items-center gap-4 h-5">
+                <span class="text-sm">Blog</span>
+                <Separator Orientation="SeparatorOrientation.Vertical" />
+                <span class="text-sm">Docs</span>
+                <Separator Orientation="SeparatorOrientation.Vertical" />
+                <span class="text-sm">Source</span>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;div class="flex items-center gap-4 h-5"&gt;
+    &lt;span&gt;Blog&lt;/span&gt;
+    &lt;Separator Orientation="SeparatorOrientation.Vertical" /&gt;
+    &lt;span&gt;Docs&lt;/span&gt;
+    &lt;Separator Orientation="SeparatorOrientation.Vertical" /&gt;
+    &lt;span&gt;Source&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Semantic (non-decorative) -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Semantic</h3>
+            <div class="space-y-4">
+                <p class="text-sm text-muted-foreground">Use <code class="text-xs bg-muted px-1 py-0.5 rounded">Decorative="false"</code> when the separator conveys meaningful structure (adds <code class="text-xs bg-muted px-1 py-0.5 rounded">role="separator"</code> and <code class="text-xs bg-muted px-1 py-0.5 rounded">aria-orientation</code>).</p>
+                <Separator Decorative="false" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Separator Decorative="false" /&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- SKELETON -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Skeleton</h2>
+            <p class="text-sm text-muted-foreground mt-1">Placeholder loading animation. Size via Class parameter — height, width, and shape.</p>
+        </div>
+
+        <!-- Text lines -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Text Lines</h3>
+            <div class="space-y-2">
+                <Skeleton Class="h-4 w-[250px]" />
+                <Skeleton Class="h-4 w-[200px]" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Skeleton Class="h-4 w-[250px]" /&gt;
+&lt;Skeleton Class="h-4 w-[200px]" /&gt;</code></pre>
+        </div>
+
+        <!-- Circle (avatar) -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Circle</h3>
+            <Skeleton Class="h-12 w-12 rounded-full" />
+            <pre class="language-xml"><code class="language-xml">&lt;Skeleton Class="h-12 w-12 rounded-full" /&gt;</code></pre>
+        </div>
+
+        <!-- Card skeleton -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Card</h3>
+            <div class="max-w-sm">
+                <Card>
+                    <CardHeader>
+                        <div class="flex items-center gap-3">
+                            <Skeleton Class="h-10 w-10 rounded-full" />
+                            <div class="space-y-2">
+                                <Skeleton Class="h-4 w-[150px]" />
+                                <Skeleton Class="h-3 w-[100px]" />
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent class="space-y-2">
+                        <Skeleton Class="h-4 w-full" />
+                        <Skeleton Class="h-4 w-full" />
+                        <Skeleton Class="h-4 w-[80%]" />
+                    </CardContent>
+                    <CardFooter>
+                        <Skeleton Class="h-9 w-[100px]" />
+                    </CardFooter>
+                </Card>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Card&gt;
+    &lt;CardHeader&gt;
+        &lt;div class="flex items-center gap-3"&gt;
+            &lt;Skeleton Class="h-10 w-10 rounded-full" /&gt;
+            &lt;div class="space-y-2"&gt;
+                &lt;Skeleton Class="h-4 w-[150px]" /&gt;
+                &lt;Skeleton Class="h-3 w-[100px]" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/CardHeader&gt;
+    &lt;CardContent class="space-y-2"&gt;
+        &lt;Skeleton Class="h-4 w-full" /&gt;
+        &lt;Skeleton Class="h-4 w-full" /&gt;
+        &lt;Skeleton Class="h-4 w-[80%]" /&gt;
+    &lt;/CardContent&gt;
+    &lt;CardFooter&gt;
+        &lt;Skeleton Class="h-9 w-[100px]" /&gt;
+    &lt;/CardFooter&gt;
+&lt;/Card&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- AVATAR -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Avatar</h2>
+            <p class="text-sm text-muted-foreground mt-1">An image element with a fallback for representing the user.</p>
+        </div>
+
+        <!-- With image -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Image</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Avatar>
+                    <AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" />
+                </Avatar>
+                <Avatar>
+                    <AvatarImage Src="https://github.com/adamreed90.png" Alt="Adam Reed" />
+                </Avatar>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Avatar&gt;
+    &lt;AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" /&gt;
+&lt;/Avatar&gt;</code></pre>
+        </div>
+
+        <!-- Fallback -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Fallback</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Avatar>
+                    <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                    <AvatarFallback>AR</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                    <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Avatar&gt;
+    &lt;AvatarFallback&gt;CN&lt;/AvatarFallback&gt;
+&lt;/Avatar&gt;</code></pre>
+        </div>
+
+        <!-- Group -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Avatar Group</h3>
+            <div class="flex items-center">
+                <Avatar Class="-mr-2 ring-2 ring-background">
+                    <AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" />
+                </Avatar>
+                <Avatar Class="-mr-2 ring-2 ring-background">
+                    <AvatarFallback>AR</AvatarFallback>
+                </Avatar>
+                <Avatar Class="-mr-2 ring-2 ring-background">
+                    <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <Avatar Class="ring-2 ring-background">
+                    <AvatarFallback>+3</AvatarFallback>
+                </Avatar>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Avatar Class="-mr-2 ring-2 ring-background"&gt;
+    &lt;AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" /&gt;
+&lt;/Avatar&gt;
+&lt;Avatar Class="-mr-2 ring-2 ring-background"&gt;
+    &lt;AvatarFallback&gt;AR&lt;/AvatarFallback&gt;
+&lt;/Avatar&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- LABEL -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Label</h2>
+            <p class="text-sm text-muted-foreground mt-1">A styled label element for form fields.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Label>Email address</Label>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Label&gt;Email address&lt;/Label&gt;</code></pre>
+        </div>
+
+        <!-- With For attribute -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With For Attribute</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Label For="email">Email address</Label>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Label For="email"&gt;Email address&lt;/Label&gt;</code></pre>
+        </div>
+
+        <!-- Custom styling -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Custom Styling</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Label Class="text-primary">Required field</Label>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Label Class="text-primary"&gt;Required field&lt;/Label&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- INPUT -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Input</h2>
+            <p class="text-sm text-muted-foreground mt-1">Displays a form input field for text entry. Supports all native input types.</p>
+        </div>
+
+        <!-- Default -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="max-w-sm">
+                <Input Placeholder="Email" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Input Placeholder="Email" /&gt;</code></pre>
+        </div>
+
+        <!-- Types -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Types</h3>
+            <div class="max-w-sm space-y-2">
+                <Input Type="email" Placeholder="Email" />
+                <Input Type="password" Placeholder="Password" />
+                <Input Type="file" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Input Type="email" Placeholder="Email" /&gt;
+&lt;Input Type="password" Placeholder="Password" /&gt;
+&lt;Input Type="file" /&gt;</code></pre>
+        </div>
+
+        <!-- With Label -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Label</h3>
+            <div class="max-w-sm space-y-2">
+                <Label For="email-demo">Email</Label>
+                <Input Type="email" Placeholder="m@example.com" id="email-demo" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Label For="email"&gt;Email&lt;/Label&gt;
+&lt;Input Type="email" Placeholder="m@example.com" id="email" /&gt;</code></pre>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Disabled</h3>
+            <div class="max-w-sm">
+                <Input Placeholder="Disabled input" Disabled="true" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Input Placeholder="Disabled input" Disabled="true" /&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- SWITCH -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Switch</h2>
+            <p class="text-sm text-muted-foreground mt-1">A toggle control that switches between on and off states.</p>
+        </div>
+
+        <!-- Default -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="flex items-center gap-4">
+                <Switch />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Switch /&gt;</code></pre>
+        </div>
+
+        <!-- With Label -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Label</h3>
+            <div class="flex items-center gap-2">
+                <Switch id="airplane-mode" />
+                <Label For="airplane-mode">Airplane Mode</Label>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Switch id="airplane-mode" /&gt;
+&lt;Label For="airplane-mode"&gt;Airplane Mode&lt;/Label&gt;</code></pre>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Disabled</h3>
+            <div class="flex items-center gap-4">
+                <Switch Disabled="true" />
+                <Switch Checked="true" Disabled="true" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Switch Disabled="true" /&gt;
+&lt;Switch Checked="true" Disabled="true" /&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- TEXTAREA -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Textarea</h2>
+            <p class="text-sm text-muted-foreground mt-1">Displays a multi-line text input field. Supports placeholder, disabled state, and label composition.</p>
+        </div>
+
+        <!-- Default -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="max-w-sm">
+                <Textarea />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Textarea /&gt;</code></pre>
+        </div>
+
+        <!-- With Placeholder -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Placeholder</h3>
+            <div class="max-w-sm">
+                <Textarea Placeholder="Type your message here." />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Textarea Placeholder="Type your message here." /&gt;</code></pre>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Disabled</h3>
+            <div class="max-w-sm">
+                <Textarea Placeholder="Disabled textarea" Disabled="true" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Textarea Placeholder="Disabled textarea" Disabled="true" /&gt;</code></pre>
+        </div>
+
+        <!-- With Label -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Label</h3>
+            <div class="max-w-sm space-y-2">
+                <Label For="message-demo">Your message</Label>
+                <Textarea Placeholder="Type your message here." id="message-demo" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Label For="message"&gt;Your message&lt;/Label&gt;
+&lt;Textarea Placeholder="Type your message here." id="message" /&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- CHECKBOX -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Checkbox</h2>
+            <p class="text-sm text-muted-foreground mt-1">An interactive toggle with ARIA support. Bind with <code class="text-xs bg-muted px-1 py-0.5 rounded">@@bind-Checked</code>.</p>
+        </div>
+
+        <!-- Default unchecked -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Checkbox />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Checkbox /&gt;</code></pre>
+        </div>
+
+        <!-- Checked -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Checked</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Checkbox Checked="true" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Checkbox Checked="true" /&gt;</code></pre>
+        </div>
+
+        <!-- With label -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Label</h3>
+            <div class="flex items-center gap-2">
+                <Checkbox id="terms" />
+                <Label For="terms">Accept terms and conditions</Label>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Checkbox id="terms" /&gt;
+&lt;Label For="terms"&gt;Accept terms and conditions&lt;/Label&gt;</code></pre>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Disabled</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Checkbox Disabled="true" />
+                <Checkbox Checked="true" Disabled="true" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Checkbox Disabled="true" /&gt;
+&lt;Checkbox Checked="true" Disabled="true" /&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- PROGRESS -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Progress</h2>
+            <p class="text-sm text-muted-foreground mt-1">Displays a progress bar indicating task completion.</p>
+        </div>
+
+        <!-- Values -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Values</h3>
+            <div class="max-w-sm space-y-3">
+                <Progress Value="25" />
+                <Progress Value="50" />
+                <Progress Value="75" />
+                <Progress Value="100" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Progress Value="25" /&gt;
+&lt;Progress Value="50" /&gt;
+&lt;Progress Value="75" /&gt;
+&lt;Progress Value="100" /&gt;</code></pre>
+        </div>
+
+        <!-- With label -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Label</h3>
+            <div class="max-w-sm space-y-2">
+                <div class="flex justify-between text-sm">
+                    <span>Uploading...</span>
+                    <span class="text-muted-foreground">66%</span>
+                </div>
+                <Progress Value="66" aria-label="File upload progress" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;div class="flex justify-between text-sm"&gt;
+    &lt;span&gt;Uploading...&lt;/span&gt;
+    &lt;span class="text-muted-foreground"&gt;66%&lt;/span&gt;
+&lt;/div&gt;
+&lt;Progress Value="66" aria-label="File upload progress" /&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- ASPECTRATIO -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">AspectRatio</h2>
+            <p class="text-sm text-muted-foreground mt-1">Enforces a consistent aspect ratio on its content. Defaults to 16:9.</p>
+        </div>
+
+        <!-- 16:9 -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">16:9</h3>
+            <div class="max-w-sm">
+                <AspectRatio Ratio="16.0 / 9.0" Class="rounded-md">
+                    <div class="flex h-full w-full items-center justify-center bg-muted rounded-md">
+                        <span class="text-sm text-muted-foreground">16:9</span>
+                    </div>
+                </AspectRatio>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;AspectRatio Ratio="16.0 / 9.0" Class="rounded-md"&gt;
+    &lt;img src="image.jpg" alt="Photo" class="h-full w-full object-cover" /&gt;
+&lt;/AspectRatio&gt;</code></pre>
+        </div>
+
+        <!-- 1:1 Square -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">1:1 Square</h3>
+            <div class="max-w-[200px]">
+                <AspectRatio Ratio="1.0" Class="rounded-md">
+                    <div class="flex h-full w-full items-center justify-center bg-muted rounded-md">
+                        <span class="text-sm text-muted-foreground">1:1</span>
+                    </div>
+                </AspectRatio>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;AspectRatio Ratio="1.0" Class="rounded-md"&gt;
+    &lt;img src="avatar.jpg" alt="Avatar" class="h-full w-full object-cover" /&gt;
+&lt;/AspectRatio&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- TABLE -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Table</h2>
+            <p class="text-sm text-muted-foreground mt-1">A responsive table component with header, body, footer, and caption support.</p>
+        </div>
+
+        <!-- Invoice example -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Invoices</h3>
+            <Table>
+                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead Class="w-[100px]">Invoice</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Method</TableHead>
+                        <TableHead Class="text-right">Amount</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV001</TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>Credit Card</TableCell>
+                        <TableCell Class="text-right">$250.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV002</TableCell>
+                        <TableCell>Pending</TableCell>
+                        <TableCell>PayPal</TableCell>
+                        <TableCell Class="text-right">$150.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV003</TableCell>
+                        <TableCell>Unpaid</TableCell>
+                        <TableCell>Bank Transfer</TableCell>
+                        <TableCell Class="text-right">$350.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV004</TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>Credit Card</TableCell>
+                        <TableCell Class="text-right">$450.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV005</TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>PayPal</TableCell>
+                        <TableCell Class="text-right">$550.00</TableCell>
+                    </TableRow>
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TableCell ColSpan="3">Total</TableCell>
+                        <TableCell Class="text-right">$1,750.00</TableCell>
+                    </TableRow>
+                </TableFooter>
+            </Table>
+            <pre class="language-xml"><code class="language-xml">&lt;Table&gt;
+    &lt;TableCaption&gt;A list of your recent invoices.&lt;/TableCaption&gt;
+    &lt;TableHeader&gt;
+        &lt;TableRow&gt;
+            &lt;TableHead&gt;Invoice&lt;/TableHead&gt;
+            &lt;TableHead&gt;Status&lt;/TableHead&gt;
+            &lt;TableHead&gt;Method&lt;/TableHead&gt;
+            &lt;TableHead Class="text-right"&gt;Amount&lt;/TableHead&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableHeader&gt;
+    &lt;TableBody&gt;
+        &lt;TableRow&gt;
+            &lt;TableCell Class="font-medium"&gt;INV001&lt;/TableCell&gt;
+            &lt;TableCell&gt;Paid&lt;/TableCell&gt;
+            &lt;TableCell&gt;Credit Card&lt;/TableCell&gt;
+            &lt;TableCell Class="text-right"&gt;$250.00&lt;/TableCell&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableBody&gt;
+    &lt;TableFooter&gt;
+        &lt;TableRow&gt;
+            &lt;TableCell ColSpan="3"&gt;Total&lt;/TableCell&gt;
+            &lt;TableCell Class="text-right"&gt;$1,750.00&lt;/TableCell&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableFooter&gt;
+&lt;/Table&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- RADIOGROUP -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Radio Group</h2>
+            <p class="text-sm text-muted-foreground mt-1">A set of mutually exclusive options where only one can be selected at a time.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <RadioGroup>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="default" id="r-default" />
+                    <Label For="r-default">Default</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="comfortable" id="r-comfortable" />
+                    <Label For="r-comfortable">Comfortable</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="compact" id="r-compact" />
+                    <Label For="r-compact">Compact</Label>
+                </div>
+            </RadioGroup>
+            <pre class="language-xml"><code class="language-xml">&lt;RadioGroup&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="default" id="r-default" /&gt;
+        &lt;Label For="r-default"&gt;Default&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="comfortable" id="r-comfortable" /&gt;
+        &lt;Label For="r-comfortable"&gt;Comfortable&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="compact" id="r-compact" /&gt;
+        &lt;Label For="r-compact"&gt;Compact&lt;/Label&gt;
+    &lt;/div&gt;
+&lt;/RadioGroup&gt;</code></pre>
+        </div>
+
+        <!-- With default value -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Default Value</h3>
+            <RadioGroup Value="comfortable">
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="default" id="r2-default" />
+                    <Label For="r2-default">Default</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="comfortable" id="r2-comfortable" />
+                    <Label For="r2-comfortable">Comfortable</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="compact" id="r2-compact" />
+                    <Label For="r2-compact">Compact</Label>
+                </div>
+            </RadioGroup>
+            <pre class="language-xml"><code class="language-xml">&lt;RadioGroup Value="comfortable"&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="default" id="r-default" /&gt;
+        &lt;Label For="r-default"&gt;Default&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="comfortable" id="r-comfortable" /&gt;
+        &lt;Label For="r-comfortable"&gt;Comfortable&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="compact" id="r-compact" /&gt;
+        &lt;Label For="r-compact"&gt;Compact&lt;/Label&gt;
+    &lt;/div&gt;
+&lt;/RadioGroup&gt;</code></pre>
+        </div>
+
+        <!-- With disabled item -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Disabled Item</h3>
+            <RadioGroup Value="default">
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="default" id="r3-default" />
+                    <Label For="r3-default">Default</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="comfortable" id="r3-comfortable" Disabled="true" />
+                    <Label For="r3-comfortable" Class="opacity-50 cursor-not-allowed">Comfortable (disabled)</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="compact" id="r3-compact" />
+                    <Label For="r3-compact">Compact</Label>
+                </div>
+            </RadioGroup>
+            <pre class="language-xml"><code class="language-xml">&lt;RadioGroup Value="default"&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="default" id="r-default" /&gt;
+        &lt;Label For="r-default"&gt;Default&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="comfortable" id="r-comfortable" Disabled="true" /&gt;
+        &lt;Label For="r-comfortable" Class="opacity-50 cursor-not-allowed"&gt;Comfortable (disabled)&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="compact" id="r-compact" /&gt;
+        &lt;Label For="r-compact"&gt;Compact&lt;/Label&gt;
+    &lt;/div&gt;
+&lt;/RadioGroup&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- BREADCRUMB -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Breadcrumb</h2>
+            <p class="text-sm text-muted-foreground mt-1">Displays the current page path within a navigational hierarchy.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink Href="/">Home</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbLink Href="/components">Components</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
+            <pre class="language-xml"><code class="language-xml">&lt;Breadcrumb&gt;
+    &lt;BreadcrumbList&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbLink Href="/"&gt;Home&lt;/BreadcrumbLink&gt;
+        &lt;/BreadcrumbItem&gt;
+        &lt;BreadcrumbSeparator /&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbLink Href="/components"&gt;Components&lt;/BreadcrumbLink&gt;
+        &lt;/BreadcrumbItem&gt;
+        &lt;BreadcrumbSeparator /&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbPage&gt;Breadcrumb&lt;/BreadcrumbPage&gt;
+        &lt;/BreadcrumbItem&gt;
+    &lt;/BreadcrumbList&gt;
+&lt;/Breadcrumb&gt;</code></pre>
+        </div>
+
+        <!-- Custom separator -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Custom Separator</h3>
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink Href="/">Home</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator><span>/</span></BreadcrumbSeparator>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink Href="/components">Components</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator><span>/</span></BreadcrumbSeparator>
+                    <BreadcrumbItem>
+                        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
+            <pre class="language-xml"><code class="language-xml">&lt;Breadcrumb&gt;
+    &lt;BreadcrumbList&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbLink Href="/"&gt;Home&lt;/BreadcrumbLink&gt;
+        &lt;/BreadcrumbItem&gt;
+        &lt;BreadcrumbSeparator&gt;&lt;span&gt;/&lt;/span&gt;&lt;/BreadcrumbSeparator&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbLink Href="/components"&gt;Components&lt;/BreadcrumbLink&gt;
+        &lt;/BreadcrumbItem&gt;
+        &lt;BreadcrumbSeparator&gt;&lt;span&gt;/&lt;/span&gt;&lt;/BreadcrumbSeparator&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbPage&gt;Breadcrumb&lt;/BreadcrumbPage&gt;
+        &lt;/BreadcrumbItem&gt;
+    &lt;/BreadcrumbList&gt;
+&lt;/Breadcrumb&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- TABS -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Tabs</h2>
+            <p class="text-sm text-muted-foreground mt-1">Switch between related content panels. Manages active state via cascading context.</p>
+        </div>
+
+        <!-- Account / Password example -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Account Settings</h3>
+            <Tabs ActiveValue="account" Class="max-w-lg">
+                <TabsList>
+                    <TabsTrigger ItemValue="account">Account</TabsTrigger>
+                    <TabsTrigger ItemValue="password">Password</TabsTrigger>
+                </TabsList>
+                <TabsContent ItemValue="account">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Account</CardTitle>
+                            <CardDescription>Make changes to your account here. Click save when done.</CardDescription>
+                        </CardHeader>
+                        <CardContent class="space-y-4">
+                            <div class="space-y-1">
+                                <Label For="name">Name</Label>
+                                <Input id="name" Placeholder="Your name" />
+                            </div>
+                            <div class="space-y-1">
+                                <Label For="username">Username</Label>
+                                <Input id="username" Placeholder="&#64;username" />
+                            </div>
+                        </CardContent>
+                        <CardFooter>
+                            <Button>Save changes</Button>
+                        </CardFooter>
+                    </Card>
+                </TabsContent>
+                <TabsContent ItemValue="password">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Password</CardTitle>
+                            <CardDescription>Change your password here. After saving, you'll be logged out.</CardDescription>
+                        </CardHeader>
+                        <CardContent class="space-y-4">
+                            <div class="space-y-1">
+                                <Label For="current">Current password</Label>
+                                <Input id="current" Type="password" />
+                            </div>
+                            <div class="space-y-1">
+                                <Label For="new-password">New password</Label>
+                                <Input id="new-password" Type="password" />
+                            </div>
+                        </CardContent>
+                        <CardFooter>
+                            <Button>Save password</Button>
+                        </CardFooter>
+                    </Card>
+                </TabsContent>
+            </Tabs>
+            <pre class="language-xml"><code class="language-xml">&lt;Tabs ActiveValue="account"&gt;
+    &lt;TabsList&gt;
+        &lt;TabsTrigger ItemValue="account"&gt;Account&lt;/TabsTrigger&gt;
+        &lt;TabsTrigger ItemValue="password"&gt;Password&lt;/TabsTrigger&gt;
+    &lt;/TabsList&gt;
+    &lt;TabsContent ItemValue="account"&gt;
+        &lt;Card&gt;
+            &lt;CardHeader&gt;
+                &lt;CardTitle&gt;Account&lt;/CardTitle&gt;
+                &lt;CardDescription&gt;Make changes to your account here.&lt;/CardDescription&gt;
+            &lt;/CardHeader&gt;
+            &lt;CardContent class="space-y-4"&gt;
+                &lt;Label For="name"&gt;Name&lt;/Label&gt;
+                &lt;Input id="name" Placeholder="Your name" /&gt;
+            &lt;/CardContent&gt;
+            &lt;CardFooter&gt;
+                &lt;Button&gt;Save changes&lt;/Button&gt;
+            &lt;/CardFooter&gt;
+        &lt;/Card&gt;
+    &lt;/TabsContent&gt;
+    &lt;TabsContent ItemValue="password"&gt;
+        &lt;!-- password fields --&gt;
+    &lt;/TabsContent&gt;
+&lt;/Tabs&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- ACCORDION -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Accordion</h2>
+            <p class="text-sm text-muted-foreground mt-1">Vertically stacked sections that expand and collapse. Uses native HTML details/summary for SSR compatibility.</p>
+        </div>
+
+        <div class="space-y-3">
+            <Accordion>
+                <AccordionItem>
+                    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                    <AccordionContent>Yes. It uses native HTML details/summary elements.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem>
+                    <AccordionTrigger>Is it styled?</AccordionTrigger>
+                    <AccordionContent>Yes. It comes with default Tailwind styles.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem>
+                    <AccordionTrigger>Is it animated?</AccordionTrigger>
+                    <AccordionContent>Yes. CSS transitions handle the open/close animation.</AccordionContent>
+                </AccordionItem>
+            </Accordion>
+            <pre class="language-xml"><code class="language-xml">&lt;Accordion&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it accessible?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. It uses native HTML details/summary elements.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it styled?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. It comes with default Tailwind styles.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it animated?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. CSS transitions handle the open/close animation.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+&lt;/Accordion&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- TOGGLE -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Toggle</h2>
+            <p class="text-sm text-muted-foreground mt-1">A pressable button that switches between on and off states.</p>
+        </div>
+
+        <!-- Default -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Toggle aria-label="Toggle bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M14 12a4 4 0 0 0 0-8H6v8"/>
+                        <path d="M15 20a4 4 0 0 0 0-8H6v8z"/>
+                    </svg>
+                </Toggle>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Toggle aria-label="Toggle bold"&gt;
+    &lt;!-- Bold (B) icon --&gt;
+&lt;/Toggle&gt;</code></pre>
+        </div>
+
+        <!-- Outline variant -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Outline</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Toggle Variant="ToggleVariant.Outline" aria-label="Toggle italic">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <line x1="19" y1="4" x2="10" y2="4"/>
+                        <line x1="14" y1="20" x2="5" y2="20"/>
+                        <line x1="15" y1="4" x2="9" y2="20"/>
+                    </svg>
+                </Toggle>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Toggle Variant="ToggleVariant.Outline" aria-label="Toggle italic"&gt;
+    &lt;!-- Italic (I) icon --&gt;
+&lt;/Toggle&gt;</code></pre>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Disabled</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Toggle Disabled="true" aria-label="Toggle bold disabled">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M14 12a4 4 0 0 0 0-8H6v8"/>
+                        <path d="M15 20a4 4 0 0 0 0-8H6v8z"/>
+                    </svg>
+                </Toggle>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Toggle Disabled="true" aria-label="Toggle bold disabled"&gt;
+    &lt;!-- Bold (B) icon --&gt;
+&lt;/Toggle&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- COLLAPSIBLE -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Collapsible</h2>
+            <p class="text-sm text-muted-foreground mt-1">An interactive component that expands or collapses a content panel.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Repository files</h3>
+            <div class="w-full max-w-sm">
+                <Collapsible>
+                    <div class="flex items-center justify-between rounded-md border px-4 py-3">
+                        <span class="text-sm font-medium">&#64;blazingspire/ui</span>
+                        <CollapsibleTrigger>
+                            <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Icon" aria-label="Toggle files">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                    <path d="m7 15 5 5 5-5"/>
+                                    <path d="m7 9 5-5 5 5"/>
+                                </svg>
+                            </Button>
+                        </CollapsibleTrigger>
+                    </div>
+                    <div class="rounded-md border px-4 py-3 text-sm font-mono">
+                        button.razor.cs
+                    </div>
+                    <CollapsibleContent>
+                        <div class="rounded-md border px-4 py-3 text-sm font-mono">
+                            badge.razor.cs
+                        </div>
+                        <div class="rounded-md border px-4 py-3 text-sm font-mono">
+                            card.razor.cs
+                        </div>
+                        <div class="rounded-md border px-4 py-3 text-sm font-mono">
+                            collapsible.razor.cs
+                        </div>
+                    </CollapsibleContent>
+                </Collapsible>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Collapsible&gt;
+    &lt;div class="flex items-center justify-between rounded-md border px-4 py-3"&gt;
+        &lt;span class="text-sm font-medium"&gt;&#64;blazingspire/ui&lt;/span&gt;
+        &lt;CollapsibleTrigger&gt;
+            &lt;Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Icon"&gt;
+                &lt;!-- chevron icon --&gt;
+            &lt;/Button&gt;
+        &lt;/CollapsibleTrigger&gt;
+    &lt;/div&gt;
+    &lt;div class="rounded-md border px-4 py-3 text-sm font-mono"&gt;
+        button.razor.cs
+    &lt;/div&gt;
+    &lt;CollapsibleContent&gt;
+        &lt;div class="rounded-md border px-4 py-3 text-sm font-mono"&gt;badge.razor.cs&lt;/div&gt;
+        &lt;div class="rounded-md border px-4 py-3 text-sm font-mono"&gt;card.razor.cs&lt;/div&gt;
+        &lt;div class="rounded-md border px-4 py-3 text-sm font-mono"&gt;collapsible.razor.cs&lt;/div&gt;
+    &lt;/CollapsibleContent&gt;
+&lt;/Collapsible&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- SIDEBAR -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Sidebar</h2>
+            <p class="text-sm text-muted-foreground mt-1">A collapsible navigation sidebar with header, content, footer, and a toggle trigger.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Collapsible sidebar</h3>
+            <div class="h-64 overflow-hidden rounded-lg border">
+                <Sidebar @bind-IsCollapsed="_sidebarCollapsed">
+                    <SidebarHeader>
+                        <SidebarTrigger />
+                        @if (!_sidebarCollapsed)
+                        {
+                            <span class="ml-2 text-sm font-semibold">Navigation</span>
+                        }
+                    </SidebarHeader>
+                    <SidebarContent>
+                        <nav class="space-y-1 px-2">
+                            <a href="#" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9 22 9 12 15 12 15 22"/>
+                                </svg>
+                                @if (!_sidebarCollapsed) { <span>Home</span> }
+                            </a>
+                            <a href="#" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="m21 21-4.3-4.3"/>
+                                </svg>
+                                @if (!_sidebarCollapsed) { <span>Search</span> }
+                            </a>
+                            <a href="#" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 shrink-0">
+                                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                @if (!_sidebarCollapsed) { <span>Settings</span> }
+                            </a>
+                        </nav>
+                    </SidebarContent>
+                    <SidebarFooter>
+                        @if (!_sidebarCollapsed)
+                        {
+                            <p class="text-xs text-muted-foreground">v1.0.0</p>
+                        }
+                    </SidebarFooter>
+                </Sidebar>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Sidebar &#64;bind-IsCollapsed="_isCollapsed"&gt;
+    &lt;SidebarHeader&gt;
+        &lt;SidebarTrigger /&gt;
+        &#64;if (!_isCollapsed) &#123; &lt;span&gt;Navigation&lt;/span&gt; &#125;
+    &lt;/SidebarHeader&gt;
+    &lt;SidebarContent&gt;
+        &lt;nav&gt;
+            &lt;a href="#"&gt;Home&lt;/a&gt;
+            &lt;a href="#"&gt;Search&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/SidebarContent&gt;
+    &lt;SidebarFooter&gt;
+        &lt;p&gt;v1.0.0&lt;/p&gt;
+    &lt;/SidebarFooter&gt;
+&lt;/Sidebar&gt;
+
+&#64;code &#123;
+    private bool _isCollapsed;
+&#125;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- DIALOG -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Dialog</h2>
+            <p class="text-sm text-muted-foreground mt-1">A modal dialog with focus trap, scroll lock, and click-outside/Escape dismissal.</p>
+        </div>
+
+        <!-- Edit Profile -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Edit Profile</h3>
+            <Dialog>
+                <DialogTrigger>
+                    <Button Variant="ButtonVariant.Outline">Edit Profile</Button>
+                </DialogTrigger>
+                <DialogContent>
+                    <DialogClose />
+                    <DialogHeader>
+                        <DialogTitle>Edit profile</DialogTitle>
+                        <DialogDescription>Make changes to your profile here. Click save when you&#39;re done.</DialogDescription>
+                    </DialogHeader>
+                    <div class="grid gap-4 py-4">
+                        <div class="grid grid-cols-4 items-center gap-4">
+                            <Label For="name-demo" Class="text-right">Name</Label>
+                            <Input id="name-demo" Value="Adam Reed" Class="col-span-3" />
+                        </div>
+                        <div class="grid grid-cols-4 items-center gap-4">
+                            <Label For="username-demo" Class="text-right">Username</Label>
+                            <Input id="username-demo" Value="@("@adamreed")" Class="col-span-3" />
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button>Save changes</Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+            <pre class="language-xml"><code class="language-xml">&lt;Dialog&gt;
+    &lt;DialogTrigger&gt;
+        &lt;Button Variant="ButtonVariant.Outline"&gt;Edit Profile&lt;/Button&gt;
+    &lt;/DialogTrigger&gt;
+    &lt;DialogContent&gt;
+        &lt;DialogClose /&gt;
+        &lt;DialogHeader&gt;
+            &lt;DialogTitle&gt;Edit profile&lt;/DialogTitle&gt;
+            &lt;DialogDescription&gt;Make changes to your profile here.&lt;/DialogDescription&gt;
+        &lt;/DialogHeader&gt;
+        &lt;div class="grid gap-4 py-4"&gt;
+            &lt;div class="grid grid-cols-4 items-center gap-4"&gt;
+                &lt;Label For="name" Class="text-right"&gt;Name&lt;/Label&gt;
+                &lt;Input id="name" Value="Adam Reed" Class="col-span-3" /&gt;
+            &lt;/div&gt;
+            &lt;div class="grid grid-cols-4 items-center gap-4"&gt;
+                &lt;Label For="username" Class="text-right"&gt;Username&lt;/Label&gt;
+                &lt;Input id="username" Value="&#64;adamreed" Class="col-span-3" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;DialogFooter&gt;
+            &lt;Button&gt;Save changes&lt;/Button&gt;
+        &lt;/DialogFooter&gt;
+    &lt;/DialogContent&gt;
+&lt;/Dialog&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- ALERTDIALOG -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Alert Dialog</h2>
+            <p class="text-sm text-muted-foreground mt-1">A modal dialog that interrupts the user with important content. Cannot be dismissed by clicking outside or pressing Escape.</p>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Confirmation</h3>
+            <AlertDialog>
+                <AlertDialogTrigger>
+                    <Button Variant="ButtonVariant.Outline">Delete Account</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction>Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+            <pre class="language-xml"><code class="language-xml">&lt;AlertDialog&gt;
+    &lt;AlertDialogTrigger&gt;
+        &lt;Button Variant="ButtonVariant.Outline"&gt;Delete Account&lt;/Button&gt;
+    &lt;/AlertDialogTrigger&gt;
+    &lt;AlertDialogContent&gt;
+        &lt;AlertDialogHeader&gt;
+            &lt;AlertDialogTitle&gt;Are you absolutely sure?&lt;/AlertDialogTitle&gt;
+            &lt;AlertDialogDescription&gt;
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+            &lt;/AlertDialogDescription&gt;
+        &lt;/AlertDialogHeader&gt;
+        &lt;AlertDialogFooter&gt;
+            &lt;AlertDialogCancel&gt;Cancel&lt;/AlertDialogCancel&gt;
+            &lt;AlertDialogAction&gt;Continue&lt;/AlertDialogAction&gt;
+        &lt;/AlertDialogFooter&gt;
+    &lt;/AlertDialogContent&gt;
+&lt;/AlertDialog&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- SHEET -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Sheet</h2>
+            <p class="text-sm text-muted-foreground mt-1">A slide-in panel from any edge of the screen. Supports focus trap, scroll lock, and click-outside/Escape dismissal.</p>
+        </div>
+
+        <!-- Edit Profile -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Edit Profile</h3>
+            <Sheet>
+                <SheetTrigger>
+                    <Button Variant="ButtonVariant.Outline">Open Sheet</Button>
+                </SheetTrigger>
+                <SheetContent>
+                    <SheetClose />
+                    <SheetHeader>
+                        <SheetTitle>Edit profile</SheetTitle>
+                        <SheetDescription>Make changes to your profile here. Click save when you&#39;re done.</SheetDescription>
+                    </SheetHeader>
+                    <div class="grid gap-4 py-4">
+                        <div class="grid grid-cols-4 items-center gap-4">
+                            <Label For="sheet-name" Class="text-right">Name</Label>
+                            <Input id="sheet-name" Value="Adam Reed" Class="col-span-3" />
+                        </div>
+                        <div class="grid grid-cols-4 items-center gap-4">
+                            <Label For="sheet-username" Class="text-right">Username</Label>
+                            <Input id="sheet-username" Value="@("@adamreed")" Class="col-span-3" />
+                        </div>
+                    </div>
+                    <SheetFooter>
+                        <Button>Save changes</Button>
+                    </SheetFooter>
+                </SheetContent>
+            </Sheet>
+            <pre class="language-xml"><code class="language-xml">&lt;Sheet&gt;
+    &lt;SheetTrigger&gt;
+        &lt;Button Variant="ButtonVariant.Outline"&gt;Open Sheet&lt;/Button&gt;
+    &lt;/SheetTrigger&gt;
+    &lt;SheetContent&gt;
+        &lt;SheetClose /&gt;
+        &lt;SheetHeader&gt;
+            &lt;SheetTitle&gt;Edit profile&lt;/SheetTitle&gt;
+            &lt;SheetDescription&gt;Make changes to your profile here.&lt;/SheetDescription&gt;
+        &lt;/SheetHeader&gt;
+        &lt;div class="grid gap-4 py-4"&gt;
+            &lt;div class="grid grid-cols-4 items-center gap-4"&gt;
+                &lt;Label For="name" Class="text-right"&gt;Name&lt;/Label&gt;
+                &lt;Input id="name" Value="Adam Reed" Class="col-span-3" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;SheetFooter&gt;
+            &lt;Button&gt;Save changes&lt;/Button&gt;
+        &lt;/SheetFooter&gt;
+    &lt;/SheetContent&gt;
+&lt;/Sheet&gt;</code></pre>
+        </div>
+
+        <!-- Side variants -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Sides</h3>
+            <div class="flex flex-wrap gap-3">
+                <Sheet Side="SheetSide.Left">
+                    <SheetTrigger>
+                        <Button Variant="ButtonVariant.Outline">Left</Button>
+                    </SheetTrigger>
+                    <SheetContent>
+                        <SheetClose />
+                        <SheetHeader>
+                            <SheetTitle>Left Sheet</SheetTitle>
+                            <SheetDescription>Slides in from the left.</SheetDescription>
+                        </SheetHeader>
+                    </SheetContent>
+                </Sheet>
+                <Sheet Side="SheetSide.Top">
+                    <SheetTrigger>
+                        <Button Variant="ButtonVariant.Outline">Top</Button>
+                    </SheetTrigger>
+                    <SheetContent>
+                        <SheetClose />
+                        <SheetHeader>
+                            <SheetTitle>Top Sheet</SheetTitle>
+                            <SheetDescription>Slides in from the top.</SheetDescription>
+                        </SheetHeader>
+                    </SheetContent>
+                </Sheet>
+                <Sheet Side="SheetSide.Bottom">
+                    <SheetTrigger>
+                        <Button Variant="ButtonVariant.Outline">Bottom</Button>
+                    </SheetTrigger>
+                    <SheetContent>
+                        <SheetClose />
+                        <SheetHeader>
+                            <SheetTitle>Bottom Sheet</SheetTitle>
+                            <SheetDescription>Slides in from the bottom.</SheetDescription>
+                        </SheetHeader>
+                    </SheetContent>
+                </Sheet>
+                <Sheet Side="SheetSide.Right">
+                    <SheetTrigger>
+                        <Button Variant="ButtonVariant.Outline">Right</Button>
+                    </SheetTrigger>
+                    <SheetContent>
+                        <SheetClose />
+                        <SheetHeader>
+                            <SheetTitle>Right Sheet</SheetTitle>
+                            <SheetDescription>Slides in from the right.</SheetDescription>
+                        </SheetHeader>
+                    </SheetContent>
+                </Sheet>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Sheet Side="SheetSide.Left"&gt; ... &lt;/Sheet&gt;
+&lt;Sheet Side="SheetSide.Top"&gt; ... &lt;/Sheet&gt;
+&lt;Sheet Side="SheetSide.Bottom"&gt; ... &lt;/Sheet&gt;
+&lt;Sheet Side="SheetSide.Right"&gt; ... &lt;/Sheet&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- DRAWER -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Drawer</h2>
+            <p class="text-sm text-muted-foreground mt-1">A bottom drawer panel with focus trap, scroll lock, and click-outside/Escape dismissal.</p>
+        </div>
+
+        <!-- Basic Drawer -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <Drawer>
+                <DrawerTrigger>
+                    <Button Variant="ButtonVariant.Outline">Open Drawer</Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                    <DrawerClose />
+                    <DrawerHeader>
+                        <DrawerTitle>Move Goal</DrawerTitle>
+                        <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                        <Button>Submit</Button>
+                    </DrawerFooter>
+                </DrawerContent>
+            </Drawer>
+            <pre class="language-xml"><code class="language-xml">&lt;Drawer&gt;
+    &lt;DrawerTrigger&gt;
+        &lt;Button Variant="ButtonVariant.Outline"&gt;Open Drawer&lt;/Button&gt;
+    &lt;/DrawerTrigger&gt;
+    &lt;DrawerContent&gt;
+        &lt;DrawerClose /&gt;
+        &lt;DrawerHeader&gt;
+            &lt;DrawerTitle&gt;Move Goal&lt;/DrawerTitle&gt;
+            &lt;DrawerDescription&gt;Set your daily activity goal.&lt;/DrawerDescription&gt;
+        &lt;/DrawerHeader&gt;
+        &lt;DrawerFooter&gt;
+            &lt;Button&gt;Submit&lt;/Button&gt;
+        &lt;/DrawerFooter&gt;
+    &lt;/DrawerContent&gt;
+&lt;/Drawer&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- POPOVER -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Popover</h2>
+            <p class="text-sm text-muted-foreground mt-1">A click-triggered floating panel anchored to its trigger.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Dimensions</h3>
+            <div class="flex items-center gap-4">
+                <Popover>
+                    <PopoverTrigger>
+                        <Button Variant="ButtonVariant.Outline">Open popover</Button>
+                    </PopoverTrigger>
+                    <PopoverContent>
+                        <div class="grid gap-4">
+                            <div class="space-y-2">
+                                <h4 class="font-medium leading-none">Dimensions</h4>
+                                <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
+                            </div>
+                            <div class="grid gap-2">
+                                <div class="grid grid-cols-3 items-center gap-4">
+                                    <Label For="width">Width</Label>
+                                    <Input Id="width" Value="100%" Class="col-span-2 h-8" />
+                                </div>
+                                <div class="grid grid-cols-3 items-center gap-4">
+                                    <Label For="maxWidth">Max. width</Label>
+                                    <Input Id="maxWidth" Value="300px" Class="col-span-2 h-8" />
+                                </div>
+                                <div class="grid grid-cols-3 items-center gap-4">
+                                    <Label For="height">Height</Label>
+                                    <Input Id="height" Value="25px" Class="col-span-2 h-8" />
+                                </div>
+                                <div class="grid grid-cols-3 items-center gap-4">
+                                    <Label For="maxHeight">Max. height</Label>
+                                    <Input Id="maxHeight" Value="none" Class="col-span-2 h-8" />
+                                </div>
+                            </div>
+                        </div>
+                    </PopoverContent>
+                </Popover>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Popover&gt;
+    &lt;PopoverTrigger&gt;
+        &lt;Button Variant="ButtonVariant.Outline"&gt;Open popover&lt;/Button&gt;
+    &lt;/PopoverTrigger&gt;
+    &lt;PopoverContent&gt;
+        &lt;div class="grid gap-4"&gt;
+            &lt;div class="space-y-2"&gt;
+                &lt;h4 class="font-medium leading-none"&gt;Dimensions&lt;/h4&gt;
+                &lt;p class="text-sm text-muted-foreground"&gt;Set the dimensions for the layer.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="grid gap-2"&gt;
+                &lt;div class="grid grid-cols-3 items-center gap-4"&gt;
+                    &lt;Label For="width"&gt;Width&lt;/Label&gt;
+                    &lt;Input Id="width" Value="100%" Class="col-span-2 h-8" /&gt;
+                &lt;/div&gt;
+                &lt;div class="grid grid-cols-3 items-center gap-4"&gt;
+                    &lt;Label For="height"&gt;Height&lt;/Label&gt;
+                    &lt;Input Id="height" Value="25px" Class="col-span-2 h-8" /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/PopoverContent&gt;
+&lt;/Popover&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- TOGGLEGROUP -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Toggle Group</h2>
+            <p class="text-sm text-muted-foreground mt-1">A set of toggle buttons. Supports single and multiple selection modes.</p>
+        </div>
+
+        <!-- Single select -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Single</h3>
+            <ToggleGroup Type="ToggleGroupType.Single">
+                <ToggleGroupItem ItemValue="bold" aria-label="Bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8"/>
+                    </svg>
+                </ToggleGroupItem>
+                <ToggleGroupItem ItemValue="italic" aria-label="Italic">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <line x1="19" x2="10" y1="4" y2="4"/><line x1="14" x2="5" y1="20" y2="20"/>
+                        <line x1="15" x2="9" y1="4" y2="20"/>
+                    </svg>
+                </ToggleGroupItem>
+                <ToggleGroupItem ItemValue="underline" aria-label="Underline">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M6 4v6a6 6 0 0 0 12 0V4"/><line x1="4" x2="20" y1="22" y2="22"/>
+                    </svg>
+                </ToggleGroupItem>
+            </ToggleGroup>
+            <pre class="language-xml"><code class="language-xml">&lt;ToggleGroup Type="ToggleGroupType.Single"&gt;
+    &lt;ToggleGroupItem ItemValue="bold" aria-label="Bold"&gt;B&lt;/ToggleGroupItem&gt;
+    &lt;ToggleGroupItem ItemValue="italic" aria-label="Italic"&gt;I&lt;/ToggleGroupItem&gt;
+    &lt;ToggleGroupItem ItemValue="underline" aria-label="Underline"&gt;U&lt;/ToggleGroupItem&gt;
+&lt;/ToggleGroup&gt;</code></pre>
+        </div>
+
+        <!-- Multiple select -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Multiple</h3>
+            <ToggleGroup Type="ToggleGroupType.Multiple">
+                <ToggleGroupItem ItemValue="bold" aria-label="Bold">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M6 12h9a4 4 0 0 1 0 8H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h7a4 4 0 0 1 0 8"/>
+                    </svg>
+                </ToggleGroupItem>
+                <ToggleGroupItem ItemValue="italic" aria-label="Italic">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <line x1="19" x2="10" y1="4" y2="4"/><line x1="14" x2="5" y1="20" y2="20"/>
+                        <line x1="15" x2="9" y1="4" y2="20"/>
+                    </svg>
+                </ToggleGroupItem>
+                <ToggleGroupItem ItemValue="underline" aria-label="Underline">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M6 4v6a6 6 0 0 0 12 0V4"/><line x1="4" x2="20" y1="22" y2="22"/>
+                    </svg>
+                </ToggleGroupItem>
+            </ToggleGroup>
+            <pre class="language-xml"><code class="language-xml">&lt;ToggleGroup Type="ToggleGroupType.Multiple"&gt;
+    &lt;ToggleGroupItem ItemValue="bold" aria-label="Bold"&gt;B&lt;/ToggleGroupItem&gt;
+    &lt;ToggleGroupItem ItemValue="italic" aria-label="Italic"&gt;I&lt;/ToggleGroupItem&gt;
+    &lt;ToggleGroupItem ItemValue="underline" aria-label="Underline"&gt;U&lt;/ToggleGroupItem&gt;
+&lt;/ToggleGroup&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- TOOLTIP -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Tooltip</h2>
+            <p class="text-sm text-muted-foreground mt-1">Floating label that appears on hover. Supports delay, sides, and alignment.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <div class="flex flex-wrap items-center gap-6">
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Button Variant="ButtonVariant.Outline">Hover me</Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Add to library</TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;TooltipProvider&gt;
+    &lt;Tooltip&gt;
+        &lt;TooltipTrigger&gt;
+            &lt;Button Variant="ButtonVariant.Outline"&gt;Hover me&lt;/Button&gt;
+        &lt;/TooltipTrigger&gt;
+        &lt;TooltipContent&gt;Add to library&lt;/TooltipContent&gt;
+    &lt;/Tooltip&gt;
+&lt;/TooltipProvider&gt;</code></pre>
+        </div>
+
+        <!-- Sides -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Sides</h3>
+            <div class="flex flex-wrap items-center gap-6">
+                <TooltipProvider>
+                    <Tooltip Side="FloatingSide.Top">
+                        <TooltipTrigger><Button Variant="ButtonVariant.Outline">Top</Button></TooltipTrigger>
+                        <TooltipContent>Tooltip on top</TooltipContent>
+                    </Tooltip>
+                    <Tooltip Side="FloatingSide.Bottom">
+                        <TooltipTrigger><Button Variant="ButtonVariant.Outline">Bottom</Button></TooltipTrigger>
+                        <TooltipContent>Tooltip on bottom</TooltipContent>
+                    </Tooltip>
+                    <Tooltip Side="FloatingSide.Left">
+                        <TooltipTrigger><Button Variant="ButtonVariant.Outline">Left</Button></TooltipTrigger>
+                        <TooltipContent>Tooltip on left</TooltipContent>
+                    </Tooltip>
+                    <Tooltip Side="FloatingSide.Right">
+                        <TooltipTrigger><Button Variant="ButtonVariant.Outline">Right</Button></TooltipTrigger>
+                        <TooltipContent>Tooltip on right</TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;TooltipProvider&gt;
+    &lt;Tooltip Side="FloatingSide.Top"&gt;
+        &lt;TooltipTrigger&gt;&lt;Button Variant="ButtonVariant.Outline"&gt;Top&lt;/Button&gt;&lt;/TooltipTrigger&gt;
+        &lt;TooltipContent&gt;Tooltip on top&lt;/TooltipContent&gt;
+    &lt;/Tooltip&gt;
+    &lt;Tooltip Side="FloatingSide.Right"&gt;
+        &lt;TooltipTrigger&gt;&lt;Button Variant="ButtonVariant.Outline"&gt;Right&lt;/Button&gt;&lt;/TooltipTrigger&gt;
+        &lt;TooltipContent&gt;Tooltip on right&lt;/TooltipContent&gt;
+    &lt;/Tooltip&gt;
+&lt;/TooltipProvider&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- NAVIGATIONMENU -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Navigation Menu</h2>
+            <p class="text-sm text-muted-foreground mt-1">A horizontal navigation bar with dropdown content panels for site navigation.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <NavigationMenu>
+                    <NavigationMenuList>
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <div class="grid gap-3 w-[400px]">
+                                    <NavigationMenuLink Href="/docs/introduction">
+                                        <div class="text-sm font-medium leading-none">Introduction</div>
+                                        <p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                            Re-usable components built with Blazor and Tailwind CSS.
+                                        </p>
+                                    </NavigationMenuLink>
+                                    <NavigationMenuLink Href="/docs/installation">
+                                        <div class="text-sm font-medium leading-none">Installation</div>
+                                        <p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                            How to install and configure BlazingSpire in your project.
+                                        </p>
+                                    </NavigationMenuLink>
+                                </div>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <div class="grid w-[300px] gap-2">
+                                    <NavigationMenuLink Href="/docs/components/button">Button</NavigationMenuLink>
+                                    <NavigationMenuLink Href="/docs/components/badge">Badge</NavigationMenuLink>
+                                    <NavigationMenuLink Href="/docs/components/card">Card</NavigationMenuLink>
+                                </div>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem>
+                            <NavigationMenuLink Href="/docs">Documentation</NavigationMenuLink>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                </NavigationMenu>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;NavigationMenu&gt;
+    &lt;NavigationMenuList&gt;
+        &lt;NavigationMenuItem&gt;
+            &lt;NavigationMenuTrigger&gt;Getting Started&lt;/NavigationMenuTrigger&gt;
+            &lt;NavigationMenuContent&gt;
+                &lt;NavigationMenuLink Href=&quot;/docs/introduction&quot;&gt;
+                    Introduction
+                &lt;/NavigationMenuLink&gt;
+            &lt;/NavigationMenuContent&gt;
+        &lt;/NavigationMenuItem&gt;
+        &lt;NavigationMenuItem&gt;
+            &lt;NavigationMenuLink Href=&quot;/docs&quot;&gt;Documentation&lt;/NavigationMenuLink&gt;
+        &lt;/NavigationMenuItem&gt;
+    &lt;/NavigationMenuList&gt;
+&lt;/NavigationMenu&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- DROPDOWNMENU -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Dropdown Menu</h2>
+            <p class="text-sm text-muted-foreground mt-1">A menu that opens from a trigger button, with items, labels, separators, and groups.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <Button Variant="ButtonVariant.Outline">Open Menu</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuGroup>
+                            <DropdownMenuItem>Profile</DropdownMenuItem>
+                            <DropdownMenuItem>Billing</DropdownMenuItem>
+                            <DropdownMenuItem>Settings</DropdownMenuItem>
+                        </DropdownMenuGroup>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>Log out</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;DropdownMenu&gt;
+    &lt;DropdownMenuTrigger&gt;
+        &lt;Button Variant=&quot;ButtonVariant.Outline&quot;&gt;Open Menu&lt;/Button&gt;
+    &lt;/DropdownMenuTrigger&gt;
+    &lt;DropdownMenuContent&gt;
+        &lt;DropdownMenuLabel&gt;My Account&lt;/DropdownMenuLabel&gt;
+        &lt;DropdownMenuSeparator /&gt;
+        &lt;DropdownMenuGroup&gt;
+            &lt;DropdownMenuItem&gt;Profile&lt;/DropdownMenuItem&gt;
+            &lt;DropdownMenuItem&gt;Billing&lt;/DropdownMenuItem&gt;
+            &lt;DropdownMenuItem&gt;Settings&lt;/DropdownMenuItem&gt;
+        &lt;/DropdownMenuGroup&gt;
+        &lt;DropdownMenuSeparator /&gt;
+        &lt;DropdownMenuItem&gt;Log out&lt;/DropdownMenuItem&gt;
+    &lt;/DropdownMenuContent&gt;
+&lt;/DropdownMenu&gt;</code></pre>
+        </div>
+
+        <!-- With disabled item -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Disabled Item</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <DropdownMenu>
+                    <DropdownMenuTrigger>
+                        <Button Variant="ButtonVariant.Outline">Open Menu</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                        <DropdownMenuItem Disabled="true">Billing (disabled)</DropdownMenuItem>
+                        <DropdownMenuItem>Settings</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;DropdownMenuItem Disabled=&quot;true&quot;&gt;Billing (disabled)&lt;/DropdownMenuItem&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- SELECT -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Select</h2>
+            <p class="text-sm text-muted-foreground mt-1">A dropdown for single-value selection from a list of options.</p>
+        </div>
+
+        <!-- Fruit selector -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Fruit</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <Select class="w-[200px]">
+                    <SelectTrigger>
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Fruits</SelectLabel>
+                            <SelectItem ItemValue="Apple">Apple</SelectItem>
+                            <SelectItem ItemValue="Banana">Banana</SelectItem>
+                            <SelectItem ItemValue="Blueberry">Blueberry</SelectItem>
+                            <SelectItem ItemValue="Grapes">Grapes</SelectItem>
+                            <SelectItem ItemValue="Pineapple">Pineapple</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Select&gt;
+    &lt;SelectTrigger&gt;
+        &lt;SelectValue /&gt;
+    &lt;/SelectTrigger&gt;
+    &lt;SelectContent&gt;
+        &lt;SelectGroup&gt;
+            &lt;SelectLabel&gt;Fruits&lt;/SelectLabel&gt;
+            &lt;SelectItem ItemValue=&quot;Apple&quot;&gt;Apple&lt;/SelectItem&gt;
+            &lt;SelectItem ItemValue=&quot;Banana&quot;&gt;Banana&lt;/SelectItem&gt;
+            &lt;SelectItem ItemValue=&quot;Blueberry&quot;&gt;Blueberry&lt;/SelectItem&gt;
+            &lt;SelectItem ItemValue=&quot;Grapes&quot;&gt;Grapes&lt;/SelectItem&gt;
+            &lt;SelectItem ItemValue=&quot;Pineapple&quot;&gt;Pineapple&lt;/SelectItem&gt;
+        &lt;/SelectGroup&gt;
+    &lt;/SelectContent&gt;
+&lt;/Select&gt;</code></pre>
+        </div>
+
+        <!-- Framework selector with placeholder -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Framework</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <Select Placeholder="Select a framework..." class="w-[240px]">
+                    <SelectTrigger>
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem ItemValue="Blazor">Blazor</SelectItem>
+                        <SelectItem ItemValue="React">React</SelectItem>
+                        <SelectItem ItemValue="Vue">Vue</SelectItem>
+                        <SelectItem ItemValue="Angular">Angular</SelectItem>
+                        <SelectItem ItemValue="Svelte">Svelte</SelectItem>
+                        <SelectSeparator />
+                        <SelectItem ItemValue="Other">Other</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Select Placeholder=&quot;Select a framework...&quot;&gt;
+    &lt;SelectTrigger&gt;
+        &lt;SelectValue /&gt;
+    &lt;/SelectTrigger&gt;
+    &lt;SelectContent&gt;
+        &lt;SelectItem ItemValue=&quot;Blazor&quot;&gt;Blazor&lt;/SelectItem&gt;
+        &lt;SelectItem ItemValue=&quot;React&quot;&gt;React&lt;/SelectItem&gt;
+        &lt;SelectItem ItemValue=&quot;Vue&quot;&gt;Vue&lt;/SelectItem&gt;
+        &lt;SelectItem ItemValue=&quot;Angular&quot;&gt;Angular&lt;/SelectItem&gt;
+        &lt;SelectItem ItemValue=&quot;Svelte&quot;&gt;Svelte&lt;/SelectItem&gt;
+        &lt;SelectSeparator /&gt;
+        &lt;SelectItem ItemValue=&quot;Other&quot;&gt;Other&lt;/SelectItem&gt;
+    &lt;/SelectContent&gt;
+&lt;/Select&gt;</code></pre>
+        </div>
+    </section>
+
+        <!-- ──────────────────────────────────────────────── -->
+    <!-- CONTEXTMENU -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold">Context Menu</h2>
+            <p class="text-muted-foreground">Displays a menu triggered by right-clicking a target area.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <ContextMenu>
+                    <ContextMenuTrigger>
+                        <div class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+                            Right click here
+                        </div>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent>
+                        <ContextMenuLabel>Navigation</ContextMenuLabel>
+                        <ContextMenuSeparator />
+                        <ContextMenuItem>Back</ContextMenuItem>
+                        <ContextMenuItem>Forward</ContextMenuItem>
+                        <ContextMenuItem>Reload</ContextMenuItem>
+                        <ContextMenuSeparator />
+                        <ContextMenuItem>View Source</ContextMenuItem>
+                    </ContextMenuContent>
+                </ContextMenu>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;ContextMenu&gt;
+    &lt;ContextMenuTrigger&gt;
+        &lt;div class=&quot;flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm&quot;&gt;
+            Right click here
+        &lt;/div&gt;
+    &lt;/ContextMenuTrigger&gt;
+    &lt;ContextMenuContent&gt;
+        &lt;ContextMenuLabel&gt;Navigation&lt;/ContextMenuLabel&gt;
+        &lt;ContextMenuSeparator /&gt;
+        &lt;ContextMenuItem&gt;Back&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuItem&gt;Forward&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuItem&gt;Reload&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuSeparator /&gt;
+        &lt;ContextMenuItem&gt;View Source&lt;/ContextMenuItem&gt;
+    &lt;/ContextMenuContent&gt;
+&lt;/ContextMenu&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- HOVERCARD -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">HoverCard</h2>
+            <p class="text-sm text-muted-foreground mt-1">A floating panel revealed on hover. Richer than a tooltip — supports interactive content like links and stats.</p>
+        </div>
+
+        <!-- User Profile -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">User Profile</h3>
+            <div class="flex flex-wrap items-start gap-4 min-h-[180px]">
+                <HoverCard>
+                    <HoverCardTrigger href="https://github.com/adamreed90" class="text-sm font-medium underline underline-offset-4 hover:text-primary transition-colors cursor-pointer">
+                        @@adamreed90
+                    </HoverCardTrigger>
+                    <HoverCardContent>
+                        <div class="flex gap-3">
+                            <div class="h-10 w-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold shrink-0">AR</div>
+                            <div class="space-y-1">
+                                <h4 class="text-sm font-semibold">Adam Reed</h4>
+                                <p class="text-xs text-muted-foreground">Building BlazingSpire — a Blazor component framework inspired by shadcn/ui.</p>
+                                <div class="flex items-center gap-3 pt-1 text-xs text-muted-foreground">
+                                    <span><strong class="text-foreground">12</strong> Following</span>
+                                    <span><strong class="text-foreground">48</strong> Followers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </HoverCardContent>
+                </HoverCard>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;HoverCard&gt;
+    &lt;HoverCardTrigger href="https://github.com/adamreed90"
+                      class="text-sm font-medium underline underline-offset-4"&gt;
+        @@adamreed90
+    &lt;/HoverCardTrigger&gt;
+    &lt;HoverCardContent&gt;
+        &lt;div class="flex gap-3"&gt;
+            &lt;div class="h-10 w-10 rounded-full bg-muted ..."&gt;AR&lt;/div&gt;
+            &lt;div class="space-y-1"&gt;
+                &lt;h4 class="text-sm font-semibold"&gt;Adam Reed&lt;/h4&gt;
+                &lt;p class="text-xs text-muted-foreground"&gt;Building BlazingSpire...&lt;/p&gt;
+                &lt;div class="flex gap-3 text-xs text-muted-foreground"&gt;
+                    &lt;span&gt;&lt;strong&gt;12&lt;/strong&gt; Following&lt;/span&gt;
+                    &lt;span&gt;&lt;strong&gt;48&lt;/strong&gt; Followers&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/HoverCardContent&gt;
+&lt;/HoverCard&gt;</code></pre>
+        </div>
+
+        <!-- Custom Delays -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Custom Delays</h3>
+            <div class="flex flex-wrap items-start gap-4 min-h-[100px]">
+                <HoverCard OpenDelay="0" CloseDelay="500">
+                    <HoverCardTrigger class="cursor-pointer">
+                        <Badge Variant="BadgeVariant.Secondary">Instant open · slow close</Badge>
+                    </HoverCardTrigger>
+                    <HoverCardContent>
+                        <p class="text-sm">Opens immediately. Stays open for 500ms after your cursor leaves.</p>
+                    </HoverCardContent>
+                </HoverCard>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;HoverCard OpenDelay="0" CloseDelay="500"&gt;
+    &lt;HoverCardTrigger&gt;...&lt;/HoverCardTrigger&gt;
+    &lt;HoverCardContent&gt;
+        &lt;p class="text-sm"&gt;Opens immediately. Stays open for 500ms after leaving.&lt;/p&gt;
+    &lt;/HoverCardContent&gt;
+&lt;/HoverCard&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- COMBOBOX -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Combobox</h2>
+            <p class="text-sm text-muted-foreground mt-1">Searchable select — combines a trigger button with a filtered list of options.</p>
+        </div>
+
+        <!-- Basic usage -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Framework Selector</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <div class="w-64 space-y-2">
+                    <Combobox @bind-Value="_comboboxValue" Placeholder="Select framework...">
+                        <ComboboxTrigger Class="w-full" />
+                        <ComboboxContent>
+                            <ComboboxInput />
+                            <ComboboxItem ItemValue="next" FilterText="Next.js">Next.js</ComboboxItem>
+                            <ComboboxItem ItemValue="sveltekit" FilterText="SvelteKit">SvelteKit</ComboboxItem>
+                            <ComboboxItem ItemValue="nuxt" FilterText="Nuxt.js">Nuxt.js</ComboboxItem>
+                            <ComboboxItem ItemValue="remix" FilterText="Remix">Remix</ComboboxItem>
+                            <ComboboxItem ItemValue="astro" FilterText="Astro">Astro</ComboboxItem>
+                        </ComboboxContent>
+                    </Combobox>
+                    @if (!string.IsNullOrEmpty(_comboboxValue))
+                    {
+                        <p class="text-sm text-muted-foreground">Selected: <span class="font-medium text-foreground">@_comboboxValue</span></p>
+                    }
+                </div>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Combobox @@bind-Value="selectedFramework" Placeholder="Select framework..."&gt;
+    &lt;ComboboxTrigger Class="w-64" /&gt;
+    &lt;ComboboxContent&gt;
+        &lt;ComboboxInput /&gt;
+        &lt;ComboboxItem ItemValue="next" FilterText="Next.js"&gt;Next.js&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue="sveltekit" FilterText="SvelteKit"&gt;SvelteKit&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue="nuxt" FilterText="Nuxt.js"&gt;Nuxt.js&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue="remix" FilterText="Remix"&gt;Remix&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue="astro" FilterText="Astro"&gt;Astro&lt;/ComboboxItem&gt;
+    &lt;/ComboboxContent&gt;
+&lt;/Combobox&gt;</code></pre>
+        </div>
+
+        <!-- With placeholder and custom search text -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Custom Search Placeholder</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <Combobox Placeholder="Pick a framework..." SearchPlaceholder="Search frameworks...">
+                    <ComboboxTrigger Class="w-64" />
+                    <ComboboxContent>
+                        <ComboboxInput />
+                        <ComboboxItem ItemValue="next" FilterText="Next.js">Next.js</ComboboxItem>
+                        <ComboboxItem ItemValue="sveltekit" FilterText="SvelteKit">SvelteKit</ComboboxItem>
+                        <ComboboxItem ItemValue="nuxt" FilterText="Nuxt.js">Nuxt.js</ComboboxItem>
+                    </ComboboxContent>
+                </Combobox>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Combobox Placeholder="Pick a framework..." SearchPlaceholder="Search frameworks..."&gt;
+    &lt;ComboboxTrigger Class="w-64" /&gt;
+    &lt;ComboboxContent&gt;
+        &lt;ComboboxInput /&gt;
+        &lt;ComboboxItem ItemValue="next" FilterText="Next.js"&gt;Next.js&lt;/ComboboxItem&gt;
+    &lt;/ComboboxContent&gt;
+&lt;/Combobox&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- FORMFIELD -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Form Field</h2>
+            <p class="text-sm text-muted-foreground mt-1">Composition layer that wires ARIA attributes across label, control, description, and error message.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <div class="max-w-sm">
+                <FormField Name="username-basic">
+                    <FormFieldLabel>Username</FormFieldLabel>
+                    <Input id="username-basic-form-item" Placeholder="Enter your username" />
+                    <FormFieldDescription>This is your public display name.</FormFieldDescription>
+                </FormField>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;FormField Name="username"&gt;
+    &lt;FormFieldLabel&gt;Username&lt;/FormFieldLabel&gt;
+    &lt;Input id="username-form-item" Placeholder="Enter your username" /&gt;
+    &lt;FormFieldDescription&gt;This is your public display name.&lt;/FormFieldDescription&gt;
+&lt;/FormField&gt;</code></pre>
+        </div>
+
+        <!-- With Error -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">With Error</h3>
+            <div class="max-w-sm">
+                <FormField Name="username-error" ErrorMessage="Username is required.">
+                    <FormFieldLabel>Username</FormFieldLabel>
+                    <Input id="username-error-form-item" Placeholder="Enter your username" />
+                    <FormFieldDescription>This is your public display name.</FormFieldDescription>
+                    <FormFieldError />
+                </FormField>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;FormField Name="username" ErrorMessage="Username is required."&gt;
+    &lt;FormFieldLabel&gt;Username&lt;/FormFieldLabel&gt;
+    &lt;Input id="username-form-item" Placeholder="Enter your username" /&gt;
+    &lt;FormFieldDescription&gt;This is your public display name.&lt;/FormFieldDescription&gt;
+    &lt;FormFieldError /&gt;
+&lt;/FormField&gt;</code></pre>
+        </div>
+
+        <!-- Custom Error Content -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Custom Error Content</h3>
+            <div class="max-w-sm">
+                <FormField Name="email-custom" ErrorMessage="placeholder">
+                    <FormFieldLabel>Email</FormFieldLabel>
+                    <Input id="email-custom-form-item" Type="email" Placeholder="you@example.com" />
+                    <FormFieldError>Please enter a valid email address.</FormFieldError>
+                </FormField>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;FormField Name="email" ErrorMessage="placeholder"&gt;
+    &lt;FormFieldLabel&gt;Email&lt;/FormFieldLabel&gt;
+    &lt;Input id="email-form-item" Type="email" Placeholder="you@example.com" /&gt;
+    &lt;FormFieldError&gt;Please enter a valid email address.&lt;/FormFieldError&gt;
+&lt;/FormField&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- FORMSECTION -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">FormSection</h2>
+            <p class="text-sm text-muted-foreground mt-1">A styled fieldset wrapper with optional legend and description. Groups related form fields semantically.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <FormSection Legend="Personal Information" Description="Enter your name and contact details below.">
+                <div class="grid gap-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="fs-name">Full name</label>
+                        <input id="fs-name" type="text" placeholder="John Doe"
+                               class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="fs-email">Email</label>
+                        <input id="fs-email" type="email" placeholder="john@example.com"
+                               class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" />
+                    </div>
+                </div>
+            </FormSection>
+            <pre class="language-xml"><code class="language-xml">&lt;FormSection Legend="Personal Information" Description="Enter your name and contact details below."&gt;
+    &lt;div class="grid gap-4"&gt;
+        &lt;div class="space-y-2"&gt;
+            &lt;label for="name"&gt;Full name&lt;/label&gt;
+            &lt;Input id="name" Placeholder="John Doe" /&gt;
+        &lt;/div&gt;
+        &lt;div class="space-y-2"&gt;
+            &lt;label for="email"&gt;Email&lt;/label&gt;
+            &lt;Input id="email" Type="email" Placeholder="john@example.com" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/FormSection&gt;</code></pre>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Disabled</h3>
+            <FormSection Legend="Shipping Address" Description="This section is currently locked." Disabled="true">
+                <div class="grid gap-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="fs-address">Street address</label>
+                        <input id="fs-address" type="text" placeholder="123 Main St"
+                               class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="fs-city">City</label>
+                        <input id="fs-city" type="text" placeholder="New York"
+                               class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" />
+                    </div>
+                </div>
+            </FormSection>
+            <pre class="language-xml"><code class="language-xml">&lt;FormSection Legend="Shipping Address" Description="This section is currently locked." Disabled="true"&gt;
+    &lt;div class="grid gap-4"&gt;
+        &lt;div class="space-y-2"&gt;
+            &lt;label for="address"&gt;Street address&lt;/label&gt;
+            &lt;Input id="address" Placeholder="123 Main St" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/FormSection&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- MENUBAR -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Menubar</h2>
+            <p class="text-sm text-muted-foreground mt-1">A horizontal menu bar with dropdown menus for each entry, similar to application menu bars.</p>
+        </div>
+
+        <!-- Basic -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">File / Edit / View</h3>
+            <div class="flex flex-wrap items-start gap-4">
+                <Menubar>
+                    <MenubarMenu>
+                        <MenubarTrigger>File</MenubarTrigger>
+                        <MenubarContent>
+                            <MenubarItem>New</MenubarItem>
+                            <MenubarItem>Open</MenubarItem>
+                            <MenubarItem>Save</MenubarItem>
+                            <MenubarSeparator />
+                            <MenubarItem>Exit</MenubarItem>
+                        </MenubarContent>
+                    </MenubarMenu>
+                    <MenubarMenu>
+                        <MenubarTrigger>Edit</MenubarTrigger>
+                        <MenubarContent>
+                            <MenubarItem>Undo</MenubarItem>
+                            <MenubarItem>Redo</MenubarItem>
+                            <MenubarSeparator />
+                            <MenubarItem>Cut</MenubarItem>
+                            <MenubarItem>Copy</MenubarItem>
+                            <MenubarItem>Paste</MenubarItem>
+                        </MenubarContent>
+                    </MenubarMenu>
+                    <MenubarMenu>
+                        <MenubarTrigger>View</MenubarTrigger>
+                        <MenubarContent>
+                            <MenubarLabel>Appearance</MenubarLabel>
+                            <MenubarSeparator />
+                            <MenubarItem>Zoom In</MenubarItem>
+                            <MenubarItem>Zoom Out</MenubarItem>
+                            <MenubarItem Disabled="true">Full Screen</MenubarItem>
+                        </MenubarContent>
+                    </MenubarMenu>
+                </Menubar>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Menubar&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;File&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarItem&gt;New&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Open&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Save&lt;/MenubarItem&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Exit&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;Edit&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarItem&gt;Undo&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Redo&lt;/MenubarItem&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Cut&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Copy&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Paste&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;View&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarLabel&gt;Appearance&lt;/MenubarLabel&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Zoom In&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Zoom Out&lt;/MenubarItem&gt;
+            &lt;MenubarItem Disabled=&quot;true&quot;&gt;Full Screen&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+&lt;/Menubar&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- SLIDER -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Slider</h2>
+            <p class="text-sm text-muted-foreground mt-1">A range input with custom styling. Supports min, max, step, and disabled states.</p>
+        </div>
+
+        <!-- Default -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="w-80">
+                <Slider @bind-Value="_sliderValue" />
+            </div>
+            <p class="text-sm text-muted-foreground">Value: @_sliderValue</p>
+            <pre class="language-xml"><code class="language-xml">&lt;Slider @@bind-Value="sliderValue" /&gt;</code></pre>
+        </div>
+
+        <!-- Custom range -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Custom Range</h3>
+            <div class="w-80">
+                <Slider @bind-Value="_sliderLargeValue" Min="0" Max="1000" Step="10" />
+            </div>
+            <p class="text-sm text-muted-foreground">Value: @_sliderLargeValue</p>
+            <pre class="language-xml"><code class="language-xml">&lt;Slider @@bind-Value="sliderValue" Min="0" Max="1000" Step="10" /&gt;</code></pre>
+        </div>
+
+        <!-- Disabled -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Disabled</h3>
+            <div class="w-80">
+                <Slider Value="40" Disabled="true" />
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Slider Value="40" Disabled="true" /&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- SCROLLAREA -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">ScrollArea</h2>
+            <p class="text-sm text-muted-foreground mt-1">A styled scrollable container with hidden overflow and a full-height inner scroll viewport.</p>
+        </div>
+
+        <!-- Basic usage -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Basic</h3>
+            <ScrollArea Class="h-72 w-48 rounded-md border">
+                <div class="p-4">
+                    <h4 class="mb-4 text-sm font-medium leading-none">Tags</h4>
+                    @foreach (var tag in _scrollTags)
+                    {
+                        <div class="text-sm py-1 border-b border-border last:border-0">@tag</div>
+                    }
+                </div>
+            </ScrollArea>
+            <pre class="language-xml"><code class="language-xml">&lt;ScrollArea Class="h-72 w-48 rounded-md border"&gt;
+    &lt;div class="p-4"&gt;
+        &lt;h4 class="mb-4 text-sm font-medium leading-none"&gt;Tags&lt;/h4&gt;
+        @@foreach (var tag in tags)
+        {
+            &lt;div class="text-sm py-1 border-b border-border last:border-0"&gt;@@tag&lt;/div&gt;
+        }
+    &lt;/div&gt;
+&lt;/ScrollArea&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- PAGINATION -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Pagination</h2>
+            <p class="text-sm text-muted-foreground mt-1">Navigation control for paginated content with previous, next, numbered pages, and ellipsis.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <Pagination>
+                <PaginationContent>
+                    <PaginationItem>
+                        <PaginationPrevious Href="#" />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink Href="#">1</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink Href="#" IsActive="true">2</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink Href="#">3</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationEllipsis />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationNext Href="#" />
+                    </PaginationItem>
+                </PaginationContent>
+            </Pagination>
+            <pre class="language-xml"><code class="language-xml">&lt;Pagination&gt;
+    &lt;PaginationContent&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationPrevious Href="#" /&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationLink Href="#"&gt;1&lt;/PaginationLink&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationLink Href="#" IsActive="true"&gt;2&lt;/PaginationLink&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationLink Href="#"&gt;3&lt;/PaginationLink&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationEllipsis /&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationNext Href="#" /&gt;
+        &lt;/PaginationItem&gt;
+    &lt;/PaginationContent&gt;
+&lt;/Pagination&gt;</code></pre>
+        </div>
+    </section>
+
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- CALENDAR -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Calendar</h2>
+            <p class="text-sm text-muted-foreground mt-1">A date picker calendar with month navigation and selectable days.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Date Picker</h3>
+            <Card class="w-fit">
+                <CardContent class="pt-6">
+                    <Calendar @bind-SelectedDate="_calendarDate" />
+                    @if (_calendarDate.HasValue)
+                    {
+                        <p class="text-sm text-muted-foreground mt-2 text-center">Selected: @_calendarDate.Value.ToString("MMMM d, yyyy")</p>
+                    }
+                </CardContent>
+            </Card>
+            <pre class="language-xml"><code class="language-xml">&lt;Calendar &#64;bind-SelectedDate="_selectedDate" /&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- INPUTOTP -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">InputOTP</h2>
+            <p class="text-sm text-muted-foreground mt-1">One-time password input with grouped slots and separator support.</p>
+        </div>
+
+        <!-- 6-digit OTP with two groups -->
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">6-Digit OTP</h3>
+            <div class="flex items-center gap-2">
+                <InputOTP MaxLength="6" @bind-Value="_otpValue">
+                    <InputOTPGroup>
+                        <InputOTPSlot Index="0" />
+                        <InputOTPSlot Index="1" />
+                        <InputOTPSlot Index="2" />
+                    </InputOTPGroup>
+                    <InputOTPSeparator />
+                    <InputOTPGroup>
+                        <InputOTPSlot Index="3" />
+                        <InputOTPSlot Index="4" />
+                        <InputOTPSlot Index="5" />
+                    </InputOTPGroup>
+                </InputOTP>
+            </div>
+            @if (!string.IsNullOrEmpty(_otpValue))
+            {
+                <p class="text-sm text-muted-foreground">Value: <span class="font-mono">@_otpValue</span></p>
+            }
+            <pre class="language-xml"><code class="language-xml">&lt;InputOTP MaxLength="6" &#64;bind-Value="_otpValue"&gt;
+    &lt;InputOTPGroup&gt;
+        &lt;InputOTPSlot Index="0" /&gt;
+        &lt;InputOTPSlot Index="1" /&gt;
+        &lt;InputOTPSlot Index="2" /&gt;
+    &lt;/InputOTPGroup&gt;
+    &lt;InputOTPSeparator /&gt;
+    &lt;InputOTPGroup&gt;
+        &lt;InputOTPSlot Index="3" /&gt;
+        &lt;InputOTPSlot Index="4" /&gt;
+        &lt;InputOTPSlot Index="5" /&gt;
+    &lt;/InputOTPGroup&gt;
+&lt;/InputOTP&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- COMMAND -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Command</h2>
+            <p class="text-sm text-muted-foreground mt-1">Fast, composable command palette. Filter items by typing, group commands, and trigger actions.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="border rounded-lg w-full max-w-sm">
+                <Command>
+                    <CommandInput Placeholder="Type a command or search..." />
+                    <CommandList>
+                        <CommandEmpty>No results found.</CommandEmpty>
+                        <CommandGroup Heading="Suggestions">
+                            <CommandItem FilterText="Calendar">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/>
+                                    <line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/>
+                                </svg>
+                                Calendar
+                            </CommandItem>
+                            <CommandItem FilterText="Search Emoji">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                                </svg>
+                                Search Emoji
+                            </CommandItem>
+                            <CommandItem FilterText="Settings">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Settings
+                            </CommandItem>
+                        </CommandGroup>
+                        <CommandSeparator />
+                        <CommandGroup Heading="Settings">
+                            <CommandItem FilterText="Profile">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                Profile
+                            </CommandItem>
+                            <CommandItem FilterText="Billing">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                                    <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
+                                </svg>
+                                Billing
+                            </CommandItem>
+                            <CommandItem FilterText="Settings">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2 h-4 w-4">
+                                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Settings
+                            </CommandItem>
+                        </CommandGroup>
+                    </CommandList>
+                </Command>
+            </div>
+            <pre class="language-xml"><code class="language-xml">&lt;Command&gt;
+    &lt;CommandInput Placeholder="Type a command or search..." /&gt;
+    &lt;CommandList&gt;
+        &lt;CommandEmpty&gt;No results found.&lt;/CommandEmpty&gt;
+        &lt;CommandGroup Heading="Suggestions"&gt;
+            &lt;CommandItem FilterText="Calendar"&gt;Calendar&lt;/CommandItem&gt;
+            &lt;CommandItem FilterText="Search Emoji"&gt;Search Emoji&lt;/CommandItem&gt;
+            &lt;CommandItem FilterText="Settings"&gt;Settings&lt;/CommandItem&gt;
+        &lt;/CommandGroup&gt;
+        &lt;CommandSeparator /&gt;
+        &lt;CommandGroup Heading="Settings"&gt;
+            &lt;CommandItem FilterText="Profile"&gt;Profile&lt;/CommandItem&gt;
+            &lt;CommandItem FilterText="Billing"&gt;Billing&lt;/CommandItem&gt;
+            &lt;CommandItem FilterText="Settings"&gt;Settings&lt;/CommandItem&gt;
+        &lt;/CommandGroup&gt;
+    &lt;/CommandList&gt;
+&lt;/Command&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- DATATABLE -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">DataTable</h2>
+            <p class="text-sm text-muted-foreground mt-1">A generic table for typed data with column definitions, sortable headers, and custom row templates.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Payments</h3>
+            <DataTable TItem="PaymentRow" Items="_payments" SortColumn="@_paymentSort" SortAscending="@_paymentSortAsc" OnSort="@(col => { _paymentSort = col; })">
+                <Columns>
+                    <DataTableColumn SortKey="status" Sortable>Status</DataTableColumn>
+                    <DataTableColumn SortKey="email" Sortable>Email</DataTableColumn>
+                    <DataTableColumn SortKey="amount" Sortable>Amount</DataTableColumn>
+                </Columns>
+                <RowTemplate Context="row">
+                    <TableRow>
+                        <TableCell>
+                            <Badge Variant="@(row.Status == "Paid" ? BadgeVariant.Default : row.Status == "Pending" ? BadgeVariant.Secondary : BadgeVariant.Destructive)">
+                                @row.Status
+                            </Badge>
+                        </TableCell>
+                        <TableCell>@row.Email</TableCell>
+                        <TableCell>@row.Amount.ToString("C")</TableCell>
+                    </TableRow>
+                </RowTemplate>
+            </DataTable>
+            <pre class="language-xml"><code class="language-xml">@@* Define your record *@@
+@@code {
+    record PaymentRow(string Status, string Email, decimal Amount);
+    List&lt;PaymentRow&gt; payments = [ /* ... */ ];
+}
+
+&lt;DataTable TItem="PaymentRow" Items="payments"&gt;
+    &lt;Columns&gt;
+        &lt;DataTableColumn SortKey="status" Sortable&gt;Status&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn SortKey="email" Sortable&gt;Email&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn SortKey="amount" Sortable&gt;Amount&lt;/DataTableColumn&gt;
+    &lt;/Columns&gt;
+    &lt;RowTemplate Context="row"&gt;
+        &lt;TableRow&gt;
+            &lt;TableCell&gt;@@row.Status&lt;/TableCell&gt;
+            &lt;TableCell&gt;@@row.Email&lt;/TableCell&gt;
+            &lt;TableCell&gt;@@row.Amount.ToString("C")&lt;/TableCell&gt;
+        &lt;/TableRow&gt;
+    &lt;/RowTemplate&gt;
+&lt;/DataTable&gt;</code></pre>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Empty State</h3>
+            <DataTable TItem="PaymentRow" Items="[]">
+                <Columns>
+                    <DataTableColumn>Status</DataTableColumn>
+                    <DataTableColumn>Email</DataTableColumn>
+                    <DataTableColumn>Amount</DataTableColumn>
+                </Columns>
+            </DataTable>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- CAROUSEL -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Carousel</h2>
+            <p class="text-sm text-muted-foreground mt-1">A slideshow component for cycling through elements. Supports prev/next navigation and ARIA slide roles.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Default</h3>
+            <div class="w-full max-w-sm mx-auto">
+                <Carousel CurrentIndex="@_carouselIndex" CurrentIndexChanged="@(i => _carouselIndex = i)">
+                    <CarouselContent>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">1</div></CarouselItem>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">2</div></CarouselItem>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">3</div></CarouselItem>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">4</div></CarouselItem>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">5</div></CarouselItem>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
+            <p class="text-sm text-muted-foreground text-center">Slide @(_carouselIndex + 1) of 5</p>
+            <pre class="language-xml"><code class="language-xml">&lt;Carousel @@bind-CurrentIndex="carouselIndex"&gt;
+    &lt;CarouselContent&gt;
+        &lt;CarouselItem&gt;&lt;!-- slide 1 --&gt;&lt;/CarouselItem&gt;
+        &lt;CarouselItem&gt;&lt;!-- slide 2 --&gt;&lt;/CarouselItem&gt;
+        &lt;CarouselItem&gt;&lt;!-- slide 3 --&gt;&lt;/CarouselItem&gt;
+    &lt;/CarouselContent&gt;
+    &lt;CarouselPrevious /&gt;
+    &lt;CarouselNext /&gt;
+&lt;/Carousel&gt;</code></pre>
+        </div>
+    </section>
+
+    <!-- ──────────────────────────────────────────────── -->
+    <!-- TOAST -->
+    <!-- ──────────────────────────────────────────────── -->
+    <section class="space-y-6">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight">Toast</h2>
+            <p class="text-sm text-muted-foreground mt-1">Service-based toast notifications. Supports default and destructive variants with optional actions.</p>
+        </div>
+
+        <div class="space-y-3">
+            <h3 class="text-lg font-medium">Variants</h3>
+            <div class="flex flex-wrap items-center gap-4">
+                <Button @onclick="ShowDefaultToast">Show Toast</Button>
+                <Button Variant="ButtonVariant.Destructive" @onclick="ShowDestructiveToast">Show Error Toast</Button>
+            </div>
+            <pre class="language-xml"><code class="language-xml">@@inject IToastService ToastService
+
+&lt;Button @@onclick="ShowToast"&gt;Show Toast&lt;/Button&gt;
+
+@@code {
+    private void ShowToast()
+        =&gt; ToastService.Show("Event has been created", "Monday, January 3 at 6:00pm");
+}</code></pre>
+        </div>
+    </section>
+
 </div>
+
+@code {
+    private record PaymentRow(string Status, string Email, decimal Amount);
+
+    private readonly List<PaymentRow> _payments =
+    [
+        new("Paid", "alice@example.com", 316.00m),
+        new("Pending", "bob@example.com", 242.00m),
+        new("Unpaid", "carol@example.com", 837.00m),
+        new("Paid", "dan@example.com", 874.00m),
+        new("Paid", "eve@example.com", 721.00m),
+    ];
+
+    private string? _paymentSort;
+    private bool _paymentSortAsc = true;
+
+    private bool _sidebarCollapsed;
+    private string _otpValue = "";
+    private int _carouselIndex;
+    private DateOnly? _calendarDate;
+    private string? _comboboxValue;
+    private double _sliderValue = 50;
+    private double _sliderLargeValue = 200;
+
+    private void ShowDefaultToast()
+        => ToastService.Show("Event has been created", "Monday, January 3 at 6:00pm");
+
+    private void ShowDestructiveToast()
+        => ToastService.Show("Error", "Something went wrong. Please try again.", ToastVariant.Destructive);
+
+    private static readonly string[] _scrollTags =
+    [
+        "v1.2.0-beta.1", "v1.1.4", "v1.1.3", "v1.1.2", "v1.1.1",
+        "v1.1.0", "v1.0.4", "v1.0.3", "v1.0.2", "v1.0.1",
+        "v1.0.0", "v0.9.0", "v0.8.2", "v0.8.1", "v0.8.0",
+        "v0.7.0", "v0.6.0", "v0.5.0", "v0.4.0", "v0.3.0",
+    ];
+}

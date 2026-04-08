@@ -1,0 +1,10 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div class="@Classes" @attributes="AdditionalAttributes">
+    @if (!string.IsNullOrEmpty(Heading))
+    {
+        <div data-command-group-heading>@Heading</div>
+    }
+    @ChildContent
+</div>

@@ -1,0 +1,13 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentDrawer?.CurrentIsOpen == true)
+{
+    <div class="fixed inset-0 z-50 bg-black/80" data-state="@ParentDrawer.DataState"></div>
+    <div role="dialog" aria-modal="true" aria-labelledby="@ParentDrawer?.TitleId" aria-describedby="@ParentDrawer?.DescriptionId"
+         data-state="@ParentDrawer?.DataState" class="@Classes" @attributes="AdditionalAttributes"
+         @ref="ParentDrawer!.ContentRef">
+        <div class="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted"></div>
+        @ChildContent
+    </div>
+}

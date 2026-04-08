@@ -1,0 +1,11 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (!string.IsNullOrEmpty(ParentSelect?.SelectedText))
+{
+    <span class="@Classes" @attributes="AdditionalAttributes">@ParentSelect.SelectedText</span>
+}
+else
+{
+    <span class="text-muted-foreground @Classes" @attributes="AdditionalAttributes">@ParentSelect?.Placeholder</span>
+}

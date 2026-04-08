@@ -1,0 +1,35 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+@typeparam TItem
+
+<CascadingValue Value="_context" IsFixed="false">
+    <div class="rounded-md border @Class" @attributes="AdditionalAttributes">
+        <Table>
+            <TableHeader>
+                <TableRow>
+                    @Columns
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                @if (Items.Count == 0)
+                {
+                    <TableRow>
+                        <TableCell Class="h-24 text-center" colspan="100">
+                            No results.
+                        </TableCell>
+                    </TableRow>
+                }
+                else
+                {
+                    @foreach (var item in Items)
+                    {
+                        @if (RowTemplate is not null)
+                        {
+                            @RowTemplate(item)
+                        }
+                    }
+                }
+            </TableBody>
+        </Table>
+    </div>
+</CascadingValue>

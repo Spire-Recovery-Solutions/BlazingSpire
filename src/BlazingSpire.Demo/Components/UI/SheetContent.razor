@@ -1,0 +1,12 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+@if (ParentSheet?.CurrentIsOpen == true)
+{
+    <div class="fixed inset-0 z-50 bg-black/80" data-state="@ParentSheet.DataState"></div>
+    <div role="dialog" aria-modal="true" aria-labelledby="@ParentSheet?.TitleId" aria-describedby="@ParentSheet?.DescriptionId"
+         data-state="@ParentSheet?.DataState" class="@Classes" @attributes="AdditionalAttributes"
+         @ref="ParentSheet!.ContentRef">
+        @ChildContent
+    </div>
+}

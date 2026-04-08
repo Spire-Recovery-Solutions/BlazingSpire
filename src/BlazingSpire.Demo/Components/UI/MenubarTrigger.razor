@@ -1,0 +1,9 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<button type="button" role="menuitem"
+        data-state="@(ParentMenu?.IsOpen == true ? "open" : "closed")"
+        class="@Classes" @attributes="AdditionalAttributes"
+        @onclick="OnClick">
+    @ChildContent
+</button>

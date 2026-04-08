@@ -1,0 +1,26 @@
+@namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+
+<div class="@Classes" @attributes="AdditionalAttributes">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+    <input type="text"
+           inputmode="numeric"
+           autocomplete="one-time-code"
+           maxlength="@MaxLength"
+           disabled="@Disabled"
+           value="@Value"
+           aria-label="One-time password"
+           class="sr-only"
+           @oninput="OnInput" />
+</div>
+
+@code {
+    private async Task OnInput(ChangeEventArgs e)
+    {
+        var raw = e.Value?.ToString() ?? "";
+        var digits = new string(raw.Where(char.IsDigit).ToArray());
+        await UpdateValueAsync(digits);
+    }
+}
