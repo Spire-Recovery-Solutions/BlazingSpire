@@ -20,7 +20,6 @@
     </script>
     <script src="js/theme.js"></script>
     <link rel="stylesheet" href="css/prism-blazingspire.css" />
-    <script src="js/prism-custom.js" data-manual defer></script>
 </head>
 
 <body class="min-h-screen bg-background text-foreground antialiased">
@@ -57,15 +56,14 @@
         <a href="." class="reload" style="color:#fff;margin-left:0.5rem">Reload</a>
         <span class="dismiss" style="cursor:pointer;margin-left:1rem">&#x2717;</span>
     </div>
+    <script>window.Prism = window.Prism || {}; Prism.manual = true;</script>
+    <script src="js/prism-custom.js"></script>
     <script src="_framework/blazor.webassembly.js" autostart="false"></script>
     <script>
         Blazor.start().then(function () {
             document.getElementById('skeleton').remove();
             document.getElementById('app').style.display = '';
-            // Delay highlighting to next frame so Blazor's first render is flushed to DOM
-            requestAnimationFrame(function () {
-                if (window.Prism) Prism.highlightAll();
-            });
+            setTimeout(function () { Prism.highlightAll(); }, 100);
         });
     </script>
 </body>
