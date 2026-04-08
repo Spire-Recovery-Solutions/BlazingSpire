@@ -279,20 +279,49 @@ public static string Cn(params ReadOnlySpan<string?> inputs)
 
 ## Variant System (CVA Equivalent)
 
-No standalone C# CVA package exists. Use enum + dictionary:
+No standalone C# CVA package exists. The base class hierarchy provides the infrastructure — concrete components supply the mappings.
+
+### FrozenDictionary Pattern
+
+Components with variants extend `PresentationalBase<TVariant>` or `ButtonBase<TVariant, TSize>`. They provide variant→CSS mappings via `static readonly FrozenDictionary` fields and override `VariantClassMap` / `SizeClassMap`:
 
 ```csharp
+// Enums at namespace scope — NOT nested in the component class
 public enum ButtonVariant { Default, Destructive, Outline, Ghost }
 public enum ButtonSize { Default, Sm, Lg, Icon }
 
-private static readonly FrozenDictionary<ButtonVariant, string> VariantClasses =
-    new Dictionary<ButtonVariant, string>
-    {
-        [ButtonVariant.Default] = "bg-primary text-primary-foreground hover:bg-primary/90",
-        [ButtonVariant.Destructive] = "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        [ButtonVariant.Outline] = "border border-input bg-background hover:bg-accent",
-        [ButtonVariant.Ghost] = "hover:bg-accent hover:text-accent-foreground",
-    }.ToFrozenDictionary();
+public partial class Button : ButtonBase<ButtonVariant, ButtonSize>
+{
+    private static readonly FrozenDictionary<ButtonVariant, string> s_variantClasses =
+        new Dictionary<ButtonVariant, string>
+        {
+            [ButtonVariant.Default] = "bg-primary text-primary-foreground hover:bg-primary/90",
+            [ButtonVariant.Destructive] = "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+            [ButtonVariant.Outline] = "border border-input bg-background hover:bg-accent",
+            [ButtonVariant.Ghost] = "hover:bg-accent hover:text-accent-foreground",
+        }.ToFrozenDictionary();
+
+    protected override FrozenDictionary<ButtonVariant, string> VariantClassMap => s_variantClasses;
+    // ... same for SizeClassMap
+}
+```
+
+### BaseClasses Override
+
+Every component overrides `BaseClasses` to provide its structural CSS:
+
+```csharp
+protected override string BaseClasses =>
+    "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50";
+```
+
+### BuildClasses() Utility
+
+`BuildClasses(params ReadOnlySpan<string?>)` replaces manual string interpolation. Stack-allocated span, zero heap allocation for args:
+
+```csharp
+// Called by base class template method — composes BaseClasses + variant + size + consumer Class
+protected virtual string Classes => Cn(BuildClasses(BaseClasses, VariantClassMap[Variant], SizeClassMap[Size]), Class);
 ```
 
 ## CSS Isolation: Don't Use It

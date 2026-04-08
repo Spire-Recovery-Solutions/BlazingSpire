@@ -152,6 +152,16 @@ jobs:
 
 # Performance & Optimization
 
+## Base Class Hierarchy Performance
+
+The base class hierarchy (`Components/Shared/`) is designed for zero-overhead abstractions:
+
+- **FrozenDictionary** for variant/size→CSS maps — AOT-safe, faster than switch for large enums, static allocation.
+- **BuildClasses(params ReadOnlySpan\<string?\>)** — stack-allocated span, zero heap allocation for the args array. This replaces manual string concatenation.
+- **Template method pattern** for `Classes` — the base class computes `Classes` by composing `BaseClasses` + variant + size + consumer `Class`. This is a computed property, not virtual-dispatched per render — avoids virtual dispatch overhead.
+- **NumericInputBase\<T\>** uses `INumber<T>` generic math — AOT-safe when used with closed generics (e.g., `NumericInputBase<int>`). No boxing.
+- **OverlayBase** JS interop lifecycle is managed centrally — single `IAsyncDisposable` implementation, not duplicated per overlay component.
+
 ## Source Generators
 
 | Generator | Purpose | Impact |

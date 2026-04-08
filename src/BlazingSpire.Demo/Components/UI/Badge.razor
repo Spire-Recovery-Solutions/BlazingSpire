@@ -1,5 +1,6 @@
 @namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.PresentationalBase<BadgeVariant>
 
-<div class="@Classes">
+<div class="@Classes" @attributes="AdditionalAttributes">
     @ChildContent
 </div>

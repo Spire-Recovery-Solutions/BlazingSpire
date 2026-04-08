@@ -167,6 +167,8 @@ BlazingSpire/
     BlazingSpire.CLI/            <- dotnet tool
     BlazingSpire.Templates/      <- dotnet new templates
     BlazingSpire.Docs/           <- Blazor app (documentation site)
+      Components/Shared/         <- Base class hierarchy (BlazingSpireComponentBase, etc.)
+      Components/UI/             <- Styled components
   test/
     Directory.Build.props        <- test-specific (imports repo-level)
     BlazingSpire.Primitives.Tests/       <- bUnit

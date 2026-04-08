@@ -69,9 +69,56 @@ Components/
 
 ---
 
+## Component Hierarchy
+
+BlazingSpire uses a tiered base class hierarchy with template method pattern. All base classes live in `Components/Shared/`:
+
+```
+BlazingSpireComponentBase                    — ChildContent, Class, AdditionalAttributes, abstract BaseClasses, virtual Classes, BuildClasses()
+├── PresentationalBase<TVariant>             — Variant, abstract VariantClassMap (FrozenDictionary), Classes template with variant slot
+├── InteractiveBase                          — Disabled, virtual IsEffectivelyDisabled
+│   ├── ButtonBase<TVariant, TSize>          — Variant, Size, Loading, Href, Target, Rel, OnClick, VariantClassMap, SizeClassMap, IsLink
+│   ├── FormControlBase<TValue>              — Value, ValueChanged, ValueExpression, Name, Placeholder, Required, ReadOnly, EditContext, validation
+│   │   ├── TextInputBase                    — MaxLength, Pattern, AutoComplete
+│   │   ├── BooleanInputBase                 — (closes TValue to bool)
+│   │   ├── NumericInputBase<T>              — Min, Max, Step, Clamp() (INumber<T> generic math)
+│   │   └── SelectionBase<T>                 — Items, OptionText, OptionValue
+│   └── DisclosureBase                       — IsOpen, IsOpenChanged, DefaultIsOpen, controlled/uncontrolled, ToggleAsync()
+└── OverlayBase                              — IsOpen, IsOpenChanged, OnClose, focus trap, click outside, scroll lock, escape, portal, JS interop
+    └── PopoverBase                          — Side, Align, SideOffset, AlignOffset, Floating UI positioning
+        └── MenuBase                         — Loop, item registry, roving focus, keyboard nav
+```
+
+### Choosing a Base Class
+
+- **Structural/layout?** → `BlazingSpireComponentBase` (Card, CardHeader, CardFooter)
+- **Visual variants, no interaction?** → `PresentationalBase<TVariant>` (Badge)
+- **Interactive?** → `InteractiveBase`
+- **Button-like?** → `ButtonBase<TVariant, TSize>` (Button, IconButton)
+- **Form input?** → `FormControlBase<TValue>` → narrow to Text/Boolean/Numeric/Selection base
+- **Expand/collapse?** → `DisclosureBase` (Accordion, Collapsible)
+- **Modal/overlay?** → `OverlayBase` (Dialog, Sheet)
+- **Floating?** → `PopoverBase` (Popover, Tooltip)
+- **Menu?** → `MenuBase` (DropdownMenu, ContextMenu)
+
+### Key Design Decisions
+
+- **Template method:** Base defines `Classes` composition. Concrete components provide pieces via abstract members (`BaseClasses`, `VariantClassMap`, `SizeClassMap`).
+- **FrozenDictionary:** `static readonly FrozenDictionary<TEnum, string>` for variant→CSS and size→CSS. AOT-safe, O(1) lookup.
+- **BuildClasses(params ReadOnlySpan\<string?\>):** Static utility, stack-allocated span, zero heap alloc for args.
+- **Enums at namespace scope:** `ButtonVariant.Default` not `Button.ButtonVariant.Default`.
+- **No interfaces for parameters:** Blazor's `[Parameter]` discovery doesn't inspect interfaces.
+- **Disabled stays off base:** Only on `InteractiveBase` and below.
+- **Controlled/uncontrolled:** Used in `DisclosureBase` and `OverlayBase`.
+- **Virtual behavior toggles:** `OverlayBase` uses virtual properties (`ShouldTrapFocus`, `ShouldLockScroll`) that `PopoverBase` overrides.
+
+---
+
 ## Base Component Pattern
 
-Every styled component shares a minimal skeleton of three parameters:
+Every styled component extends the appropriate base class from the hierarchy above. The base class provides `ChildContent`, `Class`, `AdditionalAttributes`, and the `Classes` property via template method. Concrete components override `BaseClasses` and, for variants, provide `FrozenDictionary` mappings.
+
+Previously, components used a minimal skeleton of three parameters:
 
 ```csharp
 public partial class ExampleComponent
@@ -103,118 +150,99 @@ The corresponding `.razor` template follows the pattern:
 - `Class` is always a `string?`, never `CssClass` or a custom type. Consumers pass raw Tailwind strings.
 - `AdditionalAttributes` is splatted via `@attributes` on the root element so consumers can pass `id`, `data-*`, `aria-*`, or any other HTML attribute.
 - `ChildContent` is the standard Blazor slot for nested content.
-- The `.razor.cs` file uses `partial class` — no inheritance from a custom base class. Components inherit from `ComponentBase` implicitly.
+- All three parameters are **inherited from `BlazingSpireComponentBase`** — do NOT redefine them. Components extend the appropriate base class from the hierarchy.
 
-### Minimal Example: CardFooter
+### Minimal Example: CardFooter (extends BlazingSpireComponentBase)
 
 **CardFooter.razor**
 ```razor
 @namespace BlazingSpire.Demo.Components.UI
 
-<div class="@($"flex items-center p-6 pt-0 {Class}")">
+<div class="@Classes" @attributes="AdditionalAttributes">
     @ChildContent
 </div>
 ```
 
 **CardFooter.razor.cs**
 ```csharp
-using Microsoft.AspNetCore.Components;
-
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class CardFooter
+public partial class CardFooter : BlazingSpireComponentBase
 {
-    [Parameter] public RenderFragment? ChildContent { get; set; }
-    [Parameter] public string? Class { get; set; }
+    protected override string BaseClasses => "flex items-center p-6 pt-0";
 }
 ```
 
-This is the simplest form — no variants, no primitive, just a styled `<div>`.
+This is the simplest form — 4 lines of unique code extending the base class. No variants, no primitive.
 
 ---
 
 ## Variant System
 
-Components with visual variants use the enum + `switch` expression pattern. The production-ready path uses `FrozenDictionary` for zero-lookup-overhead at render time; the POC currently uses `switch` expressions which are equally fast for small enum cardinality.
+Components with visual variants extend `PresentationalBase<TVariant>` or `ButtonBase<TVariant, TSize>`. The base class provides the `Variant` and `Size` parameters; concrete components supply the CSS mappings via `static readonly FrozenDictionary` fields and abstract overrides.
 
-### Pattern: Enum Definition + Class Mapping
-
-```csharp
-public partial class Button
-{
-    [Parameter] public ButtonVariant Variant { get; set; } = ButtonVariant.Default;
-    [Parameter] public ButtonSize Size { get; set; } = ButtonSize.Default;
-
-    // ── Variant → CSS mapping ──────────────────────────────
-    private string VariantClass => Variant switch
-    {
-        ButtonVariant.Default     => "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm",
-        ButtonVariant.Destructive => "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        ButtonVariant.Outline     => "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        ButtonVariant.Secondary   => "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ButtonVariant.Ghost       => "hover:bg-accent hover:text-accent-foreground",
-        ButtonVariant.Link        => "text-primary underline-offset-4 hover:underline",
-        _ => ""
-    };
-
-    private string SizeClass => Size switch
-    {
-        ButtonSize.Default => "h-10 px-4 py-2",
-        ButtonSize.Sm      => "h-9 px-3",
-        ButtonSize.Lg      => "h-11 px-8",
-        ButtonSize.Icon    => "h-10 w-10",
-        _ => ""
-    };
-
-    public enum ButtonVariant { Default, Destructive, Outline, Secondary, Ghost, Link }
-    public enum ButtonSize { Default, Sm, Lg, Icon }
-}
-```
-
-### Production Upgrade: FrozenDictionary
-
-For components with many variants or compound variant combinations, use `FrozenDictionary` for O(1) lookup:
+### Pattern: FrozenDictionary Variant Mapping
 
 ```csharp
 using System.Collections.Frozen;
 
-private static readonly FrozenDictionary<ButtonVariant, string> VariantClasses =
-    new Dictionary<ButtonVariant, string>
-    {
-        [ButtonVariant.Default]     = "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm",
-        [ButtonVariant.Destructive] = "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        [ButtonVariant.Outline]     = "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        [ButtonVariant.Secondary]   = "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        [ButtonVariant.Ghost]       = "hover:bg-accent hover:text-accent-foreground",
-        [ButtonVariant.Link]        = "text-primary underline-offset-4 hover:underline",
-    }.ToFrozenDictionary();
+// Enums at NAMESPACE scope — not nested in the component class
+public enum ButtonVariant { Default, Destructive, Outline, Secondary, Ghost, Link }
+public enum ButtonSize { Default, Sm, Lg, Icon }
 
-private static readonly FrozenDictionary<ButtonSize, string> SizeClasses =
-    new Dictionary<ButtonSize, string>
-    {
-        [ButtonSize.Default] = "h-10 px-4 py-2",
-        [ButtonSize.Sm]      = "h-9 px-3",
-        [ButtonSize.Lg]      = "h-11 px-8",
-        [ButtonSize.Icon]    = "h-10 w-10",
-    }.ToFrozenDictionary();
+public partial class Button : ButtonBase<ButtonVariant, ButtonSize>
+{
+    // Structural CSS — inherited BaseClasses override
+    protected override string BaseClasses =>
+        "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50";
+
+    // Variant → CSS mapping via FrozenDictionary
+    private static readonly FrozenDictionary<ButtonVariant, string> s_variantClasses =
+        new Dictionary<ButtonVariant, string>
+        {
+            [ButtonVariant.Default]     = "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm",
+            [ButtonVariant.Destructive] = "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+            [ButtonVariant.Outline]     = "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+            [ButtonVariant.Secondary]   = "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+            [ButtonVariant.Ghost]       = "hover:bg-accent hover:text-accent-foreground",
+            [ButtonVariant.Link]        = "text-primary underline-offset-4 hover:underline",
+        }.ToFrozenDictionary();
+
+    protected override FrozenDictionary<ButtonVariant, string> VariantClassMap => s_variantClasses;
+
+    // Size → CSS mapping
+    private static readonly FrozenDictionary<ButtonSize, string> s_sizeClasses =
+        new Dictionary<ButtonSize, string>
+        {
+            [ButtonSize.Default] = "h-10 px-4 py-2",
+            [ButtonSize.Sm]      = "h-9 px-3",
+            [ButtonSize.Lg]      = "h-11 px-8",
+            [ButtonSize.Icon]    = "h-10 w-10",
+        }.ToFrozenDictionary();
+
+    protected override FrozenDictionary<ButtonSize, string> SizeClassMap => s_sizeClasses;
+}
 ```
 
-**When to use which:**
-- `switch` expression: components with < 10 variant values (Button, Badge). Simpler, equally fast.
-- `FrozenDictionary`: components with compound variants or many values. Static allocation, dictionary lookup.
+This is the complete concrete component — all other parameters (Variant, Size, Disabled, Loading, Href, Target, Rel, OnClick, ChildContent, Class, AdditionalAttributes, IsLink, IsEffectivelyDisabled, Classes) are inherited from the base class hierarchy.
+
+### Why FrozenDictionary (not switch)
+
+- **AOT-safe:** No reflection, compile-time optimized.
+- **O(1) lookup:** Faster than switch for large enums, equivalent for small ones.
+- **Static allocation:** Created once, shared across all instances. No per-render cost.
+- **Consistent pattern:** All variant components use the same FrozenDictionary + abstract override pattern.
 
 ### Enum Placement
 
-Variant enums are nested inside the component class. This keeps the namespace clean and makes the relationship explicit:
+Variant enums are defined at **namespace scope** — not nested inside the component class. This avoids verbose usage syntax:
 
 ```razor
-<Button Variant="Button.ButtonVariant.Outline" />
-```
-
-Or with a `using static`:
-```razor
-@using static BlazingSpire.Demo.Components.UI.Button
+@* Clean — namespace-scoped enum *@
 <Button Variant="ButtonVariant.Outline" />
+
+@* Avoid — nested enum requires qualified name or using static *@
+<Button Variant="Button.ButtonVariant.Outline" />
 ```
 
 ---

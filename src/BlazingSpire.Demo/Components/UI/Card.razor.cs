@@ -1,16 +1,9 @@
-using Microsoft.AspNetCore.Components;
+using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-/// <summary>
-/// A container component with rounded corners, border, and shadow.
-/// Inspired by shadcn/ui Card. Use with <see cref="CardHeader"/>, <see cref="CardContent"/>, and <see cref="CardFooter"/>.
-/// </summary>
-public partial class Card
+public partial class Card : BlazingSpireComponentBase
 {
-    /// <summary>The card content, typically <see cref="CardHeader"/>, <see cref="CardContent"/>, and <see cref="CardFooter"/> components.</summary>
-    [Parameter] public RenderFragment? ChildContent { get; set; }
-
-    /// <summary>Additional CSS classes to append to the card element.</summary>
-    [Parameter] public string? Class { get; set; }
+    protected override string BaseClasses =>
+        "rounded-xl border bg-card text-card-foreground shadow-[0_0_2px_rgba(0,0,0,0.12),0_2px_4px_rgba(0,0,0,0.24)]";
 }

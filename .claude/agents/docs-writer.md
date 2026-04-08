@@ -28,6 +28,8 @@ From CLAUDE.md — Blazor markup must be HTML-entity-encoded inside Prism blocks
 <pre class="language-xml"><code class="language-xml">&lt;Button Variant="ButtonVariant.Default"&gt;
     Click me
 &lt;/Button&gt;</code></pre>
+
+Note: Enums are at namespace scope — use `ButtonVariant.Default`, not `Button.ButtonVariant.Default`.
 ```
 
 ## Demo Page Structure Per Component

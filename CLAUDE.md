@@ -45,7 +45,22 @@ Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`. Project name: `blazing
 
 ## Architecture
 
-**Component pattern:** Each UI component lives in `Components/UI/` as a `.razor` + `.razor.cs` pair. Components accept a `Class` parameter for consumer-side Tailwind classes and use `AdditionalAttributes` for HTML attribute passthrough. No component sets its own `@rendermode`.
+**Base component hierarchy:** All components extend a tiered base class hierarchy in `Components/Shared/`. The base classes use template method pattern, `FrozenDictionary<TEnum, string>` for variant/size→CSS mappings, and abstract members. Hierarchy:
+
+```
+BlazingSpireComponentBase              → ChildContent, Class, AdditionalAttributes, BuildClasses(), abstract BaseClasses, virtual Classes
+├── PresentationalBase<TVariant>       → Variant, abstract VariantClassMap (FrozenDictionary)
+├── InteractiveBase                    → Disabled, virtual IsEffectivelyDisabled
+│   ├── ButtonBase<TVariant, TSize>    → Variant, Size, Loading, Href/Target/Rel, OnClick, VariantClassMap, SizeClassMap
+│   ├── FormControlBase<TValue>        → Value/ValueChanged/ValueExpression, EditContext wiring, validation
+│   │   ├── TextInputBase, BooleanInputBase, NumericInputBase<T>, SelectionBase<T>
+│   └── DisclosureBase                 → IsOpen, controlled/uncontrolled, ToggleAsync()
+└── OverlayBase                        → IsOpen, focus trap, scroll lock, click outside, portal (JS interop)
+    └── PopoverBase                    → Floating UI positioning
+        └── MenuBase                   → Item registry, roving focus, keyboard nav
+```
+
+**Component pattern:** Each UI component lives in `Components/UI/` as a `.razor` + `.razor.cs` pair. The `.razor` file uses `@inherits` to specify the base class. The `.razor.cs` provides `BaseClasses`, variant/size `FrozenDictionary` mappings, and component-specific parameters. Enums are at namespace scope (e.g., `ButtonVariant.Default`, not `Button.ButtonVariant.Default`). No component sets its own `@rendermode`.
 
 **Theming:** All colors defined as OKLCH tokens in `wwwroot/app.css` under `@theme` (light) and `.dark` (dark override). Dark mode uses `@custom-variant dark (&:where(.dark, .dark *))`. Theme toggle persists to `localStorage` via `wwwroot/js/theme.js` (no eval).
 
@@ -68,6 +83,7 @@ Use `/team <component-name>` to orchestrate a multi-agent team for building comp
 - `Directory.Build.props` / `.targets` / `.rsp` — Shared build configuration
 - `wwwroot/app.css` — Tailwind v4 source with OKLCH theme tokens (light + dark)
 - `wwwroot/index.html` — Skeleton, boot sequence, script loading order
+- `Components/Shared/` — Base component hierarchy (13 files: BlazingSpireComponentBase, PresentationalBase, InteractiveBase, ButtonBase, FormControlBase, TextInputBase, BooleanInputBase, NumericInputBase, SelectionBase, DisclosureBase, OverlayBase, PopoverBase, MenuBase)
 - `Components/UI/` — Button, Badge, Card (CardHeader, CardTitle, CardDescription, CardContent, CardFooter)
 - `Components/Layout/` — MainLayout, NavMenu, ThemeToggle
 - `Components/Pages/Home.razor` — Demo page with component examples and code snippets

@@ -2,6 +2,8 @@
 
 This document defines concrete C# API specifications for the five most architecturally challenging headless primitives in `BlazingSpire.Primitives`. These five drive every major design decision — focus trapping, floating positioning, keyboard navigation, portals, scroll locking, and cross-component state coordination. Every other primitive in the library is a subset of patterns established here.
 
+**Note:** The base component hierarchy (`Components/Shared/`) now provides centralized infrastructure for many of these concerns. `OverlayBase` handles focus trap, click outside, scroll lock, escape key, portal rendering, and JS interop lifecycle. `PopoverBase` adds Floating UI positioning. `MenuBase` adds item registry, roving focus, and keyboard navigation. Individual primitives extend these bases rather than implementing the infrastructure individually. See `docs/research/20-styled-component-patterns.md` for the full hierarchy.
+
 **Target:** .NET 10, Blazor United (SSR + Interactive Server + InteractiveAuto + WASM)
 
 ---

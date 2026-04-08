@@ -70,17 +70,28 @@ public class ButtonTests : BlazingSpireTestBase
         var cut = Render<Button>(p => p.Add(x => x.Variant, variant));
         cut.Find("button").ClassList.Should().Contain(expectedClass);
     }
+
+    [Fact]
+    public void Inherits_From_Correct_Base_Class()
+    {
+        typeof(Button).BaseType!.GetGenericTypeDefinition()
+            .Should().Be(typeof(ButtonBase<,>));
+    }
 }
 ```
 
 ## What to Test Per Component
 
+- **Base class** — verify the component inherits from the correct base (e.g., `ButtonBase<,>`, `PresentationalBase<>`, `BlazingSpireComponentBase`)
+- **Inherited parameters** — verify `Class` and `AdditionalAttributes` pass through from the base class
 - **Rendering** — correct HTML structure, CSS classes per variant
 - **ARIA** — role, aria-expanded, aria-labelledby, aria-describedby
 - **Keyboard** — simulated key events via bUnit
 - **State** — controlled and uncontrolled modes, two-way binding
 - **Events** — EventCallback invocations
 - **Edge cases** — disabled, empty content, missing parameters
+
+Note: Enums are at namespace scope — use `ButtonVariant.Default`, not `Button.ButtonVariant.Default`.
 
 ## Standards
 

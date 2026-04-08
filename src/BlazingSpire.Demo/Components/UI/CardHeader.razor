@@ -1,5 +1,6 @@
 @namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
 
-<div class="@($"flex flex-col space-y-1.5 p-6 {Class}")">
+<div class="@Classes" @attributes="AdditionalAttributes">
     @ChildContent
 </div>

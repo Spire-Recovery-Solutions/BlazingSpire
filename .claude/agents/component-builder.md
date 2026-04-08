@@ -14,6 +14,7 @@ You are a BlazingSpire component builder. You implement Blazor UI components —
 
 ```
 src/BlazingSpire.Demo/
+  Components/Shared/      # Base class hierarchy (BlazingSpireComponentBase, etc.)
   Components/UI/          # Styled components live here
   Components/Layout/      # Layout components
   Components/Pages/       # Demo pages
@@ -30,14 +31,38 @@ src/BlazingSpire.Demo/
 
 ## Implementation Standards
 
+### Base Class Hierarchy
+
+Every component MUST extend the appropriate base class from `Components/Shared/` — never `ComponentBase` directly:
+
+| Base Class | Extend When | Provides |
+|------------|-------------|----------|
+| `BlazingSpireComponentBase` | Structural/layout (Card, CardHeader) | ChildContent, Class, AdditionalAttributes, abstract BaseClasses, virtual Classes, BuildClasses() |
+| `PresentationalBase<TVariant>` | Has visual variants, no interaction (Badge) | Variant, abstract VariantClassMap (FrozenDictionary) |
+| `InteractiveBase` | Interactive, no specific sub-type | Disabled, virtual IsEffectivelyDisabled |
+| `ButtonBase<TVariant, TSize>` | Button-like (Button, IconButton) | Variant, Size, Loading, Href, Target, Rel, OnClick, IsLink, VariantClassMap, SizeClassMap |
+| `FormControlBase<TValue>` | Form input (Input, Textarea) | Value, ValueChanged, ValueExpression, Name, Placeholder, Required, ReadOnly, EditContext, validation |
+| `TextInputBase` | Text input | MaxLength, Pattern, AutoComplete |
+| `BooleanInputBase` | Checkbox/Switch | Closes TValue to bool |
+| `NumericInputBase<T>` | Numeric input | Min, Max, Step, Clamp() (INumber\<T\> generic math) |
+| `SelectionBase<T>` | Select/radio group | Items, OptionText, OptionValue |
+| `DisclosureBase` | Expand/collapse (Accordion, Collapsible) | IsOpen, IsOpenChanged, DefaultIsOpen, controlled/uncontrolled, ToggleAsync() |
+| `OverlayBase` | Overlays (Dialog, Sheet) | IsOpen, IsOpenChanged, OnClose, focus trap, click outside, scroll lock, escape key, portal, JS interop, IAsyncDisposable |
+| `PopoverBase` | Floating elements (Popover, Tooltip) | Side, Align, SideOffset, AlignOffset, Floating UI positioning |
+| `MenuBase` | Menus (DropdownMenu, ContextMenu) | Loop, item registry, roving focus, keyboard nav |
+
+### Component Implementation Rules
+
 **Every component must:**
-- Accept `[Parameter] public string? Class { get; set; }` for consumer Tailwind classes
-- Accept `[Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }`
+- Override `protected override string BaseClasses =>` to provide its CSS classes
+- Use `static readonly FrozenDictionary<TEnum, string>` for variant/size class maps and override `VariantClassMap` / `SizeClassMap`
+- Define enums at **namespace scope** (e.g., `ButtonVariant.Default`), not nested in the component class
 - Never set `@rendermode`
 - Use semantic OKLCH tokens (`--primary`, `--muted`, `--destructive`), never raw colors
 - Use `Cn()` for class merging — cache merged strings in `OnParametersSet`
-- Use `static readonly FrozenDictionary<TEnum, string>` for variant class maps
 - Follow existing patterns in `Components/UI/`
+
+**Do NOT redefine** `Classes`, `ChildContent`, `Class`, or `AdditionalAttributes` — these are inherited from the base. The `Classes` property is computed by the base class template method; only extend it if the base supports a slot for that (e.g., variant/size maps).
 
 **Primitives additionally must:**
 - Support controlled + uncontrolled state (`@bind-PropertyName`)

@@ -1,15 +1,8 @@
-using Microsoft.AspNetCore.Components;
+using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-/// <summary>
-/// The header section of a <see cref="Card"/>. Contains <see cref="CardTitle"/> and <see cref="CardDescription"/>.
-/// </summary>
-public partial class CardHeader
+public partial class CardHeader : BlazingSpireComponentBase
 {
-    /// <summary>The header content, typically <see cref="CardTitle"/> and <see cref="CardDescription"/>.</summary>
-    [Parameter] public RenderFragment? ChildContent { get; set; }
-
-    /// <summary>Additional CSS classes to append to the header element.</summary>
-    [Parameter] public string? Class { get; set; }
+    protected override string BaseClasses => "flex flex-col space-y-1.5 p-6";
 }

@@ -56,6 +56,16 @@ TeamCreate: blazingspire-<component>
 - Read existing components in `Components/UI/` to understand current patterns
 - Read `CLAUDE.md` for project conventions
 - Check if the component already exists (modification vs new build)
+- **Determine which base class** the component should extend (see hierarchy in `Components/Shared/`):
+  - Structural/layout → `BlazingSpireComponentBase`
+  - Visual variants, no interaction → `PresentationalBase<TVariant>`
+  - Interactive → `InteractiveBase`
+  - Button-like → `ButtonBase<TVariant, TSize>`
+  - Form input → `FormControlBase<TValue>` (then narrow: TextInputBase, BooleanInputBase, NumericInputBase\<T\>, SelectionBase\<T\>)
+  - Expand/collapse → `DisclosureBase`
+  - Modal/overlay → `OverlayBase`
+  - Floating → `PopoverBase`
+  - Menu → `MenuBase`
 - Determine complexity: does it need JS interop? SSR fallback? Multiple parts?
 
 ### Step 3: Build the task pipeline
@@ -63,9 +73,10 @@ Create tasks with dependencies. Typical pipeline for a new component:
 
 ```
 Task 1: "Design <Component> API" (owner: user + blazor-architecture expert)
-  - Consult blazor-architecture for: parameter signatures, context type, 
+  - Determine base class tier: structural → presentational → interactive → button/form/disclosure → overlay → popover → menu
+  - Consult blazor-architecture for: base class selection, parameter signatures, context type, 
     CascadingValue tier, ARIA attributes, keyboard interactions, SSR fallback
-  - Consult design-and-styling for: variant enum, Tailwind classes, animation pattern
+  - Consult design-and-styling for: variant enum, FrozenDictionary mappings, Tailwind classes, animation pattern
   - Present design to user for approval before proceeding
   
 Task 2: "Implement <Component>" (owner: component-builder, blocked by Task 1)

@@ -35,6 +35,12 @@ dotnet blazingspire add button dialog tabs
 └─────────────────────────────────────────┘
 ```
 
+## Base Component Hierarchy
+
+Styled components extend a tiered base class hierarchy defined in `Components/Shared/`. The hierarchy uses template method pattern, `FrozenDictionary` for variant/size mappings, and abstract members. See `docs/research/20-styled-component-patterns.md` for the full tree and choosing-a-base-class decision guide.
+
+Key tiers: `BlazingSpireComponentBase` (structural) → `PresentationalBase<T>` (variants) → `InteractiveBase` (interactive) → `ButtonBase<V,S>` / `FormControlBase<T>` / `DisclosureBase` → `OverlayBase` → `PopoverBase` → `MenuBase`.
+
 ## Render Mode Strategy: Islands Architecture
 
 - Components never set their own `@rendermode`

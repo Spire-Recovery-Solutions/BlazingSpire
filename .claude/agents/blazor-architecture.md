@@ -63,6 +63,56 @@ dotnet blazingspire add button dialog tabs
 └─────────────────────────────────────────┘
 ```
 
+## Base Component Hierarchy
+
+BlazingSpire uses a tiered base class hierarchy with template method pattern. All base classes live in `Components/Shared/`.
+
+```
+BlazingSpireComponentBase                    — ChildContent, Class, AdditionalAttributes, abstract BaseClasses, virtual Classes, BuildClasses()
+├── PresentationalBase<TVariant>             — Variant, abstract VariantClassMap (FrozenDictionary), Classes template with variant slot
+├── InteractiveBase                          — Disabled, virtual IsEffectivelyDisabled
+│   ├── ButtonBase<TVariant, TSize>          — Variant, Size, Loading, Href, Target, Rel, OnClick, abstract VariantClassMap, abstract SizeClassMap, IsLink, IsEffectivelyDisabled (Loading-aware)
+│   ├── FormControlBase<TValue>              — Value, ValueChanged, ValueExpression, Name, Placeholder, Required, ReadOnly, EditContext wiring, validation
+│   │   ├── TextInputBase                    — MaxLength, Pattern, AutoComplete
+│   │   ├── BooleanInputBase                 — (closes TValue to bool)
+│   │   ├── NumericInputBase<T>              — Min, Max, Step, Clamp() (INumber<T> generic math)
+│   │   └── SelectionBase<T>                 — Items, OptionText, OptionValue
+│   └── DisclosureBase                       — IsOpen, IsOpenChanged, DefaultIsOpen, controlled/uncontrolled, SetIsOpenAsync(), ToggleAsync()
+└── OverlayBase                              — IsOpen, IsOpenChanged, OnClose, focus trap, click outside, scroll lock, escape key, portal, JS interop, IAsyncDisposable
+    └── PopoverBase                          — Side, Align, SideOffset, AlignOffset, Floating UI positioning
+        └── MenuBase                         — Loop, item registry, roving focus, keyboard nav
+```
+
+### Choosing a Base Class
+
+- **Is it structural (no behavior)?** → `BlazingSpireComponentBase` (Card, CardHeader, CardFooter)
+- **Has visual variants but no interaction?** → `PresentationalBase<TVariant>` (Badge)
+- **Is interactive?** → `InteractiveBase`
+- **Is a button-like element?** → `ButtonBase<TVariant, TSize>` (Button, IconButton)
+- **Is a form control?** → `FormControlBase<TValue>` → then narrow to TextInputBase, BooleanInputBase, NumericInputBase\<T\>, or SelectionBase\<T\>
+- **Expands/collapses?** → `DisclosureBase` (Accordion, Collapsible)
+- **Is a modal/overlay?** → `OverlayBase` (Dialog, Sheet)
+- **Is a floating element?** → `PopoverBase` (Popover, Tooltip)
+- **Is a menu?** → `MenuBase` (DropdownMenu, ContextMenu)
+
+### Key Patterns
+
+- **Template method:** Base defines `Classes` composition. Concrete components provide pieces via abstract members (`BaseClasses`, `VariantClassMap`, `SizeClassMap`).
+- **FrozenDictionary:** `static readonly FrozenDictionary<TEnum, string>` for variant→CSS and size→CSS. AOT-safe, O(1) lookup.
+- **BuildClasses(params ReadOnlySpan\<string?\>):** Static utility, stack-allocated span, zero heap alloc for args.
+- **Enums at namespace scope:** `ButtonVariant.Default` not `Button.ButtonVariant.Default`.
+- **No interfaces for parameters:** Blazor's `[Parameter]` discovery doesn't inspect interfaces.
+- **Disabled stays off base:** Only on `InteractiveBase` and below.
+- **Controlled/uncontrolled:** Used in `DisclosureBase` and `OverlayBase`.
+- **Virtual behavior toggles:** `OverlayBase` uses virtual properties (`ShouldTrapFocus`, `ShouldLockScroll`, etc.) that `PopoverBase` overrides.
+
+### AOT Safety Per Tier
+
+All tiers are AOT-safe. Specific notes:
+- `FrozenDictionary` is AOT-safe — no reflection, compile-time optimized.
+- `NumericInputBase<T>` uses `INumber<T>` generic math — AOT-safe when used with closed generic types (e.g., `NumericInputBase<int>`).
+- `OverlayBase` JS interop uses string method names, not reflection — trim-safe.
+
 ## Render Mode Strategy: Islands Architecture
 
 - Components never set their own `@rendermode`

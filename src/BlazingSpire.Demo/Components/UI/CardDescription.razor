@@ -1,5 +1,6 @@
 @namespace BlazingSpire.Demo.Components.UI
+@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
 
-<p class="@($"text-sm text-muted-foreground {Class}")">
+<p class="@Classes" @attributes="AdditionalAttributes">
     @ChildContent
 </p>
