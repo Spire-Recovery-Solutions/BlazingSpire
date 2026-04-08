@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "@tailwindcss/cli": "^4.2.2",
+    "prismjs": "^1.30.0",
     "tailwindcss": "^4.2.2"
   }
 }

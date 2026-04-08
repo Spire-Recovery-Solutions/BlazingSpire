@@ -1,0 +1,96 @@
+/* BlazingSpire Prism theme — dark code blocks matching the site palette */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #c9d1d9;
+  text-shadow: none;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 2;
+  hyphens: none;
+}
+
+pre[class*="language-"] {
+  background: oklch(0.12 0 0);
+  border-radius: var(--radius-lg, 0.625rem);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin: 0;
+}
+
+/* Tokens */
+.token.comment,
+.token.prolog,
+.token.cdata {
+  color: #6e7681;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.entity {
+  color: #c9d1d9;
+}
+
+.token.attr-name,
+.token.class-name,
+.token.boolean,
+.token.constant,
+.token.number,
+.token.atrule {
+  color: #d2a8ff;
+}
+
+.token.keyword {
+  color: #ff7b72;
+}
+
+.token.property,
+.token.tag,
+.token.symbol,
+.token.deleted,
+.token.important {
+  color: #7ee787;
+}
+
+.token.selector,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted,
+.token.attr-value {
+  color: #a5d6ff;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.token.variable {
+  color: #79c0ff;
+}
+
+.token.function {
+  color: #d2a8ff;
+}
+
+.token.regex {
+  color: #7ee787;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.7;
+}

@@ -19,6 +19,8 @@
         })();
     </script>
     <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="css/prism-blazingspire.css" />
+    <script src="js/prism-custom.js" data-manual defer></script>
 </head>
 
 <body class="min-h-screen bg-background text-foreground antialiased">
@@ -60,6 +62,7 @@
         Blazor.start().then(function () {
             document.getElementById('skeleton').remove();
             document.getElementById('app').style.display = '';
+            if (window.Prism) Prism.highlightAll();
         });
     </script>
 </body>
