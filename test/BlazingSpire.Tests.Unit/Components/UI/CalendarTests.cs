@@ -125,4 +125,55 @@ public class CalendarTests : BlazingSpireTestBase
     {
         Assert.True(typeof(Calendar).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
+
+    [Fact]
+    public void Calendar_SelectedDate_Day_Has_PrimaryClass()
+    {
+        var cut = Render<Calendar>(p => p
+            .Add(x => x.DisplayMonth, new DateOnly(2025, 1, 1))
+            .Add(x => x.SelectedDate, new DateOnly(2025, 1, 15)));
+
+        var dayButtons = cut.FindAll("tbody button");
+        var selectedButton = dayButtons[14]; // day 15 = index 14
+        Assert.Contains("bg-primary", selectedButton.ClassName);
+    }
+
+    [Fact]
+    public void Calendar_PreSet_SelectedDate_Renders_Correctly()
+    {
+        var cut = Render<Calendar>(p => p
+            .Add(x => x.DisplayMonth, new DateOnly(2025, 6, 1))
+            .Add(x => x.SelectedDate, new DateOnly(2025, 6, 10)));
+
+        var dayButtons = cut.FindAll("tbody button");
+        var selectedButton = dayButtons[9]; // day 10 = index 9
+        Assert.Contains("bg-primary", selectedButton.ClassList);
+        Assert.DoesNotContain("bg-accent", selectedButton.ClassList);
+    }
+
+    [Fact]
+    public void Calendar_Today_Button_Has_Accent_Class()
+    {
+        var today = DateOnly.FromDateTime(DateTime.Today);
+        var cut = Render<Calendar>(p => p
+            .Add(x => x.DisplayMonth, today));
+
+        var dayButtons = cut.FindAll("tbody button");
+        var todayButton = dayButtons[today.Day - 1];
+        Assert.Contains("bg-accent", todayButton.ClassName);
+    }
+
+    [Fact]
+    public void Calendar_Default_Day_Has_No_Selected_Or_Today_Class()
+    {
+        // Use a past month that cannot be today
+        var cut = Render<Calendar>(p => p
+            .Add(x => x.DisplayMonth, new DateOnly(2020, 1, 1)));
+
+        var dayButtons = cut.FindAll("tbody button");
+        var defaultButton = dayButtons[14]; // day 15, not today and not selected
+        Assert.Contains("inline-flex", defaultButton.ClassList);
+        Assert.DoesNotContain("bg-primary", defaultButton.ClassList);
+        Assert.DoesNotContain("bg-accent", defaultButton.ClassList);
+    }
 }

@@ -270,6 +270,42 @@ public class ComboboxTests : BlazingSpireTestBase
     }
 
     [Fact]
+    public void ComboboxItem_Disabled_Has_Data_Disabled_Attribute()
+    {
+        var cut = Render<Combobox>(p =>
+        {
+            p.Add(x => x.DefaultIsOpen, true);
+            p.AddChildContent<ComboboxContent>(cp =>
+                cp.AddChildContent<ComboboxItem>(ip =>
+                {
+                    ip.Add(x => x.ItemValue, "next");
+                    ip.Add(x => x.Disabled, true);
+                    ip.AddChildContent("Next.js");
+                }));
+        });
+
+        Assert.Equal("true", cut.Find("[role=option]").GetAttribute("data-disabled"));
+    }
+
+    [Fact]
+    public void ComboboxItem_Selected_Has_AriaSelected_True()
+    {
+        var cut = Render<Combobox>(p =>
+        {
+            p.Add(x => x.Value, "next");
+            p.Add(x => x.DefaultIsOpen, true);
+            p.AddChildContent<ComboboxContent>(cp =>
+                cp.AddChildContent<ComboboxItem>(ip =>
+                {
+                    ip.Add(x => x.ItemValue, "next");
+                    ip.AddChildContent("Next.js");
+                }));
+        });
+
+        Assert.Equal("true", cut.Find("[role=option]").GetAttribute("aria-selected"));
+    }
+
+    [Fact]
     public async Task ComboboxTrigger_Click_Opens_Combobox()
     {
         var cut = Render<Combobox>(p =>

@@ -311,4 +311,52 @@ public class FormFieldTests : BlazingSpireTestBase
     {
         Assert.True(typeof(FormFieldError).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
+
+    // ── FormFieldControl ──────────────────────────────────────────────────────
+
+    [Fact]
+    public void FormFieldControl_Renders_Div()
+    {
+        var cut = Render<FormFieldControl>();
+        Assert.NotNull(cut.Find("div"));
+    }
+
+    [Fact]
+    public void FormFieldControl_Custom_Class_Is_Appended()
+    {
+        var cut = Render<FormFieldControl>(p => p.Add(x => x.Class, "ctrl-class"));
+        Assert.Contains("ctrl-class", cut.Find("div").ClassName);
+    }
+
+    [Fact]
+    public void FormFieldControl_ChildContent_Renders()
+    {
+        var cut = Render<FormFieldControl>(p =>
+            p.AddChildContent("<span data-testid='inner'>field input</span>"));
+        Assert.NotNull(cut.Find("[data-testid=inner]"));
+    }
+
+    [Fact]
+    public void FormFieldControl_CascadingParameter_Receives_FormField()
+    {
+        var cut = Render<FormField>(p =>
+        {
+            p.Add(x => x.Name, "myfield");
+            p.Add(x => x.ChildContent, (RenderFragment)(b =>
+            {
+                b.OpenComponent<FormFieldControl>(0);
+                b.CloseComponent();
+            }));
+        });
+
+        var control = cut.FindComponent<FormFieldControl>();
+        Assert.NotNull(control.Instance.Field);
+        Assert.Equal("myfield-form-item", control.Instance.Field!.ItemId);
+    }
+
+    [Fact]
+    public void FormFieldControl_Is_Assignable_To_BlazingSpireComponentBase()
+    {
+        Assert.True(typeof(FormFieldControl).IsAssignableTo(typeof(BlazingSpireComponentBase)));
+    }
 }

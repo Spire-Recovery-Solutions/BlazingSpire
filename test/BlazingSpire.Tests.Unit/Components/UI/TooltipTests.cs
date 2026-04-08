@@ -1,3 +1,4 @@
+using System.Reflection;
 using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
@@ -147,6 +148,37 @@ public class TooltipTests : BlazingSpireTestBase
         });
 
         Assert.NotNull(cut.Find("[role=tooltip] em"));
+    }
+
+    // ── Overlay configuration ──────────────────────────────────────────────────
+
+    [Fact]
+    public void Tooltip_ShouldCloseOnEscape_Is_True()
+    {
+        var prop = typeof(Tooltip).GetProperty("ShouldCloseOnEscape", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new Tooltip())!);
+    }
+
+    [Fact]
+    public void Tooltip_ShouldCloseOnInteractOutside_Is_False()
+    {
+        var prop = typeof(Tooltip).GetProperty("ShouldCloseOnInteractOutside", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.False((bool)prop!.GetValue(new Tooltip())!);
+    }
+
+    [Fact]
+    public void TooltipContent_Has_DataSide_Attribute()
+    {
+        var cut = Render<Tooltip>(p =>
+        {
+            p.Add(x => x.DefaultIsOpen, true);
+            p.AddChildContent<TooltipContent>(cp =>
+                cp.AddChildContent("Tip text"));
+        });
+
+        var side = cut.Find("[role=tooltip]").GetAttribute("data-side");
+        Assert.NotNull(side);
+        Assert.Equal("bottom", side);
     }
 
     // ── TooltipTrigger ────────────────────────────────────────────────────────

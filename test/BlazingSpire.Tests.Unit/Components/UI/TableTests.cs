@@ -53,6 +53,13 @@ public class TableTests : BlazingSpireTestBase
         Assert.True(typeof(Table).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
 
+    [Fact]
+    public void Table_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<Table>(p => p.AddUnmatched("data-testid", "test-value"));
+        Assert.Equal("test-value", cut.Find("table").GetAttribute("data-testid"));
+    }
+
     // ── TableHeader ──────────────────────────────────────────────────────────
 
     [Fact]
@@ -83,6 +90,13 @@ public class TableTests : BlazingSpireTestBase
         Assert.NotNull(cut.Find("tr"));
     }
 
+    [Fact]
+    public void TableHeader_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<TableHeader>(p => p.AddUnmatched("data-testid", "test-value"));
+        Assert.Equal("test-value", cut.Find("thead").GetAttribute("data-testid"));
+    }
+
     // ── TableBody ────────────────────────────────────────────────────────────
 
     [Fact]
@@ -111,6 +125,13 @@ public class TableTests : BlazingSpireTestBase
     {
         var cut = Render<TableBody>(p => p.AddChildContent("<tr><td>Cell</td></tr>"));
         Assert.NotNull(cut.Find("tr"));
+    }
+
+    [Fact]
+    public void TableBody_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<TableBody>(p => p.AddUnmatched("data-testid", "test-value"));
+        Assert.Equal("test-value", cut.Find("tbody").GetAttribute("data-testid"));
     }
 
     // ── TableRow ─────────────────────────────────────────────────────────────
@@ -144,6 +165,13 @@ public class TableTests : BlazingSpireTestBase
     {
         var cut = Render<TableRow>(p => p.AddChildContent("<td>Data</td>"));
         Assert.Equal("Data", cut.Find("td").TextContent);
+    }
+
+    [Fact]
+    public void TableRow_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<TableRow>(p => p.AddUnmatched("data-testid", "test-value"));
+        Assert.Equal("test-value", cut.Find("tr").GetAttribute("data-testid"));
     }
 
     // ── TableHead ────────────────────────────────────────────────────────────
@@ -180,6 +208,13 @@ public class TableTests : BlazingSpireTestBase
         Assert.Equal("Invoice", cut.Find("th").TextContent);
     }
 
+    [Fact]
+    public void TableHead_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<TableHead>(p => p.AddUnmatched("data-testid", "test-value"));
+        Assert.Equal("test-value", cut.Find("th").GetAttribute("data-testid"));
+    }
+
     // ── TableCell ────────────────────────────────────────────────────────────
 
     [Fact]
@@ -210,6 +245,13 @@ public class TableTests : BlazingSpireTestBase
     {
         var cut = Render<TableCell>(p => p.AddChildContent("$250.00"));
         Assert.Equal("$250.00", cut.Find("td").TextContent);
+    }
+
+    [Fact]
+    public void TableCell_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<TableCell>(p => p.AddUnmatched("data-testid", "test-value"));
+        Assert.Equal("test-value", cut.Find("td").GetAttribute("data-testid"));
     }
 
     // ── TableCaption ─────────────────────────────────────────────────────────
@@ -245,6 +287,13 @@ public class TableTests : BlazingSpireTestBase
         Assert.Equal("A list of invoices.", cut.Find("caption").TextContent);
     }
 
+    [Fact]
+    public void TableCaption_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<TableCaption>(p => p.AddUnmatched("data-testid", "test-value"));
+        Assert.Equal("test-value", cut.Find("caption").GetAttribute("data-testid"));
+    }
+
     // ── TableFooter ──────────────────────────────────────────────────────────
 
     [Fact]
@@ -276,5 +325,12 @@ public class TableTests : BlazingSpireTestBase
     {
         var cut = Render<TableFooter>(p => p.AddChildContent("<tr><td>Total</td></tr>"));
         Assert.NotNull(cut.Find("tr"));
+    }
+
+    [Fact]
+    public void TableFooter_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<TableFooter>(p => p.AddUnmatched("data-testid", "test-value"));
+        Assert.Equal("test-value", cut.Find("tfoot").GetAttribute("data-testid"));
     }
 }

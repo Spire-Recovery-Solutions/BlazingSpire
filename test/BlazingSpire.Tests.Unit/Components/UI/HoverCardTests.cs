@@ -1,3 +1,4 @@
+using System.Reflection;
 using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
@@ -39,6 +40,22 @@ public class HoverCardTests : BlazingSpireTestBase
     {
         var cut = Render<HoverCard>(p => p.AddChildContent("<span>child</span>"));
         Assert.NotNull(cut.Find("span"));
+    }
+
+    // ── Overlay configuration ──────────────────────────────────────────────────
+
+    [Fact]
+    public void HoverCard_ShouldCloseOnEscape_Is_True()
+    {
+        var prop = typeof(HoverCard).GetProperty("ShouldCloseOnEscape", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new HoverCard())!);
+    }
+
+    [Fact]
+    public void HoverCard_ShouldCloseOnInteractOutside_Is_False()
+    {
+        var prop = typeof(HoverCard).GetProperty("ShouldCloseOnInteractOutside", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.False((bool)prop!.GetValue(new HoverCard())!);
     }
 
     // ── HoverCardContent ──────────────────────────────────────────────────────

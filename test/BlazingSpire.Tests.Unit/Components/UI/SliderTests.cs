@@ -1,6 +1,7 @@
 using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazingSpire.Tests.Unit.Components.UI;
 
@@ -131,6 +132,21 @@ public class SliderTests : BlazingSpireTestBase
             p.AddUnmatched("data-testid", "volume-slider"));
 
         Assert.Equal("volume-slider", cut.Find("div").GetAttribute("data-testid"));
+    }
+
+    // ── ValueChanged callback ─────────────────────────────────────────────────
+
+    [Fact]
+    public async Task ValueChanged_Fires_When_Input_Changes()
+    {
+        double? received = null;
+        var cut = Render<Slider>(p =>
+            p.Add(x => x.ValueChanged, EventCallback.Factory.Create<double>(this, v => received = v)));
+
+        await cut.Find("input[type='range']").TriggerEventAsync("oninput",
+            new ChangeEventArgs { Value = "75" });
+
+        Assert.Equal(75.0, received);
     }
 
     // ── Inheritance ───────────────────────────────────────────────────────────

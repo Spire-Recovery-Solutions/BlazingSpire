@@ -24,4 +24,16 @@ public abstract class BlazingSpireTestBase : BunitContext
 
     protected static void AssertAriaHidden(IElement element, bool expected)
         => Assert.Equal(expected.ToString().ToLower(), element.GetAttribute("aria-hidden"));
+
+    protected static void AssertDataState(IElement element, string state)
+        => Assert.Equal(state, element.GetAttribute("data-state"));
+
+    protected static void AssertAriaChecked(IElement element, bool expected)
+        => Assert.Equal(expected.ToString().ToLower(), element.GetAttribute("aria-checked"));
+
+    protected static void AssertAriaSelected(IElement element, bool expected)
+        => Assert.Equal(expected.ToString().ToLower(), element.GetAttribute("aria-selected"));
+
+    protected static void AssertAriaModal(IElement element, bool expected)
+        => Assert.Equal(expected.ToString().ToLower(), element.GetAttribute("aria-modal"));
 }

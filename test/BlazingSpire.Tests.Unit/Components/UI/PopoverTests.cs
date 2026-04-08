@@ -1,3 +1,4 @@
+using System.Reflection;
 using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
@@ -26,6 +27,22 @@ public class PopoverTests : BlazingSpireTestBase
     public void Popover_Is_Assignable_To_OverlayBase()
     {
         Assert.True(typeof(Popover).IsAssignableTo(typeof(OverlayBase)));
+    }
+
+    // ── Overlay configuration ──────────────────────────────────────────────────
+
+    [Fact]
+    public void Popover_ShouldCloseOnEscape_Is_True()
+    {
+        var prop = typeof(Popover).GetProperty("ShouldCloseOnEscape", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new Popover())!);
+    }
+
+    [Fact]
+    public void Popover_ShouldCloseOnInteractOutside_Is_True()
+    {
+        var prop = typeof(Popover).GetProperty("ShouldCloseOnInteractOutside", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new Popover())!);
     }
 
     // ── PopoverContent ────────────────────────────────────────────────────────

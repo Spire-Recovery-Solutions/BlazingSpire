@@ -288,4 +288,83 @@ public class SelectTests : BlazingSpireTestBase
             p.AddChildContent("<span data-testid='child'>child</span>"));
         Assert.NotNull(cut.Find("[data-testid=child]"));
     }
+
+    // ── SelectTrigger ────────────────────────────────────────────────────────
+
+    [Fact]
+    public void SelectTrigger_Renders_Button()
+    {
+        var cut = Render<Select>(p =>
+            p.AddChildContent<SelectTrigger>());
+        Assert.NotEmpty(cut.FindAll("button"));
+    }
+
+    [Fact]
+    public void SelectTrigger_Has_Base_Classes()
+    {
+        var cut = Render<Select>(p =>
+            p.AddChildContent<SelectTrigger>());
+        var classes = cut.Find("button").ClassName;
+        Assert.Contains("flex", classes);
+        Assert.Contains("h-10", classes);
+        Assert.Contains("w-full", classes);
+        Assert.Contains("rounded-md", classes);
+    }
+
+    [Fact]
+    public void SelectTrigger_Custom_Class_Is_Appended()
+    {
+        var cut = Render<Select>(p =>
+            p.AddChildContent<SelectTrigger>(t => t.Add(x => x.Class, "my-trigger")));
+        Assert.Contains("my-trigger", cut.Find("button").ClassName);
+    }
+
+    // ── SelectValue ──────────────────────────────────────────────────────────
+
+    [Fact]
+    public void SelectValue_Shows_Placeholder_When_No_Value()
+    {
+        var cut = Render<Select>(p =>
+        {
+            p.Add(x => x.Placeholder, "Pick a fruit");
+            p.AddChildContent<SelectValue>();
+        });
+        var span = cut.Find("span");
+        Assert.Contains("Pick a fruit", span.TextContent);
+        Assert.Contains("text-muted-foreground", span.ClassName);
+    }
+
+    [Fact]
+    public async Task SelectValue_Shows_SelectedText_After_Item_Selected()
+    {
+        var cut = Render<Select>(p =>
+        {
+            p.Add(x => x.Placeholder, "Pick a fruit");
+            p.AddChildContent<SelectValue>();
+        });
+
+        await cut.InvokeAsync(() => cut.Instance.SelectItemAsync("apple", "Apple"));
+        Assert.Contains("Apple", cut.Find("span").TextContent);
+    }
+
+    // ── SelectItem closes dropdown ────────────────────────────────────────────
+
+    [Fact]
+    public async Task SelectItem_Click_Closes_Dropdown()
+    {
+        var cut = Render<Select>(p =>
+        {
+            p.Add(x => x.DefaultIsOpen, true);
+            p.AddChildContent<SelectContent>(cp =>
+                cp.AddChildContent<SelectItem>(ip =>
+                {
+                    ip.Add(x => x.ItemValue, "apple");
+                    ip.AddChildContent("Apple");
+                }));
+        });
+
+        Assert.NotEmpty(cut.FindAll("[role=listbox]"));
+        await cut.Find("[role=option]").ClickAsync(new());
+        Assert.Empty(cut.FindAll("[role=listbox]"));
+    }
 }

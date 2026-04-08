@@ -1,6 +1,7 @@
 using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazingSpire.Tests.Unit.Components.UI;
 
@@ -202,5 +203,34 @@ public class InputOTPTests : BlazingSpireTestBase
     {
         var cut = Render<InputOTP>(p => p.Add(x => x.MaxLength, 4));
         Assert.Equal("4", cut.Find("input").GetAttribute("maxlength"));
+    }
+
+    // ── UpdateValueAsync ─────────────────────────────────────────────────────
+
+    [Fact]
+    public async Task UpdateValueAsync_Fires_ValueChanged()
+    {
+        string? received = null;
+        var cut = Render<InputOTP>(p =>
+            p.Add(x => x.ValueChanged, EventCallback.Factory.Create<string>(this, v => received = v)));
+
+        await cut.InvokeAsync(() => cut.Instance.UpdateValueAsync("123"));
+
+        Assert.Equal("123", received);
+    }
+
+    [Fact]
+    public async Task UpdateValueAsync_Rejects_Value_Exceeding_MaxLength()
+    {
+        string? received = null;
+        var cut = Render<InputOTP>(p =>
+        {
+            p.Add(x => x.MaxLength, 4);
+            p.Add(x => x.ValueChanged, EventCallback.Factory.Create<string>(this, v => received = v));
+        });
+
+        await cut.InvokeAsync(() => cut.Instance.UpdateValueAsync("12345")); // 5 chars > MaxLength 4
+
+        Assert.Null(received);
     }
 }

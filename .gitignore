@@ -6,3 +6,4 @@ artifacts/
 .vs/
 .idea/
 .wrangler/
+**/app.build.css

@@ -135,7 +135,7 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
 
     protected Task RequestOpenAsync() => SetIsOpenAsync(true);
 
-    public async ValueTask DisposeAsync()
+    public virtual async ValueTask DisposeAsync()
     {
         await DeactivateOverlayAsync();
         _selfRef?.Dispose();

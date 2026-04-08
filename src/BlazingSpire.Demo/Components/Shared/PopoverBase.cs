@@ -59,7 +59,7 @@ public abstract class PopoverBase : OverlayBase
         }
     }
 
-    public new async ValueTask DisposeAsync()
+    public override async ValueTask DisposeAsync()
     {
         if (_positionHandle is not null)
             await _positionHandle.InvokeVoidAsync("dispose");

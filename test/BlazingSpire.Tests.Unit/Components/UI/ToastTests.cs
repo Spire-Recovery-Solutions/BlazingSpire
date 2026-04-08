@@ -228,6 +228,40 @@ public class ToastTests : BlazingSpireTestBase
         Assert.True(dismissed);
     }
 
+    // ── ToastAction ───────────────────────────────────────────────────────────
+
+    [Fact]
+    public void ToastAction_RendersButton()
+    {
+        var cut = Render<ToastAction>(p => p.AddChildContent("Undo"));
+        Assert.NotNull(cut.Find("button"));
+    }
+
+    [Fact]
+    public void ToastAction_Click_Fires_OnClick()
+    {
+        var clicked = false;
+        var cut = Render<ToastAction>(p => p.Add(x => x.OnClick, () => clicked = true));
+        cut.Find("button").Click();
+        Assert.True(clicked);
+    }
+
+    // ── Multiple toasts ───────────────────────────────────────────────────────
+
+    [Fact]
+    public void ToastProvider_Shows_Multiple_Toasts()
+    {
+        var service = new ToastService();
+        Services.AddScoped<IToastService>(_ => service);
+        var cut = Render<ToastProvider>();
+
+        service.Show("First", "First description");
+        service.Show("Second", "Second description");
+
+        cut.WaitForState(() => cut.FindAll("button[aria-label='Close']").Count == 2);
+        Assert.Equal(2, cut.FindAll("button[aria-label='Close']").Count);
+    }
+
     // ── Dismiss integration ───────────────────────────────────────────────────
 
     [Fact]

@@ -1,6 +1,8 @@
+using System.Reflection;
 using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazingSpire.Tests.Unit.Components.UI;
 
@@ -323,6 +325,82 @@ public class DialogTests : BlazingSpireTestBase
         Assert.NotNull(cut.Find("[role=dialog]"));
         cut.Find("button").Click();
         Assert.Empty(cut.FindAll("[role=dialog]"));
+    }
+
+    // ── DialogTrigger ─────────────────────────────────────────────────────────
+
+    // ── Controlled mode ───────────────────────────────────────────────────────
+
+    [Fact]
+    public void Dialog_Controlled_Mode_Opens_When_IsOpen_True()
+    {
+        var cut = Render<Dialog>(p =>
+        {
+            p.Add(x => x.IsOpen, true);
+            p.Add(x => x.IsOpenChanged, EventCallback.Factory.Create<bool>(this, _ => { }));
+            p.AddChildContent<DialogContent>(cp =>
+                cp.AddChildContent("<p>Body</p>"));
+        });
+
+        Assert.NotNull(cut.Find("[role=dialog]"));
+    }
+
+    [Fact]
+    public void Dialog_Controlled_Mode_IsOpenChanged_Fires()
+    {
+        bool? receivedValue = null;
+        var cut = Render<Dialog>(p =>
+        {
+            p.Add(x => x.IsOpen, false);
+            p.Add(x => x.IsOpenChanged, EventCallback.Factory.Create<bool>(this, v => receivedValue = v));
+            p.AddChildContent(builder =>
+            {
+                builder.OpenComponent<DialogTrigger>(0);
+                builder.AddAttribute(1, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment)(b =>
+                    b.AddContent(0, "Open")));
+                builder.CloseComponent();
+            });
+        });
+
+        cut.Find("div").Click();
+        Assert.True(receivedValue);
+    }
+
+    // ── Overlay configuration ──────────────────────────────────────────────────
+
+    [Fact]
+    public void Dialog_ShouldCloseOnEscape_Is_True()
+    {
+        var prop = typeof(OverlayBase).GetProperty("ShouldCloseOnEscape", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new Dialog())!);
+    }
+
+    [Fact]
+    public void Dialog_ShouldTrapFocus_Is_True()
+    {
+        var prop = typeof(OverlayBase).GetProperty("ShouldTrapFocus", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new Dialog())!);
+    }
+
+    [Fact]
+    public void Dialog_ShouldLockScroll_Is_True()
+    {
+        var prop = typeof(OverlayBase).GetProperty("ShouldLockScroll", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new Dialog())!);
+    }
+
+    [Fact]
+    public void Dialog_ShouldCloseOnInteractOutside_Is_True()
+    {
+        var prop = typeof(OverlayBase).GetProperty("ShouldCloseOnInteractOutside", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new Dialog())!);
+    }
+
+    [Fact]
+    public void Dialog_IsModal_Is_True()
+    {
+        var prop = typeof(OverlayBase).GetProperty("IsModal", BindingFlags.NonPublic | BindingFlags.Instance);
+        Assert.True((bool)prop!.GetValue(new Dialog())!);
     }
 
     // ── DialogTrigger ─────────────────────────────────────────────────────────
