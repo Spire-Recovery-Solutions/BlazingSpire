@@ -62,7 +62,10 @@
         Blazor.start().then(function () {
             document.getElementById('skeleton').remove();
             document.getElementById('app').style.display = '';
-            if (window.Prism) Prism.highlightAll();
+            // Delay highlighting to next frame so Blazor's first render is flushed to DOM
+            requestAnimationFrame(function () {
+                if (window.Prism) Prism.highlightAll();
+            });
         });
     </script>
 </body>
