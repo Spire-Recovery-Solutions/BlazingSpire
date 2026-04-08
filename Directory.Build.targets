@@ -1,0 +1,6 @@
+<Project>
+  <!-- TFM-conditional: TargetFramework is empty in .props for single-targeting projects -->
+  <PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+</Project>

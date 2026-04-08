@@ -1,0 +1,3 @@
+/maxcpucount
+/nodeReuse:false
+/consoleLoggerParameters:Summary;ForceNoAlign
