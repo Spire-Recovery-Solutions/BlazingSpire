@@ -1,0 +1,70 @@
+@page "/components/tooltip"
+@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Shared
+
+<PageTitle>Tooltip - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Tooltip</h1>
+        <p class="text-lg text-muted-foreground mt-2">Floating label that appears on hover. Supports delay, sides, and alignment.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger>
+                        <Button Variant="ButtonVariant.Outline">Hover me</Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Add to library</TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;TooltipProvider&gt;
+    &lt;Tooltip&gt;
+        &lt;TooltipTrigger&gt;
+            &lt;Button Variant="ButtonVariant.Outline"&gt;Hover me&lt;/Button&gt;
+        &lt;/TooltipTrigger&gt;
+        &lt;TooltipContent&gt;Add to library&lt;/TooltipContent&gt;
+    &lt;/Tooltip&gt;
+&lt;/TooltipProvider&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Sides</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-6">
+                <TooltipProvider>
+                    <Tooltip Side="FloatingSide.Top">
+                        <TooltipTrigger><Button Variant="ButtonVariant.Outline">Top</Button></TooltipTrigger>
+                        <TooltipContent>Tooltip on top</TooltipContent>
+                    </Tooltip>
+                    <Tooltip Side="FloatingSide.Bottom">
+                        <TooltipTrigger><Button Variant="ButtonVariant.Outline">Bottom</Button></TooltipTrigger>
+                        <TooltipContent>Tooltip on bottom</TooltipContent>
+                    </Tooltip>
+                    <Tooltip Side="FloatingSide.Left">
+                        <TooltipTrigger><Button Variant="ButtonVariant.Outline">Left</Button></TooltipTrigger>
+                        <TooltipContent>Tooltip on left</TooltipContent>
+                    </Tooltip>
+                    <Tooltip Side="FloatingSide.Right">
+                        <TooltipTrigger><Button Variant="ButtonVariant.Outline">Right</Button></TooltipTrigger>
+                        <TooltipContent>Tooltip on right</TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;TooltipProvider&gt;
+    &lt;Tooltip Side="FloatingSide.Top"&gt;
+        &lt;TooltipTrigger&gt;&lt;Button Variant="ButtonVariant.Outline"&gt;Top&lt;/Button&gt;&lt;/TooltipTrigger&gt;
+        &lt;TooltipContent&gt;Tooltip on top&lt;/TooltipContent&gt;
+    &lt;/Tooltip&gt;
+    &lt;Tooltip Side="FloatingSide.Right"&gt;
+        &lt;TooltipTrigger&gt;&lt;Button Variant="ButtonVariant.Outline"&gt;Right&lt;/Button&gt;&lt;/TooltipTrigger&gt;
+        &lt;TooltipContent&gt;Tooltip on right&lt;/TooltipContent&gt;
+    &lt;/Tooltip&gt;
+&lt;/TooltipProvider&gt;</code></pre>
+    </section>
+</div>

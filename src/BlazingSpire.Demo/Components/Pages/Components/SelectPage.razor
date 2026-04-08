@@ -1,0 +1,85 @@
+@page "/components/select"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Select - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Select</h1>
+        <p class="text-lg text-muted-foreground mt-2">A dropdown for single-value selection from a list of options.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Fruit</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-start gap-4">
+                <Select class="w-[200px]">
+                    <SelectTrigger>
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Fruits</SelectLabel>
+                            <SelectItem ItemValue="Apple">Apple</SelectItem>
+                            <SelectItem ItemValue="Banana">Banana</SelectItem>
+                            <SelectItem ItemValue="Blueberry">Blueberry</SelectItem>
+                            <SelectItem ItemValue="Grapes">Grapes</SelectItem>
+                            <SelectItem ItemValue="Pineapple">Pineapple</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Select&gt;
+    &lt;SelectTrigger&gt;
+        &lt;SelectValue /&gt;
+    &lt;/SelectTrigger&gt;
+    &lt;SelectContent&gt;
+        &lt;SelectGroup&gt;
+            &lt;SelectLabel&gt;Fruits&lt;/SelectLabel&gt;
+            &lt;SelectItem ItemValue="Apple"&gt;Apple&lt;/SelectItem&gt;
+            &lt;SelectItem ItemValue="Banana"&gt;Banana&lt;/SelectItem&gt;
+            &lt;SelectItem ItemValue="Blueberry"&gt;Blueberry&lt;/SelectItem&gt;
+            &lt;SelectItem ItemValue="Grapes"&gt;Grapes&lt;/SelectItem&gt;
+            &lt;SelectItem ItemValue="Pineapple"&gt;Pineapple&lt;/SelectItem&gt;
+        &lt;/SelectGroup&gt;
+    &lt;/SelectContent&gt;
+&lt;/Select&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Framework</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-start gap-4">
+                <Select Placeholder="Select a framework..." class="w-[240px]">
+                    <SelectTrigger>
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem ItemValue="Blazor">Blazor</SelectItem>
+                        <SelectItem ItemValue="React">React</SelectItem>
+                        <SelectItem ItemValue="Vue">Vue</SelectItem>
+                        <SelectItem ItemValue="Angular">Angular</SelectItem>
+                        <SelectItem ItemValue="Svelte">Svelte</SelectItem>
+                        <SelectSeparator />
+                        <SelectItem ItemValue="Other">Other</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Select Placeholder="Select a framework..."&gt;
+    &lt;SelectTrigger&gt;
+        &lt;SelectValue /&gt;
+    &lt;/SelectTrigger&gt;
+    &lt;SelectContent&gt;
+        &lt;SelectItem ItemValue="Blazor"&gt;Blazor&lt;/SelectItem&gt;
+        &lt;SelectItem ItemValue="React"&gt;React&lt;/SelectItem&gt;
+        &lt;SelectItem ItemValue="Vue"&gt;Vue&lt;/SelectItem&gt;
+        &lt;SelectItem ItemValue="Angular"&gt;Angular&lt;/SelectItem&gt;
+        &lt;SelectItem ItemValue="Svelte"&gt;Svelte&lt;/SelectItem&gt;
+        &lt;SelectSeparator /&gt;
+        &lt;SelectItem ItemValue="Other"&gt;Other&lt;/SelectItem&gt;
+    &lt;/SelectContent&gt;
+&lt;/Select&gt;</code></pre>
+    </section>
+</div>

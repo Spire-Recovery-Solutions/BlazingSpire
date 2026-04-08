@@ -1,0 +1,74 @@
+@page "/components/hover-card"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>HoverCard - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Hover Card</h1>
+        <p class="text-lg text-muted-foreground mt-2">A floating panel revealed on hover. Richer than a tooltip — supports interactive content like links and stats.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">User Profile</h2>
+        <div class="rounded-lg border bg-card p-6 min-h-[180px]">
+            <HoverCard>
+                <HoverCardTrigger href="https://github.com/adamreed90" class="text-sm font-medium underline underline-offset-4 hover:text-primary transition-colors cursor-pointer">
+                    @@adamreed90
+                </HoverCardTrigger>
+                <HoverCardContent>
+                    <div class="flex gap-3">
+                        <div class="h-10 w-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold shrink-0">AR</div>
+                        <div class="space-y-1">
+                            <h4 class="text-sm font-semibold">Adam Reed</h4>
+                            <p class="text-xs text-muted-foreground">Building BlazingSpire — a Blazor component framework inspired by shadcn/ui.</p>
+                            <div class="flex items-center gap-3 pt-1 text-xs text-muted-foreground">
+                                <span><strong class="text-foreground">12</strong> Following</span>
+                                <span><strong class="text-foreground">48</strong> Followers</span>
+                            </div>
+                        </div>
+                    </div>
+                </HoverCardContent>
+            </HoverCard>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;HoverCard&gt;
+    &lt;HoverCardTrigger href="https://github.com/adamreed90"
+                      class="text-sm font-medium underline underline-offset-4"&gt;
+        &#64;&#64;adamreed90
+    &lt;/HoverCardTrigger&gt;
+    &lt;HoverCardContent&gt;
+        &lt;div class="flex gap-3"&gt;
+            &lt;div class="h-10 w-10 rounded-full bg-muted ..."&gt;AR&lt;/div&gt;
+            &lt;div class="space-y-1"&gt;
+                &lt;h4 class="text-sm font-semibold"&gt;Adam Reed&lt;/h4&gt;
+                &lt;p class="text-xs text-muted-foreground"&gt;Building BlazingSpire...&lt;/p&gt;
+                &lt;div class="flex gap-3 text-xs text-muted-foreground"&gt;
+                    &lt;span&gt;&lt;strong&gt;12&lt;/strong&gt; Following&lt;/span&gt;
+                    &lt;span&gt;&lt;strong&gt;48&lt;/strong&gt; Followers&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/HoverCardContent&gt;
+&lt;/HoverCard&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Custom Delays</h2>
+        <div class="rounded-lg border bg-card p-6 min-h-[100px]">
+            <HoverCard OpenDelay="0" CloseDelay="500">
+                <HoverCardTrigger class="cursor-pointer">
+                    <Badge Variant="BadgeVariant.Secondary">Instant open · slow close</Badge>
+                </HoverCardTrigger>
+                <HoverCardContent>
+                    <p class="text-sm">Opens immediately. Stays open for 500ms after your cursor leaves.</p>
+                </HoverCardContent>
+            </HoverCard>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;HoverCard OpenDelay="0" CloseDelay="500"&gt;
+    &lt;HoverCardTrigger&gt;...&lt;/HoverCardTrigger&gt;
+    &lt;HoverCardContent&gt;
+        &lt;p class="text-sm"&gt;Opens immediately. Stays open for 500ms after leaving.&lt;/p&gt;
+    &lt;/HoverCardContent&gt;
+&lt;/HoverCard&gt;</code></pre>
+    </section>
+</div>

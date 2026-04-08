@@ -1,0 +1,91 @@
+@page "/components/table"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Table - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Table</h1>
+        <p class="text-lg text-muted-foreground mt-2">A responsive table component with header, body, footer, and caption support.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Invoices</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Table>
+                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead Class="w-[100px]">Invoice</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Method</TableHead>
+                        <TableHead Class="text-right">Amount</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV001</TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>Credit Card</TableCell>
+                        <TableCell Class="text-right">$250.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV002</TableCell>
+                        <TableCell>Pending</TableCell>
+                        <TableCell>PayPal</TableCell>
+                        <TableCell Class="text-right">$150.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV003</TableCell>
+                        <TableCell>Unpaid</TableCell>
+                        <TableCell>Bank Transfer</TableCell>
+                        <TableCell Class="text-right">$350.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV004</TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>Credit Card</TableCell>
+                        <TableCell Class="text-right">$450.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV005</TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>PayPal</TableCell>
+                        <TableCell Class="text-right">$550.00</TableCell>
+                    </TableRow>
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TableCell ColSpan="3">Total</TableCell>
+                        <TableCell Class="text-right">$1,750.00</TableCell>
+                    </TableRow>
+                </TableFooter>
+            </Table>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Table&gt;
+    &lt;TableCaption&gt;A list of your recent invoices.&lt;/TableCaption&gt;
+    &lt;TableHeader&gt;
+        &lt;TableRow&gt;
+            &lt;TableHead&gt;Invoice&lt;/TableHead&gt;
+            &lt;TableHead&gt;Status&lt;/TableHead&gt;
+            &lt;TableHead&gt;Method&lt;/TableHead&gt;
+            &lt;TableHead Class="text-right"&gt;Amount&lt;/TableHead&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableHeader&gt;
+    &lt;TableBody&gt;
+        &lt;TableRow&gt;
+            &lt;TableCell Class="font-medium"&gt;INV001&lt;/TableCell&gt;
+            &lt;TableCell&gt;Paid&lt;/TableCell&gt;
+            &lt;TableCell&gt;Credit Card&lt;/TableCell&gt;
+            &lt;TableCell Class="text-right"&gt;$250.00&lt;/TableCell&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableBody&gt;
+    &lt;TableFooter&gt;
+        &lt;TableRow&gt;
+            &lt;TableCell ColSpan="3"&gt;Total&lt;/TableCell&gt;
+            &lt;TableCell Class="text-right"&gt;$1,750.00&lt;/TableCell&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableFooter&gt;
+&lt;/Table&gt;</code></pre>
+    </section>
+</div>

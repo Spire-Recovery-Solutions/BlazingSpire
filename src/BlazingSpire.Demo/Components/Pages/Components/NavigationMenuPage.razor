@@ -1,0 +1,68 @@
+@page "/components/navigation-menu"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Navigation Menu - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Navigation Menu</h1>
+        <p class="text-lg text-muted-foreground mt-2">A horizontal navigation bar with dropdown content panels for site navigation.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <NavigationMenu>
+                <NavigationMenuList>
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                            <div class="grid gap-3 w-[400px]">
+                                <NavigationMenuLink Href="/docs/introduction">
+                                    <div class="text-sm font-medium leading-none">Introduction</div>
+                                    <p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                        Re-usable components built with Blazor and Tailwind CSS.
+                                    </p>
+                                </NavigationMenuLink>
+                                <NavigationMenuLink Href="/docs/installation">
+                                    <div class="text-sm font-medium leading-none">Installation</div>
+                                    <p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                        How to install and configure BlazingSpire in your project.
+                                    </p>
+                                </NavigationMenuLink>
+                            </div>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                            <div class="grid w-[300px] gap-2">
+                                <NavigationMenuLink Href="/components/button">Button</NavigationMenuLink>
+                                <NavigationMenuLink Href="/components/badge">Badge</NavigationMenuLink>
+                                <NavigationMenuLink Href="/components/card">Card</NavigationMenuLink>
+                            </div>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <NavigationMenuLink Href="/">Documentation</NavigationMenuLink>
+                    </NavigationMenuItem>
+                </NavigationMenuList>
+            </NavigationMenu>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;NavigationMenu&gt;
+    &lt;NavigationMenuList&gt;
+        &lt;NavigationMenuItem&gt;
+            &lt;NavigationMenuTrigger&gt;Getting Started&lt;/NavigationMenuTrigger&gt;
+            &lt;NavigationMenuContent&gt;
+                &lt;NavigationMenuLink Href="/docs/introduction"&gt;
+                    Introduction
+                &lt;/NavigationMenuLink&gt;
+            &lt;/NavigationMenuContent&gt;
+        &lt;/NavigationMenuItem&gt;
+        &lt;NavigationMenuItem&gt;
+            &lt;NavigationMenuLink Href="/docs"&gt;Documentation&lt;/NavigationMenuLink&gt;
+        &lt;/NavigationMenuItem&gt;
+    &lt;/NavigationMenuList&gt;
+&lt;/NavigationMenu&gt;</code></pre>
+    </section>
+</div>

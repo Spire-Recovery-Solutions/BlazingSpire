@@ -1,0 +1,91 @@
+@page "/components/data-table"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>DataTable - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">DataTable</h1>
+        <p class="text-lg text-muted-foreground mt-2">A generic table for typed data with column definitions, sortable headers, and custom row templates.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Payments</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <DataTable TItem="PaymentRow" Items="_payments" SortColumn="@_paymentSort" SortAscending="@_paymentSortAsc" OnSort="@(col => { _paymentSort = col; })">
+                <Columns>
+                    <DataTableColumn SortKey="status" Sortable>Status</DataTableColumn>
+                    <DataTableColumn SortKey="email" Sortable>Email</DataTableColumn>
+                    <DataTableColumn SortKey="amount" Sortable>Amount</DataTableColumn>
+                </Columns>
+                <RowTemplate Context="row">
+                    <TableRow>
+                        <TableCell>
+                            <Badge Variant="@(row.Status == "Paid" ? BadgeVariant.Default : row.Status == "Pending" ? BadgeVariant.Secondary : BadgeVariant.Destructive)">
+                                @row.Status
+                            </Badge>
+                        </TableCell>
+                        <TableCell>@row.Email</TableCell>
+                        <TableCell>@row.Amount.ToString("C")</TableCell>
+                    </TableRow>
+                </RowTemplate>
+            </DataTable>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&#64;* Define your record *&#64;
+&#64;code {
+    record PaymentRow(string Status, string Email, decimal Amount);
+    List&lt;PaymentRow&gt; payments = [ /* ... */ ];
+}
+
+&lt;DataTable TItem="PaymentRow" Items="payments"&gt;
+    &lt;Columns&gt;
+        &lt;DataTableColumn SortKey="status" Sortable&gt;Status&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn SortKey="email" Sortable&gt;Email&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn SortKey="amount" Sortable&gt;Amount&lt;/DataTableColumn&gt;
+    &lt;/Columns&gt;
+    &lt;RowTemplate Context="row"&gt;
+        &lt;TableRow&gt;
+            &lt;TableCell&gt;&#64;row.Status&lt;/TableCell&gt;
+            &lt;TableCell&gt;&#64;row.Email&lt;/TableCell&gt;
+            &lt;TableCell&gt;&#64;row.Amount.ToString("C")&lt;/TableCell&gt;
+        &lt;/TableRow&gt;
+    &lt;/RowTemplate&gt;
+&lt;/DataTable&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Empty State</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <DataTable TItem="PaymentRow" Items="[]">
+                <Columns>
+                    <DataTableColumn>Status</DataTableColumn>
+                    <DataTableColumn>Email</DataTableColumn>
+                    <DataTableColumn>Amount</DataTableColumn>
+                </Columns>
+            </DataTable>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;DataTable TItem="PaymentRow" Items="[]"&gt;
+    &lt;Columns&gt;
+        &lt;DataTableColumn&gt;Status&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn&gt;Email&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn&gt;Amount&lt;/DataTableColumn&gt;
+    &lt;/Columns&gt;
+&lt;/DataTable&gt;</code></pre>
+    </section>
+</div>
+
+@code {
+    private record PaymentRow(string Status, string Email, decimal Amount);
+
+    private readonly List<PaymentRow> _payments =
+    [
+        new("Paid", "alice@example.com", 316.00m),
+        new("Pending", "bob@example.com", 242.00m),
+        new("Unpaid", "carol@example.com", 837.00m),
+        new("Paid", "dan@example.com", 874.00m),
+        new("Paid", "eve@example.com", 721.00m),
+    ];
+
+    private string? _paymentSort;
+    private bool _paymentSortAsc = true;
+}

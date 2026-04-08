@@ -1,0 +1,53 @@
+@page "/components/textarea"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Textarea - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Textarea</h1>
+        <p class="text-lg text-muted-foreground mt-2">Displays a multi-line text input field. Supports placeholder, disabled state, and label composition.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <Textarea />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Textarea /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Placeholder</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <Textarea Placeholder="Type your message here." />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Textarea Placeholder="Type your message here." /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <Textarea Placeholder="Disabled textarea" Disabled="true" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Textarea Placeholder="Disabled textarea" Disabled="true" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Label</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm space-y-2">
+                <Label For="message-demo">Your message</Label>
+                <Textarea Placeholder="Type your message here." id="message-demo" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Label For="message"&gt;Your message&lt;/Label&gt;
+&lt;Textarea Placeholder="Type your message here." id="message" /&gt;</code></pre>
+    </section>
+</div>

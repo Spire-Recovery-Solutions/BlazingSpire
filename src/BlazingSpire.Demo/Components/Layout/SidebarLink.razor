@@ -1,0 +1,13 @@
+@using Microsoft.AspNetCore.Components.Routing
+
+<NavLink href="@Href"
+         class="block rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+         ActiveClass="bg-accent text-foreground font-medium"
+         Match="NavLinkMatch.All">
+    @ChildContent
+</NavLink>
+
+@code {
+    [Parameter] public string Href { get; set; } = "";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

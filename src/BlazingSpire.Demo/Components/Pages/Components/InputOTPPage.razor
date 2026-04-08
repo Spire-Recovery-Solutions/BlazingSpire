@@ -1,0 +1,53 @@
+@page "/components/input-otp"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>InputOTP - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">InputOTP</h1>
+        <p class="text-lg text-muted-foreground mt-2">One-time password input with grouped slots and separator support.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">6-Digit OTP</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex items-center gap-2">
+                <InputOTP MaxLength="6" @bind-Value="_otpValue">
+                    <InputOTPGroup>
+                        <InputOTPSlot Index="0" />
+                        <InputOTPSlot Index="1" />
+                        <InputOTPSlot Index="2" />
+                    </InputOTPGroup>
+                    <InputOTPSeparator />
+                    <InputOTPGroup>
+                        <InputOTPSlot Index="3" />
+                        <InputOTPSlot Index="4" />
+                        <InputOTPSlot Index="5" />
+                    </InputOTPGroup>
+                </InputOTP>
+            </div>
+            @if (!string.IsNullOrEmpty(_otpValue))
+            {
+                <p class="text-sm text-muted-foreground mt-2">Value: <span class="font-mono">@_otpValue</span></p>
+            }
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;InputOTP MaxLength="6" &#64;bind-Value="_otpValue"&gt;
+    &lt;InputOTPGroup&gt;
+        &lt;InputOTPSlot Index="0" /&gt;
+        &lt;InputOTPSlot Index="1" /&gt;
+        &lt;InputOTPSlot Index="2" /&gt;
+    &lt;/InputOTPGroup&gt;
+    &lt;InputOTPSeparator /&gt;
+    &lt;InputOTPGroup&gt;
+        &lt;InputOTPSlot Index="3" /&gt;
+        &lt;InputOTPSlot Index="4" /&gt;
+        &lt;InputOTPSlot Index="5" /&gt;
+    &lt;/InputOTPGroup&gt;
+&lt;/InputOTP&gt;</code></pre>
+    </section>
+</div>
+
+@code {
+    private string _otpValue = "";
+}

@@ -1,0 +1,65 @@
+@page "/components/collapsible"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Collapsible - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Collapsible</h1>
+        <p class="text-lg text-muted-foreground mt-2">An interactive component that expands or collapses a content panel.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Repository files</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="w-full max-w-sm">
+                <Collapsible>
+                    <div class="flex items-center justify-between rounded-md border px-4 py-3">
+                        <span class="text-sm font-medium">&#64;blazingspire/ui</span>
+                        <CollapsibleTrigger>
+                            <Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Icon" aria-label="Toggle files">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                     stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                                    <path d="m7 15 5 5 5-5"/>
+                                    <path d="m7 9 5-5 5 5"/>
+                                </svg>
+                            </Button>
+                        </CollapsibleTrigger>
+                    </div>
+                    <div class="rounded-md border px-4 py-3 text-sm font-mono">
+                        button.razor.cs
+                    </div>
+                    <CollapsibleContent>
+                        <div class="rounded-md border px-4 py-3 text-sm font-mono">
+                            badge.razor.cs
+                        </div>
+                        <div class="rounded-md border px-4 py-3 text-sm font-mono">
+                            card.razor.cs
+                        </div>
+                        <div class="rounded-md border px-4 py-3 text-sm font-mono">
+                            collapsible.razor.cs
+                        </div>
+                    </CollapsibleContent>
+                </Collapsible>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Collapsible&gt;
+    &lt;div class="flex items-center justify-between rounded-md border px-4 py-3"&gt;
+        &lt;span class="text-sm font-medium"&gt;&#64;blazingspire/ui&lt;/span&gt;
+        &lt;CollapsibleTrigger&gt;
+            &lt;Button Variant="ButtonVariant.Ghost" Size="ButtonSize.Icon"&gt;
+                &lt;!-- chevron icon --&gt;
+            &lt;/Button&gt;
+        &lt;/CollapsibleTrigger&gt;
+    &lt;/div&gt;
+    &lt;div class="rounded-md border px-4 py-3 text-sm font-mono"&gt;
+        button.razor.cs
+    &lt;/div&gt;
+    &lt;CollapsibleContent&gt;
+        &lt;div class="rounded-md border px-4 py-3 text-sm font-mono"&gt;badge.razor.cs&lt;/div&gt;
+        &lt;div class="rounded-md border px-4 py-3 text-sm font-mono"&gt;card.razor.cs&lt;/div&gt;
+        &lt;div class="rounded-md border px-4 py-3 text-sm font-mono"&gt;collapsible.razor.cs&lt;/div&gt;
+    &lt;/CollapsibleContent&gt;
+&lt;/Collapsible&gt;</code></pre>
+    </section>
+</div>

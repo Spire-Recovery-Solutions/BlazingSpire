@@ -1,0 +1,77 @@
+@page "/components/skeleton"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Skeleton - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Skeleton</h1>
+        <p class="text-lg text-muted-foreground mt-2">Placeholder loading animation. Size via Class parameter — height, width, and shape.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Text Lines</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="space-y-2">
+                <Skeleton Class="h-4 w-[250px]" />
+                <Skeleton Class="h-4 w-[200px]" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Skeleton Class="h-4 w-[250px]" /&gt;
+&lt;Skeleton Class="h-4 w-[200px]" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Circle</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Skeleton Class="h-12 w-12 rounded-full" />
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Skeleton Class="h-12 w-12 rounded-full" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Card</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <Card>
+                    <CardHeader>
+                        <div class="flex items-center gap-3">
+                            <Skeleton Class="h-10 w-10 rounded-full" />
+                            <div class="space-y-2">
+                                <Skeleton Class="h-4 w-[150px]" />
+                                <Skeleton Class="h-3 w-[100px]" />
+                            </div>
+                        </div>
+                    </CardHeader>
+                    <CardContent class="space-y-2">
+                        <Skeleton Class="h-4 w-full" />
+                        <Skeleton Class="h-4 w-full" />
+                        <Skeleton Class="h-4 w-[80%]" />
+                    </CardContent>
+                    <CardFooter>
+                        <Skeleton Class="h-9 w-[100px]" />
+                    </CardFooter>
+                </Card>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Card&gt;
+    &lt;CardHeader&gt;
+        &lt;div class="flex items-center gap-3"&gt;
+            &lt;Skeleton Class="h-10 w-10 rounded-full" /&gt;
+            &lt;div class="space-y-2"&gt;
+                &lt;Skeleton Class="h-4 w-[150px]" /&gt;
+                &lt;Skeleton Class="h-3 w-[100px]" /&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/CardHeader&gt;
+    &lt;CardContent class="space-y-2"&gt;
+        &lt;Skeleton Class="h-4 w-full" /&gt;
+        &lt;Skeleton Class="h-4 w-full" /&gt;
+        &lt;Skeleton Class="h-4 w-[80%]" /&gt;
+    &lt;/CardContent&gt;
+    &lt;CardFooter&gt;
+        &lt;Skeleton Class="h-9 w-[100px]" /&gt;
+    &lt;/CardFooter&gt;
+&lt;/Card&gt;</code></pre>
+    </section>
+</div>

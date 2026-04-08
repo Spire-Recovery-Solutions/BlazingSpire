@@ -1,0 +1,48 @@
+@page "/components/slider"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Slider - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Slider</h1>
+        <p class="text-lg text-muted-foreground mt-2">A range input with custom styling. Supports min, max, step, and disabled states.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="w-80">
+                <Slider @bind-Value="_sliderValue" />
+            </div>
+            <p class="text-sm text-muted-foreground mt-2">Value: @_sliderValue</p>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Slider @@bind-Value="sliderValue" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Custom Range</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="w-80">
+                <Slider @bind-Value="_sliderLargeValue" Min="0" Max="1000" Step="10" />
+            </div>
+            <p class="text-sm text-muted-foreground mt-2">Value: @_sliderLargeValue</p>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Slider @@bind-Value="sliderValue" Min="0" Max="1000" Step="10" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="w-80">
+                <Slider Value="40" Disabled="true" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Slider Value="40" Disabled="true" /&gt;</code></pre>
+    </section>
+</div>
+
+@code {
+    private double _sliderValue = 50;
+    private double _sliderLargeValue = 200;
+}

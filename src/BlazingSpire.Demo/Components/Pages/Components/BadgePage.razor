@@ -1,0 +1,49 @@
+@page "/components/badge"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Badge - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Badge</h1>
+        <p class="text-lg text-muted-foreground mt-2">Display status, labels, or counts. Small pill-shaped indicators.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Variants</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Badge>Default</Badge>
+                <Badge Variant="BadgeVariant.Secondary">Secondary</Badge>
+                <Badge Variant="BadgeVariant.Destructive">Destructive</Badge>
+                <Badge Variant="BadgeVariant.Outline">Outline</Badge>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Badge&gt;Default&lt;/Badge&gt;
+&lt;Badge Variant="BadgeVariant.Secondary"&gt;Secondary&lt;/Badge&gt;
+&lt;Badge Variant="BadgeVariant.Destructive"&gt;Destructive&lt;/Badge&gt;
+&lt;Badge Variant="BadgeVariant.Outline"&gt;Outline&lt;/Badge&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">In Context</h2>
+        <div class="rounded-lg border bg-card p-6 space-y-4">
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-medium">Build status:</span>
+                <Badge>Passing</Badge>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-medium">Deployment:</span>
+                <Badge Variant="BadgeVariant.Secondary">In Progress</Badge>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-medium">Security:</span>
+                <Badge Variant="BadgeVariant.Destructive">Urgent</Badge>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;div class="flex items-center gap-3"&gt;
+    &lt;span class="text-sm font-medium"&gt;Build status:&lt;/span&gt;
+    &lt;Badge&gt;Passing&lt;/Badge&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+</div>

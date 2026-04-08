@@ -1,0 +1,55 @@
+@page "/components/checkbox"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Checkbox - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Checkbox</h1>
+        <p class="text-lg text-muted-foreground mt-2">An interactive toggle with ARIA support. Bind with <code class="text-xs bg-muted px-1 py-0.5 rounded">@@bind-Checked</code>.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Checkbox />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Checkbox /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Checked</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Checkbox Checked="true" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Checkbox Checked="true" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Label</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex items-center gap-2">
+                <Checkbox id="terms" />
+                <Label For="terms">Accept terms and conditions</Label>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Checkbox id="terms" /&gt;
+&lt;Label For="terms"&gt;Accept terms and conditions&lt;/Label&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Checkbox Disabled="true" />
+                <Checkbox Checked="true" Disabled="true" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Checkbox Disabled="true" /&gt;
+&lt;Checkbox Checked="true" Disabled="true" /&gt;</code></pre>
+    </section>
+</div>

@@ -1,0 +1,45 @@
+@page "/components/accordion"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Accordion - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Accordion</h1>
+        <p class="text-lg text-muted-foreground mt-2">Vertically stacked sections that expand and collapse. Uses native HTML details/summary for SSR compatibility.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Accordion>
+                <AccordionItem>
+                    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                    <AccordionContent>Yes. It uses native HTML details/summary elements.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem>
+                    <AccordionTrigger>Is it styled?</AccordionTrigger>
+                    <AccordionContent>Yes. It comes with default Tailwind styles.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem>
+                    <AccordionTrigger>Is it animated?</AccordionTrigger>
+                    <AccordionContent>Yes. CSS transitions handle the open/close animation.</AccordionContent>
+                </AccordionItem>
+            </Accordion>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Accordion&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it accessible?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. It uses native HTML details/summary elements.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it styled?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. It comes with default Tailwind styles.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it animated?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. CSS transitions handle the open/close animation.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+&lt;/Accordion&gt;</code></pre>
+    </section>
+</div>

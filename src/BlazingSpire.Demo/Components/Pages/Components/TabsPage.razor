@@ -1,0 +1,89 @@
+@page "/components/tabs"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Tabs - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Tabs</h1>
+        <p class="text-lg text-muted-foreground mt-2">Switch between related content panels. Manages active state via cascading context.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Account Settings</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Tabs ActiveValue="account" Class="max-w-lg">
+                <TabsList>
+                    <TabsTrigger ItemValue="account">Account</TabsTrigger>
+                    <TabsTrigger ItemValue="password">Password</TabsTrigger>
+                </TabsList>
+                <TabsContent ItemValue="account">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Account</CardTitle>
+                            <CardDescription>Make changes to your account here. Click save when done.</CardDescription>
+                        </CardHeader>
+                        <CardContent class="space-y-4">
+                            <div class="space-y-1">
+                                <Label For="name">Name</Label>
+                                <Input id="name" Placeholder="Your name" />
+                            </div>
+                            <div class="space-y-1">
+                                <Label For="username">Username</Label>
+                                <Input id="username" Placeholder="&#64;username" />
+                            </div>
+                        </CardContent>
+                        <CardFooter>
+                            <Button>Save changes</Button>
+                        </CardFooter>
+                    </Card>
+                </TabsContent>
+                <TabsContent ItemValue="password">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Password</CardTitle>
+                            <CardDescription>Change your password here. After saving, you'll be logged out.</CardDescription>
+                        </CardHeader>
+                        <CardContent class="space-y-4">
+                            <div class="space-y-1">
+                                <Label For="current">Current password</Label>
+                                <Input id="current" Type="password" />
+                            </div>
+                            <div class="space-y-1">
+                                <Label For="new-password">New password</Label>
+                                <Input id="new-password" Type="password" />
+                            </div>
+                        </CardContent>
+                        <CardFooter>
+                            <Button>Save password</Button>
+                        </CardFooter>
+                    </Card>
+                </TabsContent>
+            </Tabs>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Tabs ActiveValue="account"&gt;
+    &lt;TabsList&gt;
+        &lt;TabsTrigger ItemValue="account"&gt;Account&lt;/TabsTrigger&gt;
+        &lt;TabsTrigger ItemValue="password"&gt;Password&lt;/TabsTrigger&gt;
+    &lt;/TabsList&gt;
+    &lt;TabsContent ItemValue="account"&gt;
+        &lt;Card&gt;
+            &lt;CardHeader&gt;
+                &lt;CardTitle&gt;Account&lt;/CardTitle&gt;
+                &lt;CardDescription&gt;Make changes to your account here.&lt;/CardDescription&gt;
+            &lt;/CardHeader&gt;
+            &lt;CardContent class="space-y-4"&gt;
+                &lt;Label For="name"&gt;Name&lt;/Label&gt;
+                &lt;Input id="name" Placeholder="Your name" /&gt;
+            &lt;/CardContent&gt;
+            &lt;CardFooter&gt;
+                &lt;Button&gt;Save changes&lt;/Button&gt;
+            &lt;/CardFooter&gt;
+        &lt;/Card&gt;
+    &lt;/TabsContent&gt;
+    &lt;TabsContent ItemValue="password"&gt;
+        &lt;!-- password fields --&gt;
+    &lt;/TabsContent&gt;
+&lt;/Tabs&gt;</code></pre>
+    </section>
+</div>

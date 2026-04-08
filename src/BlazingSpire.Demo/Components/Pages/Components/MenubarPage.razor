@@ -1,0 +1,83 @@
+@page "/components/menubar"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Menubar - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Menubar</h1>
+        <p class="text-lg text-muted-foreground mt-2">A horizontal menu bar with dropdown menus for each entry, similar to application menu bars.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">File / Edit / View</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Menubar>
+                <MenubarMenu>
+                    <MenubarTrigger>File</MenubarTrigger>
+                    <MenubarContent>
+                        <MenubarItem>New</MenubarItem>
+                        <MenubarItem>Open</MenubarItem>
+                        <MenubarItem>Save</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>Exit</MenubarItem>
+                    </MenubarContent>
+                </MenubarMenu>
+                <MenubarMenu>
+                    <MenubarTrigger>Edit</MenubarTrigger>
+                    <MenubarContent>
+                        <MenubarItem>Undo</MenubarItem>
+                        <MenubarItem>Redo</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>Cut</MenubarItem>
+                        <MenubarItem>Copy</MenubarItem>
+                        <MenubarItem>Paste</MenubarItem>
+                    </MenubarContent>
+                </MenubarMenu>
+                <MenubarMenu>
+                    <MenubarTrigger>View</MenubarTrigger>
+                    <MenubarContent>
+                        <MenubarLabel>Appearance</MenubarLabel>
+                        <MenubarSeparator />
+                        <MenubarItem>Zoom In</MenubarItem>
+                        <MenubarItem>Zoom Out</MenubarItem>
+                        <MenubarItem Disabled="true">Full Screen</MenubarItem>
+                    </MenubarContent>
+                </MenubarMenu>
+            </Menubar>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Menubar&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;File&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarItem&gt;New&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Open&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Save&lt;/MenubarItem&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Exit&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;Edit&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarItem&gt;Undo&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Redo&lt;/MenubarItem&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Cut&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Copy&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Paste&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;View&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarLabel&gt;Appearance&lt;/MenubarLabel&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Zoom In&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Zoom Out&lt;/MenubarItem&gt;
+            &lt;MenubarItem Disabled="true"&gt;Full Screen&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+&lt;/Menubar&gt;</code></pre>
+    </section>
+</div>

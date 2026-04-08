@@ -1,0 +1,52 @@
+@page "/components/alert-dialog"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Alert Dialog - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Alert Dialog</h1>
+        <p class="text-lg text-muted-foreground mt-2">A modal dialog that interrupts the user with important content. Cannot be dismissed by clicking outside or pressing Escape.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Confirmation</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <AlertDialog>
+                <AlertDialogTrigger>
+                    <Button Variant="ButtonVariant.Outline">Delete Account</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction>Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;AlertDialog&gt;
+    &lt;AlertDialogTrigger&gt;
+        &lt;Button Variant="ButtonVariant.Outline"&gt;Delete Account&lt;/Button&gt;
+    &lt;/AlertDialogTrigger&gt;
+    &lt;AlertDialogContent&gt;
+        &lt;AlertDialogHeader&gt;
+            &lt;AlertDialogTitle&gt;Are you absolutely sure?&lt;/AlertDialogTitle&gt;
+            &lt;AlertDialogDescription&gt;
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+            &lt;/AlertDialogDescription&gt;
+        &lt;/AlertDialogHeader&gt;
+        &lt;AlertDialogFooter&gt;
+            &lt;AlertDialogCancel&gt;Cancel&lt;/AlertDialogCancel&gt;
+            &lt;AlertDialogAction&gt;Continue&lt;/AlertDialogAction&gt;
+        &lt;/AlertDialogFooter&gt;
+    &lt;/AlertDialogContent&gt;
+&lt;/AlertDialog&gt;</code></pre>
+    </section>
+</div>

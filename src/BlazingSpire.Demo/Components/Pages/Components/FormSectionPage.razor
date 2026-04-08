@@ -1,0 +1,71 @@
+@page "/components/form-section"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>FormSection - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">FormSection</h1>
+        <p class="text-lg text-muted-foreground mt-2">A styled fieldset wrapper with optional legend and description. Groups related form fields semantically.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <FormSection Legend="Personal Information" Description="Enter your name and contact details below.">
+                <div class="grid gap-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="fs-name">Full name</label>
+                        <input id="fs-name" type="text" placeholder="John Doe"
+                               class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="fs-email">Email</label>
+                        <input id="fs-email" type="email" placeholder="john@example.com"
+                               class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" />
+                    </div>
+                </div>
+            </FormSection>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;FormSection Legend="Personal Information" Description="Enter your name and contact details below."&gt;
+    &lt;div class="grid gap-4"&gt;
+        &lt;div class="space-y-2"&gt;
+            &lt;label for="name"&gt;Full name&lt;/label&gt;
+            &lt;Input id="name" Placeholder="John Doe" /&gt;
+        &lt;/div&gt;
+        &lt;div class="space-y-2"&gt;
+            &lt;label for="email"&gt;Email&lt;/label&gt;
+            &lt;Input id="email" Type="email" Placeholder="john@example.com" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/FormSection&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <FormSection Legend="Shipping Address" Description="This section is currently locked." Disabled="true">
+                <div class="grid gap-4">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="fs-address">Street address</label>
+                        <input id="fs-address" type="text" placeholder="123 Main St"
+                               class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" />
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium leading-none" for="fs-city">City</label>
+                        <input id="fs-city" type="text" placeholder="New York"
+                               class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring" />
+                    </div>
+                </div>
+            </FormSection>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;FormSection Legend="Shipping Address" Description="This section is currently locked." Disabled="true"&gt;
+    &lt;div class="grid gap-4"&gt;
+        &lt;div class="space-y-2"&gt;
+            &lt;label for="address"&gt;Street address&lt;/label&gt;
+            &lt;Input id="address" Placeholder="123 Main St" /&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/FormSection&gt;</code></pre>
+    </section>
+</div>

@@ -1,0 +1,61 @@
+@page "/components/pagination"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Pagination - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Pagination</h1>
+        <p class="text-lg text-muted-foreground mt-2">Navigation control for paginated content with previous, next, numbered pages, and ellipsis.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Pagination>
+                <PaginationContent>
+                    <PaginationItem>
+                        <PaginationPrevious Href="#" />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink Href="#">1</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink Href="#" IsActive="true">2</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink Href="#">3</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationEllipsis />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationNext Href="#" />
+                    </PaginationItem>
+                </PaginationContent>
+            </Pagination>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Pagination&gt;
+    &lt;PaginationContent&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationPrevious Href="#" /&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationLink Href="#"&gt;1&lt;/PaginationLink&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationLink Href="#" IsActive="true"&gt;2&lt;/PaginationLink&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationLink Href="#"&gt;3&lt;/PaginationLink&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationEllipsis /&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationNext Href="#" /&gt;
+        &lt;/PaginationItem&gt;
+    &lt;/PaginationContent&gt;
+&lt;/Pagination&gt;</code></pre>
+    </section>
+</div>

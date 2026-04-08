@@ -1,0 +1,74 @@
+@page "/components/avatar"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Avatar - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Avatar</h1>
+        <p class="text-lg text-muted-foreground mt-2">An image element with a fallback for representing the user.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Image</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Avatar>
+                    <AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" />
+                </Avatar>
+                <Avatar>
+                    <AvatarImage Src="https://github.com/adamreed90.png" Alt="Adam Reed" />
+                </Avatar>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Avatar&gt;
+    &lt;AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" /&gt;
+&lt;/Avatar&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Fallback</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Avatar>
+                    <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                    <AvatarFallback>AR</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                    <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Avatar&gt;
+    &lt;AvatarFallback&gt;CN&lt;/AvatarFallback&gt;
+&lt;/Avatar&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Avatar Group</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex items-center">
+                <Avatar Class="-mr-2 ring-2 ring-background">
+                    <AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" />
+                </Avatar>
+                <Avatar Class="-mr-2 ring-2 ring-background">
+                    <AvatarFallback>AR</AvatarFallback>
+                </Avatar>
+                <Avatar Class="-mr-2 ring-2 ring-background">
+                    <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <Avatar Class="ring-2 ring-background">
+                    <AvatarFallback>+3</AvatarFallback>
+                </Avatar>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Avatar Class="-mr-2 ring-2 ring-background"&gt;
+    &lt;AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" /&gt;
+&lt;/Avatar&gt;
+&lt;Avatar Class="-mr-2 ring-2 ring-background"&gt;
+    &lt;AvatarFallback&gt;AR&lt;/AvatarFallback&gt;
+&lt;/Avatar&gt;</code></pre>
+    </section>
+</div>

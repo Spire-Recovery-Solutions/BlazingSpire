@@ -1,0 +1,136 @@
+@page "/components/button"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Button - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Button</h1>
+        <p class="text-lg text-muted-foreground mt-2">Trigger actions and events. Supports variants, sizes, icons, and disabled states.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Variants</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Button>Default</Button>
+                <Button Variant="ButtonVariant.Secondary">Secondary</Button>
+                <Button Variant="ButtonVariant.Destructive">Destructive</Button>
+                <Button Variant="ButtonVariant.Outline">Outline</Button>
+                <Button Variant="ButtonVariant.Ghost">Ghost</Button>
+                <Button Variant="ButtonVariant.Link">Link</Button>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Button&gt;Default&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Secondary"&gt;Secondary&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Destructive"&gt;Destructive&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Outline"&gt;Outline&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Ghost"&gt;Ghost&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Link"&gt;Link&lt;/Button&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Sizes</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Button Size="ButtonSize.Sm">Small</Button>
+                <Button>Default</Button>
+                <Button Size="ButtonSize.Lg">Large</Button>
+                <Button Size="ButtonSize.Icon" aria-label="Settings">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                </Button>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Button Size="ButtonSize.Sm"&gt;Small&lt;/Button&gt;
+&lt;Button&gt;Default&lt;/Button&gt;
+&lt;Button Size="ButtonSize.Lg"&gt;Large&lt;/Button&gt;
+&lt;Button Size="ButtonSize.Icon" aria-label="Settings"&gt;
+    @* SVG icon here *@
+&lt;/Button&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Icons</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Button>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                    </svg>
+                    Continue
+                </Button>
+                <Button Variant="ButtonVariant.Outline">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>
+                    </svg>
+                    Download
+                </Button>
+                <Button Variant="ButtonVariant.Destructive">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                    </svg>
+                    Delete
+                </Button>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Button&gt;
+    &lt;svg class="h-4 w-4"&gt;...&lt;/svg&gt;
+    Continue
+&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Destructive"&gt;
+    &lt;svg class="h-4 w-4"&gt;...&lt;/svg&gt;
+    Delete
+&lt;/Button&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Button Disabled="true">Disabled</Button>
+                <Button Variant="ButtonVariant.Secondary" Disabled="true">Disabled Secondary</Button>
+                <Button Variant="ButtonVariant.Destructive" Disabled="true">Disabled Destructive</Button>
+                <Button Variant="ButtonVariant.Outline" Disabled="true">Disabled Outline</Button>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Button Disabled="true"&gt;Disabled&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Outline" Disabled="true"&gt;Disabled Outline&lt;/Button&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Loading</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Button Loading="true">Please wait...</Button>
+                <Button Variant="ButtonVariant.Outline" Loading="true">Please wait...</Button>
+                <Button Variant="ButtonVariant.Secondary" Loading="true">Please wait...</Button>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Button Loading="true"&gt;Please wait...&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Outline" Loading="true"&gt;Please wait...&lt;/Button&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Link Button</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Button Href="#">Visit Site</Button>
+                <Button Variant="ButtonVariant.Outline" Href="#">Documentation</Button>
+                <Button Variant="ButtonVariant.Ghost" Href="#">Learn more</Button>
+                <Button Href="#" Disabled="true">Disabled Link</Button>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Button Href="https://example.com"&gt;Visit Site&lt;/Button&gt;
+&lt;Button Variant="ButtonVariant.Outline" Href="https://example.com"&gt;Documentation&lt;/Button&gt;
+&lt;Button Href="https://example.com" Disabled="true"&gt;Disabled Link&lt;/Button&gt;</code></pre>
+    </section>
+</div>

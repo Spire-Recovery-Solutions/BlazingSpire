@@ -1,0 +1,113 @@
+@page "/components/radio-group"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Radio Group - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Radio Group</h1>
+        <p class="text-lg text-muted-foreground mt-2">A set of mutually exclusive options where only one can be selected at a time.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <RadioGroup>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="default" id="r-default" />
+                    <Label For="r-default">Default</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="comfortable" id="r-comfortable" />
+                    <Label For="r-comfortable">Comfortable</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="compact" id="r-compact" />
+                    <Label For="r-compact">Compact</Label>
+                </div>
+            </RadioGroup>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;RadioGroup&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="default" id="r-default" /&gt;
+        &lt;Label For="r-default"&gt;Default&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="comfortable" id="r-comfortable" /&gt;
+        &lt;Label For="r-comfortable"&gt;Comfortable&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="compact" id="r-compact" /&gt;
+        &lt;Label For="r-compact"&gt;Compact&lt;/Label&gt;
+    &lt;/div&gt;
+&lt;/RadioGroup&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Default Value</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <RadioGroup Value="comfortable">
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="default" id="r2-default" />
+                    <Label For="r2-default">Default</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="comfortable" id="r2-comfortable" />
+                    <Label For="r2-comfortable">Comfortable</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="compact" id="r2-compact" />
+                    <Label For="r2-compact">Compact</Label>
+                </div>
+            </RadioGroup>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;RadioGroup Value="comfortable"&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="default" id="r-default" /&gt;
+        &lt;Label For="r-default"&gt;Default&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="comfortable" id="r-comfortable" /&gt;
+        &lt;Label For="r-comfortable"&gt;Comfortable&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="compact" id="r-compact" /&gt;
+        &lt;Label For="r-compact"&gt;Compact&lt;/Label&gt;
+    &lt;/div&gt;
+&lt;/RadioGroup&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Disabled Item</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <RadioGroup Value="default">
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="default" id="r3-default" />
+                    <Label For="r3-default">Default</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="comfortable" id="r3-comfortable" Disabled="true" />
+                    <Label For="r3-comfortable" Class="opacity-50 cursor-not-allowed">Comfortable (disabled)</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="compact" id="r3-compact" />
+                    <Label For="r3-compact">Compact</Label>
+                </div>
+            </RadioGroup>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;RadioGroup Value="default"&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="default" id="r-default" /&gt;
+        &lt;Label For="r-default"&gt;Default&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="comfortable" id="r-comfortable" Disabled="true" /&gt;
+        &lt;Label For="r-comfortable" Class="opacity-50 cursor-not-allowed"&gt;Comfortable (disabled)&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class="flex items-center gap-2"&gt;
+        &lt;RadioGroupItem ItemValue="compact" id="r-compact" /&gt;
+        &lt;Label For="r-compact"&gt;Compact&lt;/Label&gt;
+    &lt;/div&gt;
+&lt;/RadioGroup&gt;</code></pre>
+    </section>
+</div>

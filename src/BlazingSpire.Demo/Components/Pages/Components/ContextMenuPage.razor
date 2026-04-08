@@ -1,0 +1,49 @@
+@page "/components/context-menu"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Context Menu - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Context Menu</h1>
+        <p class="text-lg text-muted-foreground mt-2">Displays a menu triggered by right-clicking a target area.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <ContextMenu>
+                <ContextMenuTrigger>
+                    <div class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+                        Right click here
+                    </div>
+                </ContextMenuTrigger>
+                <ContextMenuContent>
+                    <ContextMenuLabel>Navigation</ContextMenuLabel>
+                    <ContextMenuSeparator />
+                    <ContextMenuItem>Back</ContextMenuItem>
+                    <ContextMenuItem>Forward</ContextMenuItem>
+                    <ContextMenuItem>Reload</ContextMenuItem>
+                    <ContextMenuSeparator />
+                    <ContextMenuItem>View Source</ContextMenuItem>
+                </ContextMenuContent>
+            </ContextMenu>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;ContextMenu&gt;
+    &lt;ContextMenuTrigger&gt;
+        &lt;div class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm"&gt;
+            Right click here
+        &lt;/div&gt;
+    &lt;/ContextMenuTrigger&gt;
+    &lt;ContextMenuContent&gt;
+        &lt;ContextMenuLabel&gt;Navigation&lt;/ContextMenuLabel&gt;
+        &lt;ContextMenuSeparator /&gt;
+        &lt;ContextMenuItem&gt;Back&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuItem&gt;Forward&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuItem&gt;Reload&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuSeparator /&gt;
+        &lt;ContextMenuItem&gt;View Source&lt;/ContextMenuItem&gt;
+    &lt;/ContextMenuContent&gt;
+&lt;/ContextMenu&gt;</code></pre>
+    </section>
+</div>

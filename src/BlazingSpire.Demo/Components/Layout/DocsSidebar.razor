@@ -1,0 +1,101 @@
+@using Microsoft.AspNetCore.Components.Routing
+
+<nav aria-label="Component navigation" class="space-y-6 py-4">
+
+    <div class="px-3">
+        <NavLink href="/" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground" Match="NavLinkMatch.All">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            Home
+        </NavLink>
+    </div>
+
+    @* ── Layout ──────────────────────────────── *@
+    <div>
+        <h4 class="mb-1 px-6 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Layout</h4>
+        <div class="space-y-0.5 px-3">
+            <SidebarLink Href="/components/aspect-ratio">Aspect Ratio</SidebarLink>
+            <SidebarLink Href="/components/scroll-area">Scroll Area</SidebarLink>
+            <SidebarLink Href="/components/separator">Separator</SidebarLink>
+            <SidebarLink Href="/components/sidebar">Sidebar</SidebarLink>
+        </div>
+    </div>
+
+    @* ── Forms ───────────────────────────────── *@
+    <div>
+        <h4 class="mb-1 px-6 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Forms</h4>
+        <div class="space-y-0.5 px-3">
+            <SidebarLink Href="/components/button">Button</SidebarLink>
+            <SidebarLink Href="/components/checkbox">Checkbox</SidebarLink>
+            <SidebarLink Href="/components/combobox">Combobox</SidebarLink>
+            <SidebarLink Href="/components/form-field">Form Field</SidebarLink>
+            <SidebarLink Href="/components/form-section">Form Section</SidebarLink>
+            <SidebarLink Href="/components/input">Input</SidebarLink>
+            <SidebarLink Href="/components/input-otp">Input OTP</SidebarLink>
+            <SidebarLink Href="/components/label">Label</SidebarLink>
+            <SidebarLink Href="/components/radio-group">Radio Group</SidebarLink>
+            <SidebarLink Href="/components/select">Select</SidebarLink>
+            <SidebarLink Href="/components/slider">Slider</SidebarLink>
+            <SidebarLink Href="/components/switch">Switch</SidebarLink>
+            <SidebarLink Href="/components/textarea">Textarea</SidebarLink>
+            <SidebarLink Href="/components/toggle">Toggle</SidebarLink>
+            <SidebarLink Href="/components/toggle-group">Toggle Group</SidebarLink>
+        </div>
+    </div>
+
+    @* ── Data Display ────────────────────────── *@
+    <div>
+        <h4 class="mb-1 px-6 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Data Display</h4>
+        <div class="space-y-0.5 px-3">
+            <SidebarLink Href="/components/alert">Alert</SidebarLink>
+            <SidebarLink Href="/components/avatar">Avatar</SidebarLink>
+            <SidebarLink Href="/components/badge">Badge</SidebarLink>
+            <SidebarLink Href="/components/breadcrumb">Breadcrumb</SidebarLink>
+            <SidebarLink Href="/components/calendar">Calendar</SidebarLink>
+            <SidebarLink Href="/components/card">Card</SidebarLink>
+            <SidebarLink Href="/components/data-table">Data Table</SidebarLink>
+            <SidebarLink Href="/components/pagination">Pagination</SidebarLink>
+            <SidebarLink Href="/components/progress">Progress</SidebarLink>
+            <SidebarLink Href="/components/skeleton">Skeleton</SidebarLink>
+            <SidebarLink Href="/components/table">Table</SidebarLink>
+        </div>
+    </div>
+
+    @* ── Feedback ────────────────────────────── *@
+    <div>
+        <h4 class="mb-1 px-6 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Feedback</h4>
+        <div class="space-y-0.5 px-3">
+            <SidebarLink Href="/components/alert-dialog">Alert Dialog</SidebarLink>
+            <SidebarLink Href="/components/dialog">Dialog</SidebarLink>
+            <SidebarLink Href="/components/drawer">Drawer</SidebarLink>
+            <SidebarLink Href="/components/hover-card">Hover Card</SidebarLink>
+            <SidebarLink Href="/components/popover">Popover</SidebarLink>
+            <SidebarLink Href="/components/sheet">Sheet</SidebarLink>
+            <SidebarLink Href="/components/toast">Toast</SidebarLink>
+            <SidebarLink Href="/components/tooltip">Tooltip</SidebarLink>
+        </div>
+    </div>
+
+    @* ── Navigation ──────────────────────────── *@
+    <div>
+        <h4 class="mb-1 px-6 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Navigation</h4>
+        <div class="space-y-0.5 px-3">
+            <SidebarLink Href="/components/accordion">Accordion</SidebarLink>
+            <SidebarLink Href="/components/carousel">Carousel</SidebarLink>
+            <SidebarLink Href="/components/collapsible">Collapsible</SidebarLink>
+            <SidebarLink Href="/components/command">Command</SidebarLink>
+            <SidebarLink Href="/components/context-menu">Context Menu</SidebarLink>
+            <SidebarLink Href="/components/dropdown-menu">Dropdown Menu</SidebarLink>
+            <SidebarLink Href="/components/menubar">Menubar</SidebarLink>
+            <SidebarLink Href="/components/navigation-menu">Navigation Menu</SidebarLink>
+            <SidebarLink Href="/components/tabs">Tabs</SidebarLink>
+        </div>
+    </div>
+
+</nav>
+
+@code {
+    [Parameter] public EventCallback OnNavigated { get; set; }
+}

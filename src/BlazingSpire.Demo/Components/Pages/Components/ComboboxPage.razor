@@ -1,0 +1,75 @@
+@page "/components/combobox"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Combobox - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Combobox</h1>
+        <p class="text-lg text-muted-foreground mt-2">Searchable select — combines a trigger button with a filtered list of options.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Framework Selector</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-start gap-4">
+                <div class="w-64 space-y-2">
+                    <Combobox @bind-Value="_comboboxValue" Placeholder="Select framework...">
+                        <ComboboxTrigger Class="w-full" />
+                        <ComboboxContent>
+                            <ComboboxInput />
+                            <ComboboxItem ItemValue="next" FilterText="Next.js">Next.js</ComboboxItem>
+                            <ComboboxItem ItemValue="sveltekit" FilterText="SvelteKit">SvelteKit</ComboboxItem>
+                            <ComboboxItem ItemValue="nuxt" FilterText="Nuxt.js">Nuxt.js</ComboboxItem>
+                            <ComboboxItem ItemValue="remix" FilterText="Remix">Remix</ComboboxItem>
+                            <ComboboxItem ItemValue="astro" FilterText="Astro">Astro</ComboboxItem>
+                        </ComboboxContent>
+                    </Combobox>
+                    @if (!string.IsNullOrEmpty(_comboboxValue))
+                    {
+                        <p class="text-sm text-muted-foreground">Selected: <span class="font-medium text-foreground">@_comboboxValue</span></p>
+                    }
+                </div>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Combobox @@bind-Value="selectedFramework" Placeholder="Select framework..."&gt;
+    &lt;ComboboxTrigger Class="w-64" /&gt;
+    &lt;ComboboxContent&gt;
+        &lt;ComboboxInput /&gt;
+        &lt;ComboboxItem ItemValue="next" FilterText="Next.js"&gt;Next.js&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue="sveltekit" FilterText="SvelteKit"&gt;SvelteKit&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue="nuxt" FilterText="Nuxt.js"&gt;Nuxt.js&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue="remix" FilterText="Remix"&gt;Remix&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue="astro" FilterText="Astro"&gt;Astro&lt;/ComboboxItem&gt;
+    &lt;/ComboboxContent&gt;
+&lt;/Combobox&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Custom Search Placeholder</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-start gap-4">
+                <Combobox Placeholder="Pick a framework..." SearchPlaceholder="Search frameworks...">
+                    <ComboboxTrigger Class="w-64" />
+                    <ComboboxContent>
+                        <ComboboxInput />
+                        <ComboboxItem ItemValue="next" FilterText="Next.js">Next.js</ComboboxItem>
+                        <ComboboxItem ItemValue="sveltekit" FilterText="SvelteKit">SvelteKit</ComboboxItem>
+                        <ComboboxItem ItemValue="nuxt" FilterText="Nuxt.js">Nuxt.js</ComboboxItem>
+                    </ComboboxContent>
+                </Combobox>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Combobox Placeholder="Pick a framework..." SearchPlaceholder="Search frameworks..."&gt;
+    &lt;ComboboxTrigger Class="w-64" /&gt;
+    &lt;ComboboxContent&gt;
+        &lt;ComboboxInput /&gt;
+        &lt;ComboboxItem ItemValue="next" FilterText="Next.js"&gt;Next.js&lt;/ComboboxItem&gt;
+    &lt;/ComboboxContent&gt;
+&lt;/Combobox&gt;</code></pre>
+    </section>
+</div>
+
+@code {
+    private string? _comboboxValue;
+}

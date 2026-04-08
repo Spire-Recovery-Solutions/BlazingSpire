@@ -1,0 +1,41 @@
+@page "/components/toast"
+@using BlazingSpire.Demo.Components.UI
+@inject IToastService ToastService
+
+<PageTitle>Toast - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Toast</h1>
+        <p class="text-lg text-muted-foreground mt-2">Service-based toast notifications. Supports default and destructive variants with optional actions.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Variants</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-center gap-4">
+                <Button @onclick="ShowDefaultToast">Show Toast</Button>
+                <Button Variant="ButtonVariant.Destructive" @onclick="ShowDestructiveToast">Show Error Toast</Button>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&#64;inject IToastService ToastService
+
+&lt;Button &#64;onclick="ShowToast"&gt;Show Toast&lt;/Button&gt;
+
+&#64;code {
+    private void ShowToast()
+        =&gt; ToastService.Show("Event has been created", "Monday, January 3 at 6:00pm");
+
+    private void ShowErrorToast()
+        =&gt; ToastService.Show("Error", "Something went wrong.", ToastVariant.Destructive);
+}</code></pre>
+    </section>
+</div>
+
+@code {
+    private void ShowDefaultToast()
+        => ToastService.Show("Event has been created", "Monday, January 3 at 6:00pm");
+
+    private void ShowDestructiveToast()
+        => ToastService.Show("Error", "Something went wrong. Please try again.", ToastVariant.Destructive);
+}

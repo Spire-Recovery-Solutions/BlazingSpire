@@ -1,0 +1,195 @@
+@page "/components/card"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Card - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Card</h1>
+        <p class="text-lg text-muted-foreground mt-2">Structured containers for grouping related content. Composable via CardHeader, CardContent, and CardFooter.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Create project</CardTitle>
+                        <CardDescription>Deploy your new project in one-click.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p class="text-sm text-muted-foreground">
+                            Pre-configured with .NET 10, Tailwind CSS v4, and optimized WASM delivery.
+                        </p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button>Deploy</Button>
+                    </CardFooter>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Components</CardTitle>
+                        <CardDescription>Browse the component library.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div class="flex flex-wrap gap-2">
+                            <Badge>Button</Badge>
+                            <Badge Variant="BadgeVariant.Secondary">Card</Badge>
+                            <Badge Variant="BadgeVariant.Outline">Badge</Badge>
+                            <Badge Variant="BadgeVariant.Secondary">Dialog</Badge>
+                        </div>
+                    </CardContent>
+                    <CardFooter>
+                        <Button Variant="ButtonVariant.Outline">Browse</Button>
+                    </CardFooter>
+                </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Documentation</CardTitle>
+                        <CardDescription>Learn how to use BlazingSpire.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p class="text-sm text-muted-foreground">
+                            Copy-paste components into your Blazor project. You own the code.
+                        </p>
+                    </CardContent>
+                    <CardFooter>
+                        <Button Variant="ButtonVariant.Ghost">Read docs</Button>
+                    </CardFooter>
+                </Card>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Card&gt;
+    &lt;CardHeader&gt;
+        &lt;CardTitle&gt;Create project&lt;/CardTitle&gt;
+        &lt;CardDescription&gt;Deploy your new project in one-click.&lt;/CardDescription&gt;
+    &lt;/CardHeader&gt;
+    &lt;CardContent&gt;
+        &lt;p&gt;Pre-configured with .NET 10 and Tailwind CSS v4.&lt;/p&gt;
+    &lt;/CardContent&gt;
+    &lt;CardFooter&gt;
+        &lt;Button&gt;Deploy&lt;/Button&gt;
+    &lt;/CardFooter&gt;
+&lt;/Card&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Stats</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <Card>
+                    <CardHeader>
+                        <CardDescription>Total Downloads</CardDescription>
+                        <CardTitle Class="text-3xl">2,350</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p class="text-xs text-muted-foreground">+180 from last month</p>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardDescription>Active Users</CardDescription>
+                        <CardTitle Class="text-3xl">573</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p class="text-xs text-muted-foreground">+24 from last week</p>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardDescription>Components</CardDescription>
+                        <CardTitle Class="text-3xl">47</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p class="text-xs text-muted-foreground">Full shadcn/ui catalog</p>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardDescription>Lighthouse Score</CardDescription>
+                        <CardTitle Class="text-3xl">100</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p class="text-xs text-muted-foreground">Performance / A11y / SEO / BP</p>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Card&gt;
+    &lt;CardHeader&gt;
+        &lt;CardDescription&gt;Total Downloads&lt;/CardDescription&gt;
+        &lt;CardTitle Class="text-3xl"&gt;2,350&lt;/CardTitle&gt;
+    &lt;/CardHeader&gt;
+    &lt;CardContent&gt;
+        &lt;p class="text-xs text-muted-foreground"&gt;+180 from last month&lt;/p&gt;
+    &lt;/CardContent&gt;
+&lt;/Card&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Notifications</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-md">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Notifications</CardTitle>
+                        <CardDescription>You have 3 unread messages.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <span class="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-primary"></span>
+                                <div>
+                                    <p class="text-sm font-medium">New component released</p>
+                                    <p class="text-xs text-muted-foreground">The Dialog component is now available.</p>
+                                </div>
+                                <Badge Variant="BadgeVariant.Secondary" Class="ml-auto shrink-0">1h ago</Badge>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-primary"></span>
+                                <div>
+                                    <p class="text-sm font-medium">Build succeeded</p>
+                                    <p class="text-xs text-muted-foreground">Production deployment completed.</p>
+                                </div>
+                                <Badge Variant="BadgeVariant.Secondary" Class="ml-auto shrink-0">2h ago</Badge>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="mt-0.5 h-2 w-2 shrink-0 rounded-full bg-destructive"></span>
+                                <div>
+                                    <p class="text-sm font-medium">Security update</p>
+                                    <p class="text-xs text-muted-foreground">A dependency requires an urgent patch.</p>
+                                </div>
+                                <Badge Variant="BadgeVariant.Destructive" Class="ml-auto shrink-0">Urgent</Badge>
+                            </div>
+                        </div>
+                    </CardContent>
+                    <CardFooter>
+                        <Button Variant="ButtonVariant.Outline" Class="w-full">Mark all as read</Button>
+                    </CardFooter>
+                </Card>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Card&gt;
+    &lt;CardHeader&gt;
+        &lt;CardTitle&gt;Notifications&lt;/CardTitle&gt;
+        &lt;CardDescription&gt;You have 3 unread messages.&lt;/CardDescription&gt;
+    &lt;/CardHeader&gt;
+    &lt;CardContent&gt;
+        &lt;div class="flex items-start gap-3"&gt;
+            &lt;span class="h-2 w-2 rounded-full bg-primary"&gt;&lt;/span&gt;
+            &lt;div&gt;
+                &lt;p class="text-sm font-medium"&gt;New component released&lt;/p&gt;
+                &lt;p class="text-xs text-muted-foreground"&gt;Dialog is now available.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;Badge Variant="BadgeVariant.Secondary"&gt;1h ago&lt;/Badge&gt;
+        &lt;/div&gt;
+    &lt;/CardContent&gt;
+    &lt;CardFooter&gt;
+        &lt;Button Variant="ButtonVariant.Outline" Class="w-full"&gt;Mark all as read&lt;/Button&gt;
+    &lt;/CardFooter&gt;
+&lt;/Card&gt;</code></pre>
+    </section>
+</div>

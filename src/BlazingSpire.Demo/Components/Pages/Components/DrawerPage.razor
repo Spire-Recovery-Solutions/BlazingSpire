@@ -1,0 +1,47 @@
+@page "/components/drawer"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Drawer - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Drawer</h1>
+        <p class="text-lg text-muted-foreground mt-2">A bottom drawer panel with focus trap, scroll lock, and click-outside/Escape dismissal.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Drawer>
+                <DrawerTrigger>
+                    <Button Variant="ButtonVariant.Outline">Open Drawer</Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                    <DrawerClose />
+                    <DrawerHeader>
+                        <DrawerTitle>Move Goal</DrawerTitle>
+                        <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                        <Button>Submit</Button>
+                    </DrawerFooter>
+                </DrawerContent>
+            </Drawer>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Drawer&gt;
+    &lt;DrawerTrigger&gt;
+        &lt;Button Variant="ButtonVariant.Outline"&gt;Open Drawer&lt;/Button&gt;
+    &lt;/DrawerTrigger&gt;
+    &lt;DrawerContent&gt;
+        &lt;DrawerClose /&gt;
+        &lt;DrawerHeader&gt;
+            &lt;DrawerTitle&gt;Move Goal&lt;/DrawerTitle&gt;
+            &lt;DrawerDescription&gt;Set your daily activity goal.&lt;/DrawerDescription&gt;
+        &lt;/DrawerHeader&gt;
+        &lt;DrawerFooter&gt;
+            &lt;Button&gt;Submit&lt;/Button&gt;
+        &lt;/DrawerFooter&gt;
+    &lt;/DrawerContent&gt;
+&lt;/Drawer&gt;</code></pre>
+    </section>
+</div>

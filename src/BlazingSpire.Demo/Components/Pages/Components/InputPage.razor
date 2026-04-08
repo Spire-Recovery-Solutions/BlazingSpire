@@ -1,0 +1,57 @@
+@page "/components/input"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Input - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Input</h1>
+        <p class="text-lg text-muted-foreground mt-2">Displays a form input field for text entry. Supports all native input types.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <Input Placeholder="Email" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Input Placeholder="Email" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Types</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm space-y-2">
+                <Input Type="email" Placeholder="Email" />
+                <Input Type="password" Placeholder="Password" />
+                <Input Type="file" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Input Type="email" Placeholder="Email" /&gt;
+&lt;Input Type="password" Placeholder="Password" /&gt;
+&lt;Input Type="file" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Label</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm space-y-2">
+                <Label For="email-demo">Email</Label>
+                <Input Type="email" Placeholder="m@example.com" id="email-demo" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Label For="email"&gt;Email&lt;/Label&gt;
+&lt;Input Type="email" Placeholder="m@example.com" id="email" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <Input Placeholder="Disabled input" Disabled="true" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Input Placeholder="Disabled input" Disabled="true" /&gt;</code></pre>
+    </section>
+</div>

@@ -1,0 +1,83 @@
+@page "/components/breadcrumb"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Breadcrumb - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Breadcrumb</h1>
+        <p class="text-lg text-muted-foreground mt-2">Displays the current page path within a navigational hierarchy.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink Href="/">Home</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbLink Href="/components">Components</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BlazingSpire.Demo.Components.UI.BreadcrumbPage>Breadcrumb</BlazingSpire.Demo.Components.UI.BreadcrumbPage>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Breadcrumb&gt;
+    &lt;BreadcrumbList&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbLink Href="/"&gt;Home&lt;/BreadcrumbLink&gt;
+        &lt;/BreadcrumbItem&gt;
+        &lt;BreadcrumbSeparator /&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbLink Href="/components"&gt;Components&lt;/BreadcrumbLink&gt;
+        &lt;/BreadcrumbItem&gt;
+        &lt;BreadcrumbSeparator /&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbPage&gt;Breadcrumb&lt;/BreadcrumbPage&gt;
+        &lt;/BreadcrumbItem&gt;
+    &lt;/BreadcrumbList&gt;
+&lt;/Breadcrumb&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Custom Separator</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink Href="/">Home</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator><span>/</span></BreadcrumbSeparator>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink Href="/components">Components</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator><span>/</span></BreadcrumbSeparator>
+                    <BreadcrumbItem>
+                        <BlazingSpire.Demo.Components.UI.BreadcrumbPage>Breadcrumb</BlazingSpire.Demo.Components.UI.BreadcrumbPage>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Breadcrumb&gt;
+    &lt;BreadcrumbList&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbLink Href="/"&gt;Home&lt;/BreadcrumbLink&gt;
+        &lt;/BreadcrumbItem&gt;
+        &lt;BreadcrumbSeparator&gt;&lt;span&gt;/&lt;/span&gt;&lt;/BreadcrumbSeparator&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbLink Href="/components"&gt;Components&lt;/BreadcrumbLink&gt;
+        &lt;/BreadcrumbItem&gt;
+        &lt;BreadcrumbSeparator&gt;&lt;span&gt;/&lt;/span&gt;&lt;/BreadcrumbSeparator&gt;
+        &lt;BreadcrumbItem&gt;
+            &lt;BreadcrumbPage&gt;Breadcrumb&lt;/BreadcrumbPage&gt;
+        &lt;/BreadcrumbItem&gt;
+    &lt;/BreadcrumbList&gt;
+&lt;/Breadcrumb&gt;</code></pre>
+    </section>
+</div>

@@ -1,0 +1,48 @@
+@page "/components/carousel"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Carousel - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Carousel</h1>
+        <p class="text-lg text-muted-foreground mt-2">A slideshow component for cycling through elements. Supports prev/next navigation and ARIA slide roles.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="w-full max-w-sm mx-auto">
+                <Carousel CurrentIndex="@_carouselIndex" CurrentIndexChanged="@(i => _carouselIndex = i)">
+                    <CarouselContent>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">1</div></CarouselItem>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">2</div></CarouselItem>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">3</div></CarouselItem>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">4</div></CarouselItem>
+                        <CarouselItem><div class="flex items-center justify-center h-32 rounded-lg bg-muted text-2xl font-bold">5</div></CarouselItem>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
+            <p class="text-sm text-muted-foreground text-center mt-2">Slide @(_carouselIndex + 1) of 5</p>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Carousel &#64;bind-CurrentIndex="carouselIndex"&gt;
+    &lt;CarouselContent&gt;
+        &lt;CarouselItem&gt;&lt;!-- slide 1 --&gt;&lt;/CarouselItem&gt;
+        &lt;CarouselItem&gt;&lt;!-- slide 2 --&gt;&lt;/CarouselItem&gt;
+        &lt;CarouselItem&gt;&lt;!-- slide 3 --&gt;&lt;/CarouselItem&gt;
+    &lt;/CarouselContent&gt;
+    &lt;CarouselPrevious /&gt;
+    &lt;CarouselNext /&gt;
+&lt;/Carousel&gt;
+
+&#64;code {
+    private int carouselIndex;
+}</code></pre>
+    </section>
+</div>
+
+@code {
+    private int _carouselIndex;
+}

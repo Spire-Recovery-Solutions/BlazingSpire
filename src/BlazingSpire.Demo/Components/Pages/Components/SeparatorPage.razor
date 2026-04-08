@@ -1,0 +1,55 @@
+@page "/components/separator"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Separator - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Separator</h1>
+        <p class="text-lg text-muted-foreground mt-2">A visual divider between sections of content. Supports horizontal and vertical orientations.</p>
+    </div>
+
+    @* ── Horizontal ─────────────────────── *@
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Horizontal</h2>
+        <div class="rounded-lg border bg-card p-6 space-y-4">
+            <p class="text-sm text-muted-foreground">Content above the separator</p>
+            <Separator />
+            <p class="text-sm text-muted-foreground">Content below the separator</p>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;p&gt;Content above&lt;/p&gt;
+&lt;Separator /&gt;
+&lt;p&gt;Content below&lt;/p&gt;</code></pre>
+    </section>
+
+    @* ── Vertical ─────────────────────── *@
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Vertical</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex items-center gap-4 h-5">
+                <span class="text-sm">Blog</span>
+                <Separator Orientation="SeparatorOrientation.Vertical" />
+                <span class="text-sm">Docs</span>
+                <Separator Orientation="SeparatorOrientation.Vertical" />
+                <span class="text-sm">Source</span>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;div class="flex items-center gap-4 h-5"&gt;
+    &lt;span&gt;Blog&lt;/span&gt;
+    &lt;Separator Orientation="SeparatorOrientation.Vertical" /&gt;
+    &lt;span&gt;Docs&lt;/span&gt;
+    &lt;Separator Orientation="SeparatorOrientation.Vertical" /&gt;
+    &lt;span&gt;Source&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    @* ── Semantic ─────────────────────── *@
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Semantic</h2>
+        <div class="rounded-lg border bg-card p-6 space-y-4">
+            <p class="text-sm text-muted-foreground">Use <code class="text-xs bg-muted px-1 py-0.5 rounded">Decorative="false"</code> when the separator conveys meaningful structure (adds <code class="text-xs bg-muted px-1 py-0.5 rounded">role="separator"</code> and <code class="text-xs bg-muted px-1 py-0.5 rounded">aria-orientation</code>).</p>
+            <Separator Decorative="false" />
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Separator Decorative="false" /&gt;</code></pre>
+    </section>
+</div>

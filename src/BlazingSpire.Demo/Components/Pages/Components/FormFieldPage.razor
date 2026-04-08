@@ -1,0 +1,67 @@
+@page "/components/form-field"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Form Field - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Form Field</h1>
+        <p class="text-lg text-muted-foreground mt-2">Composition layer that wires ARIA attributes across label, control, description, and error message.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <FormField Name="username-basic">
+                    <FormFieldLabel>Username</FormFieldLabel>
+                    <Input id="username-basic-form-item" Placeholder="Enter your username" />
+                    <FormFieldDescription>This is your public display name.</FormFieldDescription>
+                </FormField>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;FormField Name="username"&gt;
+    &lt;FormFieldLabel&gt;Username&lt;/FormFieldLabel&gt;
+    &lt;Input id="username-form-item" Placeholder="Enter your username" /&gt;
+    &lt;FormFieldDescription&gt;This is your public display name.&lt;/FormFieldDescription&gt;
+&lt;/FormField&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Error</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <FormField Name="username-error" ErrorMessage="Username is required.">
+                    <FormFieldLabel>Username</FormFieldLabel>
+                    <Input id="username-error-form-item" Placeholder="Enter your username" />
+                    <FormFieldDescription>This is your public display name.</FormFieldDescription>
+                    <FormFieldError />
+                </FormField>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;FormField Name="username" ErrorMessage="Username is required."&gt;
+    &lt;FormFieldLabel&gt;Username&lt;/FormFieldLabel&gt;
+    &lt;Input id="username-form-item" Placeholder="Enter your username" /&gt;
+    &lt;FormFieldDescription&gt;This is your public display name.&lt;/FormFieldDescription&gt;
+    &lt;FormFieldError /&gt;
+&lt;/FormField&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Custom Error Content</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <FormField Name="email-custom" ErrorMessage="placeholder">
+                    <FormFieldLabel>Email</FormFieldLabel>
+                    <Input id="email-custom-form-item" Type="email" Placeholder="you@example.com" />
+                    <FormFieldError>Please enter a valid email address.</FormFieldError>
+                </FormField>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;FormField Name="email" ErrorMessage="placeholder"&gt;
+    &lt;FormFieldLabel&gt;Email&lt;/FormFieldLabel&gt;
+    &lt;Input id="email-form-item" Type="email" Placeholder="you@example.com" /&gt;
+    &lt;FormFieldError&gt;Please enter a valid email address.&lt;/FormFieldError&gt;
+&lt;/FormField&gt;</code></pre>
+    </section>
+</div>

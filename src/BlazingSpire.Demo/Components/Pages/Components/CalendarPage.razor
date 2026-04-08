@@ -1,0 +1,35 @@
+@page "/components/calendar"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Calendar - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Calendar</h1>
+        <p class="text-lg text-muted-foreground mt-2">A date picker calendar with month navigation and selectable days.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Date Picker</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <Card class="w-fit">
+                <CardContent class="pt-6">
+                    <Calendar @bind-SelectedDate="_selectedDate" />
+                    @if (_selectedDate.HasValue)
+                    {
+                        <p class="text-sm text-muted-foreground mt-2 text-center">Selected: @_selectedDate.Value.ToString("MMMM d, yyyy")</p>
+                    }
+                </CardContent>
+            </Card>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;Calendar &#64;bind-SelectedDate="_selectedDate" /&gt;
+
+&#64;code {
+    private DateOnly? _selectedDate;
+}</code></pre>
+    </section>
+</div>
+
+@code {
+    private DateOnly? _selectedDate;
+}

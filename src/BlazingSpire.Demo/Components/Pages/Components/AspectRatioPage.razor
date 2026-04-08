@@ -1,0 +1,45 @@
+@page "/components/aspect-ratio"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>AspectRatio - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">AspectRatio</h1>
+        <p class="text-lg text-muted-foreground mt-2">Enforces a consistent aspect ratio on its content. Defaults to 16:9.</p>
+    </div>
+
+    @* ── 16:9 ─────────────────────── *@
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">16:9</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <AspectRatio Ratio="16.0 / 9.0" Class="rounded-md">
+                    <div class="flex h-full w-full items-center justify-center bg-muted rounded-md">
+                        <span class="text-sm text-muted-foreground">16:9</span>
+                    </div>
+                </AspectRatio>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;AspectRatio Ratio="16.0 / 9.0" Class="rounded-md"&gt;
+    &lt;img src="image.jpg" alt="Photo" class="h-full w-full object-cover" /&gt;
+&lt;/AspectRatio&gt;</code></pre>
+    </section>
+
+    @* ── 1:1 Square ─────────────────────── *@
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">1:1 Square</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-[200px]">
+                <AspectRatio Ratio="1.0" Class="rounded-md">
+                    <div class="flex h-full w-full items-center justify-center bg-muted rounded-md">
+                        <span class="text-sm text-muted-foreground">1:1</span>
+                    </div>
+                </AspectRatio>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;AspectRatio Ratio="1.0" Class="rounded-md"&gt;
+    &lt;img src="avatar.jpg" alt="Avatar" class="h-full w-full object-cover" /&gt;
+&lt;/AspectRatio&gt;</code></pre>
+    </section>
+</div>
