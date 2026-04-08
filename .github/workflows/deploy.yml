@@ -32,6 +32,10 @@ jobs:
         working-directory: src/BlazingSpire.Demo
         run: npx @tailwindcss/cli -i wwwroot/app.css -o wwwroot/app.build.css --minify
 
+      - name: Pre-highlight code blocks
+        working-directory: src/BlazingSpire.Demo
+        run: node highlight-code.js
+
       - name: Publish Blazor WASM
         run: dotnet publish src/BlazingSpire.Demo -c Release -o publish
 

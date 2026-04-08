@@ -34,23 +34,23 @@
         <pre class="language-xml"><code class="language-xml">&#64;* Define your record *&#64;
 &#64;code {
     record PaymentRow(string Status, string Email, decimal Amount);
-    List&lt;PaymentRow&gt; payments = [ /* ... */ ];
+    List<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PaymentRow</span><span class="token punctuation">></span></span> payments = [ /* ... */ ];
 }
 
-&lt;DataTable TItem="PaymentRow" Items="payments"&gt;
-    &lt;Columns&gt;
-        &lt;DataTableColumn SortKey="status" Sortable&gt;Status&lt;/DataTableColumn&gt;
-        &lt;DataTableColumn SortKey="email" Sortable&gt;Email&lt;/DataTableColumn&gt;
-        &lt;DataTableColumn SortKey="amount" Sortable&gt;Amount&lt;/DataTableColumn&gt;
-    &lt;/Columns&gt;
-    &lt;RowTemplate Context="row"&gt;
-        &lt;TableRow&gt;
-            &lt;TableCell&gt;&#64;row.Status&lt;/TableCell&gt;
-            &lt;TableCell&gt;&#64;row.Email&lt;/TableCell&gt;
-            &lt;TableCell&gt;&#64;row.Amount.ToString("C")&lt;/TableCell&gt;
-        &lt;/TableRow&gt;
-    &lt;/RowTemplate&gt;
-&lt;/DataTable&gt;</code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTable</span> <span class="token attr-name">TItem</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>PaymentRow<span class="token punctuation">"</span></span> <span class="token attr-name">Items</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>payments<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Columns</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span> <span class="token attr-name">SortKey</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>status<span class="token punctuation">"</span></span> <span class="token attr-name">Sortable</span><span class="token punctuation">></span></span>Status<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span> <span class="token attr-name">SortKey</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">Sortable</span><span class="token punctuation">></span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span> <span class="token attr-name">SortKey</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>amount<span class="token punctuation">"</span></span> <span class="token attr-name">Sortable</span><span class="token punctuation">></span></span>Amount<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Columns</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RowTemplate</span> <span class="token attr-name">Context</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableRow</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span><span class="token punctuation">></span></span>&#64;row.Status<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span><span class="token punctuation">></span></span>&#64;row.Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span><span class="token punctuation">></span></span>&#64;row.Amount.ToString("C")<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableRow</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>RowTemplate</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTable</span><span class="token punctuation">></span></span></code></pre>
     </section>
 
     <section class="space-y-4">
@@ -64,13 +64,13 @@
                 </Columns>
             </DataTable>
         </div>
-        <pre class="language-xml"><code class="language-xml">&lt;DataTable TItem="PaymentRow" Items="[]"&gt;
-    &lt;Columns&gt;
-        &lt;DataTableColumn&gt;Status&lt;/DataTableColumn&gt;
-        &lt;DataTableColumn&gt;Email&lt;/DataTableColumn&gt;
-        &lt;DataTableColumn&gt;Amount&lt;/DataTableColumn&gt;
-    &lt;/Columns&gt;
-&lt;/DataTable&gt;</code></pre>
+        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTable</span> <span class="token attr-name">TItem</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>PaymentRow<span class="token punctuation">"</span></span> <span class="token attr-name">Items</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>[]<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Columns</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span><span class="token punctuation">></span></span>Status<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span><span class="token punctuation">></span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span><span class="token punctuation">></span></span>Amount<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Columns</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTable</span><span class="token punctuation">></span></span></code></pre>
     </section>
 </div>
 

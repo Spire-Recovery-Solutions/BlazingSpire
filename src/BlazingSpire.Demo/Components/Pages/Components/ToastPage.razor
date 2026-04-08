@@ -20,14 +20,14 @@
         </div>
         <pre class="language-xml"><code class="language-xml">&#64;inject IToastService ToastService
 
-&lt;Button &#64;onclick="ShowToast"&gt;Show Toast&lt;/Button&gt;
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">&#64;onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ShowToast<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Show Toast<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">></span></span>
 
 &#64;code {
     private void ShowToast()
-        =&gt; ToastService.Show("Event has been created", "Monday, January 3 at 6:00pm");
+        => ToastService.Show("Event has been created", "Monday, January 3 at 6:00pm");
 
     private void ShowErrorToast()
-        =&gt; ToastService.Show("Error", "Something went wrong.", ToastVariant.Destructive);
+        => ToastService.Show("Error", "Something went wrong.", ToastVariant.Destructive);
 }</code></pre>
     </section>
 </div>

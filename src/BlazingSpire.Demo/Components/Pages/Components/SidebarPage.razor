@@ -59,25 +59,25 @@
                 </Sidebar>
             </div>
         </div>
-        <pre class="language-xml"><code class="language-xml">&lt;Sidebar &#64;bind-IsCollapsed="_isCollapsed"&gt;
-    &lt;SidebarHeader&gt;
-        &lt;SidebarTrigger /&gt;
-        &#64;if (!_isCollapsed) &#123; &lt;span&gt;Navigation&lt;/span&gt; &#125;
-    &lt;/SidebarHeader&gt;
-    &lt;SidebarContent&gt;
-        &lt;nav&gt;
-            &lt;a href="javascript:void(0)"&gt;Home&lt;/a&gt;
-            &lt;a href="javascript:void(0)"&gt;Search&lt;/a&gt;
-        &lt;/nav&gt;
-    &lt;/SidebarContent&gt;
-    &lt;SidebarFooter&gt;
-        &lt;p&gt;v1.0.0&lt;/p&gt;
-    &lt;/SidebarFooter&gt;
-&lt;/Sidebar&gt;
+        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Sidebar</span> <span class="token attr-name">&#64;bind-IsCollapsed</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>_isCollapsed<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SidebarHeader</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SidebarTrigger</span> <span class="token punctuation">/></span></span>
+        &#64;if (!_isCollapsed) { <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Navigation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span> }
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SidebarHeader</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SidebarContent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>javascript:void(0)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Home<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>javascript:void(0)<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Search<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SidebarContent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SidebarFooter</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>v1.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SidebarFooter</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Sidebar</span><span class="token punctuation">></span></span>
 
-&#64;code &#123;
+&#64;code {
     private bool _isCollapsed;
-&#125;</code></pre>
+}</code></pre>
     </section>
 </div>
 

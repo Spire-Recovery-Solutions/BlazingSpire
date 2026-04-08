@@ -27,15 +27,15 @@
             </div>
             <p class="text-sm text-muted-foreground text-center mt-2">Slide @(_carouselIndex + 1) of 5</p>
         </div>
-        <pre class="language-xml"><code class="language-xml">&lt;Carousel &#64;bind-CurrentIndex="carouselIndex"&gt;
-    &lt;CarouselContent&gt;
-        &lt;CarouselItem&gt;&lt;!-- slide 1 --&gt;&lt;/CarouselItem&gt;
-        &lt;CarouselItem&gt;&lt;!-- slide 2 --&gt;&lt;/CarouselItem&gt;
-        &lt;CarouselItem&gt;&lt;!-- slide 3 --&gt;&lt;/CarouselItem&gt;
-    &lt;/CarouselContent&gt;
-    &lt;CarouselPrevious /&gt;
-    &lt;CarouselNext /&gt;
-&lt;/Carousel&gt;
+        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Carousel</span> <span class="token attr-name">&#64;bind-CurrentIndex</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>carouselIndex<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CarouselContent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CarouselItem</span><span class="token punctuation">></span></span><span class="token comment">&lt;!-- slide 1 --></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>CarouselItem</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CarouselItem</span><span class="token punctuation">></span></span><span class="token comment">&lt;!-- slide 2 --></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>CarouselItem</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CarouselItem</span><span class="token punctuation">></span></span><span class="token comment">&lt;!-- slide 3 --></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>CarouselItem</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>CarouselContent</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CarouselPrevious</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CarouselNext</span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Carousel</span><span class="token punctuation">></span></span>
 
 &#64;code {
     private int carouselIndex;
