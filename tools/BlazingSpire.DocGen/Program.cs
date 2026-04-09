@@ -366,7 +366,23 @@ static string? GetDefaultValue(Type componentType, PropertyInfo prop, Type effec
 {
     try
     {
-        // For enums, the default is the 0-valued member
+        // Try reading the actual default from a fresh instance
+        object? instance = null;
+        try { instance = Activator.CreateInstance(componentType); } catch { }
+        if (instance is not null)
+        {
+            var val = prop.GetValue(instance);
+            if (val is null) return null;
+            if (effectiveType == typeof(bool)) return val.ToString()!.ToLowerInvariant();
+            if (effectiveType == typeof(string)) return val.ToString();
+            if (effectiveType.IsEnum) return val.ToString();
+            if (effectiveType == typeof(int)) return val.ToString();
+            if (effectiveType == typeof(double)) return val.ToString();
+            if (effectiveType == typeof(decimal)) return val.ToString();
+            return val.ToString();
+        }
+
+        // Fallback: use type defaults
         if (effectiveType.IsEnum)
         {
             var defaultVal = Enum.ToObject(effectiveType, 0);

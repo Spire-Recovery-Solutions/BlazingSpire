@@ -10,4 +10,4 @@ parameters[4]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample Sidebar content, The content to render inside the component.
   Class, string, String, , Additional CSS classes to apply to the root element.
   IsCollapsed, bool, Boolean, false, 
-  IsCollapsedChanged, EventCallback<bool>, Event, , 
+  IsCollapsedChanged, EventCallback<bool>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.Boolean], 

@@ -13,14 +13,14 @@ parameters[14]{name:str,type:str,kind:str,default:str,description:str}:
   Class, string, String, , Additional CSS classes to apply to the root element.
   DefaultIsOpen, bool, Boolean, false, Initial open state for uncontrolled usage.
   IsOpen, bool, Boolean, false, Whether the overlay is open.
-  IsOpenChanged, EventCallback<bool>, Event, , Callback for two-way binding of IsOpen.
-  OnClose, EventCallback, Event, , Callback invoked when the overlay closes.
-  OnOpenChanged, EventCallback<bool>, Event, , Callback invoked when the open state changes.
+  IsOpenChanged, EventCallback<bool>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.Boolean], Callback for two-way binding of IsOpen.
+  OnClose, EventCallback, Event, Microsoft.AspNetCore.Components.EventCallback, Callback invoked when the overlay closes.
+  OnOpenChanged, EventCallback<bool>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.Boolean], Callback invoked when the open state changes.
   Placeholder, string, String, , Placeholder text when no value is selected.
-  Side, FloatingSide, Enum, Top, Which side of the trigger to position on.
-  SideOffset, int, Number, 0, Distance in pixels from the trigger.
+  Side, FloatingSide, Enum, Bottom, Which side of the trigger to position on.
+  SideOffset, int, Number, 4, Distance in pixels from the trigger.
   Value, string, String, , The currently selected value.
-  ValueChanged, EventCallback<string>, Event, , Callback invoked when the selection changes.
+  ValueChanged, EventCallback<string>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.String], Callback invoked when the selection changes.
 
 enum:Align[3]{value:str}:
   Start

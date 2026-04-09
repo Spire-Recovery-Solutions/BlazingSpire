@@ -7,7 +7,7 @@ public partial class DrawerTrigger : BlazingSpireComponentBase
 {
     [CascadingParameter] public Drawer? ParentDrawer { get; set; }
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-block";
 
     private async Task OnClickAsync()
     {

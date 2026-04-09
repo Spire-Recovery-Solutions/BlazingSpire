@@ -101,11 +101,20 @@ public partial class ComponentPlayground
         };
     }
 
+    private static readonly string[] s_enumNamespaces =
+    [
+        "BlazingSpire.Demo.Components.UI",
+        "BlazingSpire.Demo.Components.Shared",
+        "BlazingSpire.Demo.Components.Layout",
+        "BlazingSpire.Demo.Components.Demo",
+    ];
+
     private static object? ResolveEnum(string enumTypeName, string valueName)
     {
-        foreach (var (_, compType) in PlaygroundFactories.ComponentTypes)
+        var assembly = typeof(PlaygroundFactories).Assembly;
+        foreach (var ns in s_enumNamespaces)
         {
-            var enumType = compType.Assembly.GetType($"BlazingSpire.Demo.Components.UI.{enumTypeName}");
+            var enumType = assembly.GetType($"{ns}.{enumTypeName}");
             if (enumType is not null && enumType.IsEnum)
                 return Enum.Parse(enumType, valueName);
         }

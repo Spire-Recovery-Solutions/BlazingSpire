@@ -12,9 +12,9 @@ parameters[8]{name:str,type:str,kind:str,default:str,description:str}:
   Disabled, bool, Boolean, false, 
   Type, ToggleGroupType, Enum, Single, 
   Value, string, String, , 
-  ValueChanged, EventCallback<string>, Event, , 
-  Values, HashSet<string>, Object, , 
-  ValuesChanged, EventCallback<HashSet<string>>, Event, , 
+  ValueChanged, EventCallback<string>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.String], 
+  Values, HashSet<string>, Object, System.Collections.Generic.HashSet`1[System.String], 
+  ValuesChanged, EventCallback<HashSet<string>>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.Collections.Generic.HashSet`1[System.String]], 
 
 enum:Type[2]{value:str}:
   Single

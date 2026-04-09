@@ -8,7 +8,7 @@ public partial class ContextMenuTrigger : BlazingSpireComponentBase
 {
     [CascadingParameter] public ContextMenu? ParentMenu { get; set; }
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-block";
 
     private async Task OnContextMenuAsync(MouseEventArgs e)
     {

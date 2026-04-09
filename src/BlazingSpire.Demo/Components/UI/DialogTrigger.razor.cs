@@ -7,7 +7,7 @@ public partial class DialogTrigger : BlazingSpireComponentBase
 {
     [CascadingParameter] public Dialog? ParentDialog { get; set; }
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-block";
 
     private async Task OnClickAsync()
     {

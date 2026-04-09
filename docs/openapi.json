@@ -960,12 +960,12 @@
             ],
             "type": "string",
             "description": "Which side of the trigger to position on.",
-            "default": "Top"
+            "default": "Bottom"
           },
           "SideOffset": {
             "type": "integer",
             "description": "Distance in pixels from the trigger.",
-            "default": 0
+            "default": 4
           },
           "Value": {
             "type": "string",
@@ -1294,12 +1294,12 @@
             ],
             "type": "string",
             "description": "Which side of the trigger to position on.",
-            "default": "Top"
+            "default": "Bottom"
           },
           "SideOffset": {
             "type": "integer",
             "description": "Distance in pixels from the trigger.",
-            "default": 0
+            "default": 4
           }
         },
         "description": "",
@@ -1838,12 +1838,12 @@
             ],
             "type": "string",
             "description": "Which side of the trigger to position on.",
-            "default": "Top"
+            "default": "Bottom"
           },
           "SideOffset": {
             "type": "integer",
             "description": "Distance in pixels from the trigger.",
-            "default": 0
+            "default": 4
           }
         },
         "description": "",
@@ -2107,7 +2107,7 @@
           "CloseDelay": {
             "type": "integer",
             "description": "",
-            "default": 0
+            "default": 200
           },
           "DefaultIsOpen": {
             "type": "boolean",
@@ -2137,7 +2137,7 @@
           "OpenDelay": {
             "type": "integer",
             "description": "",
-            "default": 0
+            "default": 300
           },
           "Side": {
             "enum": [
@@ -2148,12 +2148,12 @@
             ],
             "type": "string",
             "description": "Which side of the trigger to position on.",
-            "default": "Top"
+            "default": "Bottom"
           },
           "SideOffset": {
             "type": "integer",
             "description": "Distance in pixels from the trigger.",
-            "default": 0
+            "default": 4
           }
         },
         "description": "",
@@ -2223,8 +2223,7 @@
           },
           "MaxLength": {
             "type": "integer",
-            "description": "Maximum number of characters allowed.",
-            "default": 0
+            "description": "Maximum number of characters allowed."
           },
           "Name": {
             "type": "string",
@@ -2265,7 +2264,7 @@
             ],
             "type": "string",
             "description": "The size of the input field.",
-            "default": "Sm"
+            "default": "Default"
           },
           "Suffix": {
             "type": "string",
@@ -2312,7 +2311,7 @@
           "MaxLength": {
             "type": "integer",
             "description": "",
-            "default": 0
+            "default": 6
           },
           "Value": {
             "type": "string",
@@ -2812,12 +2811,12 @@
             ],
             "type": "string",
             "description": "Which side of the trigger to position on.",
-            "default": "Top"
+            "default": "Bottom"
           },
           "SideOffset": {
             "type": "integer",
             "description": "Distance in pixels from the trigger.",
-            "default": 0
+            "default": 4
           }
         },
         "description": "A positioned floating panel anchored to a trigger.",
@@ -3007,12 +3006,12 @@
             ],
             "type": "string",
             "description": "Which side of the trigger to position on.",
-            "default": "Top"
+            "default": "Bottom"
           },
           "SideOffset": {
             "type": "integer",
             "description": "Distance in pixels from the trigger.",
-            "default": 0
+            "default": 4
           },
           "Value": {
             "type": "string",
@@ -3172,7 +3171,7 @@
           "Decorative": {
             "type": "boolean",
             "description": "",
-            "default": false
+            "default": true
           },
           "Orientation": {
             "enum": [
@@ -3233,7 +3232,7 @@
             ],
             "type": "string",
             "description": "",
-            "default": "Top"
+            "default": "Right"
           }
         },
         "description": "",
@@ -3476,19 +3475,23 @@
           },
           "Max": {
             "type": "number",
-            "description": ""
+            "description": "",
+            "default": 100
           },
           "Min": {
             "type": "number",
-            "description": ""
+            "description": "",
+            "default": 0
           },
           "Step": {
             "type": "number",
-            "description": ""
+            "description": "",
+            "default": 1
           },
           "Value": {
             "type": "number",
-            "description": ""
+            "description": "",
+            "default": 50
           },
           "ValueChanged": {
             "type": "string",
@@ -3519,7 +3522,7 @@
             ],
             "type": "string",
             "description": "The size of the spinner.",
-            "default": "Sm"
+            "default": "Default"
           }
         },
         "description": "A circular loading indicator for async operations.",
@@ -3823,7 +3826,7 @@
           "MinuteStep": {
             "type": "integer",
             "description": "Minute increment step size.",
-            "default": 0
+            "default": 1
           },
           "Placeholder": {
             "type": "string",
@@ -4123,12 +4126,12 @@
             ],
             "type": "string",
             "description": "Which side of the trigger to position on.",
-            "default": "Top"
+            "default": "Bottom"
           },
           "SideOffset": {
             "type": "integer",
             "description": "Distance in pixels from the trigger.",
-            "default": 0
+            "default": 4
           }
         },
         "description": "",

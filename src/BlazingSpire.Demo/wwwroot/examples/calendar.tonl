@@ -9,6 +9,6 @@ component{name:str,description:str,category:str,baseTier:str}:
 parameters[5]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample Calendar content, The content to render inside the component.
   Class, string, String, , Additional CSS classes to apply to the root element.
-  DisplayMonth, DateOnly, Object, , The month currently displayed.
+  DisplayMonth, DateOnly, Object, 4/9/2026, The month currently displayed.
   SelectedDate, DateOnly, Object, , The currently selected date.
-  SelectedDateChanged, EventCallback<Nullable<DateOnly>>, Event, , Callback invoked when the selected date changes.
+  SelectedDateChanged, EventCallback<Nullable<DateOnly>>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.Nullable`1[System.DateOnly]], Callback invoked when the selected date changes.

@@ -12,7 +12,7 @@ parameters[9]{name:str,type:str,kind:str,default:str,description:str}:
   Disabled, bool, Boolean, false, Whether the time picker is disabled.
   MaxTime, TimeOnly, Object, , Latest selectable time.
   MinTime, TimeOnly, Object, , Earliest selectable time.
-  MinuteStep, int, Number, 0, Minute increment step size.
-  Placeholder, string, String, , Placeholder text when no time is selected.
+  MinuteStep, int, Number, 1, Minute increment step size.
+  Placeholder, string, String, Pick a time, Placeholder text when no time is selected.
   SelectedTime, TimeOnly, Object, , The currently selected time.
-  SelectedTimeChanged, EventCallback<Nullable<TimeOnly>>, Event, , Callback invoked when the selected time changes.
+  SelectedTimeChanged, EventCallback<Nullable<TimeOnly>>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.Nullable`1[System.TimeOnly]], Callback invoked when the selected time changes.

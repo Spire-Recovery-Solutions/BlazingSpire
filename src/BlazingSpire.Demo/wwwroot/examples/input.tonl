@@ -13,19 +13,19 @@ parameters[20]{name:str,type:str,kind:str,default:str,description:str}:
   Disabled, bool, Boolean, false, Whether the component is disabled.
   Immediate, bool, Boolean, false, Update value on every keystroke instead of on blur.
   InputMode, string, String, , Hint for virtual keyboard type (numeric, tel, etc.).
-  MaxLength, int, Number, 0, Maximum number of characters allowed.
+  MaxLength, int, Number, , Maximum number of characters allowed.
   Name, string, String, , The name attribute for the form control.
-  OnKeyDown, EventCallback<KeyboardEventArgs>, Event, , Callback invoked on key down events.
+  OnKeyDown, EventCallback<KeyboardEventArgs>, Event, Microsoft.AspNetCore.Components.EventCallback`1[Microsoft.AspNetCore.Components.Web.KeyboardEventArgs], Callback invoked on key down events.
   Pattern, string, String, , Regex pattern for input validation.
   Placeholder, string, String, , Placeholder text displayed when the control is empty.
   Prefix, RenderFragment, Content, , Content displayed before the input (e.g., currency symbol).
   ReadOnly, bool, Boolean, false, Whether the field is read-only.
   Required, bool, Boolean, false, Whether the field is required.
-  Size, InputSize, Enum, Sm, The size of the input field.
+  Size, InputSize, Enum, Default, The size of the input field.
   Suffix, RenderFragment, Content, , Content displayed after the input (e.g., unit label).
-  Type, string, String, , HTML input type (text, email, password, etc.).
+  Type, string, String, text, HTML input type (text, email, password, etc.).
   Value, string, String, , The current value of the form control.
-  ValueChanged, EventCallback<string>, Event, , Callback invoked when the value changes.
+  ValueChanged, EventCallback<string>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.String], Callback invoked when the value changes.
   ValueExpression, Expression<Func<string>>, Expression, , Expression identifying the bound value for validation.
 
 enum:Size[3]{value:str}:

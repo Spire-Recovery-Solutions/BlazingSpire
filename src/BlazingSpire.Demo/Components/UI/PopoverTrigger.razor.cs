@@ -7,7 +7,7 @@ public partial class PopoverTrigger : BlazingSpireComponentBase
 {
     [CascadingParameter] public Popover? ParentPopover { get; set; }
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-block";
 
     private async Task OnClickAsync()
     {

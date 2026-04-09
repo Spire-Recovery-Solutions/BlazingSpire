@@ -33,6 +33,11 @@ public abstract class PopoverBase : OverlayBase
 
     public ElementReference AnchorRef;
 
+    private string _lastPositionKey = "";
+
+    private string PositionKey =>
+        $"{Side}|{Align}|{SideOffset}|{AlignOffset}";
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
@@ -45,8 +50,17 @@ public abstract class PopoverBase : OverlayBase
 
         if (_floatingModule is null) return;
 
+        // Recompute position if parameters changed while open
+        var currentKey = PositionKey;
+        if (CurrentIsOpen && _positionHandle is not null && currentKey != _lastPositionKey)
+        {
+            await _positionHandle.InvokeVoidAsync("dispose");
+            _positionHandle = null;
+        }
+
         if (CurrentIsOpen && _positionHandle is null)
         {
+            _lastPositionKey = currentKey;
             _positionHandle = await _floatingModule.InvokeAsync<IJSObjectReference>(
                 "computePosition", AnchorRef, ContentRef, new
                 {

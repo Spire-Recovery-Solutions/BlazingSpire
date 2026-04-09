@@ -7,7 +7,7 @@ public partial class SheetTrigger : BlazingSpireComponentBase
 {
     [CascadingParameter] public Sheet? ParentSheet { get; set; }
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-block";
 
     private async Task OnClickAsync()
     {

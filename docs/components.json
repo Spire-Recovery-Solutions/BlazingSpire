@@ -176,19 +176,22 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       }
     ]
   },
@@ -215,7 +218,8 @@
         "name": "OnClick",
         "kind": "Event",
         "type": "EventCallback",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       }
     ]
   },
@@ -410,7 +414,8 @@
         "name": "Ratio",
         "kind": "Number",
         "type": "double",
-        "description": ""
+        "description": "",
+        "defaultValue": "1.7777777777777777"
       }
     ]
   },
@@ -698,7 +703,8 @@
         "name": "OnClick",
         "kind": "Event",
         "type": "EventCallback\u003CMouseEventArgs\u003E",
-        "description": "Callback invoked when the button is clicked."
+        "description": "Callback invoked when the button is clicked.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[Microsoft.AspNetCore.Components.Web.MouseEventArgs]"
       },
       {
         "name": "Rel",
@@ -729,7 +735,8 @@
         "name": "Type",
         "kind": "String",
         "type": "string",
-        "description": "HTML button type (button, submit, reset)."
+        "description": "HTML button type (button, submit, reset).",
+        "defaultValue": "button"
       },
       {
         "name": "Variant",
@@ -771,7 +778,8 @@
         "name": "DisplayMonth",
         "kind": "Object",
         "type": "DateOnly",
-        "description": "The month currently displayed."
+        "description": "The month currently displayed.",
+        "defaultValue": "4/9/2026"
       },
       {
         "name": "SelectedDate",
@@ -783,7 +791,8 @@
         "name": "SelectedDateChanged",
         "kind": "Event",
         "type": "EventCallback\u003CNullable\u003CDateOnly\u003E\u003E",
-        "description": "Callback invoked when the selected date changes."
+        "description": "Callback invoked when the selected date changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Nullable\u00601[System.DateOnly]]"
       }
     ]
   },
@@ -943,7 +952,8 @@
         "name": "CurrentIndexChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cint\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Int32]"
       },
       {
         "name": "Orientation",
@@ -1059,7 +1069,8 @@
         "name": "CheckedChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the checked state changes."
+        "description": "Callback invoked when the checked state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "ChildContent",
@@ -1113,7 +1124,8 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       }
     ]
   },
@@ -1215,19 +1227,22 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "Placeholder",
@@ -1239,14 +1254,15 @@
         "name": "SearchPlaceholder",
         "kind": "String",
         "type": "string",
-        "description": ""
+        "description": "",
+        "defaultValue": "Search..."
       },
       {
         "name": "Side",
         "kind": "Enum",
         "type": "FloatingSide",
         "description": "Which side of the trigger to position on.",
-        "defaultValue": "Top",
+        "defaultValue": "Bottom",
         "enumValues": [
           "Top",
           "Bottom",
@@ -1259,7 +1275,7 @@
         "kind": "Number",
         "type": "int",
         "description": "Distance in pixels from the trigger.",
-        "defaultValue": "0"
+        "defaultValue": "4"
       },
       {
         "name": "Value",
@@ -1271,7 +1287,8 @@
         "name": "ValueChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cstring\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.String]"
       }
     ]
   },
@@ -1374,7 +1391,8 @@
         "name": "ItemValue",
         "kind": "String",
         "type": "string",
-        "description": ""
+        "description": "",
+        "defaultValue": ""
       }
     ]
   },
@@ -1450,7 +1468,8 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       }
     ]
   },
@@ -1565,7 +1584,8 @@
         "name": "OnSelect",
         "kind": "Event",
         "type": "EventCallback",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       }
     ]
   },
@@ -1667,26 +1687,29 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "Side",
         "kind": "Enum",
         "type": "FloatingSide",
         "description": "Which side of the trigger to position on.",
-        "defaultValue": "Top",
+        "defaultValue": "Bottom",
         "enumValues": [
           "Top",
           "Bottom",
@@ -1699,7 +1722,7 @@
         "kind": "Number",
         "type": "int",
         "description": "Distance in pixels from the trigger.",
-        "defaultValue": "0"
+        "defaultValue": "4"
       }
     ]
   },
@@ -1754,7 +1777,8 @@
         "name": "OnClick",
         "kind": "Event",
         "type": "EventCallback",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       }
     ]
   },
@@ -1885,7 +1909,8 @@
         "name": "DateFormat",
         "kind": "String",
         "type": "string",
-        "description": "Date display format string."
+        "description": "Date display format string.",
+        "defaultValue": "MM/dd/yyyy"
       },
       {
         "name": "Disabled",
@@ -1910,7 +1935,8 @@
         "name": "Placeholder",
         "kind": "String",
         "type": "string",
-        "description": "Placeholder text when no date is selected."
+        "description": "Placeholder text when no date is selected.",
+        "defaultValue": "Pick a date"
       },
       {
         "name": "SelectedDate",
@@ -1922,7 +1948,8 @@
         "name": "SelectedDateChanged",
         "kind": "Event",
         "type": "EventCallback\u003CNullable\u003CDateOnly\u003E\u003E",
-        "description": "Callback invoked when the selected date changes."
+        "description": "Callback invoked when the selected date changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Nullable\u00601[System.DateOnly]]"
       }
     ]
   },
@@ -1963,19 +1990,22 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       }
     ]
   },
@@ -2163,19 +2193,22 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       }
     ]
   },
@@ -2382,26 +2415,29 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "Side",
         "kind": "Enum",
         "type": "FloatingSide",
         "description": "Which side of the trigger to position on.",
-        "defaultValue": "Top",
+        "defaultValue": "Bottom",
         "enumValues": [
           "Top",
           "Bottom",
@@ -2414,7 +2450,7 @@
         "kind": "Number",
         "type": "int",
         "description": "Distance in pixels from the trigger.",
-        "defaultValue": "0"
+        "defaultValue": "4"
       }
     ]
   },
@@ -2490,7 +2526,8 @@
         "name": "OnClick",
         "kind": "Event",
         "type": "EventCallback",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       }
     ]
   },
@@ -2764,7 +2801,7 @@
         "kind": "Number",
         "type": "int",
         "description": "",
-        "defaultValue": "0"
+        "defaultValue": "200"
       },
       {
         "name": "DefaultIsOpen",
@@ -2784,33 +2821,36 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OpenDelay",
         "kind": "Number",
         "type": "int",
         "description": "",
-        "defaultValue": "0"
+        "defaultValue": "300"
       },
       {
         "name": "Side",
         "kind": "Enum",
         "type": "FloatingSide",
         "description": "Which side of the trigger to position on.",
-        "defaultValue": "Top",
+        "defaultValue": "Bottom",
         "enumValues": [
           "Top",
           "Bottom",
@@ -2823,7 +2863,7 @@
         "kind": "Number",
         "type": "int",
         "description": "Distance in pixels from the trigger.",
-        "defaultValue": "0"
+        "defaultValue": "4"
       }
     ]
   },
@@ -2918,8 +2958,7 @@
         "name": "MaxLength",
         "kind": "Number",
         "type": "int",
-        "description": "Maximum number of characters allowed.",
-        "defaultValue": "0"
+        "description": "Maximum number of characters allowed."
       },
       {
         "name": "Name",
@@ -2931,7 +2970,8 @@
         "name": "OnKeyDown",
         "kind": "Event",
         "type": "EventCallback\u003CKeyboardEventArgs\u003E",
-        "description": "Callback invoked on key down events."
+        "description": "Callback invoked on key down events.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[Microsoft.AspNetCore.Components.Web.KeyboardEventArgs]"
       },
       {
         "name": "Pattern",
@@ -2970,7 +3010,7 @@
         "kind": "Enum",
         "type": "InputSize",
         "description": "The size of the input field.",
-        "defaultValue": "Sm",
+        "defaultValue": "Default",
         "enumValues": [
           "Sm",
           "Default",
@@ -2987,7 +3027,8 @@
         "name": "Type",
         "kind": "String",
         "type": "string",
-        "description": "HTML input type (text, email, password, etc.)."
+        "description": "HTML input type (text, email, password, etc.).",
+        "defaultValue": "text"
       },
       {
         "name": "Value",
@@ -2999,7 +3040,8 @@
         "name": "ValueChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cstring\u003E",
-        "description": "Callback invoked when the value changes."
+        "description": "Callback invoked when the value changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.String]"
       },
       {
         "name": "ValueExpression",
@@ -3040,19 +3082,21 @@
         "kind": "Number",
         "type": "int",
         "description": "",
-        "defaultValue": "0"
+        "defaultValue": "6"
       },
       {
         "name": "Value",
         "kind": "String",
         "type": "string",
-        "description": ""
+        "description": "",
+        "defaultValue": ""
       },
       {
         "name": "ValueChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cstring\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.String]"
       }
     ]
   },
@@ -3225,7 +3269,8 @@
         "name": "OnClick",
         "kind": "Event",
         "type": "EventCallback",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       }
     ]
   },
@@ -3673,26 +3718,29 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "Side",
         "kind": "Enum",
         "type": "FloatingSide",
         "description": "Which side of the trigger to position on.",
-        "defaultValue": "Top",
+        "defaultValue": "Bottom",
         "enumValues": [
           "Top",
           "Bottom",
@@ -3705,7 +3753,7 @@
         "kind": "Number",
         "type": "int",
         "description": "Distance in pixels from the trigger.",
-        "defaultValue": "0"
+        "defaultValue": "4"
       }
     ]
   },
@@ -3808,7 +3856,8 @@
         "name": "ValueChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cstring\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.String]"
       }
     ]
   },
@@ -3842,7 +3891,8 @@
         "name": "ItemValue",
         "kind": "String",
         "type": "string",
-        "description": ""
+        "description": "",
+        "defaultValue": ""
       }
     ]
   },
@@ -3923,19 +3973,22 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "Placeholder",
@@ -3948,7 +4001,7 @@
         "kind": "Enum",
         "type": "FloatingSide",
         "description": "Which side of the trigger to position on.",
-        "defaultValue": "Top",
+        "defaultValue": "Bottom",
         "enumValues": [
           "Top",
           "Bottom",
@@ -3961,7 +4014,7 @@
         "kind": "Number",
         "type": "int",
         "description": "Distance in pixels from the trigger.",
-        "defaultValue": "0"
+        "defaultValue": "4"
       },
       {
         "name": "Value",
@@ -3973,7 +4026,8 @@
         "name": "ValueChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cstring\u003E",
-        "description": "Callback invoked when the selection changes."
+        "description": "Callback invoked when the selection changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.String]"
       }
     ]
   },
@@ -4055,7 +4109,8 @@
         "name": "ItemValue",
         "kind": "String",
         "type": "string",
-        "description": ""
+        "description": "",
+        "defaultValue": ""
       }
     ]
   },
@@ -4174,7 +4229,7 @@
         "kind": "Boolean",
         "type": "bool",
         "description": "",
-        "defaultValue": "false"
+        "defaultValue": "true"
       },
       {
         "name": "Orientation",
@@ -4226,26 +4281,29 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "Side",
         "kind": "Enum",
         "type": "SheetSide",
         "description": "",
-        "defaultValue": "Top",
+        "defaultValue": "Right",
         "enumValues": [
           "Top",
           "Right",
@@ -4432,7 +4490,8 @@
         "name": "IsCollapsedChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       }
     ]
   },
@@ -4571,31 +4630,36 @@
         "name": "Max",
         "kind": "Number",
         "type": "double",
-        "description": ""
+        "description": "",
+        "defaultValue": "100"
       },
       {
         "name": "Min",
         "kind": "Number",
         "type": "double",
-        "description": ""
+        "description": "",
+        "defaultValue": "0"
       },
       {
         "name": "Step",
         "kind": "Number",
         "type": "double",
-        "description": ""
+        "description": "",
+        "defaultValue": "1"
       },
       {
         "name": "Value",
         "kind": "Number",
         "type": "double",
-        "description": ""
+        "description": "",
+        "defaultValue": "50"
       },
       {
         "name": "ValueChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cdouble\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Double]"
       }
     ]
   },
@@ -4623,7 +4687,7 @@
         "kind": "Enum",
         "type": "SpinnerSize",
         "description": "The size of the spinner.",
-        "defaultValue": "Sm",
+        "defaultValue": "Default",
         "enumValues": [
           "Sm",
           "Default",
@@ -4649,7 +4713,8 @@
         "name": "CheckedChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the switch is toggled."
+        "description": "Callback invoked when the switch is toggled.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "ChildContent",
@@ -4857,7 +4922,8 @@
         "name": "ActiveValueChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cstring\u003E",
-        "description": "Callback invoked when the active tab changes."
+        "description": "Callback invoked when the active tab changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.String]"
       },
       {
         "name": "ChildContent",
@@ -4897,7 +4963,8 @@
         "name": "ItemValue",
         "kind": "String",
         "type": "string",
-        "description": ""
+        "description": "",
+        "defaultValue": ""
       }
     ]
   },
@@ -4952,7 +5019,8 @@
         "name": "ItemValue",
         "kind": "String",
         "type": "string",
-        "description": ""
+        "description": "",
+        "defaultValue": ""
       }
     ]
   },
@@ -5033,13 +5101,14 @@
         "kind": "Number",
         "type": "int",
         "description": "Minute increment step size.",
-        "defaultValue": "0"
+        "defaultValue": "1"
       },
       {
         "name": "Placeholder",
         "kind": "String",
         "type": "string",
-        "description": "Placeholder text when no time is selected."
+        "description": "Placeholder text when no time is selected.",
+        "defaultValue": "Pick a time"
       },
       {
         "name": "SelectedTime",
@@ -5051,7 +5120,8 @@
         "name": "SelectedTimeChanged",
         "kind": "Event",
         "type": "EventCallback\u003CNullable\u003CTimeOnly\u003E\u003E",
-        "description": "Callback invoked when the selected time changes."
+        "description": "Callback invoked when the selected time changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Nullable\u00601[System.TimeOnly]]"
       }
     ]
   },
@@ -5084,7 +5154,8 @@
         "name": "OnDismiss",
         "kind": "Event",
         "type": "EventCallback",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "Variant",
@@ -5149,7 +5220,8 @@
         "name": "OnDismiss",
         "kind": "Event",
         "type": "EventCallback",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       }
     ]
   },
@@ -5232,7 +5304,8 @@
         "name": "PressedChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "Variant",
@@ -5294,19 +5367,22 @@
         "name": "ValueChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cstring\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.String]"
       },
       {
         "name": "Values",
         "kind": "Object",
         "type": "HashSet\u003Cstring\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "System.Collections.Generic.HashSet\u00601[System.String]"
       },
       {
         "name": "ValuesChanged",
         "kind": "Event",
         "type": "EventCallback\u003CHashSet\u003Cstring\u003E\u003E",
-        "description": ""
+        "description": "",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Collections.Generic.HashSet\u00601[System.String]]"
       }
     ]
   },
@@ -5340,7 +5416,8 @@
         "name": "ItemValue",
         "kind": "String",
         "type": "string",
-        "description": ""
+        "description": "",
+        "defaultValue": ""
       }
     ]
   },
@@ -5400,26 +5477,29 @@
         "name": "IsOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback for two-way binding of IsOpen."
+        "description": "Callback for two-way binding of IsOpen.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "OnClose",
         "kind": "Event",
         "type": "EventCallback",
-        "description": "Callback invoked when the overlay closes."
+        "description": "Callback invoked when the overlay closes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback"
       },
       {
         "name": "OnOpenChanged",
         "kind": "Event",
         "type": "EventCallback\u003Cbool\u003E",
-        "description": "Callback invoked when the open state changes."
+        "description": "Callback invoked when the open state changes.",
+        "defaultValue": "Microsoft.AspNetCore.Components.EventCallback\u00601[System.Boolean]"
       },
       {
         "name": "Side",
         "kind": "Enum",
         "type": "FloatingSide",
         "description": "Which side of the trigger to position on.",
-        "defaultValue": "Top",
+        "defaultValue": "Bottom",
         "enumValues": [
           "Top",
           "Bottom",
@@ -5432,7 +5512,7 @@
         "kind": "Number",
         "type": "int",
         "description": "Distance in pixels from the trigger.",
-        "defaultValue": "0"
+        "defaultValue": "4"
       }
     ]
   },

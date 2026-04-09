@@ -7,7 +7,7 @@ public partial class CollapsibleTrigger : BlazingSpireComponentBase
 {
     [CascadingParameter] public Collapsible? Parent { get; set; }
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-block";
 
     private async Task OnClickAsync()
     {

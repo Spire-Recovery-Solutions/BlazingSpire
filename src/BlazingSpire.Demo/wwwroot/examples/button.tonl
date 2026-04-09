@@ -12,11 +12,11 @@ parameters[11]{name:str,type:str,kind:str,default:str,description:str}:
   Disabled, bool, Boolean, false, Whether the component is disabled.
   Href, string, String, , URL to navigate to (renders as anchor).
   Loading, bool, Boolean, false, Whether the button shows a loading spinner.
-  OnClick, EventCallback<MouseEventArgs>, Event, , Callback invoked when the button is clicked.
+  OnClick, EventCallback<MouseEventArgs>, Event, Microsoft.AspNetCore.Components.EventCallback`1[Microsoft.AspNetCore.Components.Web.MouseEventArgs], Callback invoked when the button is clicked.
   Rel, string, String, , Link rel attribute (e.g., noopener).
   Size, ButtonSize, Enum, Default, The size of the button.
   Target, string, String, , Link target attribute (e.g., _blank).
-  Type, string, String, , HTML button type (button, submit, reset).
+  Type, string, String, button, HTML button type (button, submit, reset).
   Variant, ButtonVariant, Enum, Default, The visual style variant.
 
 enum:Size[4]{value:str}:
