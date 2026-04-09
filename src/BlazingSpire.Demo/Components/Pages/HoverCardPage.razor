@@ -1,0 +1,59 @@
+@page "/components/hover-card"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Hover Card - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Hover Card</h1>
+        <p class="text-lg text-muted-foreground">A floating card that appears when hovering over a trigger element.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <HoverCard>
+                <HoverCardTrigger>
+                    <span class="cursor-pointer font-medium underline decoration-dotted underline-offset-4">
+                        &#64;BlazingSpire
+                    </span>
+                </HoverCardTrigger>
+                <HoverCardContent>
+                    <div class="flex justify-between space-x-4">
+                        <div class="space-y-1">
+                            <h4 class="text-sm font-semibold">&#64;BlazingSpire</h4>
+                            <p class="text-sm text-muted-foreground">A Blazor component framework inspired by shadcn/ui.</p>
+                            <div class="flex items-center pt-2">
+                                <span class="text-xs text-muted-foreground">Copy-paste components. You own the code.</span>
+                            </div>
+                        </div>
+                    </div>
+                </HoverCardContent>
+            </HoverCard>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;HoverCard&gt;
+    &lt;HoverCardTrigger&gt;
+        &lt;span class=&quot;cursor-pointer underline decoration-dotted underline-offset-4&quot;&gt;
+            &#64;BlazingSpire
+        &lt;/span&gt;
+    &lt;/HoverCardTrigger&gt;
+    &lt;HoverCardContent&gt;
+        &lt;div class=&quot;space-y-1&quot;&gt;
+            &lt;h4 class=&quot;text-sm font-semibold&quot;&gt;&#64;BlazingSpire&lt;/h4&gt;
+            &lt;p class=&quot;text-sm text-muted-foreground&quot;&gt;
+                A Blazor component framework inspired by shadcn/ui.
+            &lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/HoverCardContent&gt;
+&lt;/HoverCard&gt;</code></pre>
+    </div>
+
+</div>

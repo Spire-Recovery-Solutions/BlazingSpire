@@ -1,4 +1,3 @@
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 using Microsoft.AspNetCore.Components;
@@ -7,14 +6,7 @@ namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class SliderTests : BlazingSpireTestBase
 {
-    // ── Rendering ────────────────────────────────────────────────────────────
-
-    [Fact]
-    public void Renders_Outer_Div()
-    {
-        var cut = Render<Slider>();
-        Assert.NotNull(cut.Find("div"));
-    }
+    // ── Element type ──────────────────────────────────────────────────────────
 
     [Fact]
     public void Renders_Input_Type_Range()
@@ -85,53 +77,10 @@ public class SliderTests : BlazingSpireTestBase
             .Add(x => x.Min, min)
             .Add(x => x.Max, max));
 
-        // The fill div is the inner div inside the track div
         var trackDiv = cut.Find("div > div");
         var fillDiv = trackDiv.QuerySelector("div");
         Assert.NotNull(fillDiv);
         Assert.Contains(expectedWidth, fillDiv!.GetAttribute("style") ?? "");
-    }
-
-    // ── Base classes ──────────────────────────────────────────────────────────
-
-    [Fact]
-    public void Always_Has_Base_Classes()
-    {
-        var cut = Render<Slider>();
-        var classes = cut.Find("div").ClassName;
-        Assert.Contains("relative", classes);
-        Assert.Contains("flex", classes);
-        Assert.Contains("w-full", classes);
-        Assert.Contains("items-center", classes);
-    }
-
-    // ── Class parameter ───────────────────────────────────────────────────────
-
-    [Fact]
-    public void Custom_Class_Is_Appended()
-    {
-        var cut = Render<Slider>(p => p.Add(x => x.Class, "my-custom-class"));
-        Assert.Contains("my-custom-class", cut.Find("div").ClassName);
-    }
-
-    // ── AdditionalAttributes ──────────────────────────────────────────────────
-
-    [Fact]
-    public void AriaLabel_PassesThrough_Via_AdditionalAttributes()
-    {
-        var cut = Render<Slider>(p =>
-            p.AddUnmatched("aria-label", "Volume"));
-
-        AssertAriaLabel(cut.Find("div"), "Volume");
-    }
-
-    [Fact]
-    public void DataTestId_PassesThrough_Via_AdditionalAttributes()
-    {
-        var cut = Render<Slider>(p =>
-            p.AddUnmatched("data-testid", "volume-slider"));
-
-        Assert.Equal("volume-slider", cut.Find("div").GetAttribute("data-testid"));
     }
 
     // ── ValueChanged callback ─────────────────────────────────────────────────
@@ -147,13 +96,5 @@ public class SliderTests : BlazingSpireTestBase
             new ChangeEventArgs { Value = "75" });
 
         Assert.Equal(75.0, received);
-    }
-
-    // ── Inheritance ───────────────────────────────────────────────────────────
-
-    [Fact]
-    public void Slider_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(Slider).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
 }

@@ -1,0 +1,67 @@
+@page "/components/drawer"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Drawer - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Drawer</h1>
+        <p class="text-lg text-muted-foreground">A panel that slides up from the bottom of the screen.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <Drawer @bind-IsOpen="_isOpen">
+                <DrawerTrigger>
+                    <Button Variant="ButtonVariant.Outline">Open Drawer</Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                    <DrawerHeader>
+                        <DrawerTitle>Move Goal</DrawerTitle>
+                        <DrawerDescription>Set your daily activity goal.</DrawerDescription>
+                    </DrawerHeader>
+                    <div class="px-4 pb-4">
+                        <p class="text-sm text-muted-foreground">Adjust your goal to match your lifestyle.</p>
+                    </div>
+                    <DrawerFooter>
+                        <Button>Submit</Button>
+                        <DrawerClose>
+                            <Button Variant="ButtonVariant.Outline" Class="w-full">Cancel</Button>
+                        </DrawerClose>
+                    </DrawerFooter>
+                </DrawerContent>
+            </Drawer>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Drawer &#64;bind-IsOpen=&quot;_isOpen&quot;&gt;
+    &lt;DrawerTrigger&gt;
+        &lt;Button Variant=&quot;ButtonVariant.Outline&quot;&gt;Open Drawer&lt;/Button&gt;
+    &lt;/DrawerTrigger&gt;
+    &lt;DrawerContent&gt;
+        &lt;DrawerHeader&gt;
+            &lt;DrawerTitle&gt;Move Goal&lt;/DrawerTitle&gt;
+            &lt;DrawerDescription&gt;Set your daily activity goal.&lt;/DrawerDescription&gt;
+        &lt;/DrawerHeader&gt;
+        &lt;DrawerFooter&gt;
+            &lt;Button&gt;Submit&lt;/Button&gt;
+            &lt;DrawerClose&gt;
+                &lt;Button Variant=&quot;ButtonVariant.Outline&quot; Class=&quot;w-full&quot;&gt;Cancel&lt;/Button&gt;
+            &lt;/DrawerClose&gt;
+        &lt;/DrawerFooter&gt;
+    &lt;/DrawerContent&gt;
+&lt;/Drawer&gt;</code></pre>
+    </div>
+
+</div>
+
+@code {
+    private bool _isOpen;
+}

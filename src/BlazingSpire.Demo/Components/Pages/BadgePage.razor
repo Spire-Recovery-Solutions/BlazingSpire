@@ -1,0 +1,51 @@
+@page "/components/badge"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Badge - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Badge</h1>
+        <p class="text-lg text-muted-foreground">Displays a small status indicator or label.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <Badge>Badge</Badge>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Badge&gt;Badge&lt;/Badge&gt;</code></pre>
+    </div>
+
+    @* ── Variants ───────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Variants</h2>
+        <div class="flex flex-wrap items-center gap-4 rounded-xl border bg-muted/30 p-8">
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Default</span>
+                <Badge>Default</Badge>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Secondary</span>
+                <Badge Variant="BadgeVariant.Secondary">Secondary</Badge>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Destructive</span>
+                <Badge Variant="BadgeVariant.Destructive">Destructive</Badge>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Outline</span>
+                <Badge Variant="BadgeVariant.Outline">Outline</Badge>
+            </div>
+        </div>
+    </div>
+
+</div>

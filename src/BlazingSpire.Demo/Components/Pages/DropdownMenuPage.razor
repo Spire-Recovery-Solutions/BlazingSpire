@@ -1,0 +1,81 @@
+@page "/components/dropdown-menu"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Dropdown Menu - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Dropdown Menu</h1>
+        <p class="text-lg text-muted-foreground">Displays a menu of items triggered by a button click.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <DropdownMenu @bind-IsOpen="_isOpen">
+                <DropdownMenuTrigger>
+                    <Button Variant="ButtonVariant.Outline">Open Menu</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                        <DropdownMenuItem>Settings</DropdownMenuItem>
+                        <DropdownMenuItem>Billing</DropdownMenuItem>
+                    </DropdownMenuGroup>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Sign out</DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;DropdownMenu&gt;
+    &lt;DropdownMenuTrigger&gt;
+        &lt;Button Variant=&quot;ButtonVariant.Outline&quot;&gt;Open Menu&lt;/Button&gt;
+    &lt;/DropdownMenuTrigger&gt;
+    &lt;DropdownMenuContent&gt;
+        &lt;DropdownMenuLabel&gt;My Account&lt;/DropdownMenuLabel&gt;
+        &lt;DropdownMenuSeparator /&gt;
+        &lt;DropdownMenuGroup&gt;
+            &lt;DropdownMenuItem&gt;Profile&lt;/DropdownMenuItem&gt;
+            &lt;DropdownMenuItem&gt;Settings&lt;/DropdownMenuItem&gt;
+            &lt;DropdownMenuItem&gt;Billing&lt;/DropdownMenuItem&gt;
+        &lt;/DropdownMenuGroup&gt;
+        &lt;DropdownMenuSeparator /&gt;
+        &lt;DropdownMenuItem&gt;Sign out&lt;/DropdownMenuItem&gt;
+    &lt;/DropdownMenuContent&gt;
+&lt;/DropdownMenu&gt;</code></pre>
+    </div>
+
+    @* ── With Disabled Item ──────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">With Disabled Item</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <DropdownMenu @bind-IsOpen="_isOpen2">
+                <DropdownMenuTrigger>
+                    <Button Variant="ButtonVariant.Outline">Open Menu</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuItem>New File</DropdownMenuItem>
+                    <DropdownMenuItem Disabled="true">New Window</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Open Recent</DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    private bool _isOpen;
+    private bool _isOpen2;
+}

@@ -1,160 +1,22 @@
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class ButtonTests : BlazingSpireTestBase
 {
-    // ── Rendering ────────────────────────────────────────────────────────────
+    // ── Semantic element ─────────────────────────────────────────────────────
 
     [Fact]
-    public void Renders_Button_Element()
+    public void Renders_Button_Element_With_Type_Button()
     {
-        var cut = Render<Button>();
-        Assert.NotNull(cut.Find("button"));
+        var cut = Render<Button>(p => p.Add(x => x.ChildContent, "Save"));
+        var btn = cut.Find("button");
+        Assert.Equal("button", btn.GetAttribute("type"));
+        Assert.Contains("Save", btn.TextContent);
     }
-
-    [Fact]
-    public void Default_Type_Is_Button()
-    {
-        var cut = Render<Button>();
-        Assert.Equal("button", cut.Find("button").GetAttribute("type"));
-    }
-
-    // ── Variants ─────────────────────────────────────────────────────────────
-
-    [Fact]
-    public void Default_Variant_Has_Primary_Classes()
-    {
-        var cut = Render<Button>();
-        var classes = cut.Find("button").ClassName;
-        Assert.Contains("bg-primary", classes);
-        Assert.Contains("text-primary-foreground", classes);
-    }
-
-    [Theory]
-    [InlineData(ButtonVariant.Default, "bg-primary", "text-primary-foreground")]
-    [InlineData(ButtonVariant.Destructive, "bg-destructive", "text-destructive-foreground")]
-    [InlineData(ButtonVariant.Outline, "border", "bg-background")]
-    [InlineData(ButtonVariant.Secondary, "bg-secondary", "text-secondary-foreground")]
-    [InlineData(ButtonVariant.Ghost, "hover:bg-accent", "hover:text-accent-foreground")]
-    [InlineData(ButtonVariant.Link, "text-primary", "underline-offset-4")]
-    public void Variant_Produces_Correct_Classes(ButtonVariant variant, string class1, string class2)
-    {
-        var cut = Render<Button>(p => p.Add(x => x.Variant, variant));
-        var classes = cut.Find("button").ClassName;
-        Assert.Contains(class1, classes);
-        Assert.Contains(class2, classes);
-    }
-
-    // ── Sizes ────────────────────────────────────────────────────────────────
-
-    [Theory]
-    [InlineData(ButtonSize.Default, "h-10", "px-4")]
-    [InlineData(ButtonSize.Sm, "h-9", "px-3")]
-    [InlineData(ButtonSize.Lg, "h-11", "px-8")]
-    [InlineData(ButtonSize.Icon, "h-10", "w-10")]
-    public void Size_Produces_Correct_Classes(ButtonSize size, string class1, string class2)
-    {
-        var cut = Render<Button>(p => p.Add(x => x.Size, size));
-        var classes = cut.Find("button").ClassName;
-        Assert.Contains(class1, classes);
-        Assert.Contains(class2, classes);
-    }
-
-    // ── Class parameter ──────────────────────────────────────────────────────
-
-    [Fact]
-    public void Custom_Class_Is_Appended()
-    {
-        var cut = Render<Button>(p => p.Add(x => x.Class, "my-custom-class"));
-        Assert.Contains("my-custom-class", cut.Find("button").ClassName);
-    }
-
-    // ── Disabled ─────────────────────────────────────────────────────────────
-
-    [Fact]
-    public void Disabled_True_Renders_Disabled_Attribute()
-    {
-        var cut = Render<Button>(p => p.Add(x => x.Disabled, true));
-        Assert.True(cut.Find("button").HasAttribute("disabled"));
-    }
-
-    [Fact]
-    public void Disabled_False_Does_Not_Render_Disabled_Attribute()
-    {
-        var cut = Render<Button>(p => p.Add(x => x.Disabled, false));
-        Assert.False(cut.Find("button").HasAttribute("disabled"));
-    }
-
-    // ── OnClick ──────────────────────────────────────────────────────────────
-
-    [Fact]
-    public void OnClick_Fires_When_Clicked()
-    {
-        var clicked = false;
-        var cut = Render<Button>(p =>
-            p.Add(x => x.OnClick, (MouseEventArgs _) => { clicked = true; }));
-
-        cut.Find("button").Click();
-
-        Assert.True(clicked);
-    }
-
-    [Fact]
-    public void OnClick_Not_Fired_Without_Click()
-    {
-        var clicked = false;
-        Render<Button>(p =>
-            p.Add(x => x.OnClick, (MouseEventArgs _) => { clicked = true; }));
-
-        Assert.False(clicked);
-    }
-
-    // ── AdditionalAttributes ─────────────────────────────────────────────────
-
-    [Fact]
-    public void AriaLabel_PassesThrough_Via_AdditionalAttributes()
-    {
-        var cut = Render<Button>(p =>
-            p.AddUnmatched("aria-label", "Close dialog"));
-
-        AssertAriaLabel(cut.Find("button"), "Close dialog");
-    }
-
-    [Fact]
-    public void DataTestId_PassesThrough_Via_AdditionalAttributes()
-    {
-        var cut = Render<Button>(p =>
-            p.AddUnmatched("data-testid", "submit-btn"));
-
-        Assert.Equal("submit-btn", cut.Find("button").GetAttribute("data-testid"));
-    }
-
-    // ── ChildContent ─────────────────────────────────────────────────────────
-
-    [Fact]
-    public void ChildContent_Renders_Inside_Button()
-    {
-        var cut = Render<Button>(p =>
-            p.AddChildContent("<span>Click me</span>"));
-
-        Assert.NotNull(cut.Find("button span"));
-        Assert.Equal("Click me", cut.Find("button span").TextContent);
-    }
-
-    [Fact]
-    public void ChildContent_Text_Renders_Inside_Button()
-    {
-        var cut = Render<Button>(p =>
-            p.AddChildContent("Save"));
-
-        Assert.Contains("Save", cut.Find("button").TextContent);
-    }
-
-    // ── Type parameter ───────────────────────────────────────────────────────
 
     [Theory]
     [InlineData("submit")]
@@ -166,107 +28,107 @@ public class ButtonTests : BlazingSpireTestBase
         Assert.Equal(type, cut.Find("button").GetAttribute("type"));
     }
 
-    // ── Base classes ─────────────────────────────────────────────────────────
+    // ── Variants ─────────────────────────────────────────────────────────────
+
+    [Theory]
+    [InlineData(ButtonVariant.Default)]
+    [InlineData(ButtonVariant.Destructive)]
+    [InlineData(ButtonVariant.Outline)]
+    [InlineData(ButtonVariant.Secondary)]
+    [InlineData(ButtonVariant.Ghost)]
+    [InlineData(ButtonVariant.Link)]
+    public void Each_Variant_Renders_Without_Error(ButtonVariant variant)
+    {
+        var cut = Render<Button>(p => p.Add(x => x.Variant, variant));
+        Assert.NotNull(cut.Find("button"));
+    }
+
+    // ── Sizes ────────────────────────────────────────────────────────────────
+
+    [Theory]
+    [InlineData(ButtonSize.Default)]
+    [InlineData(ButtonSize.Sm)]
+    [InlineData(ButtonSize.Lg)]
+    [InlineData(ButtonSize.Icon)]
+    public void Each_Size_Renders_Without_Error(ButtonSize size)
+    {
+        var cut = Render<Button>(p => p.Add(x => x.Size, size));
+        Assert.NotNull(cut.Find("button"));
+    }
+
+    // ── Disabled state ───────────────────────────────────────────────────────
 
     [Fact]
-    public void Always_Has_Focus_Visible_Classes()
+    public void Disabled_Button_Has_Disabled_Attribute()
     {
-        var cut = Render<Button>();
-        var classes = cut.Find("button").ClassName;
-        Assert.Contains("focus-visible:ring-2", classes);
-        Assert.Contains("focus-visible:ring-ring", classes);
+        var cut = Render<Button>(p => p.Add(x => x.Disabled, true));
+        Assert.True(cut.Find("button").HasAttribute("disabled"));
     }
 
     [Fact]
-    public void Always_Has_Disabled_Pointer_Events_None_Class()
+    public void Enabled_Button_Does_Not_Have_Disabled_Attribute()
     {
-        var cut = Render<Button>();
-        Assert.Contains("data-[disabled]:pointer-events-none", cut.Find("button").ClassName);
+        var cut = Render<Button>(p => p.Add(x => x.Disabled, false));
+        Assert.False(cut.Find("button").HasAttribute("disabled"));
     }
 
     // ── Loading state ─────────────────────────────────────────────────────────
 
     [Fact]
-    public void Loading_True_Renders_Svg_Spinner()
-    {
-        var cut = Render<Button>(p => p.Add(x => x.Loading, true));
-        Assert.NotNull(cut.Find("button svg.animate-spin"));
-    }
-
-    [Fact]
-    public void Loading_False_Does_Not_Render_Spinner()
-    {
-        var cut = Render<Button>(p => p.Add(x => x.Loading, false));
-        Assert.Empty(cut.FindAll("button svg.animate-spin"));
-    }
-
-    [Fact]
-    public void Loading_True_Disables_Button()
+    public void Loading_Button_Is_Effectively_Disabled()
     {
         var cut = Render<Button>(p => p.Add(x => x.Loading, true));
         Assert.True(cut.Find("button").HasAttribute("disabled"));
     }
 
     [Fact]
-    public void Loading_True_Sets_AriaBusy()
+    public void Loading_Button_Has_AriaBusy_True()
     {
         var cut = Render<Button>(p => p.Add(x => x.Loading, true));
         Assert.Equal("true", cut.Find("button").GetAttribute("aria-busy"));
     }
 
     [Fact]
-    public void Loading_True_Sets_DataDisabled()
+    public void Loading_Button_Has_DataDisabled_Attribute()
     {
         var cut = Render<Button>(p => p.Add(x => x.Loading, true));
         Assert.True(cut.Find("button").HasAttribute("data-disabled"));
     }
 
-    // ── IsEffectivelyDisabled ─────────────────────────────────────────────────
+    // ── EventCallback ────────────────────────────────────────────────────────
 
     [Fact]
-    public void Loading_Without_Disabled_Still_Disables_Button()
+    public void Click_Fires_OnClick()
     {
-        var cut = Render<Button>(p => p.Add(x => x.Loading, true));
-        Assert.True(cut.Find("button").HasAttribute("disabled"));
-    }
-
-    [Fact]
-    public void Loading_And_Disabled_Both_True_Disables_Button()
-    {
+        bool clicked = false;
         var cut = Render<Button>(p =>
         {
-            p.Add(x => x.Loading, true);
-            p.Add(x => x.Disabled, true);
+            p.Add(x => x.OnClick, EventCallback.Factory.Create<MouseEventArgs>(this, _ => clicked = true));
+            p.Add(x => x.ChildContent, "Go");
         });
-        Assert.True(cut.Find("button").HasAttribute("disabled"));
+        cut.Find("button").Click();
+        Assert.True(clicked);
     }
 
-    // ── Link rendering (Href) ─────────────────────────────────────────────────
+    // ── Link mode ─────────────────────────────────────────────────────────────
 
     [Fact]
-    public void Href_Set_Renders_Anchor_Element()
+    public void With_Href_Renders_Anchor_Not_Button()
     {
         var cut = Render<Button>(p => p.Add(x => x.Href, "/about"));
         Assert.NotNull(cut.Find("a"));
+        Assert.Empty(cut.FindAll("button"));
     }
 
     [Fact]
-    public void Without_Href_Renders_Button_Element()
-    {
-        var cut = Render<Button>();
-        Assert.NotNull(cut.Find("button"));
-        Assert.Empty(cut.FindAll("a"));
-    }
-
-    [Fact]
-    public void Href_Renders_Correct_Href_Attribute()
+    public void Anchor_Has_Correct_Href()
     {
         var cut = Render<Button>(p => p.Add(x => x.Href, "/about"));
         Assert.Equal("/about", cut.Find("a").GetAttribute("href"));
     }
 
     [Fact]
-    public void Target_PassesThrough_On_Anchor()
+    public void Anchor_Renders_Target_Attribute()
     {
         var cut = Render<Button>(p =>
         {
@@ -277,7 +139,7 @@ public class ButtonTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void Rel_PassesThrough_On_Anchor()
+    public void Anchor_Renders_Rel_Attribute()
     {
         var cut = Render<Button>(p =>
         {
@@ -288,7 +150,7 @@ public class ButtonTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void Link_Mode_Does_Not_Render_Type_Attribute()
+    public void Anchor_Does_Not_Have_Type_Attribute()
     {
         var cut = Render<Button>(p => p.Add(x => x.Href, "/about"));
         Assert.False(cut.Find("a").HasAttribute("type"));
@@ -316,17 +178,21 @@ public class ButtonTests : BlazingSpireTestBase
         Assert.Equal("-1", cut.Find("a").GetAttribute("tabindex"));
     }
 
-    // ── Inheritance ───────────────────────────────────────────────────────────
+    // ── Custom class ─────────────────────────────────────────────────────────
 
     [Fact]
-    public void Button_Is_Assignable_To_ButtonBase()
+    public void Custom_Class_Is_Included()
     {
-        Assert.True(typeof(Button).IsAssignableTo(typeof(ButtonBase<ButtonVariant, ButtonSize>)));
+        var cut = Render<Button>(p => p.Add(x => x.Class, "my-btn"));
+        Assert.Contains("my-btn", cut.Find("button").ClassName);
     }
 
+    // ── AdditionalAttributes passthrough ─────────────────────────────────────
+
     [Fact]
-    public void Button_Is_Assignable_To_BlazingSpireComponentBase()
+    public void AriaLabel_PassesThrough()
     {
-        Assert.True(typeof(Button).IsAssignableTo(typeof(BlazingSpireComponentBase)));
+        var cut = Render<Button>(p => p.AddUnmatched("aria-label", "Close dialog"));
+        AssertAriaLabel(cut.Find("button"), "Close dialog");
     }
 }

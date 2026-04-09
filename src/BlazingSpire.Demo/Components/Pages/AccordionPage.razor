@@ -1,0 +1,54 @@
+@page "/components/accordion"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Accordion - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Accordion</h1>
+        <p class="text-lg text-muted-foreground">A vertically stacked set of interactive headings that reveal or hide associated content.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <Accordion Class="w-full max-w-md">
+                <AccordionItem>
+                    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                    <AccordionContent>Yes. It adheres to the WAI-ARIA design pattern.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem>
+                    <AccordionTrigger>Is it styled?</AccordionTrigger>
+                    <AccordionContent>Yes. It comes with default styles that match the other components.</AccordionContent>
+                </AccordionItem>
+                <AccordionItem>
+                    <AccordionTrigger>Is it animated?</AccordionTrigger>
+                    <AccordionContent>Yes. It uses native browser disclosure behavior with CSS transitions.</AccordionContent>
+                </AccordionItem>
+            </Accordion>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Accordion&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it accessible?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. It adheres to the WAI-ARIA design pattern.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it styled?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. It comes with default styles that match the other components.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+    &lt;AccordionItem&gt;
+        &lt;AccordionTrigger&gt;Is it animated?&lt;/AccordionTrigger&gt;
+        &lt;AccordionContent&gt;Yes. It uses native browser disclosure behavior with CSS transitions.&lt;/AccordionContent&gt;
+    &lt;/AccordionItem&gt;
+&lt;/Accordion&gt;</code></pre>
+    </div>
+
+</div>

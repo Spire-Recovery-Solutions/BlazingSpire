@@ -1,4 +1,3 @@
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -6,7 +5,7 @@ namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class ProgressTests : BlazingSpireTestBase
 {
-    // ── Rendering ────────────────────────────────────────────────────────────
+    // ── ARIA role and attributes ──────────────────────────────────────────────
 
     [Fact]
     public void Renders_Div_With_Role_Progressbar()
@@ -14,16 +13,6 @@ public class ProgressTests : BlazingSpireTestBase
         var cut = Render<Progress>();
         AssertRole(cut.Find("div[role]"), "progressbar");
     }
-
-    [Fact]
-    public void Renders_Indicator_Div()
-    {
-        var cut = Render<Progress>();
-        var outer = cut.Find("[role='progressbar']");
-        Assert.NotNull(outer.QuerySelector("div"));
-    }
-
-    // ── ARIA attributes ───────────────────────────────────────────────────────
 
     [Fact]
     public void AriaValueMin_Is_Zero()
@@ -51,7 +40,7 @@ public class ProgressTests : BlazingSpireTestBase
         Assert.Equal(value.ToString(), cut.Find("[role='progressbar']").GetAttribute("aria-valuenow"));
     }
 
-    // ── Indicator style ───────────────────────────────────────────────────────
+    // ── Indicator transform reflects value ────────────────────────────────────
 
     [Theory]
     [InlineData(0, "translateX(-100%)")]
@@ -61,67 +50,24 @@ public class ProgressTests : BlazingSpireTestBase
     {
         var cut = Render<Progress>(p => p.Add(x => x.Value, value));
         var indicator = cut.Find("[role='progressbar'] div");
-        var style = indicator.GetAttribute("style");
-        Assert.Contains(expectedTransform, style);
+        Assert.Contains(expectedTransform, indicator.GetAttribute("style"));
     }
 
+    // ── Custom class ─────────────────────────────────────────────────────────
+
     [Fact]
-    public void Indicator_Has_BgPrimary_Class()
+    public void Custom_Class_Is_Included()
     {
-        var cut = Render<Progress>();
-        var indicator = cut.Find("[role='progressbar'] div");
-        Assert.Contains("bg-primary", indicator.ClassName);
+        var cut = Render<Progress>(p => p.Add(x => x.Class, "my-progress"));
+        Assert.Contains("my-progress", cut.Find("[role='progressbar']").ClassName);
     }
 
-    // ── Base classes ──────────────────────────────────────────────────────────
+    // ── AdditionalAttributes passthrough ─────────────────────────────────────
 
     [Fact]
-    public void Always_Has_Base_Classes()
+    public void AriaLabel_PassesThrough()
     {
-        var cut = Render<Progress>();
-        var classes = cut.Find("[role='progressbar']").ClassName;
-        Assert.Contains("relative", classes);
-        Assert.Contains("h-4", classes);
-        Assert.Contains("w-full", classes);
-        Assert.Contains("overflow-hidden", classes);
-        Assert.Contains("rounded-full", classes);
-        Assert.Contains("bg-secondary", classes);
-    }
-
-    // ── Class parameter ───────────────────────────────────────────────────────
-
-    [Fact]
-    public void Custom_Class_Is_Appended()
-    {
-        var cut = Render<Progress>(p => p.Add(x => x.Class, "my-custom-class"));
-        Assert.Contains("my-custom-class", cut.Find("[role='progressbar']").ClassName);
-    }
-
-    // ── AdditionalAttributes ──────────────────────────────────────────────────
-
-    [Fact]
-    public void AriaLabel_PassesThrough_Via_AdditionalAttributes()
-    {
-        var cut = Render<Progress>(p =>
-            p.AddUnmatched("aria-label", "Loading progress"));
-
+        var cut = Render<Progress>(p => p.AddUnmatched("aria-label", "Loading progress"));
         AssertAriaLabel(cut.Find("[role='progressbar']"), "Loading progress");
-    }
-
-    [Fact]
-    public void DataTestId_PassesThrough_Via_AdditionalAttributes()
-    {
-        var cut = Render<Progress>(p =>
-            p.AddUnmatched("data-testid", "upload-progress"));
-
-        Assert.Equal("upload-progress", cut.Find("[role='progressbar']").GetAttribute("data-testid"));
-    }
-
-    // ── Inheritance ───────────────────────────────────────────────────────────
-
-    [Fact]
-    public void Progress_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(Progress).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
 }

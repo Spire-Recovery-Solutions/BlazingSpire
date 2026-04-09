@@ -1,0 +1,83 @@
+@page "/components/pagination"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Pagination - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Pagination</h1>
+        <p class="text-lg text-muted-foreground">Navigation controls for moving through pages of content.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex flex-col items-center gap-4 rounded-xl border bg-muted/30 p-8">
+            <p class="text-sm text-muted-foreground">Page @_currentPage of 10</p>
+            <Pagination>
+                <PaginationContent>
+                    <PaginationItem>
+                        <PaginationPrevious @onclick="PreviousPage" />
+                    </PaginationItem>
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        var page = i;
+                        <PaginationItem>
+                            <PaginationLink IsActive="_currentPage == page" @onclick="() => _currentPage = page">@(page)</PaginationLink>
+                        </PaginationItem>
+                    }
+                    <PaginationItem>
+                        <PaginationEllipsis />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink IsActive="_currentPage == 10" @onclick="() => _currentPage = 10">10</PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationNext @onclick="NextPage" />
+                    </PaginationItem>
+                </PaginationContent>
+            </Pagination>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Pagination&gt;
+    &lt;PaginationContent&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationPrevious &#64;onclick=&quot;PreviousPage&quot; /&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationLink IsActive=&quot;_currentPage == 1&quot; &#64;onclick=&quot;() =&gt; _currentPage = 1&quot;&gt;1&lt;/PaginationLink&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationLink IsActive=&quot;_currentPage == 2&quot; &#64;onclick=&quot;() =&gt; _currentPage = 2&quot;&gt;2&lt;/PaginationLink&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationEllipsis /&gt;
+        &lt;/PaginationItem&gt;
+        &lt;PaginationItem&gt;
+            &lt;PaginationNext &#64;onclick=&quot;NextPage&quot; /&gt;
+        &lt;/PaginationItem&gt;
+    &lt;/PaginationContent&gt;
+&lt;/Pagination&gt;
+
+@@code {
+    private int _currentPage = 1;
+
+    private void PreviousPage() { if (_currentPage &gt; 1) _currentPage--; }
+    private void NextPage() { if (_currentPage &lt; 10) _currentPage++; }
+}</code></pre>
+    </div>
+
+</div>
+
+@code {
+    private int _currentPage = 1;
+
+    private void PreviousPage() { if (_currentPage > 1) _currentPage--; }
+    private void NextPage() { if (_currentPage < 10) _currentPage++; }
+}

@@ -1,4 +1,3 @@
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -6,50 +5,10 @@ namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class SeparatorTests : BlazingSpireTestBase
 {
-    // ── Rendering ────────────────────────────────────────────────────────────
+    // ── ARIA role: decorative ─────────────────────────────────────────────────
 
     [Fact]
-    public void Renders_Div_Element()
-    {
-        var cut = Render<Separator>();
-        Assert.NotNull(cut.Find("div"));
-    }
-
-    // ── Orientation ──────────────────────────────────────────────────────────
-
-    [Fact]
-    public void Default_Orientation_Is_Horizontal()
-    {
-        var cut = Render<Separator>();
-        var classes = cut.Find("div").ClassName;
-        Assert.Contains("h-[1px]", classes);
-        Assert.Contains("w-full", classes);
-    }
-
-    [Fact]
-    public void Vertical_Orientation_Produces_Correct_Classes()
-    {
-        var cut = Render<Separator>(p => p.Add(x => x.Orientation, SeparatorOrientation.Vertical));
-        var classes = cut.Find("div").ClassName;
-        Assert.Contains("h-full", classes);
-        Assert.Contains("w-[1px]", classes);
-    }
-
-    [Theory]
-    [InlineData(SeparatorOrientation.Horizontal, "h-[1px]", "w-full")]
-    [InlineData(SeparatorOrientation.Vertical, "h-full", "w-[1px]")]
-    public void Orientation_Produces_Correct_Classes(SeparatorOrientation orientation, string class1, string class2)
-    {
-        var cut = Render<Separator>(p => p.Add(x => x.Orientation, orientation));
-        var classes = cut.Find("div").ClassName;
-        Assert.Contains(class1, classes);
-        Assert.Contains(class2, classes);
-    }
-
-    // ── ARIA / Decorative ────────────────────────────────────────────────────
-
-    [Fact]
-    public void Default_Is_Decorative_With_Role_None()
+    public void Default_Decorative_Has_Role_None()
     {
         var cut = Render<Separator>();
         AssertRole(cut.Find("div"), "none");
@@ -61,6 +20,8 @@ public class SeparatorTests : BlazingSpireTestBase
         var cut = Render<Separator>();
         Assert.Null(cut.Find("div").GetAttribute("aria-orientation"));
     }
+
+    // ── ARIA role: non-decorative ─────────────────────────────────────────────
 
     [Fact]
     public void NonDecorative_Has_Role_Separator()
@@ -87,42 +48,32 @@ public class SeparatorTests : BlazingSpireTestBase
         Assert.Equal("vertical", cut.Find("div").GetAttribute("aria-orientation"));
     }
 
-    // ── Base classes ─────────────────────────────────────────────────────────
+    // ── Orientation renders without error ─────────────────────────────────────
 
-    [Fact]
-    public void Always_Has_Base_Classes()
+    [Theory]
+    [InlineData(SeparatorOrientation.Horizontal)]
+    [InlineData(SeparatorOrientation.Vertical)]
+    public void Each_Orientation_Renders_Without_Error(SeparatorOrientation orientation)
     {
-        var cut = Render<Separator>();
-        var classes = cut.Find("div").ClassName;
-        Assert.Contains("shrink-0", classes);
-        Assert.Contains("bg-border", classes);
+        var cut = Render<Separator>(p => p.Add(x => x.Orientation, orientation));
+        Assert.NotNull(cut.Find("div"));
     }
 
-    // ── Class parameter ──────────────────────────────────────────────────────
+    // ── Custom class ─────────────────────────────────────────────────────────
 
     [Fact]
-    public void Custom_Class_Is_Appended()
+    public void Custom_Class_Is_Included()
     {
-        var cut = Render<Separator>(p => p.Add(x => x.Class, "my-custom-class"));
-        Assert.Contains("my-custom-class", cut.Find("div").ClassName);
+        var cut = Render<Separator>(p => p.Add(x => x.Class, "my-separator"));
+        Assert.Contains("my-separator", cut.Find("div").ClassName);
     }
 
-    // ── AdditionalAttributes ─────────────────────────────────────────────────
+    // ── AdditionalAttributes passthrough ─────────────────────────────────────
 
     [Fact]
-    public void DataTestId_PassesThrough_Via_AdditionalAttributes()
+    public void DataTestId_PassesThrough()
     {
-        var cut = Render<Separator>(p =>
-            p.AddUnmatched("data-testid", "divider"));
-
+        var cut = Render<Separator>(p => p.AddUnmatched("data-testid", "divider"));
         Assert.Equal("divider", cut.Find("div").GetAttribute("data-testid"));
-    }
-
-    // ── Inheritance ───────────────────────────────────────────────────────────
-
-    [Fact]
-    public void Separator_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(Separator).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
 }

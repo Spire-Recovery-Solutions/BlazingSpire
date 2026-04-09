@@ -1,0 +1,96 @@
+@page "/components/button"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Button - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Button</h1>
+        <p class="text-lg text-muted-foreground">Triggers an action or event when clicked.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <Button>Button</Button>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Button&gt;Button&lt;/Button&gt;</code></pre>
+    </div>
+
+    @* ── Variants ───────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Variants</h2>
+        <div class="flex flex-wrap items-center gap-4 rounded-xl border bg-muted/30 p-8">
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Default</span>
+                <Button>Default</Button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Destructive</span>
+                <Button Variant="ButtonVariant.Destructive">Destructive</Button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Outline</span>
+                <Button Variant="ButtonVariant.Outline">Outline</Button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Secondary</span>
+                <Button Variant="ButtonVariant.Secondary">Secondary</Button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Ghost</span>
+                <Button Variant="ButtonVariant.Ghost">Ghost</Button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Link</span>
+                <Button Variant="ButtonVariant.Link">Link</Button>
+            </div>
+        </div>
+    </div>
+
+    @* ── Sizes ──────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Sizes</h2>
+        <div class="flex flex-wrap items-end gap-4 rounded-xl border bg-muted/30 p-8">
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Small</span>
+                <Button Size="ButtonSize.Sm">Small</Button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Default</span>
+                <Button>Default</Button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Large</span>
+                <Button Size="ButtonSize.Lg">Large</Button>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Icon</span>
+                <Button Size="ButtonSize.Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
+                        <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+                    </svg>
+                </Button>
+            </div>
+        </div>
+    </div>
+
+    @* ── Disabled ───────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="flex flex-wrap items-center gap-4 rounded-xl border bg-muted/30 p-8">
+            <Button Disabled="true">Disabled</Button>
+            <Button Variant="ButtonVariant.Outline" Disabled="true">Disabled</Button>
+        </div>
+    </div>
+
+</div>

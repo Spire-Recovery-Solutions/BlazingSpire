@@ -1,0 +1,65 @@
+@page "/components/switch"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Switch - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Switch</h1>
+        <p class="text-lg text-muted-foreground">A toggle switch for boolean on/off states.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <div class="flex items-center gap-2">
+                <Switch @bind-Checked="_enabled" />
+                <Label>Airplane mode</Label>
+            </div>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;div class=&quot;flex items-center gap-2&quot;&gt;
+    &lt;Switch &#64;bind-Checked=&quot;_enabled&quot; /&gt;
+    &lt;Label&gt;Airplane mode&lt;/Label&gt;
+&lt;/div&gt;
+
+@@code {
+    private bool _enabled;
+}</code></pre>
+    </div>
+
+    @* ── Examples ───────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Examples</h2>
+        <div class="flex flex-wrap items-center gap-8 rounded-xl border bg-muted/30 p-8">
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Off</span>
+                <Switch />
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">On</span>
+                <Switch Checked="true" />
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Disabled off</span>
+                <Switch Disabled="true" />
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-xs text-muted-foreground">Disabled on</span>
+                <Switch Checked="true" Disabled="true" />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    private bool _enabled;
+}

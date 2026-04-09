@@ -1,0 +1,112 @@
+@page "/components/data-table"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>DataTable - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">DataTable</h1>
+        <p class="text-lg text-muted-foreground">A sortable table for displaying structured data with column headers.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="rounded-xl border bg-muted/30 p-8">
+            <DataTable TItem="Invoice" Items="_invoices" SortColumn="@_sortColumn" SortAscending="@_sortAscending" OnSort="HandleSort">
+                <Columns>
+                    <DataTableColumn SortKey="Id" Sortable="true">Invoice</DataTableColumn>
+                    <DataTableColumn SortKey="Status" Sortable="true">Status</DataTableColumn>
+                    <DataTableColumn SortKey="Method" Sortable="true">Method</DataTableColumn>
+                    <DataTableColumn SortKey="Amount" Sortable="true">Amount</DataTableColumn>
+                </Columns>
+                <RowTemplate Context="invoice">
+                    <TableRow>
+                        <TableCell Class="font-medium">@invoice.Id</TableCell>
+                        <TableCell>@invoice.Status</TableCell>
+                        <TableCell>@invoice.Method</TableCell>
+                        <TableCell>@invoice.Amount.ToString("C")</TableCell>
+                    </TableRow>
+                </RowTemplate>
+            </DataTable>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;DataTable TItem=&quot;Invoice&quot; Items=&quot;_invoices&quot; SortColumn=&quot;&#64;_sortColumn&quot;
+           SortAscending=&quot;&#64;_sortAscending&quot; OnSort=&quot;HandleSort&quot;&gt;
+    &lt;Columns&gt;
+        &lt;DataTableColumn SortKey=&quot;Id&quot; Sortable=&quot;true&quot;&gt;Invoice&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn SortKey=&quot;Status&quot; Sortable=&quot;true&quot;&gt;Status&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn SortKey=&quot;Method&quot; Sortable=&quot;true&quot;&gt;Method&lt;/DataTableColumn&gt;
+        &lt;DataTableColumn SortKey=&quot;Amount&quot; Sortable=&quot;true&quot;&gt;Amount&lt;/DataTableColumn&gt;
+    &lt;/Columns&gt;
+    &lt;RowTemplate Context=&quot;invoice&quot;&gt;
+        &lt;TableRow&gt;
+            &lt;TableCell Class=&quot;font-medium&quot;&gt;&#64;invoice.Id&lt;/TableCell&gt;
+            &lt;TableCell&gt;&#64;invoice.Status&lt;/TableCell&gt;
+            &lt;TableCell&gt;&#64;invoice.Method&lt;/TableCell&gt;
+            &lt;TableCell&gt;&#64;invoice.Amount.ToString(&quot;C&quot;)&lt;/TableCell&gt;
+        &lt;/TableRow&gt;
+    &lt;/RowTemplate&gt;
+&lt;/DataTable&gt;
+
+@@code {
+    private record Invoice(string Id, string Status, string Method, decimal Amount);
+
+    private List&lt;Invoice&gt; _invoices =
+    [
+        new("INV-001", "Paid", "Credit Card", 316.00m),
+        new("INV-002", "Pending", "PayPal", 242.00m),
+        new("INV-003", "Unpaid", "Bank Transfer", 837.00m),
+        new("INV-004", "Paid", "Credit Card", 874.00m),
+        new("INV-005", "Paid", "PayPal", 721.00m),
+    ];
+}</code></pre>
+    </div>
+
+</div>
+
+@code {
+    private record Invoice(string Id, string Status, string Method, decimal Amount);
+
+    private List<Invoice> _invoices =
+    [
+        new("INV-001", "Paid", "Credit Card", 316.00m),
+        new("INV-002", "Pending", "PayPal", 242.00m),
+        new("INV-003", "Unpaid", "Bank Transfer", 837.00m),
+        new("INV-004", "Paid", "Credit Card", 874.00m),
+        new("INV-005", "Paid", "PayPal", 721.00m),
+    ];
+
+    private string? _sortColumn;
+    private bool _sortAscending = true;
+
+    private void HandleSort(string column)
+    {
+        if (_sortColumn == column)
+            _sortAscending = !_sortAscending;
+        else
+        {
+            _sortColumn = column;
+            _sortAscending = true;
+        }
+
+        _invoices = (_sortColumn, _sortAscending) switch
+        {
+            ("Id", true) => [.. _invoices.OrderBy(i => i.Id)],
+            ("Id", false) => [.. _invoices.OrderByDescending(i => i.Id)],
+            ("Status", true) => [.. _invoices.OrderBy(i => i.Status)],
+            ("Status", false) => [.. _invoices.OrderByDescending(i => i.Status)],
+            ("Method", true) => [.. _invoices.OrderBy(i => i.Method)],
+            ("Method", false) => [.. _invoices.OrderByDescending(i => i.Method)],
+            ("Amount", true) => [.. _invoices.OrderBy(i => i.Amount)],
+            ("Amount", false) => [.. _invoices.OrderByDescending(i => i.Amount)],
+            _ => _invoices
+        };
+    }
+}

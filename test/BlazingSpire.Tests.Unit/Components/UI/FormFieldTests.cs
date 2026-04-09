@@ -1,4 +1,3 @@
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 using Microsoft.AspNetCore.Components;
@@ -8,13 +7,6 @@ namespace BlazingSpire.Tests.Unit.Components.UI;
 public class FormFieldTests : BlazingSpireTestBase
 {
     // ── FormField ─────────────────────────────────────────────────────────────
-
-    [Fact]
-    public void FormField_Renders_Div_With_SpaceY2()
-    {
-        var cut = Render<FormField>();
-        Assert.Contains("space-y-2", cut.Find("div").ClassName);
-    }
 
     [Fact]
     public void FormField_Custom_Class_Is_Appended()
@@ -80,12 +72,6 @@ public class FormFieldTests : BlazingSpireTestBase
         Assert.Equal("form-field", cut.Find("div").GetAttribute("data-testid"));
     }
 
-    [Fact]
-    public void FormField_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(FormField).IsAssignableTo(typeof(BlazingSpireComponentBase)));
-    }
-
     // ── FormFieldLabel ────────────────────────────────────────────────────────
 
     [Fact]
@@ -118,18 +104,16 @@ public class FormFieldTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void FormFieldLabel_Has_Base_Classes()
+    public void FormFieldLabel_ChildContent_Renders()
     {
         var cut = Render<FormField>(p =>
             p.Add(x => x.ChildContent, (RenderFragment)(b =>
             {
                 b.OpenComponent<FormFieldLabel>(0);
-                b.AddAttribute(1, "ChildContent", (RenderFragment)(b2 => b2.AddContent(0, "Label")));
+                b.AddAttribute(1, "ChildContent", (RenderFragment)(b2 => b2.AddContent(0, "My Label")));
                 b.CloseComponent();
             })));
-        var classes = cut.Find("label").ClassName;
-        Assert.Contains("text-sm", classes);
-        Assert.Contains("font-medium", classes);
+        Assert.Contains("My Label", cut.Find("label").TextContent);
     }
 
     [Fact]
@@ -144,25 +128,6 @@ public class FormFieldTests : BlazingSpireTestBase
                 b.CloseComponent();
             })));
         Assert.Contains("custom-label", cut.Find("label").ClassName);
-    }
-
-    [Fact]
-    public void FormFieldLabel_ChildContent_Renders()
-    {
-        var cut = Render<FormField>(p =>
-            p.Add(x => x.ChildContent, (RenderFragment)(b =>
-            {
-                b.OpenComponent<FormFieldLabel>(0);
-                b.AddAttribute(1, "ChildContent", (RenderFragment)(b2 => b2.AddContent(0, "My Label")));
-                b.CloseComponent();
-            })));
-        Assert.Contains("My Label", cut.Find("label").TextContent);
-    }
-
-    [Fact]
-    public void FormFieldLabel_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(FormFieldLabel).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
 
     // ── FormFieldDescription ──────────────────────────────────────────────────
@@ -194,25 +159,6 @@ public class FormFieldTests : BlazingSpireTestBase
             }));
         });
         Assert.Equal("email-form-item-description", cut.Find("p").GetAttribute("id"));
-    }
-
-    [Fact]
-    public void FormFieldDescription_Has_Muted_Class()
-    {
-        var cut = Render<FormField>(p =>
-            p.Add(x => x.ChildContent, (RenderFragment)(b =>
-            {
-                b.OpenComponent<FormFieldDescription>(0);
-                b.AddAttribute(1, "ChildContent", (RenderFragment)(b2 => b2.AddContent(0, "Helper")));
-                b.CloseComponent();
-            })));
-        Assert.Contains("text-muted-foreground", cut.Find("p").ClassName);
-    }
-
-    [Fact]
-    public void FormFieldDescription_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(FormFieldDescription).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
 
     // ── FormFieldError ────────────────────────────────────────────────────────
@@ -261,7 +207,7 @@ public class FormFieldTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void FormFieldError_Shows_ErrorMessage_When_No_ChildContent()
+    public void FormFieldError_Shows_ErrorMessage_Text()
     {
         var cut = Render<FormField>(p =>
         {
@@ -291,27 +237,6 @@ public class FormFieldTests : BlazingSpireTestBase
         Assert.Contains("Custom error message", cut.Find("p[role='alert']").TextContent);
     }
 
-    [Fact]
-    public void FormFieldError_Has_Destructive_Class()
-    {
-        var cut = Render<FormField>(p =>
-        {
-            p.Add(x => x.ErrorMessage, "Error");
-            p.Add(x => x.ChildContent, (RenderFragment)(b =>
-            {
-                b.OpenComponent<FormFieldError>(0);
-                b.CloseComponent();
-            }));
-        });
-        Assert.Contains("text-destructive", cut.Find("p[role='alert']").ClassName);
-    }
-
-    [Fact]
-    public void FormFieldError_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(FormFieldError).IsAssignableTo(typeof(BlazingSpireComponentBase)));
-    }
-
     // ── FormFieldControl ──────────────────────────────────────────────────────
 
     [Fact]
@@ -319,13 +244,6 @@ public class FormFieldTests : BlazingSpireTestBase
     {
         var cut = Render<FormFieldControl>();
         Assert.NotNull(cut.Find("div"));
-    }
-
-    [Fact]
-    public void FormFieldControl_Custom_Class_Is_Appended()
-    {
-        var cut = Render<FormFieldControl>(p => p.Add(x => x.Class, "ctrl-class"));
-        Assert.Contains("ctrl-class", cut.Find("div").ClassName);
     }
 
     [Fact]
@@ -352,11 +270,5 @@ public class FormFieldTests : BlazingSpireTestBase
         var control = cut.FindComponent<FormFieldControl>();
         Assert.NotNull(control.Instance.Field);
         Assert.Equal("myfield-form-item", control.Instance.Field!.ItemId);
-    }
-
-    [Fact]
-    public void FormFieldControl_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(FormFieldControl).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
 }

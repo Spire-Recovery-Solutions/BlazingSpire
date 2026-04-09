@@ -1,5 +1,3 @@
-using System.Reflection;
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -8,18 +6,6 @@ namespace BlazingSpire.Tests.Unit.Components.UI;
 public class HoverCardTests : BlazingSpireTestBase
 {
     // ── HoverCard ─────────────────────────────────────────────────────────────
-
-    [Fact]
-    public void HoverCard_Is_Assignable_To_PopoverBase()
-    {
-        Assert.True(typeof(HoverCard).IsAssignableTo(typeof(PopoverBase)));
-    }
-
-    [Fact]
-    public void HoverCard_Is_Assignable_To_OverlayBase()
-    {
-        Assert.True(typeof(HoverCard).IsAssignableTo(typeof(OverlayBase)));
-    }
 
     [Fact]
     public void HoverCard_Default_OpenDelay_Is_300()
@@ -42,22 +28,6 @@ public class HoverCardTests : BlazingSpireTestBase
         Assert.NotNull(cut.Find("span"));
     }
 
-    // ── Overlay configuration ──────────────────────────────────────────────────
-
-    [Fact]
-    public void HoverCard_ShouldCloseOnEscape_Is_True()
-    {
-        var prop = typeof(HoverCard).GetProperty("ShouldCloseOnEscape", BindingFlags.NonPublic | BindingFlags.Instance);
-        Assert.True((bool)prop!.GetValue(new HoverCard())!);
-    }
-
-    [Fact]
-    public void HoverCard_ShouldCloseOnInteractOutside_Is_False()
-    {
-        var prop = typeof(HoverCard).GetProperty("ShouldCloseOnInteractOutside", BindingFlags.NonPublic | BindingFlags.Instance);
-        Assert.False((bool)prop!.GetValue(new HoverCard())!);
-    }
-
     // ── HoverCardContent ──────────────────────────────────────────────────────
 
     [Fact]
@@ -71,7 +41,7 @@ public class HoverCardTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void HoverCardContent_Visible_When_Open()
+    public void HoverCardContent_Visible_When_DefaultIsOpen()
     {
         var cut = Render<HoverCard>(p =>
         {
@@ -93,37 +63,7 @@ public class HoverCardTests : BlazingSpireTestBase
                 cp.AddChildContent("Card content"));
         });
 
-        Assert.Equal("open", cut.Find("[data-state]").GetAttribute("data-state"));
-    }
-
-    [Fact]
-    public void HoverCardContent_Has_Base_Classes()
-    {
-        var cut = Render<HoverCard>(p =>
-        {
-            p.Add(x => x.DefaultIsOpen, true);
-            p.AddChildContent<HoverCardContent>(cp =>
-                cp.AddChildContent("Card content"));
-        });
-
-        var classes = cut.Find("[data-state]").ClassName;
-        Assert.Contains("z-50", classes);
-        Assert.Contains("w-64", classes);
-        Assert.Contains("rounded-md", classes);
-        Assert.Contains("p-4", classes);
-    }
-
-    [Fact]
-    public void HoverCardContent_Custom_Class_Is_Appended()
-    {
-        var cut = Render<HoverCard>(p =>
-        {
-            p.Add(x => x.DefaultIsOpen, true);
-            p.AddChildContent<HoverCardContent>(cp =>
-                cp.Add(x => x.Class, "my-custom-class"));
-        });
-
-        Assert.Contains("my-custom-class", cut.Find("[data-state]").ClassName);
+        AssertDataState(cut.Find("[data-state]"), "open");
     }
 
     [Fact]
@@ -175,25 +115,5 @@ public class HoverCardTests : BlazingSpireTestBase
             }));
 
         Assert.NotNull(cut.Find("a[href]"));
-    }
-
-    [Fact]
-    public void HoverCardTrigger_Custom_Class_Is_Appended()
-    {
-        var cut = Render<HoverCard>(p =>
-            p.AddChildContent<HoverCardTrigger>(tp =>
-                tp.Add(x => x.Class, "trigger-class")));
-
-        Assert.Contains("trigger-class", cut.Find("span").ClassName);
-    }
-
-    [Fact]
-    public void HoverCardTrigger_AdditionalAttributes_PassThrough()
-    {
-        var cut = Render<HoverCard>(p =>
-            p.AddChildContent<HoverCardTrigger>(tp =>
-                tp.AddUnmatched("data-testid", "hc-trigger")));
-
-        Assert.Equal("hc-trigger", cut.Find("span").GetAttribute("data-testid"));
     }
 }

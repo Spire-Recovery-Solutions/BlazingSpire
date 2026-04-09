@@ -4,6 +4,7 @@
 <div role="option"
      aria-selected="@IsSelected"
      data-disabled="@(Disabled ? "true" : null)"
+     data-highlighted="@(IsHighlighted ? "true" : null)"
      class="@Classes"
      @attributes="AdditionalAttributes"
      @onclick="OnClickAsync">

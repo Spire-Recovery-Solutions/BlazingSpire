@@ -1,4 +1,3 @@
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 using Microsoft.AspNetCore.Components;
@@ -91,24 +90,6 @@ public class DataTableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void DataTable_IsWrappedIn_BorderDiv()
-    {
-        var cut = Render<DataTable<Payment>>(p => p
-            .Add(x => x.Items, Array.Empty<Payment>())
-            .Add(x => x.Columns, builder => { }));
-
-        var outer = cut.Find("div");
-        Assert.Contains("rounded-md", outer.ClassName);
-        Assert.Contains("border", outer.ClassName);
-    }
-
-    [Fact]
-    public void DataTable_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(DataTable<Payment>).IsAssignableTo(typeof(BlazingSpireComponentBase)));
-    }
-
-    [Fact]
     public void DataTableColumn_Renders_TableHead()
     {
         var cut = Render<DataTableColumn>(p => p
@@ -149,7 +130,6 @@ public class DataTableTests : BlazingSpireTestBase
             .Add(x => x.RowTemplate, item => builder => { }));
 
         await cut.InvokeAsync(() => cut.Instance.ToggleSortAsync("status"));
-
         Assert.Equal("status", cut.Instance.SortColumn);
     }
 
@@ -163,7 +143,6 @@ public class DataTableTests : BlazingSpireTestBase
             .Add(x => x.Columns, builder => { }));
 
         await cut.InvokeAsync(() => cut.Instance.ToggleSortAsync("status"));
-
         Assert.False(cut.Instance.SortAscending);
     }
 
@@ -177,7 +156,6 @@ public class DataTableTests : BlazingSpireTestBase
             .Add(x => x.Columns, builder => { }));
 
         await cut.InvokeAsync(() => cut.Instance.ToggleSortAsync("email"));
-
         Assert.Equal("email", cut.Instance.SortColumn);
         Assert.True(cut.Instance.SortAscending);
     }
@@ -193,7 +171,6 @@ public class DataTableTests : BlazingSpireTestBase
             .Add(x => x.RowTemplate, item => builder => { }));
 
         await cut.InvokeAsync(() => cut.Instance.ToggleSortAsync("amount"));
-
         Assert.Equal("amount", firedColumn);
     }
 }

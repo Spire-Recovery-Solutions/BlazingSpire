@@ -1,0 +1,115 @@
+@page "/components/carousel"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Carousel - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Carousel</h1>
+        <p class="text-lg text-muted-foreground">A slideshow component for cycling through content with previous and next controls.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <div class="w-80">
+                <Carousel @bind-CurrentIndex="_currentIndex">
+                    <CarouselContent>
+                        <CarouselItem>
+                            <div class="flex aspect-square items-center justify-center rounded-xl border bg-background text-4xl font-bold">
+                                1
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem>
+                            <div class="flex aspect-square items-center justify-center rounded-xl border bg-background text-4xl font-bold">
+                                2
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem>
+                            <div class="flex aspect-square items-center justify-center rounded-xl border bg-background text-4xl font-bold">
+                                3
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem>
+                            <div class="flex aspect-square items-center justify-center rounded-xl border bg-background text-4xl font-bold">
+                                4
+                            </div>
+                        </CarouselItem>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Carousel&gt;
+    &lt;CarouselContent&gt;
+        &lt;CarouselItem&gt;
+            &lt;div class=&quot;flex aspect-square items-center justify-center rounded-xl border bg-background text-4xl font-bold&quot;&gt;
+                1
+            &lt;/div&gt;
+        &lt;/CarouselItem&gt;
+        &lt;CarouselItem&gt;
+            &lt;div class=&quot;flex aspect-square items-center justify-center rounded-xl border bg-background text-4xl font-bold&quot;&gt;
+                2
+            &lt;/div&gt;
+        &lt;/CarouselItem&gt;
+        &lt;CarouselItem&gt;
+            &lt;div class=&quot;flex aspect-square items-center justify-center rounded-xl border bg-background text-4xl font-bold&quot;&gt;
+                3
+            &lt;/div&gt;
+        &lt;/CarouselItem&gt;
+        &lt;CarouselItem&gt;
+            &lt;div class=&quot;flex aspect-square items-center justify-center rounded-xl border bg-background text-4xl font-bold&quot;&gt;
+                4
+            &lt;/div&gt;
+        &lt;/CarouselItem&gt;
+    &lt;/CarouselContent&gt;
+    &lt;CarouselPrevious /&gt;
+    &lt;CarouselNext /&gt;
+&lt;/Carousel&gt;</code></pre>
+    </div>
+
+    @* ── Vertical ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Vertical</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <div class="h-64 w-80">
+                <Carousel Orientation="CarouselOrientation.Vertical" @bind-CurrentIndex="_currentIndexV">
+                    <CarouselContent Class="h-64">
+                        <CarouselItem>
+                            <div class="flex h-full items-center justify-center rounded-xl border bg-background text-4xl font-bold">
+                                A
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem>
+                            <div class="flex h-full items-center justify-center rounded-xl border bg-background text-4xl font-bold">
+                                B
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem>
+                            <div class="flex h-full items-center justify-center rounded-xl border bg-background text-4xl font-bold">
+                                C
+                            </div>
+                        </CarouselItem>
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    private int _currentIndex;
+    private int _currentIndexV;
+}

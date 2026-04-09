@@ -1,0 +1,93 @@
+@page "/components/menubar"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Menubar - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Menubar</h1>
+        <p class="text-lg text-muted-foreground">A horizontal menu bar with dropdown menus for application-style navigation.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <Menubar>
+                <MenubarMenu>
+                    <MenubarTrigger>File</MenubarTrigger>
+                    <MenubarContent>
+                        <MenubarItem>New</MenubarItem>
+                        <MenubarItem>Open</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>Save</MenubarItem>
+                        <MenubarItem>Save As</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>Exit</MenubarItem>
+                    </MenubarContent>
+                </MenubarMenu>
+                <MenubarMenu>
+                    <MenubarTrigger>Edit</MenubarTrigger>
+                    <MenubarContent>
+                        <MenubarItem>Undo</MenubarItem>
+                        <MenubarItem>Redo</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>Cut</MenubarItem>
+                        <MenubarItem>Copy</MenubarItem>
+                        <MenubarItem>Paste</MenubarItem>
+                    </MenubarContent>
+                </MenubarMenu>
+                <MenubarMenu>
+                    <MenubarTrigger>View</MenubarTrigger>
+                    <MenubarContent>
+                        <MenubarItem>Zoom In</MenubarItem>
+                        <MenubarItem>Zoom Out</MenubarItem>
+                        <MenubarSeparator />
+                        <MenubarItem>Full Screen</MenubarItem>
+                    </MenubarContent>
+                </MenubarMenu>
+            </Menubar>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Menubar&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;File&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarItem&gt;New&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Open&lt;/MenubarItem&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Save&lt;/MenubarItem&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Exit&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;Edit&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarItem&gt;Undo&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Redo&lt;/MenubarItem&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Cut&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Copy&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Paste&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+    &lt;MenubarMenu&gt;
+        &lt;MenubarTrigger&gt;View&lt;/MenubarTrigger&gt;
+        &lt;MenubarContent&gt;
+            &lt;MenubarItem&gt;Zoom In&lt;/MenubarItem&gt;
+            &lt;MenubarItem&gt;Zoom Out&lt;/MenubarItem&gt;
+            &lt;MenubarSeparator /&gt;
+            &lt;MenubarItem&gt;Full Screen&lt;/MenubarItem&gt;
+        &lt;/MenubarContent&gt;
+    &lt;/MenubarMenu&gt;
+&lt;/Menubar&gt;</code></pre>
+    </div>
+
+</div>

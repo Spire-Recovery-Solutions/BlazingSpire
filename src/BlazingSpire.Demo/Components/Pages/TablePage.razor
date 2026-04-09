@@ -1,0 +1,79 @@
+@page "/components/table"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Table - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Table</h1>
+        <p class="text-lg text-muted-foreground">Displays tabular data in rows and columns.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="rounded-xl border bg-muted/30 p-8">
+            <Table>
+                <TableCaption>A list of recent invoices.</TableCaption>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead Class="w-[100px]">Invoice</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Method</TableHead>
+                        <TableHead Class="text-right">Amount</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV001</TableCell>
+                        <TableCell>Paid</TableCell>
+                        <TableCell>Credit Card</TableCell>
+                        <TableCell Class="text-right">$250.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV002</TableCell>
+                        <TableCell>Pending</TableCell>
+                        <TableCell>PayPal</TableCell>
+                        <TableCell Class="text-right">$150.00</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell Class="font-medium">INV003</TableCell>
+                        <TableCell>Unpaid</TableCell>
+                        <TableCell>Bank Transfer</TableCell>
+                        <TableCell Class="text-right">$350.00</TableCell>
+                    </TableRow>
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TableCell colspan="3">Total</TableCell>
+                        <TableCell Class="text-right">$750.00</TableCell>
+                    </TableRow>
+                </TableFooter>
+            </Table>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Table&gt;
+    &lt;TableHeader&gt;
+        &lt;TableRow&gt;
+            &lt;TableHead&gt;Invoice&lt;/TableHead&gt;
+            &lt;TableHead&gt;Status&lt;/TableHead&gt;
+            &lt;TableHead Class=&quot;text-right&quot;&gt;Amount&lt;/TableHead&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableHeader&gt;
+    &lt;TableBody&gt;
+        &lt;TableRow&gt;
+            &lt;TableCell&gt;INV001&lt;/TableCell&gt;
+            &lt;TableCell&gt;Paid&lt;/TableCell&gt;
+            &lt;TableCell Class=&quot;text-right&quot;&gt;$250.00&lt;/TableCell&gt;
+        &lt;/TableRow&gt;
+    &lt;/TableBody&gt;
+&lt;/Table&gt;</code></pre>
+    </div>
+
+</div>

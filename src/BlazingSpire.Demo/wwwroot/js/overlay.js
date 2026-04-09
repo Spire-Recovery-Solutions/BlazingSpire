@@ -13,6 +13,8 @@ export function createFocusTrap(container, dotNetRef) {
         'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), ' +
         'select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
+    const previouslyFocused = document.activeElement;
+
     function getFocusableElements() {
         return [...container.querySelectorAll(focusableSelector)].filter(
             el => !el.hasAttribute('disabled') && el.offsetParent !== null
@@ -60,6 +62,9 @@ export function createFocusTrap(container, dotNetRef) {
     return {
         dispose() {
             document.removeEventListener('keydown', onKeyDown);
+            if (previouslyFocused && typeof previouslyFocused.focus === 'function' && document.contains(previouslyFocused)) {
+                previouslyFocused.focus();
+            }
         }
     };
 }

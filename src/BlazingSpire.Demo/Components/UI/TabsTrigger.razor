@@ -2,6 +2,7 @@
 @inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
 
 <button type="button" role="tab" aria-selected="@IsActive.ToString().ToLowerInvariant()" data-state="@DataState"
-        disabled="@Disabled" class="@Classes" @onclick="OnClickAsync" @attributes="AdditionalAttributes">
+        tabindex="@TabIndex" disabled="@Disabled" class="@Classes"
+        @onclick="OnClickAsync" @onkeydown="OnKeyDownAsync" @attributes="AdditionalAttributes">
     @ChildContent
 </button>

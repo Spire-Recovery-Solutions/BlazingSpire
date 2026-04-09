@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class SelectItem : BlazingSpireComponentBase
+public partial class SelectItem : BlazingSpireComponentBase, IDisposable
 {
     [CascadingParameter] public Select? ParentSelect { get; set; }
 
@@ -11,10 +11,15 @@ public partial class SelectItem : BlazingSpireComponentBase
     [Parameter] public bool Disabled { get; set; }
 
     private bool IsSelected => ParentSelect?.Value == ItemValue;
+    public bool IsHighlighted => ParentSelect?.HighlightedValue == ItemValue;
 
     protected override string BaseClasses =>
         "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none " +
         "focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50";
+
+    protected override void OnInitialized() => ParentSelect?.RegisterItem(ItemValue);
+
+    public void Dispose() => ParentSelect?.UnregisterItem(ItemValue);
 
     private async Task OnClickAsync()
     {

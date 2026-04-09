@@ -1,0 +1,64 @@
+@page "/components/combobox"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Combobox - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Combobox</h1>
+        <p class="text-lg text-muted-foreground">A searchable select with a filtered dropdown list.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex flex-col items-center gap-4 rounded-xl border bg-muted/30 p-8">
+            <div class="w-64">
+                <Combobox @bind-Value="_selected" Placeholder="Select a framework..." SearchPlaceholder="Search framework...">
+                    <ComboboxTrigger />
+                    <ComboboxContent>
+                        <ComboboxInput />
+                        <ComboboxItem ItemValue="blazor" FilterText="Blazor">Blazor</ComboboxItem>
+                        <ComboboxItem ItemValue="react" FilterText="React">React</ComboboxItem>
+                        <ComboboxItem ItemValue="vue" FilterText="Vue">Vue</ComboboxItem>
+                        <ComboboxItem ItemValue="angular" FilterText="Angular">Angular</ComboboxItem>
+                        <ComboboxItem ItemValue="svelte" FilterText="Svelte">Svelte</ComboboxItem>
+                        <ComboboxEmpty>No framework found.</ComboboxEmpty>
+                    </ComboboxContent>
+                </Combobox>
+            </div>
+            @if (!string.IsNullOrEmpty(_selected))
+            {
+                <p class="text-sm text-muted-foreground">Selected: <span class="font-medium text-foreground">@_selected</span></p>
+            }
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Combobox &#64;bind-Value=&quot;_selected&quot; Placeholder=&quot;Select a framework...&quot;&gt;
+    &lt;ComboboxTrigger /&gt;
+    &lt;ComboboxContent&gt;
+        &lt;ComboboxInput /&gt;
+        &lt;ComboboxItem ItemValue=&quot;blazor&quot; FilterText=&quot;Blazor&quot;&gt;Blazor&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue=&quot;react&quot; FilterText=&quot;React&quot;&gt;React&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue=&quot;vue&quot; FilterText=&quot;Vue&quot;&gt;Vue&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue=&quot;angular&quot; FilterText=&quot;Angular&quot;&gt;Angular&lt;/ComboboxItem&gt;
+        &lt;ComboboxItem ItemValue=&quot;svelte&quot; FilterText=&quot;Svelte&quot;&gt;Svelte&lt;/ComboboxItem&gt;
+        &lt;ComboboxEmpty&gt;No framework found.&lt;/ComboboxEmpty&gt;
+    &lt;/ComboboxContent&gt;
+&lt;/Combobox&gt;
+
+@@code {
+    private string? _selected;
+}</code></pre>
+    </div>
+
+</div>
+
+@code {
+    private string? _selected;
+}

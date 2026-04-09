@@ -1,0 +1,62 @@
+@page "/components/context-menu"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Context Menu - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Context Menu</h1>
+        <p class="text-lg text-muted-foreground">Displays a menu triggered by right-clicking a target area.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <ContextMenu @bind-IsOpen="_isOpen">
+                <ContextMenuTrigger>
+                    <div class="flex h-36 w-72 items-center justify-center rounded-lg border-2 border-dashed border-muted-foreground/40 text-sm text-muted-foreground select-none">
+                        Right-click here
+                    </div>
+                </ContextMenuTrigger>
+                <ContextMenuContent>
+                    <ContextMenuLabel>Actions</ContextMenuLabel>
+                    <ContextMenuSeparator />
+                    <ContextMenuItem>Cut</ContextMenuItem>
+                    <ContextMenuItem>Copy</ContextMenuItem>
+                    <ContextMenuItem>Paste</ContextMenuItem>
+                    <ContextMenuSeparator />
+                    <ContextMenuItem>Delete</ContextMenuItem>
+                </ContextMenuContent>
+            </ContextMenu>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;ContextMenu&gt;
+    &lt;ContextMenuTrigger&gt;
+        &lt;div class=&quot;flex h-36 w-72 items-center justify-center rounded-lg border-2 border-dashed&quot;&gt;
+            Right-click here
+        &lt;/div&gt;
+    &lt;/ContextMenuTrigger&gt;
+    &lt;ContextMenuContent&gt;
+        &lt;ContextMenuLabel&gt;Actions&lt;/ContextMenuLabel&gt;
+        &lt;ContextMenuSeparator /&gt;
+        &lt;ContextMenuItem&gt;Cut&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuItem&gt;Copy&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuItem&gt;Paste&lt;/ContextMenuItem&gt;
+        &lt;ContextMenuSeparator /&gt;
+        &lt;ContextMenuItem&gt;Delete&lt;/ContextMenuItem&gt;
+    &lt;/ContextMenuContent&gt;
+&lt;/ContextMenu&gt;</code></pre>
+    </div>
+
+</div>
+
+@code {
+    private bool _isOpen;
+}

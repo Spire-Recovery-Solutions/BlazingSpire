@@ -1,0 +1,75 @@
+@page "/components/radio-group"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Radio Group - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Radio Group</h1>
+        <p class="text-lg text-muted-foreground">A group of radio buttons for single-option selection.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <RadioGroup @bind-Value="_selected">
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="option-one" />
+                    <Label>Option One</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="option-two" />
+                    <Label>Option Two</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="option-three" />
+                    <Label>Option Three</Label>
+                </div>
+            </RadioGroup>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;RadioGroup &#64;bind-Value=&quot;_selected&quot;&gt;
+    &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+        &lt;RadioGroupItem ItemValue=&quot;option-one&quot; /&gt;
+        &lt;Label&gt;Option One&lt;/Label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;flex items-center gap-2&quot;&gt;
+        &lt;RadioGroupItem ItemValue=&quot;option-two&quot; /&gt;
+        &lt;Label&gt;Option Two&lt;/Label&gt;
+    &lt;/div&gt;
+&lt;/RadioGroup&gt;
+
+@@code {
+    private string _selected = &quot;option-one&quot;;
+}</code></pre>
+    </div>
+
+    @* ── Disabled ───────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <RadioGroup Value="option-one">
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="option-one" Disabled="true" />
+                    <Label>Option One</Label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioGroupItem ItemValue="option-two" Disabled="true" />
+                    <Label>Option Two</Label>
+                </div>
+            </RadioGroup>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    private string _selected = "option-one";
+}

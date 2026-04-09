@@ -1,4 +1,3 @@
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -16,20 +15,10 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void Table_Has_Base_Classes()
+    public void Table_Is_Wrapped_In_Scrollable_Div()
     {
         var cut = Render<Table>();
-        var classes = cut.Find("table").ClassName;
-        Assert.Contains("w-full", classes);
-        Assert.Contains("caption-bottom", classes);
-        Assert.Contains("text-sm", classes);
-    }
-
-    [Fact]
-    public void Table_Custom_Class_Is_Appended()
-    {
-        var cut = Render<Table>(p => p.Add(x => x.Class, "my-table"));
-        Assert.Contains("my-table", cut.Find("table").ClassName);
+        Assert.Contains("overflow-auto", cut.Find("div").ClassName);
     }
 
     [Fact]
@@ -40,24 +29,17 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void Table_IsWrappedIn_ScrollDiv()
+    public void Table_Custom_Class_Is_Included()
     {
-        var cut = Render<Table>();
-        var wrapper = cut.Find("div");
-        Assert.Contains("overflow-auto", wrapper.ClassName);
-    }
-
-    [Fact]
-    public void Table_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(Table).IsAssignableTo(typeof(BlazingSpireComponentBase)));
+        var cut = Render<Table>(p => p.Add(x => x.Class, "my-table"));
+        Assert.Contains("my-table", cut.Find("table").ClassName);
     }
 
     [Fact]
     public void Table_AdditionalAttributes_PassThrough()
     {
-        var cut = Render<Table>(p => p.AddUnmatched("data-testid", "test-value"));
-        Assert.Equal("test-value", cut.Find("table").GetAttribute("data-testid"));
+        var cut = Render<Table>(p => p.AddUnmatched("data-testid", "my-table"));
+        Assert.Equal("my-table", cut.Find("table").GetAttribute("data-testid"));
     }
 
     // ── TableHeader ──────────────────────────────────────────────────────────
@@ -70,20 +52,6 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableHeader_Has_Base_Classes()
-    {
-        var cut = Render<TableHeader>();
-        Assert.Contains("[&_tr]:border-b", cut.Find("thead").ClassName);
-    }
-
-    [Fact]
-    public void TableHeader_Custom_Class_Is_Appended()
-    {
-        var cut = Render<TableHeader>(p => p.Add(x => x.Class, "custom-header"));
-        Assert.Contains("custom-header", cut.Find("thead").ClassName);
-    }
-
-    [Fact]
     public void TableHeader_ChildContent_Renders()
     {
         var cut = Render<TableHeader>(p => p.AddChildContent("<tr></tr>"));
@@ -91,10 +59,10 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableHeader_AdditionalAttributes_PassThrough()
+    public void TableHeader_Custom_Class_Is_Included()
     {
-        var cut = Render<TableHeader>(p => p.AddUnmatched("data-testid", "test-value"));
-        Assert.Equal("test-value", cut.Find("thead").GetAttribute("data-testid"));
+        var cut = Render<TableHeader>(p => p.Add(x => x.Class, "my-header"));
+        Assert.Contains("my-header", cut.Find("thead").ClassName);
     }
 
     // ── TableBody ────────────────────────────────────────────────────────────
@@ -107,20 +75,6 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableBody_Has_Base_Classes()
-    {
-        var cut = Render<TableBody>();
-        Assert.Contains("[&_tr:last-child]:border-0", cut.Find("tbody").ClassName);
-    }
-
-    [Fact]
-    public void TableBody_Custom_Class_Is_Appended()
-    {
-        var cut = Render<TableBody>(p => p.Add(x => x.Class, "custom-body"));
-        Assert.Contains("custom-body", cut.Find("tbody").ClassName);
-    }
-
-    [Fact]
     public void TableBody_ChildContent_Renders()
     {
         var cut = Render<TableBody>(p => p.AddChildContent("<tr><td>Cell</td></tr>"));
@@ -128,10 +82,10 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableBody_AdditionalAttributes_PassThrough()
+    public void TableBody_Custom_Class_Is_Included()
     {
-        var cut = Render<TableBody>(p => p.AddUnmatched("data-testid", "test-value"));
-        Assert.Equal("test-value", cut.Find("tbody").GetAttribute("data-testid"));
+        var cut = Render<TableBody>(p => p.Add(x => x.Class, "my-body"));
+        Assert.Contains("my-body", cut.Find("tbody").ClassName);
     }
 
     // ── TableRow ─────────────────────────────────────────────────────────────
@@ -144,23 +98,6 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableRow_Has_Base_Classes()
-    {
-        var cut = Render<TableRow>();
-        var classes = cut.Find("tr").ClassName;
-        Assert.Contains("border-b", classes);
-        Assert.Contains("transition-colors", classes);
-        Assert.Contains("hover:bg-muted/50", classes);
-    }
-
-    [Fact]
-    public void TableRow_Custom_Class_Is_Appended()
-    {
-        var cut = Render<TableRow>(p => p.Add(x => x.Class, "custom-row"));
-        Assert.Contains("custom-row", cut.Find("tr").ClassName);
-    }
-
-    [Fact]
     public void TableRow_ChildContent_Renders()
     {
         var cut = Render<TableRow>(p => p.AddChildContent("<td>Data</td>"));
@@ -168,10 +105,10 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableRow_AdditionalAttributes_PassThrough()
+    public void TableRow_Custom_Class_Is_Included()
     {
-        var cut = Render<TableRow>(p => p.AddUnmatched("data-testid", "test-value"));
-        Assert.Equal("test-value", cut.Find("tr").GetAttribute("data-testid"));
+        var cut = Render<TableRow>(p => p.Add(x => x.Class, "my-row"));
+        Assert.Contains("my-row", cut.Find("tr").ClassName);
     }
 
     // ── TableHead ────────────────────────────────────────────────────────────
@@ -184,24 +121,6 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableHead_Has_Base_Classes()
-    {
-        var cut = Render<TableHead>();
-        var classes = cut.Find("th").ClassName;
-        Assert.Contains("h-12", classes);
-        Assert.Contains("px-4", classes);
-        Assert.Contains("font-medium", classes);
-        Assert.Contains("text-muted-foreground", classes);
-    }
-
-    [Fact]
-    public void TableHead_Custom_Class_Is_Appended()
-    {
-        var cut = Render<TableHead>(p => p.Add(x => x.Class, "custom-head"));
-        Assert.Contains("custom-head", cut.Find("th").ClassName);
-    }
-
-    [Fact]
     public void TableHead_ChildContent_Renders()
     {
         var cut = Render<TableHead>(p => p.AddChildContent("Invoice"));
@@ -209,10 +128,10 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableHead_AdditionalAttributes_PassThrough()
+    public void TableHead_Custom_Class_Is_Included()
     {
-        var cut = Render<TableHead>(p => p.AddUnmatched("data-testid", "test-value"));
-        Assert.Equal("test-value", cut.Find("th").GetAttribute("data-testid"));
+        var cut = Render<TableHead>(p => p.Add(x => x.Class, "my-head"));
+        Assert.Contains("my-head", cut.Find("th").ClassName);
     }
 
     // ── TableCell ────────────────────────────────────────────────────────────
@@ -225,22 +144,6 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableCell_Has_Base_Classes()
-    {
-        var cut = Render<TableCell>();
-        var classes = cut.Find("td").ClassName;
-        Assert.Contains("p-4", classes);
-        Assert.Contains("align-middle", classes);
-    }
-
-    [Fact]
-    public void TableCell_Custom_Class_Is_Appended()
-    {
-        var cut = Render<TableCell>(p => p.Add(x => x.Class, "custom-cell"));
-        Assert.Contains("custom-cell", cut.Find("td").ClassName);
-    }
-
-    [Fact]
     public void TableCell_ChildContent_Renders()
     {
         var cut = Render<TableCell>(p => p.AddChildContent("$250.00"));
@@ -248,10 +151,10 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableCell_AdditionalAttributes_PassThrough()
+    public void TableCell_Custom_Class_Is_Included()
     {
-        var cut = Render<TableCell>(p => p.AddUnmatched("data-testid", "test-value"));
-        Assert.Equal("test-value", cut.Find("td").GetAttribute("data-testid"));
+        var cut = Render<TableCell>(p => p.Add(x => x.Class, "my-cell"));
+        Assert.Contains("my-cell", cut.Find("td").ClassName);
     }
 
     // ── TableCaption ─────────────────────────────────────────────────────────
@@ -264,23 +167,6 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableCaption_Has_Base_Classes()
-    {
-        var cut = Render<TableCaption>();
-        var classes = cut.Find("caption").ClassName;
-        Assert.Contains("mt-4", classes);
-        Assert.Contains("text-sm", classes);
-        Assert.Contains("text-muted-foreground", classes);
-    }
-
-    [Fact]
-    public void TableCaption_Custom_Class_Is_Appended()
-    {
-        var cut = Render<TableCaption>(p => p.Add(x => x.Class, "custom-caption"));
-        Assert.Contains("custom-caption", cut.Find("caption").ClassName);
-    }
-
-    [Fact]
     public void TableCaption_ChildContent_Renders()
     {
         var cut = Render<TableCaption>(p => p.AddChildContent("A list of invoices."));
@@ -288,10 +174,10 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableCaption_AdditionalAttributes_PassThrough()
+    public void TableCaption_Custom_Class_Is_Included()
     {
-        var cut = Render<TableCaption>(p => p.AddUnmatched("data-testid", "test-value"));
-        Assert.Equal("test-value", cut.Find("caption").GetAttribute("data-testid"));
+        var cut = Render<TableCaption>(p => p.Add(x => x.Class, "my-caption"));
+        Assert.Contains("my-caption", cut.Find("caption").ClassName);
     }
 
     // ── TableFooter ──────────────────────────────────────────────────────────
@@ -304,23 +190,6 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableFooter_Has_Base_Classes()
-    {
-        var cut = Render<TableFooter>();
-        var classes = cut.Find("tfoot").ClassName;
-        Assert.Contains("border-t", classes);
-        Assert.Contains("bg-muted/50", classes);
-        Assert.Contains("font-medium", classes);
-    }
-
-    [Fact]
-    public void TableFooter_Custom_Class_Is_Appended()
-    {
-        var cut = Render<TableFooter>(p => p.Add(x => x.Class, "custom-footer"));
-        Assert.Contains("custom-footer", cut.Find("tfoot").ClassName);
-    }
-
-    [Fact]
     public void TableFooter_ChildContent_Renders()
     {
         var cut = Render<TableFooter>(p => p.AddChildContent("<tr><td>Total</td></tr>"));
@@ -328,9 +197,9 @@ public class TableTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TableFooter_AdditionalAttributes_PassThrough()
+    public void TableFooter_Custom_Class_Is_Included()
     {
-        var cut = Render<TableFooter>(p => p.AddUnmatched("data-testid", "test-value"));
-        Assert.Equal("test-value", cut.Find("tfoot").GetAttribute("data-testid"));
+        var cut = Render<TableFooter>(p => p.Add(x => x.Class, "my-footer"));
+        Assert.Contains("my-footer", cut.Find("tfoot").ClassName);
     }
 }

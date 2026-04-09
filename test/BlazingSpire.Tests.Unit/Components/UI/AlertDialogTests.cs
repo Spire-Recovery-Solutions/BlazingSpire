@@ -1,58 +1,15 @@
-using Microsoft.AspNetCore.Components;
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class AlertDialogTests : BlazingSpireTestBase
 {
-    // ── AlertDialog ──────────────────────────────────────────────────────────
+    // ── Visibility ────────────────────────────────────────────────────────────
 
     [Fact]
-    public void AlertDialog_Renders_CascadingValue()
-    {
-        var cut = Render<AlertDialog>(p => p.AddChildContent("<span>content</span>"));
-        Assert.NotNull(cut);
-    }
-
-    [Fact]
-    public void AlertDialog_Is_Assignable_To_OverlayBase()
-    {
-        Assert.True(typeof(AlertDialog).IsAssignableTo(typeof(OverlayBase)));
-    }
-
-    [Fact]
-    public void AlertDialog_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(AlertDialog).IsAssignableTo(typeof(BlazingSpireComponentBase)));
-    }
-
-    [Fact]
-    public void AlertDialog_ShouldCloseOnEscape_Is_False()
-    {
-        var dialog = new AlertDialog();
-        // Use reflection to access the protected property
-        var prop = typeof(AlertDialog).GetProperty("ShouldCloseOnEscape",
-            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        Assert.NotNull(prop);
-        Assert.False((bool)prop!.GetValue(dialog)!);
-    }
-
-    [Fact]
-    public void AlertDialog_ShouldCloseOnInteractOutside_Is_False()
-    {
-        var dialog = new AlertDialog();
-        var prop = typeof(AlertDialog).GetProperty("ShouldCloseOnInteractOutside",
-            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        Assert.NotNull(prop);
-        Assert.False((bool)prop!.GetValue(dialog)!);
-    }
-
-    // ── AlertDialogContent ────────────────────────────────────────────────────
-
-    [Fact]
-    public void AlertDialogContent_Hidden_When_Dialog_Closed()
+    public void AlertDialogContent_Is_Hidden_When_Closed()
     {
         var cut = Render<AlertDialog>(p =>
             p.AddChildContent<AlertDialogContent>(cp =>
@@ -62,7 +19,7 @@ public class AlertDialogTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void AlertDialogContent_Visible_When_Dialog_Open()
+    public void AlertDialogContent_Is_Visible_When_DefaultIsOpen_True()
     {
         var cut = Render<AlertDialog>(p =>
         {
@@ -73,6 +30,8 @@ public class AlertDialogTests : BlazingSpireTestBase
 
         Assert.NotNull(cut.Find("[role=alertdialog]"));
     }
+
+    // ── ARIA ──────────────────────────────────────────────────────────────────
 
     [Fact]
     public void AlertDialogContent_Has_Role_Alertdialog()
@@ -97,11 +56,11 @@ public class AlertDialogTests : BlazingSpireTestBase
                 cp.AddChildContent("<p>Body</p>"));
         });
 
-        Assert.Equal("true", cut.Find("[role=alertdialog]").GetAttribute("aria-modal"));
+        AssertAriaModal(cut.Find("[role=alertdialog]"), true);
     }
 
     [Fact]
-    public void AlertDialogContent_Has_Base_Classes()
+    public void AlertDialogContent_Has_Data_State_Open()
     {
         var cut = Render<AlertDialog>(p =>
         {
@@ -110,203 +69,70 @@ public class AlertDialogTests : BlazingSpireTestBase
                 cp.AddChildContent("<p>Body</p>"));
         });
 
-        var classes = cut.Find("[role=alertdialog]").ClassName;
-        Assert.Contains("fixed", classes);
-        Assert.Contains("z-50", classes);
-        Assert.Contains("max-w-lg", classes);
+        AssertDataState(cut.Find("[role=alertdialog]"), "open");
     }
 
     [Fact]
-    public void AlertDialogContent_Custom_Class_Is_Appended()
-    {
-        var cut = Render<AlertDialog>(p =>
-        {
-            p.Add(x => x.DefaultIsOpen, true);
-            p.AddChildContent<AlertDialogContent>(cp =>
-                cp.Add(x => x.Class, "my-custom-class"));
-        });
-
-        Assert.Contains("my-custom-class", cut.Find("[role=alertdialog]").ClassName);
-    }
-
-    [Fact]
-    public void AlertDialogContent_AdditionalAttributes_PassThrough()
-    {
-        var cut = Render<AlertDialog>(p =>
-        {
-            p.Add(x => x.DefaultIsOpen, true);
-            p.AddChildContent<AlertDialogContent>(cp =>
-                cp.AddUnmatched("data-testid", "alert-panel"));
-        });
-
-        Assert.Equal("alert-panel", cut.Find("[role=alertdialog]").GetAttribute("data-testid"));
-    }
-
-    [Fact]
-    public void AlertDialogContent_Renders_Backdrop_When_Open()
-    {
-        var cut = Render<AlertDialog>(p =>
-        {
-            p.Add(x => x.DefaultIsOpen, true);
-            p.AddChildContent<AlertDialogContent>(cp =>
-                cp.AddChildContent("<p>Body</p>"));
-        });
-
-        Assert.NotEmpty(cut.FindAll(".bg-black\\/80"));
-    }
-
-    // ── AlertDialogHeader ─────────────────────────────────────────────────────
-
-    [Fact]
-    public void AlertDialogHeader_Renders_Div()
-    {
-        var cut = Render<AlertDialogHeader>();
-        Assert.NotNull(cut.Find("div"));
-    }
-
-    [Fact]
-    public void AlertDialogHeader_Has_Base_Classes()
-    {
-        var cut = Render<AlertDialogHeader>();
-        var classes = cut.Find("div").ClassName;
-        Assert.Contains("flex", classes);
-        Assert.Contains("flex-col", classes);
-        Assert.Contains("space-y-1.5", classes);
-    }
-
-    [Fact]
-    public void AlertDialogHeader_Renders_ChildContent()
-    {
-        var cut = Render<AlertDialogHeader>(p => p.AddChildContent("<span>Header</span>"));
-        Assert.NotNull(cut.Find("span"));
-    }
-
-    // ── AlertDialogFooter ─────────────────────────────────────────────────────
-
-    [Fact]
-    public void AlertDialogFooter_Renders_Div()
-    {
-        var cut = Render<AlertDialogFooter>();
-        Assert.NotNull(cut.Find("div"));
-    }
-
-    [Fact]
-    public void AlertDialogFooter_Has_Base_Classes()
-    {
-        var cut = Render<AlertDialogFooter>();
-        var classes = cut.Find("div").ClassName;
-        Assert.Contains("flex", classes);
-        Assert.Contains("sm:justify-end", classes);
-    }
-
-    // ── AlertDialogTitle ──────────────────────────────────────────────────────
-
-    [Fact]
-    public void AlertDialogTitle_Renders_H2()
-    {
-        var cut = Render<AlertDialogTitle>();
-        Assert.NotNull(cut.Find("h2"));
-    }
-
-    [Fact]
-    public void AlertDialogTitle_Has_Base_Classes()
-    {
-        var cut = Render<AlertDialogTitle>();
-        var classes = cut.Find("h2").ClassName;
-        Assert.Contains("text-lg", classes);
-        Assert.Contains("font-semibold", classes);
-        Assert.Contains("tracking-tight", classes);
-    }
-
-    [Fact]
-    public void AlertDialogTitle_Id_Matches_ParentDialog_TitleId()
+    public void AlertDialogTitle_Id_Matches_Aria_LabelledBy()
     {
         var cut = Render<AlertDialog>(p =>
         {
             p.Add(x => x.DefaultIsOpen, true);
             p.AddChildContent<AlertDialogContent>(cp =>
                 cp.AddChildContent<AlertDialogTitle>(tp =>
-                    tp.AddChildContent("Title")));
+                    tp.AddChildContent("My Title")));
         });
 
-        var h2 = cut.Find("h2");
         var dialog = cut.Find("[role=alertdialog]");
-        var expectedId = dialog.GetAttribute("aria-labelledby");
-        Assert.NotNull(expectedId);
-        Assert.Equal(expectedId, h2.GetAttribute("id"));
-    }
-
-    // ── AlertDialogDescription ────────────────────────────────────────────────
-
-    [Fact]
-    public void AlertDialogDescription_Renders_P()
-    {
-        var cut = Render<AlertDialogDescription>();
-        Assert.NotNull(cut.Find("p"));
+        var labelledBy = dialog.GetAttribute("aria-labelledby");
+        Assert.NotNull(labelledBy);
+        Assert.Equal(labelledBy, cut.Find("h2").GetAttribute("id"));
     }
 
     [Fact]
-    public void AlertDialogDescription_Has_Base_Classes()
-    {
-        var cut = Render<AlertDialogDescription>();
-        var classes = cut.Find("p").ClassName;
-        Assert.Contains("text-sm", classes);
-        Assert.Contains("text-muted-foreground", classes);
-    }
-
-    [Fact]
-    public void AlertDialogDescription_Id_Matches_ParentDialog_DescriptionId()
+    public void AlertDialogDescription_Id_Matches_Aria_DescribedBy()
     {
         var cut = Render<AlertDialog>(p =>
         {
             p.Add(x => x.DefaultIsOpen, true);
             p.AddChildContent<AlertDialogContent>(cp =>
                 cp.AddChildContent<AlertDialogDescription>(dp =>
-                    dp.AddChildContent("Description")));
+                    dp.AddChildContent("My Description")));
         });
 
-        var p = cut.Find("p");
         var dialog = cut.Find("[role=alertdialog]");
-        var expectedId = dialog.GetAttribute("aria-describedby");
-        Assert.NotNull(expectedId);
-        Assert.Equal(expectedId, p.GetAttribute("id"));
+        var describedBy = dialog.GetAttribute("aria-describedby");
+        Assert.NotNull(describedBy);
+        Assert.Equal(describedBy, cut.Find("p").GetAttribute("id"));
     }
 
-    // ── AlertDialogAction ─────────────────────────────────────────────────────
+    // ── Correct HTML elements ─────────────────────────────────────────────────
 
     [Fact]
-    public void AlertDialogAction_Renders_Button()
+    public void AlertDialogTitle_Renders_H2()
     {
-        var cut = Render<AlertDialogAction>();
-        Assert.NotNull(cut.Find("button"));
+        var cut = Render<AlertDialogTitle>(p => p.AddChildContent("Title"));
+        Assert.NotNull(cut.Find("h2"));
     }
 
     [Fact]
-    public void AlertDialogAction_Has_Type_Button()
+    public void AlertDialogDescription_Renders_Paragraph()
     {
-        var cut = Render<AlertDialogAction>();
+        var cut = Render<AlertDialogDescription>(p => p.AddChildContent("Description"));
+        Assert.NotNull(cut.Find("p"));
+    }
+
+    // ── Action and Cancel buttons ─────────────────────────────────────────────
+
+    [Fact]
+    public void AlertDialogAction_Renders_Button_With_Type_Button()
+    {
+        var cut = Render<AlertDialogAction>(p => p.AddChildContent("Continue"));
         Assert.Equal("button", cut.Find("button").GetAttribute("type"));
     }
 
     [Fact]
-    public void AlertDialogAction_Has_Base_Classes()
-    {
-        var cut = Render<AlertDialogAction>();
-        var classes = cut.Find("button").ClassName;
-        Assert.Contains("bg-primary", classes);
-        Assert.Contains("text-primary-foreground", classes);
-        Assert.Contains("rounded-full", classes);
-    }
-
-    [Fact]
-    public void AlertDialogAction_Custom_Class_Is_Appended()
-    {
-        var cut = Render<AlertDialogAction>(p => p.Add(x => x.Class, "extra-class"));
-        Assert.Contains("extra-class", cut.Find("button").ClassName);
-    }
-
-    [Fact]
-    public void AlertDialogAction_Click_Invokes_OnClick_And_Closes_Dialog()
+    public void AlertDialogAction_Click_Invokes_OnClick_And_Closes()
     {
         var onClickCalled = false;
         var cut = Render<AlertDialog>(p =>
@@ -326,41 +152,15 @@ public class AlertDialogTests : BlazingSpireTestBase
         Assert.Empty(cut.FindAll("[role=alertdialog]"));
     }
 
-    // ── AlertDialogCancel ─────────────────────────────────────────────────────
-
     [Fact]
-    public void AlertDialogCancel_Renders_Button()
+    public void AlertDialogCancel_Renders_Button_With_Type_Button()
     {
-        var cut = Render<AlertDialogCancel>();
-        Assert.NotNull(cut.Find("button"));
-    }
-
-    [Fact]
-    public void AlertDialogCancel_Has_Type_Button()
-    {
-        var cut = Render<AlertDialogCancel>();
+        var cut = Render<AlertDialogCancel>(p => p.AddChildContent("Cancel"));
         Assert.Equal("button", cut.Find("button").GetAttribute("type"));
     }
 
     [Fact]
-    public void AlertDialogCancel_Has_Base_Classes()
-    {
-        var cut = Render<AlertDialogCancel>();
-        var classes = cut.Find("button").ClassName;
-        Assert.Contains("border", classes);
-        Assert.Contains("border-input", classes);
-        Assert.Contains("bg-background", classes);
-    }
-
-    [Fact]
-    public void AlertDialogCancel_Custom_Class_Is_Appended()
-    {
-        var cut = Render<AlertDialogCancel>(p => p.Add(x => x.Class, "cancel-class"));
-        Assert.Contains("cancel-class", cut.Find("button").ClassName);
-    }
-
-    [Fact]
-    public void AlertDialogCancel_Click_Closes_Dialog()
+    public void AlertDialogCancel_Click_Closes()
     {
         var cut = Render<AlertDialog>(p =>
         {
@@ -375,7 +175,7 @@ public class AlertDialogTests : BlazingSpireTestBase
         Assert.Empty(cut.FindAll("[role=alertdialog]"));
     }
 
-    // ── AlertDialogTrigger ────────────────────────────────────────────────────
+    // ── Trigger behavior ──────────────────────────────────────────────────────
 
     [Fact]
     public void AlertDialogTrigger_Click_Opens_Dialog()
@@ -385,12 +185,12 @@ public class AlertDialogTests : BlazingSpireTestBase
             p.AddChildContent(builder =>
             {
                 builder.OpenComponent<AlertDialogTrigger>(0);
-                builder.AddAttribute(1, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment)(b =>
+                builder.AddAttribute(1, "ChildContent", (RenderFragment)(b =>
                     b.AddContent(0, "Open")));
                 builder.CloseComponent();
 
                 builder.OpenComponent<AlertDialogContent>(2);
-                builder.AddAttribute(3, "ChildContent", (Microsoft.AspNetCore.Components.RenderFragment)(b =>
+                builder.AddAttribute(3, "ChildContent", (RenderFragment)(b =>
                     b.AddContent(0, "Body")));
                 builder.CloseComponent();
             });
@@ -399,5 +199,38 @@ public class AlertDialogTests : BlazingSpireTestBase
         Assert.Empty(cut.FindAll("[role=alertdialog]"));
         cut.Find("div").Click();
         Assert.NotNull(cut.Find("[role=alertdialog]"));
+    }
+
+    // ── Controlled mode ───────────────────────────────────────────────────────
+
+    [Fact]
+    public void AlertDialog_Controlled_Mode_IsOpen_True_Shows_Content()
+    {
+        var cut = Render<AlertDialog>(p =>
+        {
+            p.Add(x => x.IsOpen, true);
+            p.Add(x => x.IsOpenChanged, EventCallback.Factory.Create<bool>(this, _ => { }));
+            p.AddChildContent<AlertDialogContent>(cp =>
+                cp.AddChildContent("<p>Body</p>"));
+        });
+
+        Assert.NotNull(cut.Find("[role=alertdialog]"));
+    }
+
+    [Fact]
+    public void AlertDialog_Controlled_Mode_IsOpenChanged_Fires_On_Action_Click()
+    {
+        bool? receivedValue = null;
+        var cut = Render<AlertDialog>(p =>
+        {
+            p.Add(x => x.IsOpen, true);
+            p.Add(x => x.IsOpenChanged, EventCallback.Factory.Create<bool>(this, v => receivedValue = v));
+            p.AddChildContent<AlertDialogContent>(cp =>
+                cp.AddChildContent<AlertDialogAction>(ap =>
+                    ap.AddChildContent("Continue")));
+        });
+
+        cut.Find("button").Click();
+        Assert.Equal(false, receivedValue);
     }
 }

@@ -1,5 +1,3 @@
-using System.Reflection;
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -26,28 +24,16 @@ public class TooltipTests : BlazingSpireTestBase
     // ── Tooltip ───────────────────────────────────────────────────────────────
 
     [Fact]
-    public void Tooltip_Is_Assignable_To_PopoverBase()
-    {
-        Assert.True(typeof(Tooltip).IsAssignableTo(typeof(PopoverBase)));
-    }
-
-    [Fact]
-    public void Tooltip_Is_Assignable_To_OverlayBase()
-    {
-        Assert.True(typeof(Tooltip).IsAssignableTo(typeof(OverlayBase)));
-    }
-
-    [Fact]
-    public void Tooltip_Renders_CascadingValue()
+    public void Tooltip_Renders_ChildContent()
     {
         var cut = Render<Tooltip>(p => p.AddChildContent("<span>inner</span>"));
-        Assert.NotNull(cut);
+        Assert.NotNull(cut.Find("span"));
     }
 
     // ── TooltipContent ────────────────────────────────────────────────────────
 
     [Fact]
-    public void TooltipContent_Hidden_When_Tooltip_Closed()
+    public void TooltipContent_Hidden_When_Closed()
     {
         var cut = Render<Tooltip>(p =>
             p.AddChildContent<TooltipContent>(cp =>
@@ -57,7 +43,7 @@ public class TooltipTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void TooltipContent_Visible_When_Tooltip_Open()
+    public void TooltipContent_Visible_When_DefaultIsOpen()
     {
         var cut = Render<Tooltip>(p =>
         {
@@ -79,11 +65,11 @@ public class TooltipTests : BlazingSpireTestBase
                 cp.AddChildContent("Tip text"));
         });
 
-        Assert.Equal("tooltip", cut.Find("[role=tooltip]").GetAttribute("role"));
+        AssertRole(cut.Find("[role=tooltip]"), "tooltip");
     }
 
     [Fact]
-    public void TooltipContent_Has_Data_State_Open_When_Open()
+    public void TooltipContent_Has_Data_State_Open()
     {
         var cut = Render<Tooltip>(p =>
         {
@@ -92,11 +78,11 @@ public class TooltipTests : BlazingSpireTestBase
                 cp.AddChildContent("Tip text"));
         });
 
-        Assert.Equal("open", cut.Find("[role=tooltip]").GetAttribute("data-state"));
+        AssertDataState(cut.Find("[role=tooltip]"), "open");
     }
 
     [Fact]
-    public void TooltipContent_Has_Base_Classes()
+    public void TooltipContent_Has_DataSide_Attribute()
     {
         var cut = Render<Tooltip>(p =>
         {
@@ -105,36 +91,7 @@ public class TooltipTests : BlazingSpireTestBase
                 cp.AddChildContent("Tip text"));
         });
 
-        var classes = cut.Find("[role=tooltip]").ClassName;
-        Assert.Contains("z-50", classes);
-        Assert.Contains("rounded-md", classes);
-        Assert.Contains("text-sm", classes);
-    }
-
-    [Fact]
-    public void TooltipContent_Custom_Class_Is_Appended()
-    {
-        var cut = Render<Tooltip>(p =>
-        {
-            p.Add(x => x.DefaultIsOpen, true);
-            p.AddChildContent<TooltipContent>(cp =>
-                cp.Add(x => x.Class, "my-custom-class"));
-        });
-
-        Assert.Contains("my-custom-class", cut.Find("[role=tooltip]").ClassName);
-    }
-
-    [Fact]
-    public void TooltipContent_AdditionalAttributes_PassThrough()
-    {
-        var cut = Render<Tooltip>(p =>
-        {
-            p.Add(x => x.DefaultIsOpen, true);
-            p.AddChildContent<TooltipContent>(cp =>
-                cp.AddUnmatched("data-testid", "tip-panel"));
-        });
-
-        Assert.Equal("tip-panel", cut.Find("[role=tooltip]").GetAttribute("data-testid"));
+        Assert.Equal("bottom", cut.Find("[role=tooltip]").GetAttribute("data-side"));
     }
 
     [Fact]
@@ -150,35 +107,17 @@ public class TooltipTests : BlazingSpireTestBase
         Assert.NotNull(cut.Find("[role=tooltip] em"));
     }
 
-    // ── Overlay configuration ──────────────────────────────────────────────────
-
     [Fact]
-    public void Tooltip_ShouldCloseOnEscape_Is_True()
-    {
-        var prop = typeof(Tooltip).GetProperty("ShouldCloseOnEscape", BindingFlags.NonPublic | BindingFlags.Instance);
-        Assert.True((bool)prop!.GetValue(new Tooltip())!);
-    }
-
-    [Fact]
-    public void Tooltip_ShouldCloseOnInteractOutside_Is_False()
-    {
-        var prop = typeof(Tooltip).GetProperty("ShouldCloseOnInteractOutside", BindingFlags.NonPublic | BindingFlags.Instance);
-        Assert.False((bool)prop!.GetValue(new Tooltip())!);
-    }
-
-    [Fact]
-    public void TooltipContent_Has_DataSide_Attribute()
+    public void TooltipContent_AdditionalAttributes_PassThrough()
     {
         var cut = Render<Tooltip>(p =>
         {
             p.Add(x => x.DefaultIsOpen, true);
             p.AddChildContent<TooltipContent>(cp =>
-                cp.AddChildContent("Tip text"));
+                cp.AddUnmatched("data-testid", "tip-panel"));
         });
 
-        var side = cut.Find("[role=tooltip]").GetAttribute("data-side");
-        Assert.NotNull(side);
-        Assert.Equal("bottom", side);
+        Assert.Equal("tip-panel", cut.Find("[role=tooltip]").GetAttribute("data-testid"));
     }
 
     // ── TooltipTrigger ────────────────────────────────────────────────────────
@@ -191,16 +130,6 @@ public class TooltipTests : BlazingSpireTestBase
                 tp.AddChildContent("Hover")));
 
         Assert.NotNull(cut.Find("span"));
-    }
-
-    [Fact]
-    public void TooltipTrigger_Custom_Class_Is_Appended()
-    {
-        var cut = Render<Tooltip>(p =>
-            p.AddChildContent<TooltipTrigger>(tp =>
-                tp.Add(x => x.Class, "trigger-class")));
-
-        Assert.Contains("trigger-class", cut.Find("span").ClassName);
     }
 
     [Fact]

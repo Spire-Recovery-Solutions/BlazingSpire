@@ -1,0 +1,99 @@
+@page "/components/tooltip"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Tooltip - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Tooltip</h1>
+        <p class="text-lg text-muted-foreground">A popup that displays information when hovering over an element.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger>
+                        <Button Variant="ButtonVariant.Outline">Hover me</Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>Add to library</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;TooltipProvider&gt;
+    &lt;Tooltip&gt;
+        &lt;TooltipTrigger&gt;
+            &lt;Button Variant=&quot;ButtonVariant.Outline&quot;&gt;Hover me&lt;/Button&gt;
+        &lt;/TooltipTrigger&gt;
+        &lt;TooltipContent&gt;
+            &lt;p&gt;Add to library&lt;/p&gt;
+        &lt;/TooltipContent&gt;
+    &lt;/Tooltip&gt;
+&lt;/TooltipProvider&gt;</code></pre>
+    </div>
+
+    @* ── Variants ───────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Sides</h2>
+        <div class="flex flex-wrap items-center gap-8 rounded-xl border bg-muted/30 p-8">
+            <TooltipProvider>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-xs text-muted-foreground">Top</span>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Button Variant="ButtonVariant.Outline">Top</Button>
+                        </TooltipTrigger>
+                        <TooltipContent Side="FloatingSide.Top">
+                            <p>Tooltip on top</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-xs text-muted-foreground">Bottom</span>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Button Variant="ButtonVariant.Outline">Bottom</Button>
+                        </TooltipTrigger>
+                        <TooltipContent Side="FloatingSide.Bottom">
+                            <p>Tooltip on bottom</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-xs text-muted-foreground">Left</span>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Button Variant="ButtonVariant.Outline">Left</Button>
+                        </TooltipTrigger>
+                        <TooltipContent Side="FloatingSide.Left">
+                            <p>Tooltip on left</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
+                <div class="flex flex-col items-center gap-2">
+                    <span class="text-xs text-muted-foreground">Right</span>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Button Variant="ButtonVariant.Outline">Right</Button>
+                        </TooltipTrigger>
+                        <TooltipContent Side="FloatingSide.Right">
+                            <p>Tooltip on right</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </div>
+            </TooltipProvider>
+        </div>
+    </div>
+
+</div>

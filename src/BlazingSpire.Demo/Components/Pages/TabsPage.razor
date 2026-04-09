@@ -1,0 +1,100 @@
+@page "/components/tabs"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>Tabs - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+
+    @* ── Header ─────────────────────────────── *@
+    <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight">Tabs</h1>
+        <p class="text-lg text-muted-foreground">A set of layered sections of content that display one panel at a time.</p>
+    </div>
+
+    @* ── Preview ────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Preview</h2>
+        <div class="flex items-center justify-center rounded-xl border bg-muted/30 p-8">
+            <Tabs ActiveValue="account" Class="w-full max-w-md">
+                <TabsList Class="grid w-full grid-cols-3">
+                    <TabsTrigger ItemValue="account">Account</TabsTrigger>
+                    <TabsTrigger ItemValue="password">Password</TabsTrigger>
+                    <TabsTrigger ItemValue="settings">Settings</TabsTrigger>
+                </TabsList>
+                <TabsContent ItemValue="account">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Account</CardTitle>
+                            <CardDescription>Make changes to your account here. Click save when you're done.</CardDescription>
+                        </CardHeader>
+                        <CardContent Class="space-y-2">
+                            <div class="space-y-1">
+                                <Label>Name</Label>
+                                <Input Placeholder="Your name" />
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+                <TabsContent ItemValue="password">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Password</CardTitle>
+                            <CardDescription>Change your password here. After saving, you'll be logged out.</CardDescription>
+                        </CardHeader>
+                        <CardContent Class="space-y-2">
+                            <div class="space-y-1">
+                                <Label>Current password</Label>
+                                <Input Type="password" Placeholder="Current password" />
+                            </div>
+                            <div class="space-y-1">
+                                <Label>New password</Label>
+                                <Input Type="password" Placeholder="New password" />
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+                <TabsContent ItemValue="settings">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Settings</CardTitle>
+                            <CardDescription>Manage your notification and privacy preferences.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <p class="text-sm text-muted-foreground">Settings content goes here.</p>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+            </Tabs>
+        </div>
+    </div>
+
+    @* ── Code ───────────────────────────────── *@
+    <div class="space-y-3">
+        <h2 class="text-xl font-semibold tracking-tight">Code</h2>
+        <pre class="language-xml"><code class="language-xml">&lt;Tabs ActiveValue=&quot;account&quot;&gt;
+    &lt;TabsList Class=&quot;grid w-full grid-cols-3&quot;&gt;
+        &lt;TabsTrigger ItemValue=&quot;account&quot;&gt;Account&lt;/TabsTrigger&gt;
+        &lt;TabsTrigger ItemValue=&quot;password&quot;&gt;Password&lt;/TabsTrigger&gt;
+        &lt;TabsTrigger ItemValue=&quot;settings&quot;&gt;Settings&lt;/TabsTrigger&gt;
+    &lt;/TabsList&gt;
+    &lt;TabsContent ItemValue=&quot;account&quot;&gt;
+        &lt;Card&gt;
+            &lt;CardHeader&gt;
+                &lt;CardTitle&gt;Account&lt;/CardTitle&gt;
+                &lt;CardDescription&gt;Make changes to your account here.&lt;/CardDescription&gt;
+            &lt;/CardHeader&gt;
+            &lt;CardContent&gt;
+                &lt;!-- account content --&gt;
+            &lt;/CardContent&gt;
+        &lt;/Card&gt;
+    &lt;/TabsContent&gt;
+    &lt;TabsContent ItemValue=&quot;password&quot;&gt;
+        &lt;!-- password panel --&gt;
+    &lt;/TabsContent&gt;
+    &lt;TabsContent ItemValue=&quot;settings&quot;&gt;
+        &lt;!-- settings panel --&gt;
+    &lt;/TabsContent&gt;
+&lt;/Tabs&gt;</code></pre>
+    </div>
+
+</div>

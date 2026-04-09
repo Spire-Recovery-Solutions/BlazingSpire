@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class TabsTrigger : BlazingSpireComponentBase
+public partial class TabsTrigger : BlazingSpireComponentBase, IDisposable
 {
     [CascadingParameter] public Tabs? Parent { get; set; }
     [Parameter, EditorRequired] public string ItemValue { get; set; } = "";
@@ -11,11 +12,31 @@ public partial class TabsTrigger : BlazingSpireComponentBase
 
     private bool IsActive => Parent?.ActiveValue == ItemValue;
     private string DataState => IsActive ? "active" : "inactive";
+    private string TabIndex => IsActive ? "0" : "-1";
+
+    protected override void OnInitialized()
+    {
+        Parent?.RegisterTab(ItemValue);
+    }
+
+    public void Dispose() => Parent?.UnregisterTab(ItemValue);
 
     private async Task OnClickAsync()
     {
         if (Disabled || Parent is null) return;
         await Parent.SelectTabAsync(ItemValue);
+    }
+
+    private async Task OnKeyDownAsync(KeyboardEventArgs e)
+    {
+        if (Parent is null) return;
+        switch (e.Key)
+        {
+            case "ArrowRight": await Parent.NavigateTabAsync(1); break;
+            case "ArrowLeft": await Parent.NavigateTabAsync(-1); break;
+            case "Home": await Parent.NavigateToFirstAsync(); break;
+            case "End": await Parent.NavigateToLastAsync(); break;
+        }
     }
 
     protected override string BaseClasses =>

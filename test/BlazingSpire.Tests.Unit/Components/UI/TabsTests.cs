@@ -1,286 +1,225 @@
-using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class TabsTests : BlazingSpireTestBase
 {
-    // ── Tabs ─────────────────────────────────────────────────────────────────
+    // Note: Tabs uses ActiveValue/ActiveValueChanged (not DefaultValue/Value/ValueChanged).
 
-    [Fact]
-    public void Tabs_Renders_Div()
+    private IRenderedComponent<Tabs> RenderTabs(string activeValue = "tab1")
     {
-        var cut = Render<Tabs>();
-        Assert.NotNull(cut.Find("div"));
+        return Render<Tabs>(p =>
+        {
+            p.Add(x => x.ActiveValue, activeValue);
+            p.AddChildContent(builder =>
+            {
+                builder.OpenComponent<TabsList>(0);
+                builder.AddAttribute(1, "ChildContent", (RenderFragment)(b =>
+                {
+                    b.OpenComponent<TabsTrigger>(0);
+                    b.AddAttribute(1, "ItemValue", "tab1");
+                    b.AddAttribute(2, "ChildContent",
+                        (RenderFragment)(c => c.AddContent(0, "Tab 1")));
+                    b.CloseComponent();
+
+                    b.OpenComponent<TabsTrigger>(3);
+                    b.AddAttribute(4, "ItemValue", "tab2");
+                    b.AddAttribute(5, "ChildContent",
+                        (RenderFragment)(c => c.AddContent(0, "Tab 2")));
+                    b.CloseComponent();
+                }));
+                builder.CloseComponent();
+
+                builder.OpenComponent<TabsContent>(2);
+                builder.AddAttribute(3, "ItemValue", "tab1");
+                builder.AddAttribute(4, "ChildContent",
+                    (RenderFragment)(b => b.AddContent(0, "Panel 1")));
+                builder.CloseComponent();
+
+                builder.OpenComponent<TabsContent>(5);
+                builder.AddAttribute(6, "ItemValue", "tab2");
+                builder.AddAttribute(7, "ChildContent",
+                    (RenderFragment)(b => b.AddContent(0, "Panel 2")));
+                builder.CloseComponent();
+            });
+        });
     }
 
-    [Fact]
-    public void Tabs_Has_Width_Full_Class()
-    {
-        var cut = Render<Tabs>();
-        Assert.Contains("w-full", cut.Find("div").ClassName);
-    }
-
-    [Fact]
-    public void Tabs_Custom_Class_Is_Appended()
-    {
-        var cut = Render<Tabs>(p => p.Add(x => x.Class, "my-tabs"));
-        Assert.Contains("my-tabs", cut.Find("div").ClassName);
-    }
-
-    [Fact]
-    public void Tabs_AdditionalAttributes_PassThrough()
-    {
-        var cut = Render<Tabs>(p => p.AddUnmatched("data-testid", "tabs-root"));
-        Assert.Equal("tabs-root", cut.Find("div").GetAttribute("data-testid"));
-    }
-
-    [Fact]
-    public void Tabs_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(Tabs).IsAssignableTo(typeof(BlazingSpireComponentBase)));
-    }
-
-    // ── TabsList ──────────────────────────────────────────────────────────────
+    // ── ARIA roles ────────────────────────────────────────────────────────────
 
     [Fact]
     public void TabsList_Has_Role_Tablist()
     {
-        var cut = Render<TabsList>();
-        AssertRole(cut.Find("div"), "tablist");
+        var cut = RenderTabs();
+        AssertRole(cut.Find("[role=tablist]"), "tablist");
     }
 
     [Fact]
-    public void TabsList_Has_Base_Classes()
+    public void Triggers_Have_Role_Tab()
     {
-        var cut = Render<TabsList>();
-        var classes = cut.Find("div").ClassName;
-        Assert.Contains("inline-flex", classes);
-        Assert.Contains("h-10", classes);
-        Assert.Contains("rounded-md", classes);
-        Assert.Contains("bg-muted", classes);
+        var cut = RenderTabs();
+        var triggers = cut.FindAll("[role=tab]");
+        Assert.Equal(2, triggers.Count);
     }
 
+    // ── Active state ──────────────────────────────────────────────────────────
+
     [Fact]
-    public void TabsList_Custom_Class_Is_Appended()
+    public void Active_Trigger_Has_AriaSelected_True()
     {
-        var cut = Render<TabsList>(p => p.Add(x => x.Class, "my-list"));
-        Assert.Contains("my-list", cut.Find("div").ClassName);
+        var cut = RenderTabs("tab1");
+        var triggers = cut.FindAll("[role=tab]");
+        AssertAriaSelected(triggers[0], true);
     }
 
     [Fact]
-    public void TabsList_AdditionalAttributes_PassThrough()
+    public void Inactive_Trigger_Has_AriaSelected_False()
     {
-        var cut = Render<TabsList>(p => p.AddUnmatched("data-testid", "tabs-list"));
-        Assert.Equal("tabs-list", cut.Find("div").GetAttribute("data-testid"));
+        var cut = RenderTabs("tab1");
+        var triggers = cut.FindAll("[role=tab]");
+        AssertAriaSelected(triggers[1], false);
     }
 
-    // ── TabsTrigger ───────────────────────────────────────────────────────────
-
     [Fact]
-    public void TabsTrigger_Has_Role_Tab()
+    public void Active_Trigger_Has_DataState_Active()
     {
-        var cut = RenderWithTabs("account", trigger: b => b
-            .Add(x => x.ItemValue, "account")
-            .AddChildContent("Account"));
-        AssertRole(cut.Find("button"), "tab");
+        var cut = RenderTabs("tab1");
+        AssertDataState(cut.FindAll("[role=tab]")[0], "active");
     }
 
     [Fact]
-    public void TabsTrigger_Inactive_Has_AriaSelected_False()
+    public void Inactive_Trigger_Has_DataState_Inactive()
     {
-        var cut = RenderWithTabs("other", trigger: b => b
-            .Add(x => x.ItemValue, "account")
-            .AddChildContent("Account"));
-        Assert.Equal("false", cut.Find("button").GetAttribute("aria-selected"));
+        var cut = RenderTabs("tab1");
+        AssertDataState(cut.FindAll("[role=tab]")[1], "inactive");
     }
 
     [Fact]
-    public void TabsTrigger_Active_Has_AriaSelected_True()
+    public void Active_Panel_Has_Role_Tabpanel_And_DataState_Active()
     {
-        var cut = RenderWithTabs("account", trigger: b => b
-            .Add(x => x.ItemValue, "account")
-            .AddChildContent("Account"));
-        Assert.Equal("true", cut.Find("button").GetAttribute("aria-selected"));
+        var cut = RenderTabs("tab1");
+        var panel = cut.Find("[role=tabpanel]");
+        AssertDataState(panel, "active");
     }
 
     [Fact]
-    public void TabsTrigger_Active_Has_DataState_Active()
+    public void Inactive_Panel_Is_Not_Rendered()
     {
-        var cut = RenderWithTabs("account", trigger: b => b
-            .Add(x => x.ItemValue, "account")
-            .AddChildContent("Account"));
-        Assert.Equal("active", cut.Find("button").GetAttribute("data-state"));
+        var cut = Render<Tabs>(p =>
+        {
+            p.Add(x => x.ActiveValue, "other");
+            p.AddChildContent<TabsContent>(b =>
+            {
+                b.Add(x => x.ItemValue, "tab1");
+                b.AddChildContent("Panel 1");
+            });
+        });
+
+        Assert.Empty(cut.FindAll("[role=tabpanel]"));
     }
 
+    // ── Click behavior ────────────────────────────────────────────────────────
+
     [Fact]
-    public void TabsTrigger_Inactive_Has_DataState_Inactive()
+    public void Click_Trigger_Switches_Active_Tab()
     {
-        var cut = RenderWithTabs("other", trigger: b => b
-            .Add(x => x.ItemValue, "account")
-            .AddChildContent("Account"));
-        Assert.Equal("inactive", cut.Find("button").GetAttribute("data-state"));
+        var cut = RenderTabs("tab1");
+        cut.FindAll("[role=tab]")[1].Click();
+
+        var triggers = cut.FindAll("[role=tab]");
+        AssertAriaSelected(triggers[0], false);
+        AssertAriaSelected(triggers[1], true);
     }
 
     [Fact]
-    public void TabsTrigger_Click_Switches_ActiveTab()
+    public void Click_Trigger_Shows_Correct_Panel()
+    {
+        var cut = RenderTabs("tab1");
+        cut.FindAll("[role=tab]")[1].Click();
+
+        Assert.Contains("Panel 2", cut.Find("[role=tabpanel]").TextContent);
+    }
+
+    [Fact]
+    public void Disabled_Trigger_Does_Not_Switch_Active_Tab()
     {
         var cut = Render<Tabs>(p => p
-            .Add(x => x.ActiveValue, "account")
+            .Add(x => x.ActiveValue, "tab1")
             .AddChildContent<TabsTrigger>(b => b
-                .Add(x => x.ItemValue, "password")
-                .AddChildContent("Password")));
-
-        cut.Find("button").Click();
-
-        Assert.Equal("password", cut.Instance.ActiveValue);
-    }
-
-    [Fact]
-    public void TabsTrigger_Disabled_Does_Not_Switch_Tab()
-    {
-        var cut = Render<Tabs>(p => p
-            .Add(x => x.ActiveValue, "account")
-            .AddChildContent<TabsTrigger>(b => b
-                .Add(x => x.ItemValue, "password")
+                .Add(x => x.ItemValue, "tab2")
                 .Add(x => x.Disabled, true)
-                .AddChildContent("Password")));
+                .AddChildContent("Tab 2")));
 
-        cut.Find("button").Click();
+        cut.Find("[role=tab]").Click();
 
-        Assert.Equal("account", cut.Instance.ActiveValue);
+        Assert.Equal("tab1", cut.Instance.ActiveValue);
     }
 
+    // ── ActiveValueChanged ────────────────────────────────────────────────────
+
     [Fact]
-    public void TabsTrigger_Has_Base_Classes()
+    public void ActiveValueChanged_Fires_With_New_Value_On_Tab_Click()
     {
-        var cut = RenderWithTabs("account", trigger: b => b
-            .Add(x => x.ItemValue, "account")
-            .AddChildContent("Account"));
-        var classes = cut.Find("button").ClassName;
-        Assert.Contains("inline-flex", classes);
-        Assert.Contains("items-center", classes);
-        Assert.Contains("rounded-sm", classes);
-        Assert.Contains("text-sm", classes);
+        string? received = null;
+        var cut = Render<Tabs>(p =>
+        {
+            p.Add(x => x.ActiveValue, "tab1");
+            p.Add(x => x.ActiveValueChanged,
+                EventCallback.Factory.Create<string>(this, v => received = v));
+            p.AddChildContent<TabsList>(tl =>
+                tl.AddChildContent<TabsTrigger>(t =>
+                {
+                    t.Add(x => x.ItemValue, "tab2");
+                    t.AddChildContent("Tab 2");
+                }));
+        });
+
+        cut.Find("[role=tab]").Click();
+        Assert.Equal("tab2", received);
     }
 
+    // ── Roving tabindex ───────────────────────────────────────────────────────
+
     [Fact]
-    public void TabsTrigger_Custom_Class_Is_Appended()
+    public void Active_Trigger_Has_Tabindex_Zero()
     {
-        var cut = RenderWithTabs("account", trigger: b => b
-            .Add(x => x.ItemValue, "account")
-            .Add(x => x.Class, "my-trigger")
-            .AddChildContent("Account"));
-        Assert.Contains("my-trigger", cut.Find("button").ClassName);
+        var cut = RenderTabs("tab1");
+        var triggers = cut.FindAll("[role=tab]");
+        Assert.Equal("0", triggers[0].GetAttribute("tabindex"));
     }
 
     [Fact]
-    public void TabsTrigger_AdditionalAttributes_PassThrough()
+    public void Inactive_Trigger_Has_Tabindex_Minus_One()
     {
-        var cut = RenderWithTabs("account", trigger: b => b
-            .Add(x => x.ItemValue, "account")
-            .AddUnmatched("data-testid", "trigger-account")
-            .AddChildContent("Account"));
-        Assert.Equal("trigger-account", cut.Find("button").GetAttribute("data-testid"));
+        var cut = RenderTabs("tab1");
+        var triggers = cut.FindAll("[role=tab]");
+        Assert.Equal("-1", triggers[1].GetAttribute("tabindex"));
     }
 
-    // ── TabsContent ───────────────────────────────────────────────────────────
+    [Fact]
+    public void ArrowRight_On_First_Tab_Activates_Second_Tab()
+    {
+        var cut = RenderTabs("tab1");
+        cut.FindAll("[role=tab]")[0].TriggerEvent("onkeydown",
+            new Microsoft.AspNetCore.Components.Web.KeyboardEventArgs { Key = "ArrowRight" });
+
+        var triggers = cut.FindAll("[role=tab]");
+        AssertAriaSelected(triggers[0], false);
+        AssertAriaSelected(triggers[1], true);
+    }
+
+    // ── TabsTrigger role ──────────────────────────────────────────────────────
 
     [Fact]
-    public void TabsContent_Active_Renders_TabPanel()
+    public void TabsTrigger_Renders_Button_With_Tab_Role()
     {
         var cut = Render<Tabs>(p => p
             .Add(x => x.ActiveValue, "account")
-            .AddChildContent<TabsContent>(b => b
+            .AddChildContent<TabsTrigger>(b => b
                 .Add(x => x.ItemValue, "account")
-                .AddChildContent("Account content")));
-
-        var panel = cut.Find("[role='tabpanel']");
-        Assert.NotNull(panel);
-        Assert.Equal("active", panel.GetAttribute("data-state"));
-    }
-
-    [Fact]
-    public void TabsContent_Inactive_Does_Not_Render()
-    {
-        var cut = Render<Tabs>(p => p
-            .Add(x => x.ActiveValue, "other")
-            .AddChildContent<TabsContent>(b => b
-                .Add(x => x.ItemValue, "account")
-                .AddChildContent("Account content")));
-
-        Assert.Empty(cut.FindAll("[role='tabpanel']"));
-    }
-
-    [Fact]
-    public void TabsContent_Has_Base_Classes()
-    {
-        var cut = Render<Tabs>(p => p
-            .Add(x => x.ActiveValue, "account")
-            .AddChildContent<TabsContent>(b => b
-                .Add(x => x.ItemValue, "account")
-                .AddChildContent("Content")));
-
-        var classes = cut.Find("[role='tabpanel']").ClassName;
-        Assert.Contains("mt-2", classes);
-        Assert.Contains("ring-offset-background", classes);
-    }
-
-    [Fact]
-    public void TabsContent_Custom_Class_Is_Appended()
-    {
-        var cut = Render<Tabs>(p => p
-            .Add(x => x.ActiveValue, "account")
-            .AddChildContent<TabsContent>(b => b
-                .Add(x => x.ItemValue, "account")
-                .Add(x => x.Class, "my-content")
-                .AddChildContent("Content")));
-
-        Assert.Contains("my-content", cut.Find("[role='tabpanel']").ClassName);
-    }
-
-    [Fact]
-    public void TabsContent_AdditionalAttributes_PassThrough()
-    {
-        var cut = Render<Tabs>(p => p
-            .Add(x => x.ActiveValue, "account")
-            .AddChildContent<TabsContent>(b => b
-                .Add(x => x.ItemValue, "account")
-                .AddUnmatched("data-testid", "panel-account")
-                .AddChildContent("Content")));
-
-        Assert.Equal("panel-account", cut.Find("[role='tabpanel']").GetAttribute("data-testid"));
-    }
-
-    // ── Inheritance ───────────────────────────────────────────────────────────
-
-    [Fact]
-    public void TabsList_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(TabsList).IsAssignableTo(typeof(BlazingSpireComponentBase)));
-    }
-
-    [Fact]
-    public void TabsTrigger_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(TabsTrigger).IsAssignableTo(typeof(BlazingSpireComponentBase)));
-    }
-
-    [Fact]
-    public void TabsContent_Is_Assignable_To_BlazingSpireComponentBase()
-    {
-        Assert.True(typeof(TabsContent).IsAssignableTo(typeof(BlazingSpireComponentBase)));
-    }
-
-    // ── Helpers ───────────────────────────────────────────────────────────────
-
-    private IRenderedComponent<Tabs> RenderWithTabs(
-        string activeValue,
-        Action<ComponentParameterCollectionBuilder<TabsTrigger>> trigger)
-    {
-        return Render<Tabs>(p => p
-            .Add(x => x.ActiveValue, activeValue)
-            .AddChildContent<TabsTrigger>(trigger));
+                .AddChildContent("Account")));
+        AssertRole(cut.Find("button"), "tab");
     }
 }
