@@ -1,3 +1,4 @@
+using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -5,6 +6,14 @@ namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class ProgressTests : BlazingSpireTestBase
 {
+    // ── Base class ────────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Inherits_From_BlazingSpireComponentBase()
+    {
+        Assert.True(typeof(Progress).IsAssignableTo(typeof(BlazingSpireComponentBase)));
+    }
+
     // ── ARIA role and attributes ──────────────────────────────────────────────
 
     [Fact]
@@ -40,6 +49,15 @@ public class ProgressTests : BlazingSpireTestBase
         Assert.Equal(value.ToString(), cut.Find("[role='progressbar']").GetAttribute("aria-valuenow"));
     }
 
+    // ── Structure ─────────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Indicator_Div_Exists_Inside_Progressbar()
+    {
+        var cut = Render<Progress>();
+        Assert.NotNull(cut.Find("[role='progressbar'] div"));
+    }
+
     // ── Indicator transform reflects value ────────────────────────────────────
 
     [Theory]
@@ -69,5 +87,29 @@ public class ProgressTests : BlazingSpireTestBase
     {
         var cut = Render<Progress>(p => p.AddUnmatched("aria-label", "Loading progress"));
         AssertAriaLabel(cut.Find("[role='progressbar']"), "Loading progress");
+    }
+
+    [Fact]
+    public void DataTestId_PassesThrough()
+    {
+        var cut = Render<Progress>(p => p.AddUnmatched("data-testid", "upload-progress"));
+        Assert.Equal("upload-progress", cut.Find("[role='progressbar']").GetAttribute("data-testid"));
+    }
+
+    [Fact]
+    public void AriaDescribedBy_PassesThrough()
+    {
+        var cut = Render<Progress>(p => p.AddUnmatched("aria-describedby", "progress-desc"));
+        Assert.Equal("progress-desc", cut.Find("[role='progressbar']").GetAttribute("aria-describedby"));
+    }
+
+    [Fact]
+    public void Multiple_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<Progress>(p => p
+            .AddUnmatched("aria-label", "File upload")
+            .AddUnmatched("data-testid", "file-progress"));
+        AssertAriaLabel(cut.Find("[role='progressbar']"), "File upload");
+        Assert.Equal("file-progress", cut.Find("[role='progressbar']").GetAttribute("data-testid"));
     }
 }

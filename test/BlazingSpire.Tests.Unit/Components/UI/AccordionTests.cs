@@ -1,3 +1,4 @@
+using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 using Microsoft.AspNetCore.Components;
@@ -87,5 +88,41 @@ public class AccordionTests : BlazingSpireTestBase
         var cut = RenderAccordion();
         // list-style:none is applied inline to suppress the disclosure triangle
         Assert.Contains("list-style: none", cut.Find("summary").GetAttribute("style") ?? "");
+    }
+
+    // ── Inheritance ───────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Accordion_Inherits_From_BlazingSpireComponentBase()
+    {
+        Assert.True(typeof(Accordion).IsAssignableTo(typeof(BlazingSpireComponentBase)));
+    }
+
+    // ── AccordionItem open state ───────────────────────────────────────────────
+
+    [Fact]
+    public void AccordionItem_Open_Attribute_Via_AdditionalAttributes()
+    {
+        var cut = Render<AccordionItem>(p => p.AddUnmatched("open", "open"));
+        Assert.True(cut.Find("details").HasAttribute("open"));
+    }
+
+    // ── AccordionContent structure ─────────────────────────────────────────────
+
+    [Fact]
+    public void AccordionContent_Renders_Content_In_Div()
+    {
+        var cut = Render<AccordionContent>(p => p.AddChildContent("Content text"));
+        Assert.NotNull(cut.Find("div"));
+        Assert.Contains("Content text", cut.Find("div").TextContent);
+    }
+
+    // ── AccordionTrigger chevron ───────────────────────────────────────────────
+
+    [Fact]
+    public void AccordionTrigger_Renders_Chevron_Icon()
+    {
+        var cut = Render<AccordionTrigger>(p => p.AddChildContent("Trigger label"));
+        Assert.NotNull(cut.Find("svg"));
     }
 }

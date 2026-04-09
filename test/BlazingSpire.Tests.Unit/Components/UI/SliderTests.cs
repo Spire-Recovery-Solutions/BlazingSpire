@@ -1,3 +1,4 @@
+using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 using Microsoft.AspNetCore.Components;
@@ -96,5 +97,45 @@ public class SliderTests : BlazingSpireTestBase
             new ChangeEventArgs { Value = "75" });
 
         Assert.Equal(75.0, received);
+    }
+
+    // ── Default parameter values ──────────────────────────────────────────────
+
+    [Fact]
+    public void Default_Min_Is_0()
+    {
+        var cut = Render<Slider>();
+        Assert.Equal("0", cut.Find("input[type='range']").GetAttribute("min"));
+    }
+
+    [Fact]
+    public void Default_Max_Is_100()
+    {
+        var cut = Render<Slider>();
+        Assert.Equal("100", cut.Find("input[type='range']").GetAttribute("max"));
+    }
+
+    [Fact]
+    public void Default_Step_Is_1()
+    {
+        var cut = Render<Slider>();
+        Assert.Equal("1", cut.Find("input[type='range']").GetAttribute("step"));
+    }
+
+    // ── Value parameter ───────────────────────────────────────────────────────
+
+    [Fact]
+    public void Value_Parameter_Sets_Input_Value()
+    {
+        var cut = Render<Slider>(p => p.Add(x => x.Value, 25.0));
+        Assert.Equal("25", cut.Find("input[type='range']").GetAttribute("value"));
+    }
+
+    // ── Inheritance ───────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Inherits_From_BlazingSpireComponentBase()
+    {
+        Assert.True(typeof(Slider).IsAssignableTo(typeof(BlazingSpireComponentBase)));
     }
 }

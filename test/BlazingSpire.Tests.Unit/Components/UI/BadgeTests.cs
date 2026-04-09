@@ -1,3 +1,4 @@
+using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -5,6 +6,14 @@ namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class BadgeTests : BlazingSpireTestBase
 {
+    // ── Base class ────────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Inherits_From_PresentationalBase()
+    {
+        Assert.True(typeof(Badge).IsAssignableTo(typeof(PresentationalBase<BadgeVariant>)));
+    }
+
     // ── Semantic element ─────────────────────────────────────────────────────
 
     [Fact]
@@ -12,6 +21,13 @@ public class BadgeTests : BlazingSpireTestBase
     {
         var cut = Render<Badge>();
         Assert.NotNull(cut.Find("div"));
+    }
+
+    [Fact]
+    public void Renders_Single_Root_Element()
+    {
+        var cut = Render<Badge>();
+        Assert.Single(cut.FindAll("div"));
     }
 
     // ── Variants ─────────────────────────────────────────────────────────────
@@ -36,6 +52,21 @@ public class BadgeTests : BlazingSpireTestBase
         Assert.Contains("New", cut.Find("div").TextContent);
     }
 
+    [Fact]
+    public void ChildContent_With_Html_Element_Renders_Inside_Div()
+    {
+        var cut = Render<Badge>(p => p.AddChildContent("<span>Beta</span>"));
+        Assert.NotNull(cut.Find("div span"));
+        Assert.Contains("Beta", cut.Find("div span").TextContent);
+    }
+
+    [Fact]
+    public void Empty_ChildContent_Renders_Without_Error()
+    {
+        var cut = Render<Badge>();
+        Assert.Equal(string.Empty, cut.Find("div").TextContent);
+    }
+
     // ── Custom class ─────────────────────────────────────────────────────────
 
     [Fact]
@@ -52,5 +83,29 @@ public class BadgeTests : BlazingSpireTestBase
     {
         var cut = Render<Badge>(p => p.AddUnmatched("aria-label", "Status badge"));
         AssertAriaLabel(cut.Find("div"), "Status badge");
+    }
+
+    [Fact]
+    public void DataTestId_PassesThrough()
+    {
+        var cut = Render<Badge>(p => p.AddUnmatched("data-testid", "badge-new"));
+        Assert.Equal("badge-new", cut.Find("div").GetAttribute("data-testid"));
+    }
+
+    [Fact]
+    public void AriaDescribedBy_PassesThrough()
+    {
+        var cut = Render<Badge>(p => p.AddUnmatched("aria-describedby", "tooltip-1"));
+        Assert.Equal("tooltip-1", cut.Find("div").GetAttribute("aria-describedby"));
+    }
+
+    [Fact]
+    public void Multiple_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<Badge>(p => p
+            .AddUnmatched("aria-label", "Status")
+            .AddUnmatched("data-testid", "status-badge"));
+        AssertAriaLabel(cut.Find("div"), "Status");
+        Assert.Equal("status-badge", cut.Find("div").GetAttribute("data-testid"));
     }
 }

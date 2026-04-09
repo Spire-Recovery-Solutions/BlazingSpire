@@ -1,3 +1,4 @@
+using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -5,6 +6,23 @@ namespace BlazingSpire.Tests.Unit.Components.UI;
 
 public class TextareaTests : BlazingSpireTestBase
 {
+    // ── Element type ──────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Renders_Textarea_Element()
+    {
+        var cut = Render<Textarea>();
+        Assert.NotNull(cut.Find("textarea"));
+    }
+
+    // ── Inheritance ───────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Inherits_From_BlazingSpireComponentBase()
+    {
+        Assert.True(typeof(Textarea).IsAssignableTo(typeof(BlazingSpireComponentBase)));
+    }
+
     // ── Placeholder ──────────────────────────────────────────────────────────
 
     [Fact]
@@ -44,5 +62,44 @@ public class TextareaTests : BlazingSpireTestBase
     {
         var cut = Render<Textarea>(p => p.AddUnmatched("aria-label", "Message input"));
         AssertAriaLabel(cut.Find("textarea"), "Message input");
+    }
+
+    // ── AdditionalAttributes ─────────────────────────────────────────────────
+
+    [Fact]
+    public void Rows_PassesThrough_Via_AdditionalAttributes()
+    {
+        var cut = Render<Textarea>(p => p.AddUnmatched("rows", "5"));
+        Assert.Equal("5", cut.Find("textarea").GetAttribute("rows"));
+    }
+
+    [Fact]
+    public void MaxLength_PassesThrough_Via_AdditionalAttributes()
+    {
+        var cut = Render<Textarea>(p => p.AddUnmatched("maxlength", "100"));
+        Assert.Equal("100", cut.Find("textarea").GetAttribute("maxlength"));
+    }
+
+    [Fact]
+    public void Name_PassesThrough_Via_AdditionalAttributes()
+    {
+        var cut = Render<Textarea>(p => p.AddUnmatched("name", "message"));
+        Assert.Equal("message", cut.Find("textarea").GetAttribute("name"));
+    }
+
+    [Fact]
+    public void Required_PassesThrough_Via_AdditionalAttributes()
+    {
+        var cut = Render<Textarea>(p => p.AddUnmatched("required", "required"));
+        Assert.True(cut.Find("textarea").HasAttribute("required"));
+    }
+
+    // ── ChildContent ─────────────────────────────────────────────────────────
+
+    [Fact]
+    public void ChildContent_Renders_Inside_Textarea()
+    {
+        var cut = Render<Textarea>(p => p.AddChildContent("Hello World"));
+        Assert.Contains("Hello World", cut.Find("textarea").TextContent);
     }
 }

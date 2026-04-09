@@ -294,6 +294,37 @@ public class SelectTests : BlazingSpireTestBase
         Assert.Equal("apple", selected);
     }
 
+    [Fact]
+    public async Task SelectValue_Shows_ItemText_When_Set()
+    {
+        var cut = Render<Select>(p =>
+            p.Add(x => x.Placeholder, "Pick a fruit"));
+
+        await cut.InvokeAsync(() => cut.Instance.SelectItemAsync("apple", "Apple"));
+
+        Assert.Equal("Apple", cut.Instance.SelectedText);
+    }
+
+    [Fact]
+    public async Task SelectItem_Uses_ItemValue_As_Display_When_ItemText_Not_Set()
+    {
+        var cut = Render<Select>(p =>
+        {
+            p.Add(x => x.DefaultIsOpen, true);
+            p.AddChildContent<SelectContent>(cp =>
+                cp.AddChildContent<SelectItem>(ip =>
+                {
+                    ip.Add(x => x.ItemValue, "apple");
+                    ip.AddChildContent("Apple");
+                }));
+        });
+
+        await cut.Find("[role=option]").ClickAsync(new());
+
+        // ItemText not set → SelectItem falls back to ItemValue as the display text
+        Assert.Equal("apple", cut.Instance.SelectedText);
+    }
+
     // ── SelectSeparator ───────────────────────────────────────────────────────
 
     [Fact]

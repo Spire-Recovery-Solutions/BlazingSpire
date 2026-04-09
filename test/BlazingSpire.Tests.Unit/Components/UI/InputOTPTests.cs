@@ -76,6 +76,21 @@ public class InputOTPTests : BlazingSpireTestBase
         Assert.Null(received);
     }
 
+    [Fact]
+    public async Task OnInput_Filters_Non_Digit_Characters()
+    {
+        // The oninput handler strips non-digits before calling UpdateValueAsync.
+        // UpdateValueAsync itself does not filter — it only enforces MaxLength.
+        string? received = null;
+        var cut = Render<InputOTP>(p =>
+            p.Add(x => x.ValueChanged, EventCallback.Factory.Create<string>(this, v => received = v)));
+
+        await cut.Find("input").TriggerEventAsync("oninput",
+            new Microsoft.AspNetCore.Components.ChangeEventArgs { Value = "abc123" });
+
+        Assert.Equal("123", received);
+    }
+
     // ── Slot behavior ─────────────────────────────────────────────────────────
 
     [Fact]

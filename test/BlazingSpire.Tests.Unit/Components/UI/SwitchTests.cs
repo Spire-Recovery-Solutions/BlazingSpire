@@ -1,3 +1,4 @@
+using BlazingSpire.Demo.Components.Shared;
 using BlazingSpire.Demo.Components.UI;
 using BlazingSpire.Tests.Unit.Shared;
 
@@ -99,5 +100,52 @@ public class SwitchTests : BlazingSpireTestBase
         cut.Find("button").Click();
 
         AssertAriaChecked(cut.Find("button"), false);
+    }
+
+    // ── Inheritance ───────────────────────────────────────────────────────────
+
+    [Fact]
+    public void Inherits_From_BlazingSpireComponentBase()
+    {
+        Assert.True(typeof(Switch).IsAssignableTo(typeof(BlazingSpireComponentBase)));
+    }
+
+    // ── AdditionalAttributes ─────────────────────────────────────────────────
+
+    [Fact]
+    public void AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<Switch>(p => p.AddUnmatched("data-testid", "my-switch"));
+        Assert.Equal("my-switch", cut.Find("button").GetAttribute("data-testid"));
+    }
+
+    // ── CheckedChanged value on toggle off ────────────────────────────────────
+
+    [Fact]
+    public void Toggle_Off_Invokes_CheckedChanged_With_False()
+    {
+        bool? received = null;
+        var cut = Render<Switch>(p => p
+            .Add(x => x.Checked, true)
+            .Add(x => x.CheckedChanged, (bool v) => { received = v; }));
+
+        cut.Find("button").Click();
+
+        Assert.False(received);
+    }
+
+    // ── Disabled does not fire callback ───────────────────────────────────────
+
+    [Fact]
+    public void Disabled_Does_Not_Invoke_CheckedChanged()
+    {
+        bool invoked = false;
+        var cut = Render<Switch>(p => p
+            .Add(x => x.Disabled, true)
+            .Add(x => x.CheckedChanged, (bool _) => { invoked = true; }));
+
+        cut.Find("button").Click();
+
+        Assert.False(invoked);
     }
 }

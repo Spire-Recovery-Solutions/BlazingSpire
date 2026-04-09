@@ -48,6 +48,37 @@
     </section>
 
     <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Role (ItemText)</h2>
+        <p class="text-sm text-muted-foreground">Use <code>ItemText</code> when the display label should differ from the stored value.</p>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="flex flex-wrap items-start gap-4">
+                <Select Placeholder="Select a role..." class="w-[220px]">
+                    <SelectTrigger>
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem ItemValue="admin" ItemText="Administrator">Administrator</SelectItem>
+                        <SelectItem ItemValue="mod" ItemText="Moderator">Moderator</SelectItem>
+                        <SelectItem ItemValue="user" ItemText="User">User</SelectItem>
+                        <SelectItem ItemValue="guest" ItemText="Guest">Guest</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Select</span> <span class="token attr-name">Placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Select a role...<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SelectTrigger</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SelectValue</span> <span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SelectTrigger</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SelectContent</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SelectItem</span> <span class="token attr-name">ItemValue</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>admin<span class="token punctuation">"</span></span> <span class="token attr-name">ItemText</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Administrator<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Administrator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SelectItem</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SelectItem</span> <span class="token attr-name">ItemValue</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mod<span class="token punctuation">"</span></span> <span class="token attr-name">ItemText</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Moderator<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Moderator<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SelectItem</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SelectItem</span> <span class="token attr-name">ItemValue</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user<span class="token punctuation">"</span></span> <span class="token attr-name">ItemText</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>User<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>User<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SelectItem</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SelectItem</span> <span class="token attr-name">ItemValue</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>guest<span class="token punctuation">"</span></span> <span class="token attr-name">ItemText</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Guest<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Guest<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SelectItem</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>SelectContent</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Select</span><span class="token punctuation">></span></span></code></pre>
+    </section>
+
+    <section class="space-y-4">
         <h2 class="text-xl font-semibold tracking-tight">Framework</h2>
         <div class="rounded-lg border bg-card p-6">
             <div class="flex flex-wrap items-start gap-4">
