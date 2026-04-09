@@ -116,4 +116,54 @@ public class HoverCardTests : BlazingSpireTestBase
 
         Assert.NotNull(cut.Find("a[href]"));
     }
+
+    [Fact]
+    public void HoverCardTrigger_Renders_ChildContent_Text()
+    {
+        var cut = Render<HoverCard>(p =>
+            p.AddChildContent<HoverCardTrigger>(tp =>
+                tp.AddChildContent("Hover over me")));
+
+        Assert.Contains("Hover over me", cut.Find("span").TextContent);
+    }
+
+    [Fact]
+    public void HoverCardContent_Has_Data_Side_Attribute()
+    {
+        var cut = Render<HoverCard>(p =>
+        {
+            p.Add(x => x.DefaultIsOpen, true);
+            p.AddChildContent<HoverCardContent>(cp =>
+                cp.AddChildContent("Content"));
+        });
+
+        Assert.NotNull(cut.Find("[data-side]").GetAttribute("data-side"));
+    }
+
+    [Fact]
+    public void HoverCard_Custom_OpenDelay_Is_Accepted()
+    {
+        var cut = Render<HoverCard>(p => p.Add(x => x.OpenDelay, 500));
+        Assert.Equal(500, cut.Instance.OpenDelay);
+    }
+
+    [Fact]
+    public void HoverCard_Custom_CloseDelay_Is_Accepted()
+    {
+        var cut = Render<HoverCard>(p => p.Add(x => x.CloseDelay, 100));
+        Assert.Equal(100, cut.Instance.CloseDelay);
+    }
+
+    [Fact]
+    public void HoverCardContent_Not_Rendered_When_DefaultIsOpen_False()
+    {
+        var cut = Render<HoverCard>(p =>
+        {
+            p.Add(x => x.DefaultIsOpen, false);
+            p.AddChildContent<HoverCardContent>(cp =>
+                cp.AddChildContent("Hidden content"));
+        });
+
+        Assert.Empty(cut.FindAll("[data-state]"));
+    }
 }

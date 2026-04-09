@@ -169,4 +169,98 @@ public class CollapsibleTests : BlazingSpireTestBase
         cut.Find("[data-testid=trigger]").Click();
         Assert.True(received);
     }
+
+    [Fact]
+    public async Task ToggleAsync_Twice_Returns_To_Closed()
+    {
+        var cut = Render<Collapsible>();
+        await cut.InvokeAsync(cut.Instance.ToggleAsync);
+        await cut.InvokeAsync(cut.Instance.ToggleAsync);
+        AssertDataState(cut.Find("div"), "closed");
+    }
+
+    [Fact]
+    public async Task ToggleAsync_Second_Invokes_IsOpenChanged_With_False()
+    {
+        bool? received = null;
+        var cut = Render<Collapsible>(p =>
+            p.Add(x => x.IsOpenChanged, EventCallback.Factory.Create<bool>(this, v => received = v)));
+
+        await cut.InvokeAsync(cut.Instance.ToggleAsync);
+        await cut.InvokeAsync(cut.Instance.ToggleAsync);
+
+        Assert.False(received);
+    }
+
+    [Fact]
+    public void Trigger_Click_Closes_When_Open()
+    {
+        var cut = Render<Collapsible>(p =>
+        {
+            p.Add(x => x.IsOpen, true);
+            p.Add(x => x.ChildContent, (RenderFragment)(b =>
+            {
+                b.OpenComponent<CollapsibleTrigger>(0);
+                b.AddAttribute(1, "data-testid", "trigger");
+                b.AddAttribute(2, "ChildContent", (RenderFragment)(b2 => b2.AddContent(0, "Toggle")));
+                b.CloseComponent();
+
+                b.OpenComponent<CollapsibleContent>(3);
+                b.AddAttribute(4, "ChildContent", (RenderFragment)(b2 =>
+                {
+                    b2.OpenElement(0, "p");
+                    b2.AddContent(1, "Body");
+                    b2.CloseElement();
+                }));
+                b.CloseComponent();
+            }));
+        });
+
+        Assert.NotNull(cut.Find("p"));
+        cut.Find("[data-testid=trigger]").Click();
+        Assert.Empty(cut.FindAll("p"));
+    }
+
+    [Fact]
+    public void CollapsibleContent_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<Collapsible>(p =>
+        {
+            p.Add(x => x.IsOpen, true);
+            p.Add(x => x.ChildContent, (RenderFragment)(b =>
+            {
+                b.OpenComponent<CollapsibleContent>(0);
+                b.AddAttribute(1, "data-testid", "content-panel");
+                b.AddAttribute(2, "ChildContent", (RenderFragment)(b2 => b2.AddContent(0, "x")));
+                b.CloseComponent();
+            }));
+        });
+
+        // root div + content div both have data-state=open; content div is second
+        var openEls = cut.FindAll("[data-state='open']");
+        Assert.Equal(2, openEls.Count);
+        Assert.Equal("content-panel", openEls[1].GetAttribute("data-testid"));
+    }
+
+    [Fact]
+    public void Trigger_Click_Fires_IsOpenChanged_False_On_Close()
+    {
+        bool? received = null;
+        var cut = Render<Collapsible>(p =>
+        {
+            p.Add(x => x.IsOpen, true);
+            p.Add(x => x.IsOpenChanged,
+                EventCallback.Factory.Create<bool>(this, v => received = v));
+            p.Add(x => x.ChildContent, (RenderFragment)(b =>
+            {
+                b.OpenComponent<CollapsibleTrigger>(0);
+                b.AddAttribute(1, "data-testid", "trigger");
+                b.AddAttribute(2, "ChildContent", (RenderFragment)(b2 => b2.AddContent(0, "Toggle")));
+                b.CloseComponent();
+            }));
+        });
+
+        cut.Find("[data-testid=trigger]").Click();
+        Assert.False(received);
+    }
 }

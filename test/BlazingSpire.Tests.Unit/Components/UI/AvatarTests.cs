@@ -80,4 +80,60 @@ public class AvatarTests : BlazingSpireTestBase
         var cut = Render<AvatarFallback>(p => p.Add(x => x.Class, "my-fallback"));
         Assert.Contains("my-fallback", cut.Find("span").ClassName);
     }
+
+    [Fact]
+    public void AvatarFallback_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<AvatarFallback>(p => p.AddUnmatched("data-testid", "avatar-fallback"));
+        Assert.Equal("avatar-fallback", cut.Find("span").GetAttribute("data-testid"));
+    }
+
+    // ── Additional Avatar behavioral tests ────────────────────────────────────
+
+    [Fact]
+    public void Avatar_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<Avatar>(p => p.AddUnmatched("data-testid", "avatar-root"));
+        Assert.Equal("avatar-root", cut.Find("span").GetAttribute("data-testid"));
+    }
+
+    [Fact]
+    public void AvatarImage_Both_Src_And_Alt_Set()
+    {
+        var cut = Render<AvatarImage>(p =>
+        {
+            p.Add(x => x.Src, "https://example.com/photo.jpg");
+            p.Add(x => x.Alt, "Jane Doe");
+        });
+        var img = cut.Find("img");
+        Assert.Equal("https://example.com/photo.jpg", img.GetAttribute("src"));
+        Assert.Equal("Jane Doe", img.GetAttribute("alt"));
+    }
+
+    [Fact]
+    public void AvatarImage_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<AvatarImage>(p => p.AddUnmatched("data-testid", "avatar-img"));
+        Assert.Equal("avatar-img", cut.Find("img").GetAttribute("data-testid"));
+    }
+
+    [Fact]
+    public void Avatar_Renders_AvatarImage_Child()
+    {
+        var cut = Render<Avatar>(p =>
+            p.AddChildContent<AvatarImage>(ip =>
+            {
+                ip.Add(x => x.Src, "https://example.com/x.png");
+                ip.Add(x => x.Alt, "User");
+            }));
+        Assert.Equal("https://example.com/x.png", cut.Find("span img").GetAttribute("src"));
+    }
+
+    [Fact]
+    public void Avatar_Renders_AvatarFallback_With_Initials()
+    {
+        var cut = Render<Avatar>(p =>
+            p.AddChildContent<AvatarFallback>(fp => fp.AddChildContent("JD")));
+        Assert.Contains("JD", cut.Find("span span").TextContent);
+    }
 }

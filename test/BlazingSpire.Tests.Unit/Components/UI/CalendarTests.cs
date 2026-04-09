@@ -108,4 +108,75 @@ public class CalendarTests : BlazingSpireTestBase
         var cut = Render<Calendar>(p => p.AddUnmatched("data-testid", "calendar"));
         Assert.Equal("calendar", cut.Find("div").GetAttribute("data-testid"));
     }
+
+    [Fact]
+    public void Calendar_DisplayMonth_Defaults_To_Current_Month()
+    {
+        var cut = Render<Calendar>();
+        var expected = DateOnly.FromDateTime(DateTime.Today).ToString("MMMM yyyy");
+        Assert.Contains(expected, cut.Find("div div").TextContent);
+    }
+
+    [Fact]
+    public void Calendar_Renders_At_Least_28_Day_Buttons()
+    {
+        // Every month has at least 28 days
+        var cut = Render<Calendar>();
+        var dayButtons = cut.FindAll("tbody button");
+        Assert.True(dayButtons.Count >= 28);
+    }
+
+    [Fact]
+    public void Calendar_Clicking_Day_15_Fires_With_Correct_DateOnly()
+    {
+        DateOnly? selected = null;
+        var cut = Render<Calendar>(p =>
+        {
+            p.Add(x => x.DisplayMonth, new DateOnly(2025, 1, 1));
+            p.Add(x => x.SelectedDateChanged, (DateOnly? d) => selected = d);
+        });
+
+        var day15 = cut.FindAll("tbody button").First(b => b.TextContent.Trim() == "15");
+        day15.Click();
+
+        Assert.Equal(new DateOnly(2025, 1, 15), selected);
+    }
+
+    [Fact]
+    public void Calendar_Clicking_Different_Day_Updates_Selection()
+    {
+        DateOnly? selected = null;
+        var cut = Render<Calendar>(p =>
+        {
+            p.Add(x => x.DisplayMonth, new DateOnly(2025, 6, 1));
+            p.Add(x => x.SelectedDateChanged, (DateOnly? d) => selected = d);
+        });
+
+        var day10 = cut.FindAll("tbody button").First(b => b.TextContent.Trim() == "10");
+        day10.Click();
+
+        Assert.Equal(new DateOnly(2025, 6, 10), selected);
+    }
+
+    [Fact]
+    public void Calendar_After_Navigation_Day_Count_Matches_New_Month()
+    {
+        // Start in March 2025 (31 days), navigate to April (30 days)
+        var cut = Render<Calendar>(p => p.Add(x => x.DisplayMonth, new DateOnly(2025, 3, 1)));
+
+        cut.Find("button[aria-label='Go to next month']").Click();
+
+        Assert.Equal(30, cut.FindAll("tbody button").Count);
+    }
+
+    [Fact]
+    public void Calendar_After_Previous_Navigation_Day_Count_Matches_New_Month()
+    {
+        // Start in March 2025 (31 days), navigate back to February (28 days in 2025)
+        var cut = Render<Calendar>(p => p.Add(x => x.DisplayMonth, new DateOnly(2025, 3, 1)));
+
+        cut.Find("button[aria-label='Go to previous month']").Click();
+
+        Assert.Equal(28, cut.FindAll("tbody button").Count);
+    }
 }

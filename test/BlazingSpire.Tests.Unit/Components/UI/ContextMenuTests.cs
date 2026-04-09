@@ -151,4 +151,65 @@ public class ContextMenuTests : BlazingSpireTestBase
         var cut = Render<ContextMenuLabel>(p => p.AddChildContent("Navigation"));
         Assert.Contains("Navigation", cut.Find("div").TextContent);
     }
+
+    [Fact]
+    public void ContextMenuLabel_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<ContextMenuLabel>(p =>
+        {
+            p.AddChildContent("Label");
+            p.AddUnmatched("data-testid", "ctx-label");
+        });
+        Assert.Equal("ctx-label", cut.Find("div").GetAttribute("data-testid"));
+    }
+
+    // ── ContextMenuTrigger ───────────────────────────────────────────────────
+
+    [Fact]
+    public void ContextMenuTrigger_Renders_ChildContent()
+    {
+        var cut = Render<ContextMenu>(p =>
+            p.AddChildContent<ContextMenuTrigger>(tp =>
+                tp.AddChildContent("<span data-testid='trigger-child'>right-click me</span>")));
+
+        Assert.NotNull(cut.Find("[data-testid=trigger-child]"));
+    }
+
+    // ── ContextMenuItem additional ───────────────────────────────────────────
+
+    [Fact]
+    public void ContextMenuItem_Renders_ChildContent_Text()
+    {
+        var cut = Render<ContextMenu>(p =>
+        {
+            p.Add(x => x.DefaultIsOpen, true);
+            p.AddChildContent<ContextMenuContent>(cp =>
+                cp.AddChildContent<ContextMenuItem>(ip =>
+                    ip.AddChildContent("Copy")));
+        });
+
+        Assert.Contains("Copy", cut.Find("[role=menuitem]").TextContent);
+    }
+
+    [Fact]
+    public void ContextMenuContent_Has_Data_State_Open()
+    {
+        var cut = Render<ContextMenu>(p =>
+        {
+            p.Add(x => x.DefaultIsOpen, true);
+            p.AddChildContent<ContextMenuContent>(cp =>
+                cp.AddChildContent("<span>item</span>"));
+        });
+
+        AssertDataState(cut.Find("[role=menu]"), "open");
+    }
+
+    [Fact]
+    public void ContextMenuSeparator_AdditionalAttributes_PassThrough()
+    {
+        var cut = Render<ContextMenuSeparator>(p =>
+            p.AddUnmatched("data-testid", "ctx-sep"));
+
+        Assert.Equal("ctx-sep", cut.Find("[role=separator]").GetAttribute("data-testid"));
+    }
 }
