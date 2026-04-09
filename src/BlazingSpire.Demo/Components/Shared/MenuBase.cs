@@ -9,6 +9,7 @@ namespace BlazingSpire.Demo.Components.Shared;
 /// </summary>
 public abstract class MenuBase : PopoverBase
 {
+    /// <summary>Whether keyboard navigation wraps around.</summary>
     [Parameter] public bool Loop { get; set; }
 
     protected List<MenuItemRegistration> RegisteredItems { get; } = [];

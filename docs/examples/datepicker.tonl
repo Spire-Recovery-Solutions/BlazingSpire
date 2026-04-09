@@ -1,0 +1,18 @@
+#version 1.0
+
+component{name:str,description:str,category:str,baseTier:str}:
+  name: DatePicker
+  description: A date picker combining an input field with a calendar popover.
+  category: General
+  baseTier: BlazingSpireComponentBase
+
+parameters[9]{name:str,type:str,kind:str,default:str,description:str}:
+  ChildContent, RenderFragment, Content, Sample DatePicker content, The content to render inside the component.
+  Class, string, String, , Additional CSS classes to apply to the root element.
+  DateFormat, string, String, , Date display format string.
+  Disabled, bool, Boolean, false, Whether the date picker is disabled.
+  MaxDate, DateOnly, Object, , Latest selectable date.
+  MinDate, DateOnly, Object, , Earliest selectable date.
+  Placeholder, string, String, , Placeholder text when no date is selected.
+  SelectedDate, DateOnly, Object, , The currently selected date.
+  SelectedDateChanged, EventCallback<Nullable<DateOnly>>, Event, , Callback invoked when the selected date changes.

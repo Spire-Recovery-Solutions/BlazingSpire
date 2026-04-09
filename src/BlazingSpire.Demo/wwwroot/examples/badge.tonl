@@ -1,0 +1,18 @@
+#version 1.0
+
+component{name:str,description:str,category:str,baseTier:str}:
+  name: Badge
+  description: A small status indicator for counts, labels, or categories.
+  category: Presentational
+  baseTier: PresentationalBase
+
+parameters[3]{name:str,type:str,kind:str,default:str,description:str}:
+  ChildContent, RenderFragment, Content, Sample Badge content, The content to render inside the component.
+  Class, string, String, , Additional CSS classes to apply to the root element.
+  Variant, BadgeVariant, Enum, Default, The visual style variant.
+
+enum:Variant[4]{value:str}:
+  Default
+  Secondary
+  Destructive
+  Outline

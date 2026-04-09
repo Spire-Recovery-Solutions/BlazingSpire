@@ -1,0 +1,73 @@
+@namespace BlazingSpire.Demo.Components.Demo
+@using BlazingSpire.Demo.Components.UI
+
+<div class="space-y-1.5">
+    <Label Class="text-xs font-medium text-muted-foreground">
+        @Meta.Name
+        @if (!string.IsNullOrEmpty(Meta.Description))
+        {
+            <span class="ml-1 text-muted-foreground/60" title="@Meta.Description">&#9432;</span>
+        }
+    </Label>
+
+    @switch (Meta.Kind)
+    {
+        case "Enum" when Meta.EnumValues is { Count: <= 4 }:
+            <div class="flex flex-wrap gap-1">
+                @foreach (var val in Meta.EnumValues)
+                {
+                    var isSelected = Value?.ToString() == val;
+                    <button type="button"
+                            class="@(isSelected ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-accent") px-2 py-1 text-xs rounded-md transition-colors"
+                            @onclick="() => ValueChanged.InvokeAsync(val)">
+                        @val
+                    </button>
+                }
+            </div>
+            break;
+
+        case "Enum" when Meta.EnumValues is { Count: > 4 }:
+            <select class="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm"
+                    @onchange="e => ValueChanged.InvokeAsync(e.Value?.ToString())">
+                @foreach (var val in Meta.EnumValues)
+                {
+                    <option value="@val" selected="@(Value?.ToString() == val)">@val</option>
+                }
+            </select>
+            break;
+
+        case "Bool":
+            <div class="flex items-center gap-2">
+                <Switch Checked="@(Value is true)"
+                        CheckedChanged="@(v => ValueChanged.InvokeAsync(v))" />
+            </div>
+            break;
+
+        case "String":
+        case "RenderFragment":
+            <Input Type="text"
+                   Value="@(Value?.ToString() ?? "")"
+                   ValueChanged="@(v => ValueChanged.InvokeAsync(v))"
+                   Placeholder="@Meta.Description"
+                   Immediate="true"
+                   Size="InputSize.Sm" />
+            break;
+
+        case "Int":
+        case "Double":
+        case "Decimal":
+            <Input Type="number"
+                   Value="@(Value?.ToString() ?? "")"
+                   ValueChanged="@(v => ValueChanged.InvokeAsync(v))"
+                   Placeholder="@Meta.Description"
+                   Size="InputSize.Sm" />
+            break;
+
+        default:
+            <Input Type="text"
+                   Value="@(Value?.ToString() ?? "")"
+                   ValueChanged="@(v => ValueChanged.InvokeAsync(v))"
+                   Size="InputSize.Sm" />
+            break;
+    }
+</div>

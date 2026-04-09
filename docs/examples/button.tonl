@@ -1,0 +1,33 @@
+#version 1.0
+
+component{name:str,description:str,category:str,baseTier:str}:
+  name: Button
+  description: A clickable button with variant and size options.
+  category: Action
+  baseTier: ButtonBase
+
+parameters[11]{name:str,type:str,kind:str,default:str,description:str}:
+  ChildContent, RenderFragment, Content, Sample Button content, The content to render inside the component.
+  Class, string, String, , Additional CSS classes to apply to the root element.
+  Disabled, bool, Boolean, false, Whether the component is disabled.
+  Href, string, String, , URL to navigate to (renders as anchor).
+  Loading, bool, Boolean, false, Whether the button shows a loading spinner.
+  OnClick, EventCallback<MouseEventArgs>, Event, , Callback invoked when the button is clicked.
+  Rel, string, String, , Link rel attribute (e.g., noopener).
+  Size, ButtonSize, Enum, Default, The size of the button.
+  Target, string, String, , Link target attribute (e.g., _blank).
+  Type, string, String, , HTML button type (button, submit, reset).
+  Variant, ButtonVariant, Enum, Default, The visual style variant.
+
+enum:Size[4]{value:str}:
+  Default
+  Sm
+  Lg
+  Icon
+enum:Variant[6]{value:str}:
+  Default
+  Destructive
+  Outline
+  Secondary
+  Ghost
+  Link

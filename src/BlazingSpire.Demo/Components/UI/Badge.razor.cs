@@ -5,6 +5,7 @@ namespace BlazingSpire.Demo.Components.UI;
 
 public enum BadgeVariant { Default, Secondary, Destructive, Outline }
 
+/// <summary>A small status indicator for counts, labels, or categories.</summary>
 public partial class Badge : PresentationalBase<BadgeVariant>
 {
     protected override string BaseClasses =>

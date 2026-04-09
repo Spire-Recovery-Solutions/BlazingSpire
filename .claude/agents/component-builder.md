@@ -71,7 +71,12 @@ Every component MUST extend the appropriate base class from `Components/Shared/`
 - Provide SSR fallback (native HTML equivalents)
 - Use tiered CascadingValue (Tier 1 for simple components, Tier 2 for collections)
 
+## Documentation (Required)
+
+Every component class and `[Parameter]` property MUST have a `/// <summary>` doc comment. This drives the auto-generated playground, OpenAPI spec, and TONL output. No separate demo pages needed — the playground generates everything from doc comments.
+
 ## After Implementing
 
-1. Mark your task completed via TaskUpdate
-2. Check TaskList for next work
+1. Verify `dotnet build` succeeds (source generator + DocGen run automatically)
+2. Mark your task completed via TaskUpdate
+3. Check TaskList for next work

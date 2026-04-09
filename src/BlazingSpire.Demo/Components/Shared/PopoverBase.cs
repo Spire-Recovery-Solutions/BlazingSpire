@@ -14,9 +14,13 @@ public abstract class PopoverBase : OverlayBase
 {
     [Inject] private IJSRuntime FloatingJS { get; set; } = default!;
 
+    /// <summary>Which side of the trigger to position on.</summary>
     [Parameter] public FloatingSide Side { get; set; } = FloatingSide.Bottom;
+    /// <summary>Alignment along the side axis.</summary>
     [Parameter] public FloatingAlign Align { get; set; } = FloatingAlign.Start;
+    /// <summary>Distance in pixels from the trigger.</summary>
     [Parameter] public int SideOffset { get; set; } = 4;
+    /// <summary>Offset in pixels along the alignment axis.</summary>
     [Parameter] public int AlignOffset { get; set; }
 
     // Override overlay defaults for popover behavior

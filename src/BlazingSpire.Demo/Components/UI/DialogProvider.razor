@@ -1,0 +1,33 @@
+@namespace BlazingSpire.Demo.Components.UI
+@implements IDisposable
+@inject IDialogService DialogService
+
+@foreach (var dialog in _dialogService.OpenDialogs)
+{
+    <Dialog IsOpen="true" IsOpenChanged="@(open => { if (!open) dialog.Close(DialogResult.Cancel()); })"
+            OnClose="@(() => dialog.Close(DialogResult.Cancel()))">
+        <DialogContent>
+            @if (dialog.ComponentType == typeof(MessageBoxDialog))
+            {
+                <DialogHeader>
+                    <DialogTitle>@dialog.Title</DialogTitle>
+                    <DialogDescription>@dialog.Message</DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                    <Button Variant="ButtonVariant.Outline" OnClick="@(() => dialog.Close(DialogResult.Cancel()))">
+                        @(dialog.Parameters?.GetValueOrDefault("CancelText") ?? "Cancel")
+                    </Button>
+                    <Button OnClick="@(() => dialog.Close(DialogResult.Ok()))">
+                        @(dialog.Parameters?.GetValueOrDefault("ConfirmText") ?? "OK")
+                    </Button>
+                </DialogFooter>
+            }
+            else
+            {
+                <CascadingValue Value="dialog">
+                    @CreateDynamicComponent(dialog)
+                </CascadingValue>
+            }
+        </DialogContent>
+    </Dialog>
+}

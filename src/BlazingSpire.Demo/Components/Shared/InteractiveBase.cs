@@ -7,6 +7,7 @@ namespace BlazingSpire.Demo.Components.Shared;
 /// </summary>
 public abstract class InteractiveBase : BlazingSpireComponentBase
 {
+    /// <summary>Whether the component is disabled.</summary>
     [Parameter] public bool Disabled { get; set; }
 
     /// <summary>

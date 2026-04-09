@@ -1,0 +1,30 @@
+#version 1.0
+
+component{name:str,description:str,category:str,baseTier:str}:
+  name: Tooltip
+  description: 
+  category: Overlay
+  baseTier: PopoverBase
+
+parameters[11]{name:str,type:str,kind:str,default:str,description:str}:
+  Align, FloatingAlign, Enum, Start, Alignment along the side axis.
+  AlignOffset, int, Number, 0, Offset in pixels along the alignment axis.
+  ChildContent, RenderFragment, Content, Sample Tooltip content, The content to render inside the component.
+  Class, string, String, , Additional CSS classes to apply to the root element.
+  DefaultIsOpen, bool, Boolean, false, Initial open state for uncontrolled usage.
+  IsOpen, bool, Boolean, false, Whether the overlay is open.
+  IsOpenChanged, EventCallback<bool>, Event, , Callback for two-way binding of IsOpen.
+  OnClose, EventCallback, Event, , Callback invoked when the overlay closes.
+  OnOpenChanged, EventCallback<bool>, Event, , Callback invoked when the open state changes.
+  Side, FloatingSide, Enum, Top, Which side of the trigger to position on.
+  SideOffset, int, Number, 0, Distance in pixels from the trigger.
+
+enum:Align[3]{value:str}:
+  Start
+  Center
+  End
+enum:Side[4]{value:str}:
+  Top
+  Bottom
+  Left
+  Right

@@ -1,0 +1,18 @@
+#version 1.0
+
+component{name:str,description:str,category:str,baseTier:str}:
+  name: TimePicker
+  description: A time picker with hour, minute, and AM/PM selection.
+  category: General
+  baseTier: BlazingSpireComponentBase
+
+parameters[9]{name:str,type:str,kind:str,default:str,description:str}:
+  ChildContent, RenderFragment, Content, Sample TimePicker content, The content to render inside the component.
+  Class, string, String, , Additional CSS classes to apply to the root element.
+  Disabled, bool, Boolean, false, Whether the time picker is disabled.
+  MaxTime, TimeOnly, Object, , Latest selectable time.
+  MinTime, TimeOnly, Object, , Earliest selectable time.
+  MinuteStep, int, Number, 0, Minute increment step size.
+  Placeholder, string, String, , Placeholder text when no time is selected.
+  SelectedTime, TimeOnly, Object, , The currently selected time.
+  SelectedTimeChanged, EventCallback<Nullable<TimeOnly>>, Event, , Callback invoked when the selected time changes.

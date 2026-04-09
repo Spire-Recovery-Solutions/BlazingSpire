@@ -81,15 +81,17 @@ Task 1: "Design <Component> API" (owner: user + blazor-architecture expert)
   
 Task 2: "Implement <Component>" (owner: component-builder, blocked by Task 1)
   - Build the .razor + .razor.cs (+ .razor.js if needed)
+  - Add /// doc comments to class and all [Parameter] properties
   - Follow the approved design from Task 1
   
 Task 3: "Write <Component> tests" (owner: test-writer, blocked by Task 2)
   - bUnit tests for rendering, ARIA, keyboard, state
   - Create test project if it doesn't exist yet
   
-Task 4: "Add <Component> to demo page" (owner: docs-writer, blocked by Task 2)
-  - Live example + code snippet on the demo site
-  - Show all variants and states
+Task 4: "Add <Component> demo page" (owner: docs-writer, blocked by Task 2)
+  - Create page with `<ComponentPlayground ComponentName="..." />`
+  - Verify playground renders correctly with all parameter controls
+  - No hand-written examples needed — playground auto-generates from doc comments
 ```
 
 ### Step 4: Spawn agents and assign tasks

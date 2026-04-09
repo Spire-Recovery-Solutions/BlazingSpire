@@ -9,8 +9,11 @@ namespace BlazingSpire.Demo.Components.Shared;
 /// </summary>
 public abstract class BlazingSpireComponentBase : ComponentBase
 {
+    /// <summary>The content to render inside the component.</summary>
     [Parameter] public RenderFragment? ChildContent { get; set; }
+    /// <summary>Additional CSS classes to apply to the root element.</summary>
     [Parameter] public string? Class { get; set; }
+    /// <summary>Additional HTML attributes to apply to the root element.</summary>
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
 

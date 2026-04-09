@@ -1,0 +1,50 @@
+@page "/components/time-picker"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>TimePicker - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">TimePicker</h1>
+        <p class="text-lg text-muted-foreground mt-2">A time picker with hour, minute, and AM/PM selection in a popover.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <TimePicker @bind-SelectedTime="_selectedTime" />
+                @if (_selectedTime.HasValue)
+                {
+                    <p class="text-sm text-muted-foreground mt-2">Selected: @_selectedTime.Value.ToString("h:mm tt")</p>
+                }
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;TimePicker @@bind-SelectedTime="_time" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">15-Minute Steps</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <TimePicker @bind-SelectedTime="_steppedTime" MinuteStep="15" Placeholder="Quarter hours" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;TimePicker @@bind-SelectedTime="_time" MinuteStep="15" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <TimePicker Disabled="true" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;TimePicker Disabled="true" /&gt;</code></pre>
+    </section>
+</div>
+
+@code {
+    private TimeOnly? _selectedTime;
+    private TimeOnly? _steppedTime;
+}

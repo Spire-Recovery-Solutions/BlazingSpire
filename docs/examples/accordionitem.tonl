@@ -1,0 +1,11 @@
+#version 1.0
+
+component{name:str,description:str,category:str,baseTier:str}:
+  name: AccordionItem
+  description: 
+  category: General
+  baseTier: BlazingSpireComponentBase
+
+parameters[2]{name:str,type:str,kind:str,default:str,description:str}:
+  ChildContent, RenderFragment, Content, Sample AccordionItem content, The content to render inside the component.
+  Class, string, String, , Additional CSS classes to apply to the root element.

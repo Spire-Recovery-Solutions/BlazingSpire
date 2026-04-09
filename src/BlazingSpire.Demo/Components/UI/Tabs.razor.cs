@@ -3,9 +3,12 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
+/// <summary>A tabbed interface for switching between content panels.</summary>
 public partial class Tabs : BlazingSpireComponentBase
 {
+    /// <summary>The value of the currently active tab.</summary>
     [Parameter] public string? ActiveValue { get; set; }
+    /// <summary>Callback invoked when the active tab changes.</summary>
     [Parameter] public EventCallback<string> ActiveValueChanged { get; set; }
 
     private readonly List<string> _registeredValues = new();

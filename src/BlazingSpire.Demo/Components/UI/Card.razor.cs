@@ -2,6 +2,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
+/// <summary>A container card with border and shadow.</summary>
 public partial class Card : BlazingSpireComponentBase
 {
     protected override string BaseClasses =>

@@ -3,10 +3,14 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
+/// <summary>A toggle checkbox control.</summary>
 public partial class Checkbox : BlazingSpireComponentBase
 {
+    /// <summary>Whether the checkbox is checked.</summary>
     [Parameter] public bool Checked { get; set; }
+    /// <summary>Callback invoked when the checked state changes.</summary>
     [Parameter] public EventCallback<bool> CheckedChanged { get; set; }
+    /// <summary>Whether the checkbox is disabled.</summary>
     [Parameter] public bool Disabled { get; set; }
 
     private string DataState => Checked ? "checked" : "unchecked";

@@ -1,0 +1,50 @@
+@page "/components/dialog-service"
+@using BlazingSpire.Demo.Components.UI
+@inject IDialogService DialogService
+
+<PageTitle>Dialog Service - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">Dialog Service</h1>
+        <p class="text-lg text-muted-foreground mt-2">Open dialogs programmatically from C# code using IDialogService.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Message Box</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="space-y-4">
+                <Button OnClick="ShowMessageBox">Show Message Box</Button>
+                @if (_messageBoxResult is not null)
+                {
+                    <p class="text-sm text-muted-foreground">Result: @(_messageBoxResult.Cancelled ? "Cancelled" : "Confirmed")</p>
+                }
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">@@inject IDialogService DialogService
+
+&lt;Button OnClick="ShowMessageBox"&gt;Show Message Box&lt;/Button&gt;
+
+@@code {
+    private async Task ShowMessageBox()
+    {
+        var result = await DialogService.ShowMessageBoxAsync(
+            "Confirm Action",
+            "Are you sure you want to proceed?");
+    }
+}</code></pre>
+    </section>
+</div>
+
+@code {
+    private DialogResult? _messageBoxResult;
+
+    private async Task ShowMessageBox()
+    {
+        _messageBoxResult = await DialogService.ShowMessageBoxAsync(
+            "Confirm Action",
+            "Are you sure you want to proceed?",
+            "Yes, proceed",
+            "Cancel");
+    }
+}

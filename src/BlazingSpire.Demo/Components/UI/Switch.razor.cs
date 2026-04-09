@@ -3,10 +3,14 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
+/// <summary>A toggle switch for on/off states.</summary>
 public partial class Switch : BlazingSpireComponentBase
 {
+    /// <summary>Whether the switch is on.</summary>
     [Parameter] public bool Checked { get; set; }
+    /// <summary>Callback invoked when the switch is toggled.</summary>
     [Parameter] public EventCallback<bool> CheckedChanged { get; set; }
+    /// <summary>Whether the switch is disabled.</summary>
     [Parameter] public bool Disabled { get; set; }
 
     private string DataState => Checked ? "checked" : "unchecked";

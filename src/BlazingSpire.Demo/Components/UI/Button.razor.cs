@@ -7,8 +7,10 @@ namespace BlazingSpire.Demo.Components.UI;
 public enum ButtonVariant { Default, Destructive, Outline, Secondary, Ghost, Link }
 public enum ButtonSize { Default, Sm, Lg, Icon }
 
+/// <summary>A clickable button with variant and size options.</summary>
 public partial class Button : ButtonBase<ButtonVariant, ButtonSize>
 {
+    /// <summary>HTML button type (button, submit, reset).</summary>
     [Parameter] public string Type { get; set; } = "button";
 
     protected override string BaseClasses =>

@@ -1,0 +1,78 @@
+@page "/components/numeric-field"
+@using BlazingSpire.Demo.Components.UI
+
+<PageTitle>NumericField - BlazingSpire</PageTitle>
+
+<div class="space-y-8">
+    <div>
+        <h1 class="text-3xl font-bold tracking-tight">NumericField</h1>
+        <p class="text-lg text-muted-foreground mt-2">A numeric input with type-safe binding, min/max constraints, and optional increment/decrement buttons.</p>
+    </div>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <NumericField T="int" Placeholder="Enter a number" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;NumericField T="int" Placeholder="Enter a number" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Buttons</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <NumericField T="int" @bind-Value="_quantity" ShowButtons="true" Min="0" Max="99" Placeholder="Qty" />
+                <p class="text-sm text-muted-foreground mt-2">Value: @_quantity</p>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;NumericField T="int" @@bind-Value="_quantity"
+              ShowButtons="true" Min="0" Max="99" /&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Currency</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <NumericField T="decimal" @bind-Value="_amount" Step="0.01m" Min="0m" Placeholder="0.00">
+                    <Prefix>$</Prefix>
+                </NumericField>
+                <p class="text-sm text-muted-foreground mt-2">Amount: @_amount.ToString("F2")</p>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;NumericField T="decimal" @@bind-Value="_amount"
+              Step="0.01m" Min="0m" Placeholder="0.00"&gt;
+    &lt;Prefix&gt;$&lt;/Prefix&gt;
+&lt;/NumericField&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">With Suffix</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <NumericField T="int" Placeholder="Weight" Min="0" Max="1000">
+                    <Suffix>kg</Suffix>
+                </NumericField>
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;NumericField T="int" Placeholder="Weight" Min="0" Max="1000"&gt;
+    &lt;Suffix&gt;kg&lt;/Suffix&gt;
+&lt;/NumericField&gt;</code></pre>
+    </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="max-w-sm">
+                <NumericField T="int" Value="42" Disabled="true" />
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">&lt;NumericField T="int" Value="42" Disabled="true" /&gt;</code></pre>
+    </section>
+</div>
+
+@code {
+    private int _quantity = 1;
+    private decimal _amount;
+}

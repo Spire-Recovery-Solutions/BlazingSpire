@@ -20,6 +20,15 @@
     </script>
     <script src="js/theme.js"></script>
     <link rel="stylesheet" href="css/prism-blazingspire.css" />
+    <script src="js/prism-custom.js" data-manual></script>
+    <script>
+        window.BlazingSpire = {
+            setTextAndHighlight: function(element, text) {
+                element.textContent = text;
+                Prism.highlightElement(element);
+            }
+        };
+    </script>
 </head>
 
 <body class="min-h-screen bg-background text-foreground antialiased">

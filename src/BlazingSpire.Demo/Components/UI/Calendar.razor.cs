@@ -3,10 +3,14 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
+/// <summary>A month calendar for date selection.</summary>
 public partial class Calendar : BlazingSpireComponentBase
 {
+    /// <summary>The currently selected date.</summary>
     [Parameter] public DateOnly? SelectedDate { get; set; }
+    /// <summary>Callback invoked when the selected date changes.</summary>
     [Parameter] public EventCallback<DateOnly?> SelectedDateChanged { get; set; }
+    /// <summary>The month currently displayed.</summary>
     [Parameter] public DateOnly DisplayMonth { get; set; } = DateOnly.FromDateTime(DateTime.Today);
 
     protected override string BaseClasses => "p-3";

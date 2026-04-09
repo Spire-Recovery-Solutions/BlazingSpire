@@ -1,4 +1,55 @@
 @namespace BlazingSpire.Demo.Components.UI
-@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+@inherits BlazingSpire.Demo.Components.Shared.TextInputBase
 
-<input type="@Type" placeholder="@Placeholder" disabled="@Disabled" class="@Classes" @attributes="AdditionalAttributes" />
+@if (HasAdornments)
+{
+    <div class="@WrapperClasses">
+        @if (Prefix is not null)
+        {
+            <div class="flex items-center pl-3 text-muted-foreground">@Prefix</div>
+        }
+        <input type="@Type"
+               value="@Value"
+               placeholder="@Placeholder"
+               disabled="@IsEffectivelyDisabled"
+               readonly="@ReadOnly"
+               required="@Required"
+               name="@Name"
+               maxlength="@MaxLength"
+               pattern="@Pattern"
+               autocomplete="@AutoComplete"
+               inputmode="@InputMode"
+               aria-invalid="@AriaInvalid"
+               aria-describedby="@AriaDescribedBy"
+               class="@InnerInputClasses"
+               @oninput="OnInputAsync"
+               @onchange="OnChangeAsync"
+               @onkeydown="OnKeyDown"
+               @attributes="AdditionalAttributes" />
+        @if (Suffix is not null)
+        {
+            <div class="flex items-center pr-3 text-muted-foreground">@Suffix</div>
+        }
+    </div>
+}
+else
+{
+    <input type="@Type"
+           value="@Value"
+           placeholder="@Placeholder"
+           disabled="@IsEffectivelyDisabled"
+           readonly="@ReadOnly"
+           required="@Required"
+           name="@Name"
+           maxlength="@MaxLength"
+           pattern="@Pattern"
+           autocomplete="@AutoComplete"
+           inputmode="@InputMode"
+           aria-invalid="@AriaInvalid"
+           aria-describedby="@AriaDescribedBy"
+           class="@Classes"
+           @oninput="OnInputAsync"
+           @onchange="OnChangeAsync"
+           @onkeydown="OnKeyDown"
+           @attributes="AdditionalAttributes" />
+}

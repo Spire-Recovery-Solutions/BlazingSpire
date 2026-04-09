@@ -19,6 +19,9 @@ public class AlertTests : BlazingSpireTestBase
     [Theory]
     [InlineData(AlertVariant.Default)]
     [InlineData(AlertVariant.Destructive)]
+    [InlineData(AlertVariant.Success)]
+    [InlineData(AlertVariant.Warning)]
+    [InlineData(AlertVariant.Info)]
     public void Each_Variant_Renders_Without_Error(AlertVariant variant)
     {
         var cut = Render<Alert>(p => p.Add(x => x.Variant, variant));

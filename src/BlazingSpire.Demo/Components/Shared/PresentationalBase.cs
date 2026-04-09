@@ -10,6 +10,7 @@ namespace BlazingSpire.Demo.Components.Shared;
 public abstract class PresentationalBase<TVariant> : BlazingSpireComponentBase
     where TVariant : struct, Enum
 {
+    /// <summary>The visual style variant.</summary>
     [Parameter] public TVariant Variant { get; set; }
 
     /// <summary>Declarative variant→CSS mapping. Subclasses return a static FrozenDictionary.</summary>

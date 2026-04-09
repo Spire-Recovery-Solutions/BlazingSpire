@@ -12,10 +12,15 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
 {
     [Inject] private IJSRuntime JS { get; set; } = default!;
 
+    /// <summary>Whether the overlay is open.</summary>
     [Parameter] public bool IsOpen { get; set; }
+    /// <summary>Callback for two-way binding of IsOpen.</summary>
     [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+    /// <summary>Initial open state for uncontrolled usage.</summary>
     [Parameter] public bool DefaultIsOpen { get; set; }
+    /// <summary>Callback invoked when the open state changes.</summary>
     [Parameter] public EventCallback<bool> OnOpenChanged { get; set; }
+    /// <summary>Callback invoked when the overlay closes.</summary>
     [Parameter] public EventCallback OnClose { get; set; }
 
     protected virtual bool ShouldTrapFocus => true;

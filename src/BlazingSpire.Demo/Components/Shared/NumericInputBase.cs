@@ -9,8 +9,11 @@ namespace BlazingSpire.Demo.Components.Shared;
 public abstract class NumericInputBase<T> : FormControlBase<T>
     where T : struct, INumber<T>, IMinMaxValue<T>
 {
+    /// <summary>Minimum allowed value.</summary>
     [Parameter] public T? Min { get; set; }
+    /// <summary>Maximum allowed value.</summary>
     [Parameter] public T? Max { get; set; }
+    /// <summary>Increment/decrement step size.</summary>
     [Parameter] public T? Step { get; set; }
 
     /// <summary>Clamp a value within Min/Max bounds using generic math.</summary>

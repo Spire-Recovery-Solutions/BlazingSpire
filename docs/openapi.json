@@ -1,0 +1,4172 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "BlazingSpire Components",
+    "version": "1.0.0"
+  },
+  "paths": { },
+  "components": {
+    "schemas": {
+      "Accordion": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "A vertically stacked set of collapsible sections.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AccordionContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AccordionItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AccordionTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Alert": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Variant": {
+            "enum": [
+              "Default",
+              "Destructive",
+              "Success",
+              "Warning",
+              "Info"
+            ],
+            "type": "string",
+            "description": "The visual style variant.",
+            "default": "Default"
+          }
+        },
+        "description": "Display callout messages for important information or feedback.",
+        "x-base-tier": "PresentationalBase",
+        "x-category": "Presentational"
+      },
+      "AlertDescription": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertDialog": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "OverlayBase",
+        "x-category": "Overlay"
+      },
+      "AlertDialogAction": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "OnClick": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertDialogCancel": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertDialogContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertDialogDescription": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertDialogFooter": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertDialogHeader": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertDialogTitle": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertDialogTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AlertTitle": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AspectRatio": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Ratio": {
+            "type": "number",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Avatar": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AvatarFallback": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "AvatarImage": {
+        "type": "object",
+        "properties": {
+          "Alt": {
+            "type": "string",
+            "description": ""
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Src": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Badge": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Variant": {
+            "enum": [
+              "Default",
+              "Secondary",
+              "Destructive",
+              "Outline"
+            ],
+            "type": "string",
+            "description": "The visual style variant.",
+            "default": "Default"
+          }
+        },
+        "description": "A small status indicator for counts, labels, or categories.",
+        "x-base-tier": "PresentationalBase",
+        "x-category": "Presentational"
+      },
+      "Breadcrumb": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "BreadcrumbItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "BreadcrumbLink": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Href": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "BreadcrumbList": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "BreadcrumbPage": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "BreadcrumbSeparator": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Button": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "Whether the component is disabled.",
+            "default": false
+          },
+          "Href": {
+            "type": "string",
+            "description": "URL to navigate to (renders as anchor)."
+          },
+          "Loading": {
+            "type": "boolean",
+            "description": "Whether the button shows a loading spinner.",
+            "default": false
+          },
+          "OnClick": {
+            "type": "string",
+            "description": "Callback invoked when the button is clicked. (event callback)",
+            "readOnly": true
+          },
+          "Rel": {
+            "type": "string",
+            "description": "Link rel attribute (e.g., noopener)."
+          },
+          "Size": {
+            "enum": [
+              "Default",
+              "Sm",
+              "Lg",
+              "Icon"
+            ],
+            "type": "string",
+            "description": "The size of the button.",
+            "default": "Default"
+          },
+          "Target": {
+            "type": "string",
+            "description": "Link target attribute (e.g., _blank)."
+          },
+          "Type": {
+            "type": "string",
+            "description": "HTML button type (button, submit, reset)."
+          },
+          "Variant": {
+            "enum": [
+              "Default",
+              "Destructive",
+              "Outline",
+              "Secondary",
+              "Ghost",
+              "Link"
+            ],
+            "type": "string",
+            "description": "The visual style variant.",
+            "default": "Default"
+          }
+        },
+        "description": "A clickable button with variant and size options.",
+        "x-base-tier": "ButtonBase",
+        "x-category": "Action"
+      },
+      "Calendar": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DisplayMonth": {
+            "type": "object",
+            "description": "The month currently displayed."
+          },
+          "SelectedDate": {
+            "type": "object",
+            "description": "The currently selected date."
+          },
+          "SelectedDateChanged": {
+            "type": "string",
+            "description": "Callback invoked when the selected date changes. (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "A month calendar for date selection.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Card": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "A container card with border and shadow.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CardContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "Main content area of a Card.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CardDescription": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "Description text within a CardHeader.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CardFooter": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "Footer section of a Card.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CardHeader": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "Header section of a Card.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CardTitle": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "Title element within a CardHeader.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Carousel": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "CurrentIndex": {
+            "type": "integer",
+            "description": "",
+            "default": 0
+          },
+          "CurrentIndexChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          },
+          "Orientation": {
+            "enum": [
+              "Horizontal",
+              "Vertical"
+            ],
+            "type": "string",
+            "description": "",
+            "default": "Horizontal"
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CarouselContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CarouselItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CarouselNext": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CarouselPrevious": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Checkbox": {
+        "type": "object",
+        "properties": {
+          "Checked": {
+            "type": "boolean",
+            "description": "Whether the checkbox is checked.",
+            "default": false
+          },
+          "CheckedChanged": {
+            "type": "string",
+            "description": "Callback invoked when the checked state changes. (event callback)",
+            "readOnly": true
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "Whether the checkbox is disabled.",
+            "default": false
+          }
+        },
+        "description": "A toggle checkbox control.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Collapsible": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CollapsibleContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CollapsibleTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Combobox": {
+        "type": "object",
+        "properties": {
+          "Align": {
+            "enum": [
+              "Start",
+              "Center",
+              "End"
+            ],
+            "type": "string",
+            "description": "Alignment along the side axis.",
+            "default": "Start"
+          },
+          "AlignOffset": {
+            "type": "integer",
+            "description": "Offset in pixels along the alignment axis.",
+            "default": 0
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          },
+          "Placeholder": {
+            "type": "string",
+            "description": ""
+          },
+          "SearchPlaceholder": {
+            "type": "string",
+            "description": ""
+          },
+          "Side": {
+            "enum": [
+              "Top",
+              "Bottom",
+              "Left",
+              "Right"
+            ],
+            "type": "string",
+            "description": "Which side of the trigger to position on.",
+            "default": "Top"
+          },
+          "SideOffset": {
+            "type": "integer",
+            "description": "Distance in pixels from the trigger.",
+            "default": 0
+          },
+          "Value": {
+            "type": "string",
+            "description": ""
+          },
+          "ValueChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "PopoverBase",
+        "x-category": "Overlay"
+      },
+      "ComboboxContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ComboboxEmpty": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ComboboxInput": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ComboboxItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "FilterText": {
+            "type": "string",
+            "description": ""
+          },
+          "ItemValue": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ComboboxTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Command": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CommandDialog": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CommandEmpty": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CommandGroup": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Heading": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CommandInput": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Placeholder": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CommandItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "FilterText": {
+            "type": "string",
+            "description": ""
+          },
+          "OnSelect": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CommandList": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "CommandSeparator": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ContextMenu": {
+        "type": "object",
+        "properties": {
+          "Align": {
+            "enum": [
+              "Start",
+              "Center",
+              "End"
+            ],
+            "type": "string",
+            "description": "Alignment along the side axis.",
+            "default": "Start"
+          },
+          "AlignOffset": {
+            "type": "integer",
+            "description": "Offset in pixels along the alignment axis.",
+            "default": 0
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          },
+          "Side": {
+            "enum": [
+              "Top",
+              "Bottom",
+              "Left",
+              "Right"
+            ],
+            "type": "string",
+            "description": "Which side of the trigger to position on.",
+            "default": "Top"
+          },
+          "SideOffset": {
+            "type": "integer",
+            "description": "Distance in pixels from the trigger.",
+            "default": 0
+          }
+        },
+        "description": "",
+        "x-base-tier": "PopoverBase",
+        "x-category": "Overlay"
+      },
+      "ContextMenuContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ContextMenuItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "OnClick": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ContextMenuLabel": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Inset": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ContextMenuSeparator": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ContextMenuTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DataTableColumn": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Sortable": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "SortKey": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DatePicker": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DateFormat": {
+            "type": "string",
+            "description": "Date display format string."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "Whether the date picker is disabled.",
+            "default": false
+          },
+          "MaxDate": {
+            "type": "object",
+            "description": "Latest selectable date."
+          },
+          "MinDate": {
+            "type": "object",
+            "description": "Earliest selectable date."
+          },
+          "Placeholder": {
+            "type": "string",
+            "description": "Placeholder text when no date is selected."
+          },
+          "SelectedDate": {
+            "type": "object",
+            "description": "The currently selected date."
+          },
+          "SelectedDateChanged": {
+            "type": "string",
+            "description": "Callback invoked when the selected date changes. (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "A date picker combining an input field with a calendar popover.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Dialog": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "A modal dialog overlay with focus trapping.",
+        "x-base-tier": "OverlayBase",
+        "x-category": "Overlay"
+      },
+      "DialogClose": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DialogContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DialogDescription": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DialogFooter": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DialogHeader": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DialogTitle": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DialogTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Drawer": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "OverlayBase",
+        "x-category": "Overlay"
+      },
+      "DrawerClose": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DrawerContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DrawerDescription": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DrawerFooter": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DrawerHeader": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DrawerTitle": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DrawerTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DropdownMenu": {
+        "type": "object",
+        "properties": {
+          "Align": {
+            "enum": [
+              "Start",
+              "Center",
+              "End"
+            ],
+            "type": "string",
+            "description": "Alignment along the side axis.",
+            "default": "Start"
+          },
+          "AlignOffset": {
+            "type": "integer",
+            "description": "Offset in pixels along the alignment axis.",
+            "default": 0
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          },
+          "Side": {
+            "enum": [
+              "Top",
+              "Bottom",
+              "Left",
+              "Right"
+            ],
+            "type": "string",
+            "description": "Which side of the trigger to position on.",
+            "default": "Top"
+          },
+          "SideOffset": {
+            "type": "integer",
+            "description": "Distance in pixels from the trigger.",
+            "default": 0
+          }
+        },
+        "description": "",
+        "x-base-tier": "PopoverBase",
+        "x-category": "Overlay"
+      },
+      "DropdownMenuContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DropdownMenuGroup": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DropdownMenuItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "OnClick": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DropdownMenuLabel": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Inset": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DropdownMenuSeparator": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "DropdownMenuTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "FormField": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "ErrorMessage": {
+            "type": "string",
+            "description": ""
+          },
+          "Name": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "FormFieldControl": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "FormFieldDescription": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "FormFieldError": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "FormFieldLabel": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "FormSection": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Description": {
+            "type": "string",
+            "description": ""
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "Legend": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "HoverCard": {
+        "type": "object",
+        "properties": {
+          "Align": {
+            "enum": [
+              "Start",
+              "Center",
+              "End"
+            ],
+            "type": "string",
+            "description": "Alignment along the side axis.",
+            "default": "Start"
+          },
+          "AlignOffset": {
+            "type": "integer",
+            "description": "Offset in pixels along the alignment axis.",
+            "default": 0
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "CloseDelay": {
+            "type": "integer",
+            "description": "",
+            "default": 0
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          },
+          "OpenDelay": {
+            "type": "integer",
+            "description": "",
+            "default": 0
+          },
+          "Side": {
+            "enum": [
+              "Top",
+              "Bottom",
+              "Left",
+              "Right"
+            ],
+            "type": "string",
+            "description": "Which side of the trigger to position on.",
+            "default": "Top"
+          },
+          "SideOffset": {
+            "type": "integer",
+            "description": "Distance in pixels from the trigger.",
+            "default": 0
+          }
+        },
+        "description": "",
+        "x-base-tier": "PopoverBase",
+        "x-category": "Overlay"
+      },
+      "HoverCardContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "HoverCardTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Input": {
+        "type": "object",
+        "properties": {
+          "AutoComplete": {
+            "type": "string",
+            "description": "Browser autocomplete hint."
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "Whether the component is disabled.",
+            "default": false
+          },
+          "Immediate": {
+            "type": "boolean",
+            "description": "Update value on every keystroke instead of on blur.",
+            "default": false
+          },
+          "InputMode": {
+            "type": "string",
+            "description": "Hint for virtual keyboard type (numeric, tel, etc.)."
+          },
+          "MaxLength": {
+            "type": "integer",
+            "description": "Maximum number of characters allowed.",
+            "default": 0
+          },
+          "Name": {
+            "type": "string",
+            "description": "The name attribute for the form control."
+          },
+          "OnKeyDown": {
+            "type": "string",
+            "description": "Callback invoked on key down events. (event callback)",
+            "readOnly": true
+          },
+          "Pattern": {
+            "type": "string",
+            "description": "Regex pattern for input validation."
+          },
+          "Placeholder": {
+            "type": "string",
+            "description": "Placeholder text displayed when the control is empty."
+          },
+          "Prefix": {
+            "type": "string",
+            "description": "Content displayed before the input (e.g., currency symbol). (render fragment)"
+          },
+          "ReadOnly": {
+            "type": "boolean",
+            "description": "Whether the field is read-only.",
+            "default": false
+          },
+          "Required": {
+            "type": "boolean",
+            "description": "Whether the field is required.",
+            "default": false
+          },
+          "Size": {
+            "enum": [
+              "Sm",
+              "Default",
+              "Lg"
+            ],
+            "type": "string",
+            "description": "The size of the input field.",
+            "default": "Sm"
+          },
+          "Suffix": {
+            "type": "string",
+            "description": "Content displayed after the input (e.g., unit label). (render fragment)"
+          },
+          "Type": {
+            "type": "string",
+            "description": "HTML input type (text, email, password, etc.)."
+          },
+          "Value": {
+            "type": "string",
+            "description": "The current value of the form control."
+          },
+          "ValueChanged": {
+            "type": "string",
+            "description": "Callback invoked when the value changes. (event callback)",
+            "readOnly": true
+          },
+          "ValueExpression": {
+            "type": "object",
+            "description": "Expression identifying the bound value for validation."
+          }
+        },
+        "description": "A form input field with two-way binding, sizes, and adornment slots.",
+        "x-base-tier": "TextInputBase",
+        "x-category": "Form"
+      },
+      "InputOTP": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "MaxLength": {
+            "type": "integer",
+            "description": "",
+            "default": 0
+          },
+          "Value": {
+            "type": "string",
+            "description": ""
+          },
+          "ValueChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "InputOTPGroup": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "InputOTPSeparator": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "InputOTPSlot": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Index": {
+            "type": "integer",
+            "description": "",
+            "default": 0
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Label": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "For": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Menubar": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "MenubarContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "MenubarItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "OnClick": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "MenubarLabel": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "MenubarMenu": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "MenubarSeparator": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "MenubarTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "NavigationMenu": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "NavigationMenuContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "NavigationMenuItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "NavigationMenuLink": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Href": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "NavigationMenuList": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "NavigationMenuTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Pagination": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "PaginationContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "PaginationEllipsis": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "PaginationItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "PaginationLink": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Href": {
+            "type": "string",
+            "description": ""
+          },
+          "IsActive": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "PaginationNext": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Href": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "PaginationPrevious": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Href": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Popover": {
+        "type": "object",
+        "properties": {
+          "Align": {
+            "enum": [
+              "Start",
+              "Center",
+              "End"
+            ],
+            "type": "string",
+            "description": "Alignment along the side axis.",
+            "default": "Start"
+          },
+          "AlignOffset": {
+            "type": "integer",
+            "description": "Offset in pixels along the alignment axis.",
+            "default": 0
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          },
+          "Side": {
+            "enum": [
+              "Top",
+              "Bottom",
+              "Left",
+              "Right"
+            ],
+            "type": "string",
+            "description": "Which side of the trigger to position on.",
+            "default": "Top"
+          },
+          "SideOffset": {
+            "type": "integer",
+            "description": "Distance in pixels from the trigger.",
+            "default": 0
+          }
+        },
+        "description": "A positioned floating panel anchored to a trigger.",
+        "x-base-tier": "PopoverBase",
+        "x-category": "Overlay"
+      },
+      "PopoverContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "PopoverTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Progress": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Value": {
+            "type": "integer",
+            "description": "Current progress value (0-100).",
+            "default": 0
+          }
+        },
+        "description": "A horizontal progress bar indicating completion.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "RadioGroup": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Value": {
+            "type": "string",
+            "description": ""
+          },
+          "ValueChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "RadioGroupItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "ItemValue": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ScrollArea": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Select": {
+        "type": "object",
+        "properties": {
+          "Align": {
+            "enum": [
+              "Start",
+              "Center",
+              "End"
+            ],
+            "type": "string",
+            "description": "Alignment along the side axis.",
+            "default": "Start"
+          },
+          "AlignOffset": {
+            "type": "integer",
+            "description": "Offset in pixels along the alignment axis.",
+            "default": 0
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          },
+          "Placeholder": {
+            "type": "string",
+            "description": "Placeholder text when no value is selected."
+          },
+          "Side": {
+            "enum": [
+              "Top",
+              "Bottom",
+              "Left",
+              "Right"
+            ],
+            "type": "string",
+            "description": "Which side of the trigger to position on.",
+            "default": "Top"
+          },
+          "SideOffset": {
+            "type": "integer",
+            "description": "Distance in pixels from the trigger.",
+            "default": 0
+          },
+          "Value": {
+            "type": "string",
+            "description": "The currently selected value."
+          },
+          "ValueChanged": {
+            "type": "string",
+            "description": "Callback invoked when the selection changes. (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "A dropdown select control for choosing from a list.",
+        "x-base-tier": "PopoverBase",
+        "x-category": "Overlay"
+      },
+      "SelectContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SelectGroup": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SelectItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "ItemText": {
+            "type": "string",
+            "description": ""
+          },
+          "ItemValue": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SelectLabel": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SelectSeparator": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SelectTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SelectValue": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Separator": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Decorative": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "Orientation": {
+            "enum": [
+              "Horizontal",
+              "Vertical"
+            ],
+            "type": "string",
+            "description": "",
+            "default": "Horizontal"
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Sheet": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          },
+          "Side": {
+            "enum": [
+              "Top",
+              "Right",
+              "Bottom",
+              "Left"
+            ],
+            "type": "string",
+            "description": "",
+            "default": "Top"
+          }
+        },
+        "description": "",
+        "x-base-tier": "OverlayBase",
+        "x-category": "Overlay"
+      },
+      "SheetClose": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SheetContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SheetDescription": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SheetFooter": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SheetHeader": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SheetTitle": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SheetTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Sidebar": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "IsCollapsed": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "IsCollapsedChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SidebarContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SidebarFooter": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SidebarHeader": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "SidebarTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Skeleton": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Slider": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "Max": {
+            "type": "number",
+            "description": ""
+          },
+          "Min": {
+            "type": "number",
+            "description": ""
+          },
+          "Step": {
+            "type": "number",
+            "description": ""
+          },
+          "Value": {
+            "type": "number",
+            "description": ""
+          },
+          "ValueChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Spinner": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Size": {
+            "enum": [
+              "Sm",
+              "Default",
+              "Lg"
+            ],
+            "type": "string",
+            "description": "The size of the spinner.",
+            "default": "Sm"
+          }
+        },
+        "description": "A circular loading indicator for async operations.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Switch": {
+        "type": "object",
+        "properties": {
+          "Checked": {
+            "type": "boolean",
+            "description": "Whether the switch is on.",
+            "default": false
+          },
+          "CheckedChanged": {
+            "type": "string",
+            "description": "Callback invoked when the switch is toggled. (event callback)",
+            "readOnly": true
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "Whether the switch is disabled.",
+            "default": false
+          }
+        },
+        "description": "A toggle switch for on/off states.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Table": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TableBody": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TableCaption": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TableCell": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TableFooter": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TableHead": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TableHeader": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TableRow": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Tabs": {
+        "type": "object",
+        "properties": {
+          "ActiveValue": {
+            "type": "string",
+            "description": "The value of the currently active tab."
+          },
+          "ActiveValueChanged": {
+            "type": "string",
+            "description": "Callback invoked when the active tab changes. (event callback)",
+            "readOnly": true
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "A tabbed interface for switching between content panels.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TabsContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "ItemValue": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TabsList": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TabsTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "ItemValue": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Textarea": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "Placeholder": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TimePicker": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "Whether the time picker is disabled.",
+            "default": false
+          },
+          "MaxTime": {
+            "type": "object",
+            "description": "Latest selectable time."
+          },
+          "MinTime": {
+            "type": "object",
+            "description": "Earliest selectable time."
+          },
+          "MinuteStep": {
+            "type": "integer",
+            "description": "Minute increment step size.",
+            "default": 0
+          },
+          "Placeholder": {
+            "type": "string",
+            "description": "Placeholder text when no time is selected."
+          },
+          "SelectedTime": {
+            "type": "object",
+            "description": "The currently selected time."
+          },
+          "SelectedTimeChanged": {
+            "type": "string",
+            "description": "Callback invoked when the selected time changes. (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "A time picker with hour, minute, and AM/PM selection.",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Toast": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Message": {
+            "type": "object",
+            "description": ""
+          },
+          "OnDismiss": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          },
+          "Variant": {
+            "enum": [
+              "Default",
+              "Destructive"
+            ],
+            "type": "string",
+            "description": "The visual style variant.",
+            "default": "Default"
+          }
+        },
+        "description": "",
+        "x-base-tier": "PresentationalBase",
+        "x-category": "Presentational"
+      },
+      "ToastAction": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "OnClick": {
+            "type": "object",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ToastClose": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "OnDismiss": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ToastDescription": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ToastTitle": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Toggle": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "Pressed": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "PressedChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          },
+          "Variant": {
+            "enum": [
+              "Default",
+              "Outline"
+            ],
+            "type": "string",
+            "description": "The visual style variant.",
+            "default": "Default"
+          }
+        },
+        "description": "",
+        "x-base-tier": "PresentationalBase",
+        "x-category": "Presentational"
+      },
+      "ToggleGroup": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "Type": {
+            "enum": [
+              "Single",
+              "Multiple"
+            ],
+            "type": "string",
+            "description": "",
+            "default": "Single"
+          },
+          "Value": {
+            "type": "string",
+            "description": ""
+          },
+          "ValueChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          },
+          "Values": {
+            "type": "object",
+            "description": ""
+          },
+          "ValuesChanged": {
+            "type": "string",
+            "description": " (event callback)",
+            "readOnly": true
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "ToggleGroupItem": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "Disabled": {
+            "type": "boolean",
+            "description": "",
+            "default": false
+          },
+          "ItemValue": {
+            "type": "string",
+            "description": ""
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "Tooltip": {
+        "type": "object",
+        "properties": {
+          "Align": {
+            "enum": [
+              "Start",
+              "Center",
+              "End"
+            ],
+            "type": "string",
+            "description": "Alignment along the side axis.",
+            "default": "Start"
+          },
+          "AlignOffset": {
+            "type": "integer",
+            "description": "Offset in pixels along the alignment axis.",
+            "default": 0
+          },
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          },
+          "DefaultIsOpen": {
+            "type": "boolean",
+            "description": "Initial open state for uncontrolled usage.",
+            "default": false
+          },
+          "IsOpen": {
+            "type": "boolean",
+            "description": "Whether the overlay is open.",
+            "default": false
+          },
+          "IsOpenChanged": {
+            "type": "string",
+            "description": "Callback for two-way binding of IsOpen. (event callback)",
+            "readOnly": true
+          },
+          "OnClose": {
+            "type": "string",
+            "description": "Callback invoked when the overlay closes. (event callback)",
+            "readOnly": true
+          },
+          "OnOpenChanged": {
+            "type": "string",
+            "description": "Callback invoked when the open state changes. (event callback)",
+            "readOnly": true
+          },
+          "Side": {
+            "enum": [
+              "Top",
+              "Bottom",
+              "Left",
+              "Right"
+            ],
+            "type": "string",
+            "description": "Which side of the trigger to position on.",
+            "default": "Top"
+          },
+          "SideOffset": {
+            "type": "integer",
+            "description": "Distance in pixels from the trigger.",
+            "default": 0
+          }
+        },
+        "description": "",
+        "x-base-tier": "PopoverBase",
+        "x-category": "Overlay"
+      },
+      "TooltipContent": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      },
+      "TooltipTrigger": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "BlazingSpireComponentBase",
+        "x-category": "General"
+      }
+    }
+  }
+}

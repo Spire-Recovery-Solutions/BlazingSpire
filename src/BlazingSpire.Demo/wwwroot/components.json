@@ -1,0 +1,5481 @@
+[
+  {
+    "name": "Accordion",
+    "description": "A vertically stacked set of collapsible sections.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Accordion content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AccordionContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AccordionContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AccordionItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AccordionItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AccordionTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AccordionTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Alert",
+    "description": "Display callout messages for important information or feedback.",
+    "category": "Presentational",
+    "baseTier": "PresentationalBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Alert content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Variant",
+        "kind": "Enum",
+        "type": "AlertVariant",
+        "description": "The visual style variant.",
+        "defaultValue": "Default",
+        "enumValues": [
+          "Default",
+          "Destructive",
+          "Success",
+          "Warning",
+          "Info"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "AlertDescription",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDescription content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AlertDialog",
+    "description": "",
+    "category": "Overlay",
+    "baseTier": "OverlayBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialog content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      }
+    ]
+  },
+  {
+    "name": "AlertDialogAction",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialogAction content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "OnClick",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "AlertDialogCancel",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialogCancel content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AlertDialogContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialogContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AlertDialogDescription",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialogDescription content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AlertDialogFooter",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialogFooter content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AlertDialogHeader",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialogHeader content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AlertDialogTitle",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialogTitle content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AlertDialogTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertDialogTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AlertTitle",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AlertTitle content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AspectRatio",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AspectRatio content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Ratio",
+        "kind": "Number",
+        "type": "double",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Avatar",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Avatar content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AvatarFallback",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AvatarFallback content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "AvatarImage",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "Alt",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample AvatarImage content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Src",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Badge",
+    "description": "A small status indicator for counts, labels, or categories.",
+    "category": "Presentational",
+    "baseTier": "PresentationalBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Badge content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Variant",
+        "kind": "Enum",
+        "type": "BadgeVariant",
+        "description": "The visual style variant.",
+        "defaultValue": "Default",
+        "enumValues": [
+          "Default",
+          "Secondary",
+          "Destructive",
+          "Outline"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Breadcrumb",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Breadcrumb content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "BreadcrumbItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample BreadcrumbItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "BreadcrumbLink",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample BreadcrumbLink content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Href",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "BreadcrumbList",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample BreadcrumbList content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "BreadcrumbPage",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample BreadcrumbPage content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "BreadcrumbSeparator",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample BreadcrumbSeparator content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Button",
+    "description": "A clickable button with variant and size options.",
+    "category": "Action",
+    "baseTier": "ButtonBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Button content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the component is disabled.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Href",
+        "kind": "String",
+        "type": "string",
+        "description": "URL to navigate to (renders as anchor)."
+      },
+      {
+        "name": "Loading",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the button shows a loading spinner.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "OnClick",
+        "kind": "Event",
+        "type": "EventCallback\u003CMouseEventArgs\u003E",
+        "description": "Callback invoked when the button is clicked."
+      },
+      {
+        "name": "Rel",
+        "kind": "String",
+        "type": "string",
+        "description": "Link rel attribute (e.g., noopener)."
+      },
+      {
+        "name": "Size",
+        "kind": "Enum",
+        "type": "ButtonSize",
+        "description": "The size of the button.",
+        "defaultValue": "Default",
+        "enumValues": [
+          "Default",
+          "Sm",
+          "Lg",
+          "Icon"
+        ]
+      },
+      {
+        "name": "Target",
+        "kind": "String",
+        "type": "string",
+        "description": "Link target attribute (e.g., _blank)."
+      },
+      {
+        "name": "Type",
+        "kind": "String",
+        "type": "string",
+        "description": "HTML button type (button, submit, reset)."
+      },
+      {
+        "name": "Variant",
+        "kind": "Enum",
+        "type": "ButtonVariant",
+        "description": "The visual style variant.",
+        "defaultValue": "Default",
+        "enumValues": [
+          "Default",
+          "Destructive",
+          "Outline",
+          "Secondary",
+          "Ghost",
+          "Link"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Calendar",
+    "description": "A month calendar for date selection.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Calendar content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DisplayMonth",
+        "kind": "Object",
+        "type": "DateOnly",
+        "description": "The month currently displayed."
+      },
+      {
+        "name": "SelectedDate",
+        "kind": "Object",
+        "type": "DateOnly",
+        "description": "The currently selected date."
+      },
+      {
+        "name": "SelectedDateChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003CNullable\u003CDateOnly\u003E\u003E",
+        "description": "Callback invoked when the selected date changes."
+      }
+    ]
+  },
+  {
+    "name": "Card",
+    "description": "A container card with border and shadow.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Card content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CardContent",
+    "description": "Main content area of a Card.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CardContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CardDescription",
+    "description": "Description text within a CardHeader.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CardDescription content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CardFooter",
+    "description": "Footer section of a Card.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CardFooter content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CardHeader",
+    "description": "Header section of a Card.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CardHeader content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CardTitle",
+    "description": "Title element within a CardHeader.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CardTitle content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Carousel",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Carousel content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "CurrentIndex",
+        "kind": "Number",
+        "type": "int",
+        "description": "",
+        "defaultValue": "0"
+      },
+      {
+        "name": "CurrentIndexChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cint\u003E",
+        "description": ""
+      },
+      {
+        "name": "Orientation",
+        "kind": "Enum",
+        "type": "CarouselOrientation",
+        "description": "",
+        "defaultValue": "Horizontal",
+        "enumValues": [
+          "Horizontal",
+          "Vertical"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "CarouselContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CarouselContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CarouselItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CarouselItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CarouselNext",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CarouselNext content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CarouselPrevious",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CarouselPrevious content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Checkbox",
+    "description": "A toggle checkbox control.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "Checked",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the checkbox is checked.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "CheckedChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the checked state changes."
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Checkbox content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the checkbox is disabled.",
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "name": "Collapsible",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Collapsible content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "CollapsibleContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CollapsibleContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CollapsibleTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CollapsibleTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Combobox",
+    "description": "",
+    "category": "Overlay",
+    "baseTier": "PopoverBase",
+    "parameters": [
+      {
+        "name": "Align",
+        "kind": "Enum",
+        "type": "FloatingAlign",
+        "description": "Alignment along the side axis.",
+        "defaultValue": "Start",
+        "enumValues": [
+          "Start",
+          "Center",
+          "End"
+        ]
+      },
+      {
+        "name": "AlignOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Offset in pixels along the alignment axis.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Combobox content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      },
+      {
+        "name": "Placeholder",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "SearchPlaceholder",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "Side",
+        "kind": "Enum",
+        "type": "FloatingSide",
+        "description": "Which side of the trigger to position on.",
+        "defaultValue": "Top",
+        "enumValues": [
+          "Top",
+          "Bottom",
+          "Left",
+          "Right"
+        ]
+      },
+      {
+        "name": "SideOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Distance in pixels from the trigger.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "Value",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "ValueChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cstring\u003E",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "ComboboxContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ComboboxContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "ComboboxEmpty",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ComboboxEmpty content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "ComboboxInput",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ComboboxInput content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "ComboboxItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ComboboxItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "FilterText",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "ItemValue",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "ComboboxTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ComboboxTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Command",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Command content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CommandDialog",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CommandDialog content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "CommandEmpty",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CommandEmpty content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CommandGroup",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CommandGroup content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Heading",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "CommandInput",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CommandInput content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Placeholder",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "CommandItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CommandItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "FilterText",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "OnSelect",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "CommandList",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CommandList content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "CommandSeparator",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample CommandSeparator content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "ContextMenu",
+    "description": "",
+    "category": "Overlay",
+    "baseTier": "PopoverBase",
+    "parameters": [
+      {
+        "name": "Align",
+        "kind": "Enum",
+        "type": "FloatingAlign",
+        "description": "Alignment along the side axis.",
+        "defaultValue": "Start",
+        "enumValues": [
+          "Start",
+          "Center",
+          "End"
+        ]
+      },
+      {
+        "name": "AlignOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Offset in pixels along the alignment axis.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ContextMenu content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      },
+      {
+        "name": "Side",
+        "kind": "Enum",
+        "type": "FloatingSide",
+        "description": "Which side of the trigger to position on.",
+        "defaultValue": "Top",
+        "enumValues": [
+          "Top",
+          "Bottom",
+          "Left",
+          "Right"
+        ]
+      },
+      {
+        "name": "SideOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Distance in pixels from the trigger.",
+        "defaultValue": "0"
+      }
+    ]
+  },
+  {
+    "name": "ContextMenuContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ContextMenuContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "ContextMenuItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ContextMenuItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "OnClick",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "ContextMenuLabel",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ContextMenuLabel content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Inset",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "name": "ContextMenuSeparator",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ContextMenuSeparator content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "ContextMenuTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ContextMenuTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DataTableColumn",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DataTableColumn content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Sortable",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "SortKey",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "DatePicker",
+    "description": "A date picker combining an input field with a calendar popover.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DatePicker content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DateFormat",
+        "kind": "String",
+        "type": "string",
+        "description": "Date display format string."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the date picker is disabled.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "MaxDate",
+        "kind": "Object",
+        "type": "DateOnly",
+        "description": "Latest selectable date."
+      },
+      {
+        "name": "MinDate",
+        "kind": "Object",
+        "type": "DateOnly",
+        "description": "Earliest selectable date."
+      },
+      {
+        "name": "Placeholder",
+        "kind": "String",
+        "type": "string",
+        "description": "Placeholder text when no date is selected."
+      },
+      {
+        "name": "SelectedDate",
+        "kind": "Object",
+        "type": "DateOnly",
+        "description": "The currently selected date."
+      },
+      {
+        "name": "SelectedDateChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003CNullable\u003CDateOnly\u003E\u003E",
+        "description": "Callback invoked when the selected date changes."
+      }
+    ]
+  },
+  {
+    "name": "Dialog",
+    "description": "A modal dialog overlay with focus trapping.",
+    "category": "Overlay",
+    "baseTier": "OverlayBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Dialog content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      }
+    ]
+  },
+  {
+    "name": "DialogClose",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DialogClose content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DialogContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DialogContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DialogDescription",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DialogDescription content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DialogFooter",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DialogFooter content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DialogHeader",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DialogHeader content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DialogTitle",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DialogTitle content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DialogTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DialogTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Drawer",
+    "description": "",
+    "category": "Overlay",
+    "baseTier": "OverlayBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Drawer content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      }
+    ]
+  },
+  {
+    "name": "DrawerClose",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DrawerClose content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DrawerContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DrawerContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DrawerDescription",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DrawerDescription content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DrawerFooter",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DrawerFooter content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DrawerHeader",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DrawerHeader content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DrawerTitle",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DrawerTitle content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DrawerTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DrawerTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DropdownMenu",
+    "description": "",
+    "category": "Overlay",
+    "baseTier": "PopoverBase",
+    "parameters": [
+      {
+        "name": "Align",
+        "kind": "Enum",
+        "type": "FloatingAlign",
+        "description": "Alignment along the side axis.",
+        "defaultValue": "Start",
+        "enumValues": [
+          "Start",
+          "Center",
+          "End"
+        ]
+      },
+      {
+        "name": "AlignOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Offset in pixels along the alignment axis.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DropdownMenu content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      },
+      {
+        "name": "Side",
+        "kind": "Enum",
+        "type": "FloatingSide",
+        "description": "Which side of the trigger to position on.",
+        "defaultValue": "Top",
+        "enumValues": [
+          "Top",
+          "Bottom",
+          "Left",
+          "Right"
+        ]
+      },
+      {
+        "name": "SideOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Distance in pixels from the trigger.",
+        "defaultValue": "0"
+      }
+    ]
+  },
+  {
+    "name": "DropdownMenuContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DropdownMenuContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DropdownMenuGroup",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DropdownMenuGroup content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DropdownMenuItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DropdownMenuItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "OnClick",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "DropdownMenuLabel",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DropdownMenuLabel content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Inset",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "name": "DropdownMenuSeparator",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DropdownMenuSeparator content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "DropdownMenuTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample DropdownMenuTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "FormField",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample FormField content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "ErrorMessage",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "Name",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "FormFieldControl",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample FormFieldControl content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "FormFieldDescription",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample FormFieldDescription content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "FormFieldError",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample FormFieldError content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "FormFieldLabel",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample FormFieldLabel content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "FormSection",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample FormSection content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Description",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Legend",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "HoverCard",
+    "description": "",
+    "category": "Overlay",
+    "baseTier": "PopoverBase",
+    "parameters": [
+      {
+        "name": "Align",
+        "kind": "Enum",
+        "type": "FloatingAlign",
+        "description": "Alignment along the side axis.",
+        "defaultValue": "Start",
+        "enumValues": [
+          "Start",
+          "Center",
+          "End"
+        ]
+      },
+      {
+        "name": "AlignOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Offset in pixels along the alignment axis.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample HoverCard content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "CloseDelay",
+        "kind": "Number",
+        "type": "int",
+        "description": "",
+        "defaultValue": "0"
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      },
+      {
+        "name": "OpenDelay",
+        "kind": "Number",
+        "type": "int",
+        "description": "",
+        "defaultValue": "0"
+      },
+      {
+        "name": "Side",
+        "kind": "Enum",
+        "type": "FloatingSide",
+        "description": "Which side of the trigger to position on.",
+        "defaultValue": "Top",
+        "enumValues": [
+          "Top",
+          "Bottom",
+          "Left",
+          "Right"
+        ]
+      },
+      {
+        "name": "SideOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Distance in pixels from the trigger.",
+        "defaultValue": "0"
+      }
+    ]
+  },
+  {
+    "name": "HoverCardContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample HoverCardContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "HoverCardTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample HoverCardTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Input",
+    "description": "A form input field with two-way binding, sizes, and adornment slots.",
+    "category": "Form",
+    "baseTier": "TextInputBase",
+    "parameters": [
+      {
+        "name": "AutoComplete",
+        "kind": "String",
+        "type": "string",
+        "description": "Browser autocomplete hint."
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Input content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the component is disabled.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Immediate",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Update value on every keystroke instead of on blur.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "InputMode",
+        "kind": "String",
+        "type": "string",
+        "description": "Hint for virtual keyboard type (numeric, tel, etc.)."
+      },
+      {
+        "name": "MaxLength",
+        "kind": "Number",
+        "type": "int",
+        "description": "Maximum number of characters allowed.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "Name",
+        "kind": "String",
+        "type": "string",
+        "description": "The name attribute for the form control."
+      },
+      {
+        "name": "OnKeyDown",
+        "kind": "Event",
+        "type": "EventCallback\u003CKeyboardEventArgs\u003E",
+        "description": "Callback invoked on key down events."
+      },
+      {
+        "name": "Pattern",
+        "kind": "String",
+        "type": "string",
+        "description": "Regex pattern for input validation."
+      },
+      {
+        "name": "Placeholder",
+        "kind": "String",
+        "type": "string",
+        "description": "Placeholder text displayed when the control is empty."
+      },
+      {
+        "name": "Prefix",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "Content displayed before the input (e.g., currency symbol)."
+      },
+      {
+        "name": "ReadOnly",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the field is read-only.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Required",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the field is required.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Size",
+        "kind": "Enum",
+        "type": "InputSize",
+        "description": "The size of the input field.",
+        "defaultValue": "Sm",
+        "enumValues": [
+          "Sm",
+          "Default",
+          "Lg"
+        ]
+      },
+      {
+        "name": "Suffix",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "Content displayed after the input (e.g., unit label)."
+      },
+      {
+        "name": "Type",
+        "kind": "String",
+        "type": "string",
+        "description": "HTML input type (text, email, password, etc.)."
+      },
+      {
+        "name": "Value",
+        "kind": "String",
+        "type": "string",
+        "description": "The current value of the form control."
+      },
+      {
+        "name": "ValueChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cstring\u003E",
+        "description": "Callback invoked when the value changes."
+      },
+      {
+        "name": "ValueExpression",
+        "kind": "Expression",
+        "type": "Expression\u003CFunc\u003Cstring\u003E\u003E",
+        "description": "Expression identifying the bound value for validation."
+      }
+    ]
+  },
+  {
+    "name": "InputOTP",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample InputOTP content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "MaxLength",
+        "kind": "Number",
+        "type": "int",
+        "description": "",
+        "defaultValue": "0"
+      },
+      {
+        "name": "Value",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "ValueChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cstring\u003E",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "InputOTPGroup",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample InputOTPGroup content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "InputOTPSeparator",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample InputOTPSeparator content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "InputOTPSlot",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample InputOTPSlot content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Index",
+        "kind": "Number",
+        "type": "int",
+        "description": "",
+        "defaultValue": "0"
+      }
+    ]
+  },
+  {
+    "name": "Label",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Label content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "For",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Menubar",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Menubar content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "MenubarContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample MenubarContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "MenubarItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample MenubarItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "OnClick",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "MenubarLabel",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample MenubarLabel content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "MenubarMenu",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample MenubarMenu content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "MenubarSeparator",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample MenubarSeparator content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "MenubarTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample MenubarTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "NavigationMenu",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample NavigationMenu content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "NavigationMenuContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample NavigationMenuContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "NavigationMenuItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample NavigationMenuItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "NavigationMenuLink",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample NavigationMenuLink content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Href",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "NavigationMenuList",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample NavigationMenuList content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "NavigationMenuTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample NavigationMenuTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Pagination",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Pagination content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "PaginationContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample PaginationContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "PaginationEllipsis",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample PaginationEllipsis content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "PaginationItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample PaginationItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "PaginationLink",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample PaginationLink content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Href",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "IsActive",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "name": "PaginationNext",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample PaginationNext content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Href",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "PaginationPrevious",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample PaginationPrevious content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Href",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Popover",
+    "description": "A positioned floating panel anchored to a trigger.",
+    "category": "Overlay",
+    "baseTier": "PopoverBase",
+    "parameters": [
+      {
+        "name": "Align",
+        "kind": "Enum",
+        "type": "FloatingAlign",
+        "description": "Alignment along the side axis.",
+        "defaultValue": "Start",
+        "enumValues": [
+          "Start",
+          "Center",
+          "End"
+        ]
+      },
+      {
+        "name": "AlignOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Offset in pixels along the alignment axis.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Popover content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      },
+      {
+        "name": "Side",
+        "kind": "Enum",
+        "type": "FloatingSide",
+        "description": "Which side of the trigger to position on.",
+        "defaultValue": "Top",
+        "enumValues": [
+          "Top",
+          "Bottom",
+          "Left",
+          "Right"
+        ]
+      },
+      {
+        "name": "SideOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Distance in pixels from the trigger.",
+        "defaultValue": "0"
+      }
+    ]
+  },
+  {
+    "name": "PopoverContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample PopoverContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "PopoverTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample PopoverTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Progress",
+    "description": "A horizontal progress bar indicating completion.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Progress content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Value",
+        "kind": "Number",
+        "type": "int",
+        "description": "Current progress value (0-100).",
+        "defaultValue": "0"
+      }
+    ]
+  },
+  {
+    "name": "RadioGroup",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample RadioGroup content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Value",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "ValueChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cstring\u003E",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "RadioGroupItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample RadioGroupItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "ItemValue",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "ScrollArea",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ScrollArea content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Select",
+    "description": "A dropdown select control for choosing from a list.",
+    "category": "Overlay",
+    "baseTier": "PopoverBase",
+    "parameters": [
+      {
+        "name": "Align",
+        "kind": "Enum",
+        "type": "FloatingAlign",
+        "description": "Alignment along the side axis.",
+        "defaultValue": "Start",
+        "enumValues": [
+          "Start",
+          "Center",
+          "End"
+        ]
+      },
+      {
+        "name": "AlignOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Offset in pixels along the alignment axis.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Select content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      },
+      {
+        "name": "Placeholder",
+        "kind": "String",
+        "type": "string",
+        "description": "Placeholder text when no value is selected."
+      },
+      {
+        "name": "Side",
+        "kind": "Enum",
+        "type": "FloatingSide",
+        "description": "Which side of the trigger to position on.",
+        "defaultValue": "Top",
+        "enumValues": [
+          "Top",
+          "Bottom",
+          "Left",
+          "Right"
+        ]
+      },
+      {
+        "name": "SideOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Distance in pixels from the trigger.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "Value",
+        "kind": "String",
+        "type": "string",
+        "description": "The currently selected value."
+      },
+      {
+        "name": "ValueChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cstring\u003E",
+        "description": "Callback invoked when the selection changes."
+      }
+    ]
+  },
+  {
+    "name": "SelectContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SelectContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SelectGroup",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SelectGroup content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SelectItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SelectItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "ItemText",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "ItemValue",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "SelectLabel",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SelectLabel content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SelectSeparator",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SelectSeparator content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SelectTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SelectTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "name": "SelectValue",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SelectValue content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Separator",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Separator content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Decorative",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Orientation",
+        "kind": "Enum",
+        "type": "SeparatorOrientation",
+        "description": "",
+        "defaultValue": "Horizontal",
+        "enumValues": [
+          "Horizontal",
+          "Vertical"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Sheet",
+    "description": "",
+    "category": "Overlay",
+    "baseTier": "OverlayBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Sheet content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      },
+      {
+        "name": "Side",
+        "kind": "Enum",
+        "type": "SheetSide",
+        "description": "",
+        "defaultValue": "Top",
+        "enumValues": [
+          "Top",
+          "Right",
+          "Bottom",
+          "Left"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "SheetClose",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SheetClose content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SheetContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SheetContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SheetDescription",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SheetDescription content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SheetFooter",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SheetFooter content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SheetHeader",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SheetHeader content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SheetTitle",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SheetTitle content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SheetTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SheetTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Sidebar",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Sidebar content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "IsCollapsed",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsCollapsedChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "SidebarContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SidebarContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SidebarFooter",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SidebarFooter content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SidebarHeader",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SidebarHeader content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "SidebarTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample SidebarTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Skeleton",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Skeleton content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Slider",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Slider content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Max",
+        "kind": "Number",
+        "type": "double",
+        "description": ""
+      },
+      {
+        "name": "Min",
+        "kind": "Number",
+        "type": "double",
+        "description": ""
+      },
+      {
+        "name": "Step",
+        "kind": "Number",
+        "type": "double",
+        "description": ""
+      },
+      {
+        "name": "Value",
+        "kind": "Number",
+        "type": "double",
+        "description": ""
+      },
+      {
+        "name": "ValueChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cdouble\u003E",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Spinner",
+    "description": "A circular loading indicator for async operations.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Spinner content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Size",
+        "kind": "Enum",
+        "type": "SpinnerSize",
+        "description": "The size of the spinner.",
+        "defaultValue": "Sm",
+        "enumValues": [
+          "Sm",
+          "Default",
+          "Lg"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Switch",
+    "description": "A toggle switch for on/off states.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "Checked",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the switch is on.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "CheckedChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the switch is toggled."
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Switch content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the switch is disabled.",
+        "defaultValue": "false"
+      }
+    ]
+  },
+  {
+    "name": "Table",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Table content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TableBody",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableBody content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TableCaption",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableCaption content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TableCell",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableCell content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TableFooter",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableFooter content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TableHead",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableHead content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TableHeader",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableHeader content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TableRow",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableRow content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Tabs",
+    "description": "A tabbed interface for switching between content panels.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ActiveValue",
+        "kind": "String",
+        "type": "string",
+        "description": "The value of the currently active tab."
+      },
+      {
+        "name": "ActiveValueChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cstring\u003E",
+        "description": "Callback invoked when the active tab changes."
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Tabs content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TabsContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TabsContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "ItemValue",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "TabsList",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TabsList content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TabsTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TabsTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "ItemValue",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Textarea",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Textarea content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Placeholder",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "TimePicker",
+    "description": "A time picker with hour, minute, and AM/PM selection.",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TimePicker content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the time picker is disabled.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "MaxTime",
+        "kind": "Object",
+        "type": "TimeOnly",
+        "description": "Latest selectable time."
+      },
+      {
+        "name": "MinTime",
+        "kind": "Object",
+        "type": "TimeOnly",
+        "description": "Earliest selectable time."
+      },
+      {
+        "name": "MinuteStep",
+        "kind": "Number",
+        "type": "int",
+        "description": "Minute increment step size.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "Placeholder",
+        "kind": "String",
+        "type": "string",
+        "description": "Placeholder text when no time is selected."
+      },
+      {
+        "name": "SelectedTime",
+        "kind": "Object",
+        "type": "TimeOnly",
+        "description": "The currently selected time."
+      },
+      {
+        "name": "SelectedTimeChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003CNullable\u003CTimeOnly\u003E\u003E",
+        "description": "Callback invoked when the selected time changes."
+      }
+    ]
+  },
+  {
+    "name": "Toast",
+    "description": "",
+    "category": "Presentational",
+    "baseTier": "PresentationalBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Toast content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Message",
+        "kind": "Object",
+        "type": "ToastMessage",
+        "description": ""
+      },
+      {
+        "name": "OnDismiss",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": ""
+      },
+      {
+        "name": "Variant",
+        "kind": "Enum",
+        "type": "ToastVariant",
+        "description": "The visual style variant.",
+        "defaultValue": "Default",
+        "enumValues": [
+          "Default",
+          "Destructive"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ToastAction",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ToastAction content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "OnClick",
+        "kind": "Object",
+        "type": "Action",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "ToastClose",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ToastClose content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "OnDismiss",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "ToastDescription",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ToastDescription content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "ToastTitle",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ToastTitle content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "Toggle",
+    "description": "",
+    "category": "Presentational",
+    "baseTier": "PresentationalBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Toggle content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Pressed",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "PressedChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": ""
+      },
+      {
+        "name": "Variant",
+        "kind": "Enum",
+        "type": "ToggleVariant",
+        "description": "The visual style variant.",
+        "defaultValue": "Default",
+        "enumValues": [
+          "Default",
+          "Outline"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "ToggleGroup",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ToggleGroup content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "Type",
+        "kind": "Enum",
+        "type": "ToggleGroupType",
+        "description": "",
+        "defaultValue": "Single",
+        "enumValues": [
+          "Single",
+          "Multiple"
+        ]
+      },
+      {
+        "name": "Value",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "ValueChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cstring\u003E",
+        "description": ""
+      },
+      {
+        "name": "Values",
+        "kind": "Object",
+        "type": "HashSet\u003Cstring\u003E",
+        "description": ""
+      },
+      {
+        "name": "ValuesChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003CHashSet\u003Cstring\u003E\u003E",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "ToggleGroupItem",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ToggleGroupItem content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "Disabled",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "",
+        "defaultValue": "false"
+      },
+      {
+        "name": "ItemValue",
+        "kind": "String",
+        "type": "string",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "name": "Tooltip",
+    "description": "",
+    "category": "Overlay",
+    "baseTier": "PopoverBase",
+    "parameters": [
+      {
+        "name": "Align",
+        "kind": "Enum",
+        "type": "FloatingAlign",
+        "description": "Alignment along the side axis.",
+        "defaultValue": "Start",
+        "enumValues": [
+          "Start",
+          "Center",
+          "End"
+        ]
+      },
+      {
+        "name": "AlignOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Offset in pixels along the alignment axis.",
+        "defaultValue": "0"
+      },
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample Tooltip content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      },
+      {
+        "name": "DefaultIsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Initial open state for uncontrolled usage.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpen",
+        "kind": "Boolean",
+        "type": "bool",
+        "description": "Whether the overlay is open.",
+        "defaultValue": "false"
+      },
+      {
+        "name": "IsOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback for two-way binding of IsOpen."
+      },
+      {
+        "name": "OnClose",
+        "kind": "Event",
+        "type": "EventCallback",
+        "description": "Callback invoked when the overlay closes."
+      },
+      {
+        "name": "OnOpenChanged",
+        "kind": "Event",
+        "type": "EventCallback\u003Cbool\u003E",
+        "description": "Callback invoked when the open state changes."
+      },
+      {
+        "name": "Side",
+        "kind": "Enum",
+        "type": "FloatingSide",
+        "description": "Which side of the trigger to position on.",
+        "defaultValue": "Top",
+        "enumValues": [
+          "Top",
+          "Bottom",
+          "Left",
+          "Right"
+        ]
+      },
+      {
+        "name": "SideOffset",
+        "kind": "Number",
+        "type": "int",
+        "description": "Distance in pixels from the trigger.",
+        "defaultValue": "0"
+      }
+    ]
+  },
+  {
+    "name": "TooltipContent",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TooltipContent content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TooltipTrigger",
+    "description": "",
+    "category": "General",
+    "baseTier": "BlazingSpireComponentBase",
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TooltipTrigger content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  }
+]

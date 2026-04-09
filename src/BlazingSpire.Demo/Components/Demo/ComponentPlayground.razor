@@ -1,0 +1,55 @@
+@namespace BlazingSpire.Demo.Components.Demo
+@using BlazingSpire.Demo.Components.UI
+@inject IComponentMetaService MetaService
+
+@if (_meta is not null)
+{
+    <Card>
+        <CardHeader>
+            <CardTitle>@_meta.Name</CardTitle>
+            <CardDescription>@_meta.Description</CardDescription>
+        </CardHeader>
+        <CardContent Class="p-0">
+            <div class="flex flex-col lg:flex-row">
+                @* Preview pane *@
+                <div class="flex-1 min-h-[200px] border-b lg:border-b-0 lg:border-r border-border p-8 flex items-center justify-center bg-muted/30">
+                    @_renderFragment
+                </div>
+                @* Controls pane *@
+                <div class="w-full lg:w-72 xl:w-80 shrink-0 p-4 space-y-4 overflow-y-auto max-h-[400px]">
+                    @foreach (var param in _editableParams)
+                    {
+                        <PlaygroundControl Meta="param" Value="_paramValues.GetValueOrDefault(param.Name)"
+                                           ValueChanged="v => OnParameterChanged(param.Name, v)" />
+                    }
+                </div>
+            </div>
+        </CardContent>
+        <Separator />
+        <div class="p-4">
+            <CodeBlock Code="@_snippet" />
+        </div>
+    </Card>
+
+    @if (!string.IsNullOrEmpty(_tonl))
+    {
+        <Card Class="mt-4">
+            <CardHeader>
+                <div class="flex items-center gap-2">
+                    <Badge Variant="BadgeVariant.Secondary">TONL</Badge>
+                    <CardTitle Class="text-sm">AI Documentation</CardTitle>
+                </div>
+                <CardDescription>Token-optimized component schema for MCP servers and AI tooling.</CardDescription>
+            </CardHeader>
+            <CardContent Class="p-0">
+                <CodeBlock Code="@_tonl" Language="text" />
+            </CardContent>
+        </Card>
+    }
+}
+else if (_loading)
+{
+    <div class="flex items-center justify-center p-12">
+        <Spinner />
+    </div>
+}

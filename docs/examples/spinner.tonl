@@ -1,0 +1,17 @@
+#version 1.0
+
+component{name:str,description:str,category:str,baseTier:str}:
+  name: Spinner
+  description: A circular loading indicator for async operations.
+  category: General
+  baseTier: BlazingSpireComponentBase
+
+parameters[3]{name:str,type:str,kind:str,default:str,description:str}:
+  ChildContent, RenderFragment, Content, Sample Spinner content, The content to render inside the component.
+  Class, string, String, , Additional CSS classes to apply to the root element.
+  Size, SpinnerSize, Enum, Sm, The size of the spinner.
+
+enum:Size[3]{value:str}:
+  Sm
+  Default
+  Lg

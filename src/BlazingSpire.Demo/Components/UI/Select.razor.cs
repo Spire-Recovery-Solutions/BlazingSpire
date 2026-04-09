@@ -3,10 +3,14 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
+/// <summary>A dropdown select control for choosing from a list.</summary>
 public partial class Select : PopoverBase
 {
+    /// <summary>The currently selected value.</summary>
     [Parameter] public string? Value { get; set; }
+    /// <summary>Callback invoked when the selection changes.</summary>
     [Parameter] public EventCallback<string> ValueChanged { get; set; }
+    /// <summary>Placeholder text when no value is selected.</summary>
     [Parameter] public string? Placeholder { get; set; }
 
     public string? SelectedText { get; set; }

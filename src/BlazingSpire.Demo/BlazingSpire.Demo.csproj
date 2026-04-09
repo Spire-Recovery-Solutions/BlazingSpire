@@ -24,6 +24,9 @@
     <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
     <!-- Disable unused runtime features -->
     <DebuggerSupport>false</DebuggerSupport>
+    <!-- XML doc generation for OpenAPI / playground metadata -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
     <MetadataUpdaterSupport>false</MetadataUpdaterSupport>
     <UseSystemResourceKeys>true</UseSystemResourceKeys>
   </PropertyGroup>
@@ -36,5 +39,17 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" PrivateAssets="all" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazingSpire.SourceGenerator\BlazingSpire.SourceGenerator.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <Target Name="GenerateComponentDocs" AfterTargets="Build" Condition="'$(DesignTimeBuild)' != 'true'">
+    <Exec Command="&quot;$(DOTNET_HOST_PATH)&quot; run --project $(MSBuildThisFileDirectory)../../tools/BlazingSpire.DocGen/BlazingSpire.DocGen.csproj -- &quot;$(TargetPath)&quot; &quot;$(TargetDir)$(TargetName).xml&quot; &quot;$(MSBuildThisFileDirectory)../../docs/&quot;"
+          WorkingDirectory="$(MSBuildThisFileDirectory)"
+          ConsoleToMSBuild="true" />
+  </Target>
 
 </Project>

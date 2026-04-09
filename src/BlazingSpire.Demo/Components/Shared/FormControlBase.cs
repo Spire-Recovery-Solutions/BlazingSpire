@@ -10,13 +10,20 @@ namespace BlazingSpire.Demo.Components.Shared;
 /// </summary>
 public abstract class FormControlBase<TValue> : InteractiveBase, IDisposable
 {
+    /// <summary>The current value of the form control.</summary>
     [Parameter] public TValue? Value { get; set; }
+    /// <summary>Callback invoked when the value changes.</summary>
     [Parameter] public EventCallback<TValue?> ValueChanged { get; set; }
+    /// <summary>Expression identifying the bound value for validation.</summary>
     [Parameter] public Expression<Func<TValue?>>? ValueExpression { get; set; }
 
+    /// <summary>The name attribute for the form control.</summary>
     [Parameter] public string? Name { get; set; }
+    /// <summary>Placeholder text displayed when the control is empty.</summary>
     [Parameter] public string? Placeholder { get; set; }
+    /// <summary>Whether the field is required.</summary>
     [Parameter] public bool Required { get; set; }
+    /// <summary>Whether the field is read-only.</summary>
     [Parameter] public bool ReadOnly { get; set; }
 
     [CascadingParameter] private EditContext? CascadedEditContext { get; set; }
