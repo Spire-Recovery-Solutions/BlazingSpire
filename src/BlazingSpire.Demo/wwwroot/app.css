@@ -38,25 +38,33 @@
 }
 
 .dark {
-  /* Dark mode — navy-tinted surfaces, coral primary for AA contrast */
-  --color-background: oklch(0.155 0.010 245.4);
+  /* Dark mode — navy-tinted surfaces (C=0.020), brand crimson primary
+   * Fixes from design audit:
+   * 1. Popover elevated above card (was identical — floating menus invisible)
+   * 2. Primary: H locked to brand 13.7 (was drifting to 8.4 coral), L=0.560 for white-text AA
+   * 3. Primary foreground: white (dark navy failed AA at ~4.06:1)
+   * 4. Borders raised from 0.285→0.380 (were near-invisible against card)
+   * 5. Navy tint committed at C=0.020 (was 0.010 — too subtle to read as intentional)
+   * 6. Ring decoupled from primary (lighter for focus indicator visibility)
+   * 7. Destructive pushed to H=27 (was H=22, too close to brand crimson H=13.7) */
+  --color-background: oklch(0.155 0.020 245.4);
   --color-foreground: oklch(0.970 0.001 70.2);
-  --color-primary: oklch(0.701 0.155 8.4);
-  --color-primary-foreground: oklch(0.278 0.013 245.4);
+  --color-primary: oklch(0.560 0.165 13.7);
+  --color-primary-foreground: oklch(0.985 0 0);
   --color-secondary: oklch(0.200 0.020 13.7);
   --color-secondary-foreground: oklch(0.970 0.001 70.2);
   --color-muted: oklch(0.220 0 0);
   --color-muted-foreground: oklch(0.630 0.001 90.0);
   --color-accent: oklch(0.215 0.018 163.0);
   --color-accent-foreground: oklch(0.970 0.001 70.2);
-  --color-destructive: oklch(0.620 0.215 22.0);
+  --color-destructive: oklch(0.650 0.215 27.0);
   --color-destructive-foreground: oklch(0.985 0 0);
-  --color-border: oklch(0.285 0.008 245.4);
-  --color-input: oklch(0.285 0.008 245.4);
-  --color-ring: oklch(0.701 0.155 8.4);
-  --color-card: oklch(0.195 0.010 245.4);
+  --color-border: oklch(0.380 0.010 245.4);
+  --color-input: oklch(0.380 0.010 245.4);
+  --color-ring: oklch(0.650 0.165 13.7);
+  --color-card: oklch(0.210 0.020 245.4);
   --color-card-foreground: oklch(0.970 0.001 70.2);
-  --color-popover: oklch(0.195 0.010 245.4);
+  --color-popover: oklch(0.250 0.020 245.4);
   --color-popover-foreground: oklch(0.970 0.001 70.2);
 }
 
