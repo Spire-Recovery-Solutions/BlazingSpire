@@ -5,26 +5,31 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* Light mode — blue primary, red destructive, neutral grays */
-  --color-background: oklch(0.98 0 0);
-  --color-foreground: oklch(0.14 0 0);
-  --color-primary: oklch(0.43 0.19 264);
-  --color-primary-foreground: oklch(0.98 0 0);
-  --color-secondary: oklch(0.94 0.005 264);
-  --color-secondary-foreground: oklch(0.25 0 0);
-  --color-muted: oklch(0.95 0 0);
-  --color-muted-foreground: oklch(0.50 0 0);
-  --color-accent: oklch(0.94 0.005 264);
-  --color-accent-foreground: oklch(0.25 0 0);
-  --color-destructive: oklch(0.48 0.22 20);
-  --color-destructive-foreground: oklch(0.98 0 0);
-  --color-border: oklch(0.90 0 0);
-  --color-input: oklch(0.90 0 0);
-  --color-ring: oklch(0.43 0.19 264);
+  /* Light mode — Spire Recovery Solutions brand palette
+   * Primary crimson:  #be1d2c → oklch(0.517 0.182 13.7)
+   * Accent green:     #65bc7b → H=163
+   * Dark navy:        #212934 → oklch(0.278 0.013 245.4)
+   * Warm surface:     #f5f5f5 → oklch(0.970 0.001 70.2)
+   * Warm border:      #eae8e8 → oklch(0.919 0.002 70.2) */
+  --color-background: oklch(0.970 0.001 70.2);
+  --color-foreground: oklch(0.278 0.013 245.4);
+  --color-primary: oklch(0.517 0.182 13.7);
+  --color-primary-foreground: oklch(0.985 0 0);
+  --color-secondary: oklch(0.950 0.008 13.7);
+  --color-secondary-foreground: oklch(0.278 0.013 245.4);
+  --color-muted: oklch(0.960 0 0);
+  --color-muted-foreground: oklch(0.528 0.001 90.0);
+  --color-accent: oklch(0.940 0.012 163.0);
+  --color-accent-foreground: oklch(0.278 0.013 245.4);
+  --color-destructive: oklch(0.530 0.215 22.0);
+  --color-destructive-foreground: oklch(0.985 0 0);
+  --color-border: oklch(0.919 0.002 70.2);
+  --color-input: oklch(0.919 0.002 70.2);
+  --color-ring: oklch(0.517 0.182 13.7);
   --color-card: oklch(1 0 0);
-  --color-card-foreground: oklch(0.14 0 0);
+  --color-card-foreground: oklch(0.278 0.013 245.4);
   --color-popover: oklch(1 0 0);
-  --color-popover-foreground: oklch(0.14 0 0);
+  --color-popover-foreground: oklch(0.278 0.013 245.4);
 
   --radius-sm: calc(0.625rem * 0.6);
   --radius-md: calc(0.625rem * 0.8);
@@ -33,26 +38,26 @@
 }
 
 .dark {
-  /* Dark mode — lighter blue primary, lighter red destructive */
-  --color-background: oklch(0.14 0 0);
-  --color-foreground: oklch(0.98 0 0);
-  --color-primary: oklch(0.62 0.19 264);
-  --color-primary-foreground: oklch(0.14 0 0);
-  --color-secondary: oklch(0.22 0.005 264);
-  --color-secondary-foreground: oklch(0.98 0 0);
-  --color-muted: oklch(0.22 0 0);
-  --color-muted-foreground: oklch(0.65 0 0);
-  --color-accent: oklch(0.25 0.005 264);
-  --color-accent-foreground: oklch(0.98 0 0);
-  --color-destructive: oklch(0.60 0.22 20);
-  --color-destructive-foreground: oklch(0.98 0 0);
-  --color-border: oklch(0.27 0 0);
-  --color-input: oklch(0.27 0 0);
-  --color-ring: oklch(0.62 0.19 264);
-  --color-card: oklch(0.18 0 0);
-  --color-card-foreground: oklch(0.98 0 0);
-  --color-popover: oklch(0.18 0 0);
-  --color-popover-foreground: oklch(0.98 0 0);
+  /* Dark mode — navy-tinted surfaces, coral primary for AA contrast */
+  --color-background: oklch(0.155 0.010 245.4);
+  --color-foreground: oklch(0.970 0.001 70.2);
+  --color-primary: oklch(0.701 0.155 8.4);
+  --color-primary-foreground: oklch(0.278 0.013 245.4);
+  --color-secondary: oklch(0.200 0.020 13.7);
+  --color-secondary-foreground: oklch(0.970 0.001 70.2);
+  --color-muted: oklch(0.220 0 0);
+  --color-muted-foreground: oklch(0.630 0.001 90.0);
+  --color-accent: oklch(0.215 0.018 163.0);
+  --color-accent-foreground: oklch(0.970 0.001 70.2);
+  --color-destructive: oklch(0.620 0.215 22.0);
+  --color-destructive-foreground: oklch(0.985 0 0);
+  --color-border: oklch(0.285 0.008 245.4);
+  --color-input: oklch(0.285 0.008 245.4);
+  --color-ring: oklch(0.701 0.155 8.4);
+  --color-card: oklch(0.195 0.010 245.4);
+  --color-card-foreground: oklch(0.970 0.001 70.2);
+  --color-popover: oklch(0.195 0.010 245.4);
+  --color-popover-foreground: oklch(0.970 0.001 70.2);
 }
 
 @layer base {
