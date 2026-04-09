@@ -24,10 +24,16 @@ public partial class ComponentPlayground
         _meta = await MetaService.GetAsync(ComponentName);
         if (_meta is not null)
         {
-            // Filter to editable params (skip events, expressions, and AdditionalAttributes)
+            // Filter to editable params (skip events, expressions, objects, and AdditionalAttributes)
             _editableParams = _meta.Parameters
-                .Where(p => p.Kind is not ("Event" or "Expression" or "Object") && p.Name != "AdditionalAttributes")
+                .Where(p => p.Kind is not ("Event" or "Expression" or "Object")
+                    && p.Name is not "AdditionalAttributes" and not "ChildContent")
                 .ToList();
+
+            // Add ChildContent separately if present (so it appears last)
+            var childContent = _meta.Parameters.FirstOrDefault(p => p.Name == "ChildContent");
+            if (childContent is not null)
+                _editableParams = [.._editableParams, childContent];
 
             // Initialize defaults
             _paramValues = [];
@@ -62,19 +68,12 @@ public partial class ComponentPlayground
     {
         if (_meta is null) return;
 
-        // Resolve enum strings to actual enum values before passing to the render factory
+        // Resolve string values to their typed equivalents before passing to the render factory
         var resolved = new Dictionary<string, object?>(_paramValues.Count);
         foreach (var (key, value) in _paramValues)
         {
             var paramMeta = _editableParams.FirstOrDefault(p => p.Name == key);
-            if (paramMeta?.Kind == "Enum" && value is string enumStr)
-            {
-                resolved[key] = ResolveEnum(paramMeta.Type, enumStr);
-            }
-            else
-            {
-                resolved[key] = value;
-            }
+            resolved[key] = CoerceValue(paramMeta, value);
         }
 
         // Get render factory from source generator
@@ -88,16 +87,27 @@ public partial class ComponentPlayground
         _snippet = BuildSnippet();
     }
 
+    private static object? CoerceValue(ParameterMeta? meta, object? value)
+    {
+        if (meta is null || value is null) return value;
+
+        return meta.Kind switch
+        {
+            "Enum" when value is string s => ResolveEnum(meta.Type, s),
+            "Number" or "Int" when value is string s => int.TryParse(s, out var i) ? i : 0,
+            "Double" when value is string s => double.TryParse(s, out var d) ? d : 0.0,
+            "Boolean" or "Bool" when value is string s => bool.TryParse(s, out var b) && b,
+            _ => value
+        };
+    }
+
     private static object? ResolveEnum(string enumTypeName, string valueName)
     {
-        // Look up the component type to find the enum type in the same assembly
         foreach (var (_, compType) in PlaygroundFactories.ComponentTypes)
         {
             var enumType = compType.Assembly.GetType($"BlazingSpire.Demo.Components.UI.{enumTypeName}");
             if (enumType is not null && enumType.IsEnum)
-            {
                 return Enum.Parse(enumType, valueName);
-            }
         }
         return valueName;
     }
@@ -164,11 +174,12 @@ public partial class ComponentPlayground
 
         return param.Kind switch
         {
-            "Bool" => bool.TryParse(param.DefaultValue, out var b) ? b : false,
-            "Int" => int.TryParse(param.DefaultValue, out var i) ? i : 0,
+            "Boolean" or "Bool" => bool.TryParse(param.DefaultValue, out var b) && b,
+            "Number" or "Int" => int.TryParse(param.DefaultValue, out var i) ? i : 0,
             "Double" => double.TryParse(param.DefaultValue, out var d) ? d : 0.0,
             "String" => param.DefaultValue,
-            "Enum" => param.DefaultValue, // stored as string name, resolved by render factory
+            "Enum" => param.DefaultValue,
+            "Content" => param.DefaultValue,
             _ => param.DefaultValue
         };
     }
