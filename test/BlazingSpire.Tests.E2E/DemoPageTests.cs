@@ -4,7 +4,7 @@ namespace BlazingSpire.Tests.E2E;
 
 /// <summary>
 /// E2E tests for the BlazingSpire demo home page (/).
-/// Covers page load, hero section, and all component showcase sections.
+/// Covers page load, hero section, stats, preview, and category cards.
 /// Requires the demo app running at APP_URL (default: https://localhost:5001).
 /// </summary>
 public class DemoPageTests : BlazingSpireE2EBase
@@ -37,27 +37,37 @@ public class DemoPageTests : BlazingSpireE2EBase
     // ── Hero buttons ──────────────────────────────────────────────────────────
 
     [Fact]
-    public async Task Hero_GetStarted_Button_Is_Visible()
+    public async Task Hero_BrowseComponents_Link_Is_Visible()
     {
         await NavigateAndWaitForBlazor();
-        await Expect(Page.GetByRole(AriaRole.Button, new() { Name = "Get Started" }))
+        await Expect(Page.GetByRole(AriaRole.Link, new() { Name = "Browse Components" }))
             .ToBeVisibleAsync();
     }
 
     [Fact]
-    public async Task Hero_GitHub_Button_Is_Visible()
+    public async Task Hero_GitHub_Link_Is_Visible()
     {
         await NavigateAndWaitForBlazor();
-        await Expect(Page.GetByRole(AriaRole.Button, new() { Name = "GitHub" }))
+        await Expect(Page.GetByRole(AriaRole.Link, new() { Name = "GitHub" }))
             .ToBeVisibleAsync();
+    }
+
+    // ── Stats row ─────────────────────────────────────────────────────────────
+
+    [Theory]
+    [InlineData("Components")]
+    [InlineData("Tests")]
+    public async Task Stats_Card_Is_Visible(string statLabel)
+    {
+        await NavigateAndWaitForBlazor();
+        await Expect(Page.GetByText(statLabel).First).ToBeVisibleAsync();
     }
 
     // ── Section headings ──────────────────────────────────────────────────────
 
     [Theory]
-    [InlineData("Button")]
-    [InlineData("Badge")]
-    [InlineData("Card")]
+    [InlineData("See it in action")]
+    [InlineData("Browse by category")]
     public async Task Section_Heading_Is_Visible(string sectionName)
     {
         await NavigateAndWaitForBlazor();
@@ -65,121 +75,28 @@ public class DemoPageTests : BlazingSpireE2EBase
             .ToBeVisibleAsync();
     }
 
-    // ── Button section ────────────────────────────────────────────────────────
+    // ── Preview form ──────────────────────────────────────────────────────────
+
+    [Fact]
+    public async Task Preview_Card_Shows_Create_Account_Form()
+    {
+        await NavigateAndWaitForBlazor();
+        await Expect(Page.GetByText("Create account")).ToBeVisibleAsync();
+        await Expect(Page.GetByText("Enter your details to get started.")).ToBeVisibleAsync();
+    }
+
+    // ── Category cards ────────────────────────────────────────────────────────
 
     [Theory]
-    [InlineData("Default")]
-    [InlineData("Secondary")]
-    [InlineData("Destructive")]
-    [InlineData("Outline")]
-    [InlineData("Ghost")]
-    [InlineData("Link")]
-    public async Task Button_Variant_Is_Visible(string variantLabel)
+    [InlineData("Layout")]
+    [InlineData("Forms")]
+    [InlineData("Data Display")]
+    [InlineData("Feedback")]
+    [InlineData("Navigation")]
+    public async Task Category_Card_Is_Visible(string categoryName)
     {
         await NavigateAndWaitForBlazor();
-
-        // Scope to Button section so "Outline" / "Default" etc. don't match Badge section
-        var buttonSection = Page.Locator("section").Filter(
-            new() { Has = Page.GetByRole(AriaRole.Heading, new() { Level = 2, Name = "Button" }) });
-
-        await Expect(buttonSection.GetByRole(AriaRole.Button, new() { Name = variantLabel }).First)
-            .ToBeVisibleAsync();
-    }
-
-    [Fact]
-    public async Task Button_Disabled_State_Is_Rendered()
-    {
-        await NavigateAndWaitForBlazor();
-
-        var buttonSection = Page.Locator("section").Filter(
-            new() { Has = Page.GetByRole(AriaRole.Heading, new() { Level = 2, Name = "Button" }) });
-
-        await Expect(buttonSection.Locator("button[disabled]").First).ToBeVisibleAsync();
-    }
-
-    [Fact]
-    public async Task Button_Loading_Spinner_Is_Rendered()
-    {
-        await NavigateAndWaitForBlazor();
-
-        var buttonSection = Page.Locator("section").Filter(
-            new() { Has = Page.GetByRole(AriaRole.Heading, new() { Level = 2, Name = "Button" }) });
-
-        // Loading buttons render an SVG spinner with animate-spin class
-        await Expect(buttonSection.Locator("svg.animate-spin").First).ToBeVisibleAsync();
-    }
-
-    // ── Badge section ─────────────────────────────────────────────────────────
-
-    [Theory]
-    [InlineData("Default")]
-    [InlineData("Secondary")]
-    [InlineData("Destructive")]
-    [InlineData("Outline")]
-    public async Task Badge_Variant_Is_Visible(string variantLabel)
-    {
-        await NavigateAndWaitForBlazor();
-
-        var badgeSection = Page.Locator("section").Filter(
-            new() { Has = Page.GetByRole(AriaRole.Heading, new() { Level = 2, Name = "Badge" }) });
-
-        await Expect(badgeSection.GetByText(variantLabel).First).ToBeVisibleAsync();
-    }
-
-    [Fact]
-    public async Task Badge_Tag_List_Is_Rendered()
-    {
-        await NavigateAndWaitForBlazor();
-
-        var badgeSection = Page.Locator("section").Filter(
-            new() { Has = Page.GetByRole(AriaRole.Heading, new() { Level = 2, Name = "Badge" }) });
-
-        // Tag list badges from the demo
-        await Expect(badgeSection.GetByText("Blazor")).ToBeVisibleAsync();
-        await Expect(badgeSection.GetByText(".NET 10")).ToBeVisibleAsync();
-        await Expect(badgeSection.GetByText("Tailwind v4")).ToBeVisibleAsync();
-    }
-
-    // ── Card section ──────────────────────────────────────────────────────────
-
-    [Theory]
-    [InlineData("Create project")]
-    [InlineData("Components")]
-    [InlineData("Documentation")]
-    public async Task Card_Title_Is_Visible(string cardTitle)
-    {
-        await NavigateAndWaitForBlazor();
-
-        var cardSection = Page.Locator("section").Filter(
-            new() { Has = Page.GetByRole(AriaRole.Heading, new() { Level = 2, Name = "Card" }) });
-
-        await Expect(cardSection.GetByText(cardTitle).First).ToBeVisibleAsync();
-    }
-
-    [Fact]
-    public async Task Card_Stats_Are_Rendered()
-    {
-        await NavigateAndWaitForBlazor();
-
-        var cardSection = Page.Locator("section").Filter(
-            new() { Has = Page.GetByRole(AriaRole.Heading, new() { Level = 2, Name = "Card" }) });
-
-        await Expect(cardSection.GetByText("Total Downloads")).ToBeVisibleAsync();
-        await Expect(cardSection.GetByText("Active Users")).ToBeVisibleAsync();
-        await Expect(cardSection.GetByText("Lighthouse Score")).ToBeVisibleAsync();
-    }
-
-    [Fact]
-    public async Task Card_Notifications_Section_Is_Rendered()
-    {
-        await NavigateAndWaitForBlazor();
-
-        var cardSection = Page.Locator("section").Filter(
-            new() { Has = Page.GetByRole(AriaRole.Heading, new() { Level = 2, Name = "Card" }) });
-
-        await Expect(cardSection.GetByText("You have 3 unread messages.")).ToBeVisibleAsync();
-        await Expect(cardSection.GetByRole(AriaRole.Button, new() { Name = "Mark all as read" }))
-            .ToBeVisibleAsync();
+        await Expect(Page.GetByText(categoryName).First).ToBeVisibleAsync();
     }
 
     // ── Dark mode ─────────────────────────────────────────────────────────────
@@ -197,7 +114,6 @@ public class DemoPageTests : BlazingSpireE2EBase
     {
         await NavigateAndWaitForBlazor();
 
-        // Remove any stored theme preference, then reload to test the default init path
         await Page.EvaluateAsync("localStorage.removeItem('theme')");
         await Page.ReloadAsync();
         await Page.Locator("#app").WaitForAsync(new()
