@@ -1,5 +1,5 @@
 @page "/components/popover"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Popover - BlazingSpire</PageTitle>
 
@@ -9,63 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A click-triggered floating panel anchored to its trigger.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Dimensions</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <Popover>
-                <PopoverTrigger>
-                    <Button Variant="ButtonVariant.Outline">Open popover</Button>
-                </PopoverTrigger>
-                <PopoverContent>
-                    <div class="grid gap-4">
-                        <div class="space-y-2">
-                            <h4 class="font-medium leading-none">Dimensions</h4>
-                            <p class="text-sm text-muted-foreground">Set the dimensions for the layer.</p>
-                        </div>
-                        <div class="grid gap-2">
-                            <div class="grid grid-cols-3 items-center gap-4">
-                                <Label For="width">Width</Label>
-                                <Input Id="width" Value="100%" Class="col-span-2 h-8" />
-                            </div>
-                            <div class="grid grid-cols-3 items-center gap-4">
-                                <Label For="maxWidth">Max. width</Label>
-                                <Input Id="maxWidth" Value="300px" Class="col-span-2 h-8" />
-                            </div>
-                            <div class="grid grid-cols-3 items-center gap-4">
-                                <Label For="height">Height</Label>
-                                <Input Id="height" Value="25px" Class="col-span-2 h-8" />
-                            </div>
-                            <div class="grid grid-cols-3 items-center gap-4">
-                                <Label For="maxHeight">Max. height</Label>
-                                <Input Id="maxHeight" Value="none" Class="col-span-2 h-8" />
-                            </div>
-                        </div>
-                    </div>
-                </PopoverContent>
-            </Popover>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Popover</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PopoverTrigger</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">Variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ButtonVariant.Outline<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Open popover<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PopoverTrigger</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PopoverContent</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid gap-4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>space-y-2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h4</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>font-medium leading-none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Dimensions<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h4</span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-sm text-muted-foreground<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Set the dimensions for the layer.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid gap-2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid grid-cols-3 items-center gap-4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">For</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Width<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">></span></span>
-                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Input</span> <span class="token attr-name">Id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width<span class="token punctuation">"</span></span> <span class="token attr-name">Value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100%<span class="token punctuation">"</span></span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col-span-2 h-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid grid-cols-3 items-center gap-4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">For</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>height<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Height<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">></span></span>
-                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Input</span> <span class="token attr-name">Id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>height<span class="token punctuation">"</span></span> <span class="token attr-name">Value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>25px<span class="token punctuation">"</span></span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>col-span-2 h-8<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PopoverContent</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Popover</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Popover" />
 </div>

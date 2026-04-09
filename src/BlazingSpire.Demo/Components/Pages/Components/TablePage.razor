@@ -1,5 +1,5 @@
 @page "/components/table"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Table - BlazingSpire</PageTitle>
 
@@ -9,83 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A responsive table component with header, body, footer, and caption support.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Invoices</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <Table>
-                <TableCaption>A list of your recent invoices.</TableCaption>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead Class="w-[100px]">Invoice</TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Method</TableHead>
-                        <TableHead Class="text-right">Amount</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    <TableRow>
-                        <TableCell Class="font-medium">INV001</TableCell>
-                        <TableCell>Paid</TableCell>
-                        <TableCell>Credit Card</TableCell>
-                        <TableCell Class="text-right">$250.00</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell Class="font-medium">INV002</TableCell>
-                        <TableCell>Pending</TableCell>
-                        <TableCell>PayPal</TableCell>
-                        <TableCell Class="text-right">$150.00</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell Class="font-medium">INV003</TableCell>
-                        <TableCell>Unpaid</TableCell>
-                        <TableCell>Bank Transfer</TableCell>
-                        <TableCell Class="text-right">$350.00</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell Class="font-medium">INV004</TableCell>
-                        <TableCell>Paid</TableCell>
-                        <TableCell>Credit Card</TableCell>
-                        <TableCell Class="text-right">$450.00</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell Class="font-medium">INV005</TableCell>
-                        <TableCell>Paid</TableCell>
-                        <TableCell>PayPal</TableCell>
-                        <TableCell Class="text-right">$550.00</TableCell>
-                    </TableRow>
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TableCell ColSpan="3">Total</TableCell>
-                        <TableCell Class="text-right">$1,750.00</TableCell>
-                    </TableRow>
-                </TableFooter>
-            </Table>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Table</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCaption</span><span class="token punctuation">></span></span>A list of your recent invoices.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCaption</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableHeader</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableRow</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableHead</span><span class="token punctuation">></span></span>Invoice<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableHead</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableHead</span><span class="token punctuation">></span></span>Status<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableHead</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableHead</span><span class="token punctuation">></span></span>Method<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableHead</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableHead</span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-right<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Amount<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableHead</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableRow</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableHeader</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableBody</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableRow</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>font-medium<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>INV001<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span><span class="token punctuation">></span></span>Paid<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span><span class="token punctuation">></span></span>Credit Card<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-right<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>$250.00<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableRow</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableBody</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableFooter</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableRow</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span> <span class="token attr-name">ColSpan</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Total<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-right<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>$1,750.00<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableRow</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableFooter</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Table</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Table" />
 </div>

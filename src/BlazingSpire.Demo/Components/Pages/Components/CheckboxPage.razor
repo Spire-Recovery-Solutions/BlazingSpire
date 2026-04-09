@@ -1,5 +1,5 @@
 @page "/components/checkbox"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Checkbox - BlazingSpire</PageTitle>
 
@@ -9,47 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">An interactive toggle with ARIA support. Bind with <code class="text-xs bg-muted px-1 py-0.5 rounded">@@bind-Checked</code>.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Checkbox />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Checkbox</span> <span class="token punctuation">/></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Checked</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Checkbox Checked="true" />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Checkbox</span> <span class="token attr-name">Checked</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">With Label</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center gap-2">
-                <Checkbox id="terms" />
-                <Label For="terms">Accept terms and conditions</Label>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Checkbox</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>terms<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">For</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>terms<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Accept terms and conditions<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Checkbox Disabled="true" />
-                <Checkbox Checked="true" Disabled="true" />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Checkbox</span> <span class="token attr-name">Disabled</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Checkbox</span> <span class="token attr-name">Checked</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">Disabled</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Checkbox" />
 </div>

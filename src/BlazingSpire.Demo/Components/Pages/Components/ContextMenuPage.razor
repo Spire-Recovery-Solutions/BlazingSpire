@@ -1,5 +1,5 @@
 @page "/components/context-menu"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Context Menu - BlazingSpire</PageTitle>
 
@@ -9,41 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">Displays a menu triggered by right-clicking a target area.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <ContextMenu>
-                <ContextMenuTrigger>
-                    <div class="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
-                        Right click here
-                    </div>
-                </ContextMenuTrigger>
-                <ContextMenuContent>
-                    <ContextMenuLabel>Navigation</ContextMenuLabel>
-                    <ContextMenuSeparator />
-                    <ContextMenuItem>Back</ContextMenuItem>
-                    <ContextMenuItem>Forward</ContextMenuItem>
-                    <ContextMenuItem>Reload</ContextMenuItem>
-                    <ContextMenuSeparator />
-                    <ContextMenuItem>View Source</ContextMenuItem>
-                </ContextMenuContent>
-            </ContextMenu>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenu</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuTrigger</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-            Right click here
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContextMenuTrigger</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuContent</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuLabel</span><span class="token punctuation">></span></span>Navigation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContextMenuLabel</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuSeparator</span> <span class="token punctuation">/></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuItem</span><span class="token punctuation">></span></span>Back<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContextMenuItem</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuItem</span><span class="token punctuation">></span></span>Forward<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContextMenuItem</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuItem</span><span class="token punctuation">></span></span>Reload<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContextMenuItem</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuSeparator</span> <span class="token punctuation">/></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ContextMenuItem</span><span class="token punctuation">></span></span>View Source<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContextMenuItem</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContextMenuContent</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ContextMenu</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="ContextMenu" />
 </div>

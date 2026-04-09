@@ -1,5 +1,5 @@
 @page "/components/accordion"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Accordion - BlazingSpire</PageTitle>
 
@@ -9,37 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">Vertically stacked sections that expand and collapse. Uses native HTML details/summary for SSR compatibility.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <Accordion>
-                <AccordionItem>
-                    <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                    <AccordionContent>Yes. It uses native HTML details/summary elements.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem>
-                    <AccordionTrigger>Is it styled?</AccordionTrigger>
-                    <AccordionContent>Yes. It comes with default Tailwind styles.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem>
-                    <AccordionTrigger>Is it animated?</AccordionTrigger>
-                    <AccordionContent>Yes. CSS transitions handle the open/close animation.</AccordionContent>
-                </AccordionItem>
-            </Accordion>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Accordion</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionItem</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionTrigger</span><span class="token punctuation">></span></span>Is it accessible?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionTrigger</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionContent</span><span class="token punctuation">></span></span>Yes. It uses native HTML details/summary elements.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionContent</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionItem</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionItem</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionTrigger</span><span class="token punctuation">></span></span>Is it styled?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionTrigger</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionContent</span><span class="token punctuation">></span></span>Yes. It comes with default Tailwind styles.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionContent</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionItem</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionItem</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionTrigger</span><span class="token punctuation">></span></span>Is it animated?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionTrigger</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AccordionContent</span><span class="token punctuation">></span></span>Yes. CSS transitions handle the open/close animation.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionContent</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AccordionItem</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Accordion</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Accordion" />
 </div>

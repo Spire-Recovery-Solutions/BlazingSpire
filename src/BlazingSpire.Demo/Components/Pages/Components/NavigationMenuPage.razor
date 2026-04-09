@@ -1,5 +1,5 @@
 @page "/components/navigation-menu"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Navigation Menu - BlazingSpire</PageTitle>
 
@@ -9,60 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A horizontal navigation bar with dropdown content panels for site navigation.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <NavigationMenu>
-                <NavigationMenuList>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <div class="grid gap-3 w-[400px]">
-                                <NavigationMenuLink Href="/docs/introduction">
-                                    <div class="text-sm font-medium leading-none">Introduction</div>
-                                    <p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                        Re-usable components built with Blazor and Tailwind CSS.
-                                    </p>
-                                </NavigationMenuLink>
-                                <NavigationMenuLink Href="/docs/installation">
-                                    <div class="text-sm font-medium leading-none">Installation</div>
-                                    <p class="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                        How to install and configure BlazingSpire in your project.
-                                    </p>
-                                </NavigationMenuLink>
-                            </div>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <div class="grid w-[300px] gap-2">
-                                <NavigationMenuLink Href="/components/button">Button</NavigationMenuLink>
-                                <NavigationMenuLink Href="/components/badge">Badge</NavigationMenuLink>
-                                <NavigationMenuLink Href="/components/card">Card</NavigationMenuLink>
-                            </div>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <NavigationMenuLink Href="/">Documentation</NavigationMenuLink>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavigationMenu</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavigationMenuList</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavigationMenuItem</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavigationMenuTrigger</span><span class="token punctuation">></span></span>Getting Started<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavigationMenuTrigger</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavigationMenuContent</span><span class="token punctuation">></span></span>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavigationMenuLink</span> <span class="token attr-name">Href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/docs/introduction<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-                    Introduction
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavigationMenuLink</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavigationMenuContent</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavigationMenuItem</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavigationMenuItem</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NavigationMenuLink</span> <span class="token attr-name">Href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/docs<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Documentation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavigationMenuLink</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavigationMenuItem</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavigationMenuList</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NavigationMenu</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="NavigationMenu" />
 </div>

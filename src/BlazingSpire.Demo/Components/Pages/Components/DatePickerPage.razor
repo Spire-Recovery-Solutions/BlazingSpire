@@ -1,5 +1,5 @@
 @page "/components/date-picker"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>DatePicker - BlazingSpire</PageTitle>
 
@@ -9,44 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A date picker that combines an input field with a calendar popover.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="max-w-sm">
-                <DatePicker @bind-SelectedDate="_selectedDate" />
-                @if (_selectedDate.HasValue)
-                {
-                    <p class="text-sm text-muted-foreground mt-2">Selected: @_selectedDate.Value.ToString("MMMM d, yyyy")</p>
-                }
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml">&lt;DatePicker @@bind-SelectedDate="_date" /&gt;</code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Custom Format</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="max-w-sm">
-                <DatePicker @bind-SelectedDate="_formattedDate" DateFormat="yyyy-MM-dd" Placeholder="YYYY-MM-DD" />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml">&lt;DatePicker @@bind-SelectedDate="_date"
-            DateFormat="yyyy-MM-dd"
-            Placeholder="YYYY-MM-DD" /&gt;</code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="max-w-sm">
-                <DatePicker Disabled="true" Placeholder="Cannot select" />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml">&lt;DatePicker Disabled="true" /&gt;</code></pre>
-    </section>
+    <ComponentPlayground ComponentName="DatePicker" />
 </div>
-
-@code {
-    private DateOnly? _selectedDate;
-    private DateOnly? _formattedDate;
-}

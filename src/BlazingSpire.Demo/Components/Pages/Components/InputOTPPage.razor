@@ -1,5 +1,5 @@
 @page "/components/input-otp"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>InputOTP - BlazingSpire</PageTitle>
 
@@ -9,45 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">One-time password input with grouped slots and separator support.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">6-Digit OTP</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center gap-2">
-                <InputOTP MaxLength="6" @bind-Value="_otpValue">
-                    <InputOTPGroup>
-                        <InputOTPSlot Index="0" />
-                        <InputOTPSlot Index="1" />
-                        <InputOTPSlot Index="2" />
-                    </InputOTPGroup>
-                    <InputOTPSeparator />
-                    <InputOTPGroup>
-                        <InputOTPSlot Index="3" />
-                        <InputOTPSlot Index="4" />
-                        <InputOTPSlot Index="5" />
-                    </InputOTPGroup>
-                </InputOTP>
-            </div>
-            @if (!string.IsNullOrEmpty(_otpValue))
-            {
-                <p class="text-sm text-muted-foreground mt-2">Value: <span class="font-mono">@_otpValue</span></p>
-            }
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTP</span> <span class="token attr-name">MaxLength</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>6<span class="token punctuation">"</span></span> <span class="token attr-name">&#64;bind-Value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>_otpValue<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPGroup</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPSlot</span> <span class="token attr-name">Index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPSlot</span> <span class="token attr-name">Index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPSlot</span> <span class="token attr-name">Index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>InputOTPGroup</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPSeparator</span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPGroup</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPSlot</span> <span class="token attr-name">Index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPSlot</span> <span class="token attr-name">Index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>4<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>InputOTPSlot</span> <span class="token attr-name">Index</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>InputOTPGroup</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>InputOTP</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="InputOTP" />
 </div>
-
-@code {
-    private string _otpValue = "";
-}

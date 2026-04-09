@@ -1,5 +1,5 @@
 @page "/components/toggle"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Toggle - BlazingSpire</PageTitle>
 
@@ -9,58 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A pressable button that switches between on and off states.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Toggle aria-label="Toggle bold">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                        <path d="M14 12a4 4 0 0 0 0-8H6v8"/>
-                        <path d="M15 20a4 4 0 0 0 0-8H6v8z"/>
-                    </svg>
-                </Toggle>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Toggle</span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Toggle bold<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token comment">&lt;!-- Bold (B) icon --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Toggle</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Outline</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Toggle Variant="ToggleVariant.Outline" aria-label="Toggle italic">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                        <line x1="19" y1="4" x2="10" y2="4"/>
-                        <line x1="14" y1="20" x2="5" y2="20"/>
-                        <line x1="15" y1="4" x2="9" y2="20"/>
-                    </svg>
-                </Toggle>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Toggle</span> <span class="token attr-name">Variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ToggleVariant.Outline<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Toggle italic<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token comment">&lt;!-- Italic (I) icon --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Toggle</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Toggle Disabled="true" aria-label="Toggle bold disabled">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
-                        <path d="M14 12a4 4 0 0 0 0-8H6v8"/>
-                        <path d="M15 20a4 4 0 0 0 0-8H6v8z"/>
-                    </svg>
-                </Toggle>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Toggle</span> <span class="token attr-name">Disabled</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">aria-label</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Toggle bold disabled<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token comment">&lt;!-- Bold (B) icon --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Toggle</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Toggle" />
 </div>

@@ -1,5 +1,5 @@
 @page "/components/scroll-area"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>ScrollArea - BlazingSpire</PageTitle>
 
@@ -9,38 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A styled scrollable container with hidden overflow and a full-height inner scroll viewport.</p>
     </div>
 
-    @* ── Basic ─────────────────────── *@
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <ScrollArea Class="h-72 w-48 rounded-md border">
-                <div class="p-4">
-                    <h4 class="mb-4 text-sm font-medium leading-none">Tags</h4>
-                    @foreach (var tag in _scrollTags)
-                    {
-                        <div class="text-sm py-1 border-b border-border last:border-0">@tag</div>
-                    }
-                </div>
-            </ScrollArea>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ScrollArea</span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>h-72 w-48 rounded-md border<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>p-4<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h4</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mb-4 text-sm font-medium leading-none<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Tags<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h4</span><span class="token punctuation">></span></span>
-        &#64;&#64;foreach (var tag in tags)
-        {
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-sm py-1 border-b border-border last:border-0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>&#64;&#64;tag<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-        }
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ScrollArea</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="ScrollArea" />
 </div>
-
-@code {
-    private static readonly string[] _scrollTags =
-    [
-        "v1.2.0-beta.1", "v1.1.4", "v1.1.3", "v1.1.2", "v1.1.1",
-        "v1.1.0", "v1.0.4", "v1.0.3", "v1.0.2", "v1.0.1",
-        "v1.0.0", "v0.9.0", "v0.8.2", "v0.8.1", "v0.8.0",
-        "v0.7.0", "v0.6.0", "v0.5.0", "v0.4.0", "v0.3.0",
-    ];
-}

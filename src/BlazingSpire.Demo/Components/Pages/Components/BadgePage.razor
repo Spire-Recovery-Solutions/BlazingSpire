@@ -1,5 +1,5 @@
 @page "/components/badge"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Badge - BlazingSpire</PageTitle>
 
@@ -9,41 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">Display status, labels, or counts. Small pill-shaped indicators.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Variants</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Badge>Default</Badge>
-                <Badge Variant="BadgeVariant.Secondary">Secondary</Badge>
-                <Badge Variant="BadgeVariant.Destructive">Destructive</Badge>
-                <Badge Variant="BadgeVariant.Outline">Outline</Badge>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Badge</span><span class="token punctuation">></span></span>Default<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Badge</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Badge</span> <span class="token attr-name">Variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>BadgeVariant.Secondary<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Secondary<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Badge</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Badge</span> <span class="token attr-name">Variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>BadgeVariant.Destructive<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Destructive<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Badge</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Badge</span> <span class="token attr-name">Variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>BadgeVariant.Outline<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Outline<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Badge</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">In Context</h2>
-        <div class="rounded-lg border bg-card p-6 space-y-4">
-            <div class="flex items-center gap-3">
-                <span class="text-sm font-medium">Build status:</span>
-                <Badge>Passing</Badge>
-            </div>
-            <div class="flex items-center gap-3">
-                <span class="text-sm font-medium">Deployment:</span>
-                <Badge Variant="BadgeVariant.Secondary">In Progress</Badge>
-            </div>
-            <div class="flex items-center gap-3">
-                <span class="text-sm font-medium">Security:</span>
-                <Badge Variant="BadgeVariant.Destructive">Urgent</Badge>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex items-center gap-3<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-sm font-medium<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Build status:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Badge</span><span class="token punctuation">></span></span>Passing<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Badge</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Badge" />
 </div>

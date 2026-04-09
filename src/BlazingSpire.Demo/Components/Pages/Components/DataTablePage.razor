@@ -1,5 +1,5 @@
 @page "/components/data-table"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>DataTable - BlazingSpire</PageTitle>
 
@@ -9,102 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A generic table for typed data with column definitions, sortable headers, and custom row templates.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Payments</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <DataTable TItem="PaymentRow" Items="_sortedPayments" SortColumn="@_paymentSort" SortAscending="@_paymentSortAsc" OnSort="OnPaymentSort">
-                <Columns>
-                    <DataTableColumn SortKey="status" Sortable>Status</DataTableColumn>
-                    <DataTableColumn SortKey="email" Sortable>Email</DataTableColumn>
-                    <DataTableColumn SortKey="amount" Sortable>Amount</DataTableColumn>
-                </Columns>
-                <RowTemplate Context="row">
-                    <TableRow>
-                        <TableCell>
-                            <Badge Variant="@(row.Status == "Paid" ? BadgeVariant.Default : row.Status == "Pending" ? BadgeVariant.Secondary : BadgeVariant.Destructive)">
-                                @row.Status
-                            </Badge>
-                        </TableCell>
-                        <TableCell>@row.Email</TableCell>
-                        <TableCell>@row.Amount.ToString("C")</TableCell>
-                    </TableRow>
-                </RowTemplate>
-            </DataTable>
-        </div>
-        <pre class="language-xml"><code class="language-xml">&#64;* Define your record *&#64;
-&#64;code {
-    record PaymentRow(string Status, string Email, decimal Amount);
-    List<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PaymentRow</span><span class="token punctuation">></span></span> payments = [ /* ... */ ];
-}
-
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTable</span> <span class="token attr-name">TItem</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>PaymentRow<span class="token punctuation">"</span></span> <span class="token attr-name">Items</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>payments<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Columns</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span> <span class="token attr-name">SortKey</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>status<span class="token punctuation">"</span></span> <span class="token attr-name">Sortable</span><span class="token punctuation">></span></span>Status<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span> <span class="token attr-name">SortKey</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">Sortable</span><span class="token punctuation">></span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span> <span class="token attr-name">SortKey</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>amount<span class="token punctuation">"</span></span> <span class="token attr-name">Sortable</span><span class="token punctuation">></span></span>Amount<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Columns</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RowTemplate</span> <span class="token attr-name">Context</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableRow</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span><span class="token punctuation">></span></span>&#64;row.Status<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span><span class="token punctuation">></span></span>&#64;row.Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TableCell</span><span class="token punctuation">></span></span>&#64;row.Amount.ToString("C")<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableCell</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TableRow</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>RowTemplate</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTable</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Empty State</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <DataTable TItem="PaymentRow" Items="[]">
-                <Columns>
-                    <DataTableColumn>Status</DataTableColumn>
-                    <DataTableColumn>Email</DataTableColumn>
-                    <DataTableColumn>Amount</DataTableColumn>
-                </Columns>
-            </DataTable>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTable</span> <span class="token attr-name">TItem</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>PaymentRow<span class="token punctuation">"</span></span> <span class="token attr-name">Items</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>[]<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Columns</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span><span class="token punctuation">></span></span>Status<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span><span class="token punctuation">></span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DataTableColumn</span><span class="token punctuation">></span></span>Amount<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTableColumn</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Columns</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DataTable</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="DataTable" />
 </div>
-
-@code {
-    private record PaymentRow(string Status, string Email, decimal Amount);
-
-    private readonly List<PaymentRow> _allPayments =
-    [
-        new("Paid", "alice@example.com", 316.00m),
-        new("Pending", "bob@example.com", 242.00m),
-        new("Unpaid", "carol@example.com", 837.00m),
-        new("Paid", "dan@example.com", 874.00m),
-        new("Paid", "eve@example.com", 721.00m),
-    ];
-
-    private string? _paymentSort;
-    private bool _paymentSortAsc = true;
-
-    private IReadOnlyList<PaymentRow> _sortedPayments => _paymentSort switch
-    {
-        "status"  => _paymentSortAsc ? [.. _allPayments.OrderBy(r => r.Status)]  : [.. _allPayments.OrderByDescending(r => r.Status)],
-        "email"   => _paymentSortAsc ? [.. _allPayments.OrderBy(r => r.Email)]   : [.. _allPayments.OrderByDescending(r => r.Email)],
-        "amount"  => _paymentSortAsc ? [.. _allPayments.OrderBy(r => r.Amount)]  : [.. _allPayments.OrderByDescending(r => r.Amount)],
-        _         => _allPayments
-    };
-
-    private void OnPaymentSort(string col)
-    {
-        if (_paymentSort == col)
-            _paymentSortAsc = !_paymentSortAsc;
-        else
-        {
-            _paymentSort = col;
-            _paymentSortAsc = true;
-        }
-    }
-}

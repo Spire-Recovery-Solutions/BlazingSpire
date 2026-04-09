@@ -1,5 +1,5 @@
 @page "/components/alert-dialog"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Alert Dialog - BlazingSpire</PageTitle>
 
@@ -9,44 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A modal dialog that interrupts the user with important content. Cannot be dismissed by clicking outside or pressing Escape.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Confirmation</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <AlertDialog>
-                <AlertDialogTrigger>
-                    <Button Variant="ButtonVariant.Outline">Delete Account</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialog</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialogTrigger</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">Variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ButtonVariant.Outline<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Delete Account<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialogTrigger</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialogContent</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialogHeader</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialogTitle</span><span class="token punctuation">></span></span>Are you absolutely sure?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialogTitle</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialogDescription</span><span class="token punctuation">></span></span>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialogDescription</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialogHeader</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialogFooter</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialogCancel</span><span class="token punctuation">></span></span>Cancel<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialogCancel</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AlertDialogAction</span><span class="token punctuation">></span></span>Continue<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialogAction</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialogFooter</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialogContent</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AlertDialog</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="AlertDialog" />
 </div>

@@ -1,5 +1,5 @@
 @page "/components/aspect-ratio"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>AspectRatio - BlazingSpire</PageTitle>
 
@@ -9,37 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">Enforces a consistent aspect ratio on its content. Defaults to 16:9.</p>
     </div>
 
-    @* ── 16:9 ─────────────────────── *@
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">16:9</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="max-w-sm">
-                <AspectRatio Ratio="16.0 / 9.0" Class="rounded-md">
-                    <div class="flex h-full w-full items-center justify-center bg-muted rounded-md">
-                        <span class="text-sm text-muted-foreground">16:9</span>
-                    </div>
-                </AspectRatio>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AspectRatio</span> <span class="token attr-name">Ratio</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>16.0 / 9.0<span class="token punctuation">"</span></span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rounded-md<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Photo<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>h-full w-full object-cover<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AspectRatio</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    @* ── 1:1 Square ─────────────────────── *@
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">1:1 Square</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="max-w-[200px]">
-                <AspectRatio Ratio="1.0" Class="rounded-md">
-                    <div class="flex h-full w-full items-center justify-center bg-muted rounded-md">
-                        <span class="text-sm text-muted-foreground">1:1</span>
-                    </div>
-                </AspectRatio>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AspectRatio</span> <span class="token attr-name">Ratio</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>rounded-md<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>avatar.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Avatar<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>h-full w-full object-cover<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AspectRatio</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="AspectRatio" />
 </div>

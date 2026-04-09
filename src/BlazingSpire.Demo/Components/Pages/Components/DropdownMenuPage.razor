@@ -1,5 +1,5 @@
 @page "/components/dropdown-menu"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Dropdown Menu - BlazingSpire</PageTitle>
 
@@ -9,58 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A menu that opens from a trigger button, with items, labels, separators, and groups.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <DropdownMenu>
-                <DropdownMenuTrigger>
-                    <Button Variant="ButtonVariant.Outline">Open Menu</Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                        <DropdownMenuItem>Profile</DropdownMenuItem>
-                        <DropdownMenuItem>Billing</DropdownMenuItem>
-                        <DropdownMenuItem>Settings</DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Log out</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenu</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuTrigger</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">Variant</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ButtonVariant.Outline<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Open Menu<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Button</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuTrigger</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuContent</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuLabel</span><span class="token punctuation">></span></span>My Account<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuLabel</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuSeparator</span> <span class="token punctuation">/></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuGroup</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuItem</span><span class="token punctuation">></span></span>Profile<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuItem</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuItem</span><span class="token punctuation">></span></span>Billing<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuItem</span><span class="token punctuation">></span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuItem</span><span class="token punctuation">></span></span>Settings<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuItem</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuGroup</span><span class="token punctuation">></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuSeparator</span> <span class="token punctuation">/></span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuItem</span><span class="token punctuation">></span></span>Log out<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuItem</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuContent</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenu</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">With Disabled Item</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <DropdownMenu>
-                <DropdownMenuTrigger>
-                    <Button Variant="ButtonVariant.Outline">Open Menu</Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem Disabled="true">Billing (disabled)</DropdownMenuItem>
-                    <DropdownMenuItem>Settings</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropdownMenuItem</span> <span class="token attr-name">Disabled</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Billing (disabled)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>DropdownMenuItem</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="DropdownMenu" />
 </div>

@@ -1,5 +1,5 @@
 @page "/components/spinner"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Spinner - BlazingSpire</PageTitle>
 
@@ -9,37 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A circular loading indicator for async operations and loading states.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <Spinner />
-        </div>
-        <pre class="language-xml"><code class="language-xml">&lt;Spinner /&gt;</code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Sizes</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center gap-4">
-                <Spinner Size="SpinnerSize.Sm" />
-                <Spinner />
-                <Spinner Size="SpinnerSize.Lg" />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml">&lt;Spinner Size="SpinnerSize.Sm" /&gt;
-&lt;Spinner /&gt;
-&lt;Spinner Size="SpinnerSize.Lg" /&gt;</code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Custom Color</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center gap-4">
-                <Spinner Class="text-destructive" />
-                <Spinner Class="text-muted-foreground" />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml">&lt;Spinner Class="text-destructive" /&gt;
-&lt;Spinner Class="text-muted-foreground" /&gt;</code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Spinner" />
 </div>

@@ -38,30 +38,29 @@ public class CodeBlockTests : BlazingSpireTestBase
     }
 
     [Fact]
-    public void Code_Is_Html_Encoded()
+    public void Code_Element_Is_Empty_Before_JS_Interop()
     {
+        // Content is set via JS interop (BlazingSpire.setTextAndHighlight),
+        // so the rendered <code> element is empty in bUnit (no JS runtime).
         var cut = Render<CodeBlock>(p => p.Add(x => x.Code, "<Button>Click</Button>"));
-        var html = cut.Find("code").InnerHtml;
-        Assert.Contains("&lt;Button&gt;", html);
-        Assert.Contains("&lt;/Button&gt;", html);
+        Assert.Empty(cut.Find("code").InnerHtml);
     }
 
     [Fact]
-    public void At_Signs_Are_Encoded()
+    public void JS_Interop_Called_With_Correct_Function()
     {
-        var cut = Render<CodeBlock>(p => p.Add(x => x.Code, "@bind-Value=\"_name\""));
-        var html = cut.Find("code").InnerHtml;
-        // WebUtility.HtmlEncode doesn't encode @ but Blazor won't interpret it
-        // since it's inside MarkupString — the text renders literally
-        Assert.Contains("bind-Value", html);
+        var cut = Render<CodeBlock>(p => p.Add(x => x.Code, "<Button />"));
+        Assert.Contains(JSInterop.Invocations,
+            i => i.Identifier == "BlazingSpire.setTextAndHighlight");
     }
 
     [Fact]
-    public void Code_Is_Trimmed()
+    public void JS_Interop_Receives_Trimmed_Code()
     {
         var cut = Render<CodeBlock>(p => p.Add(x => x.Code, "\n  <Button />\n  "));
-        var text = cut.Find("code").TextContent;
-        Assert.Equal("<Button />", text);
+        var invocation = JSInterop.Invocations
+            .First(i => i.Identifier == "BlazingSpire.setTextAndHighlight");
+        Assert.Equal("<Button />", invocation.Arguments[1]);
     }
 
     [Fact]

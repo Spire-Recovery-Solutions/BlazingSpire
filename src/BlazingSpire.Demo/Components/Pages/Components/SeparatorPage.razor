@@ -1,5 +1,5 @@
 @page "/components/separator"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Separator - BlazingSpire</PageTitle>
 
@@ -9,47 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A visual divider between sections of content. Supports horizontal and vertical orientations.</p>
     </div>
 
-    @* ── Horizontal ─────────────────────── *@
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Horizontal</h2>
-        <div class="rounded-lg border bg-card p-6 space-y-4">
-            <p class="text-sm text-muted-foreground">Content above the separator</p>
-            <Separator />
-            <p class="text-sm text-muted-foreground">Content below the separator</p>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Content above<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Separator</span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Content below<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    @* ── Vertical ─────────────────────── *@
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Vertical</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center gap-4 h-5">
-                <span class="text-sm">Blog</span>
-                <Separator Orientation="SeparatorOrientation.Vertical" />
-                <span class="text-sm">Docs</span>
-                <Separator Orientation="SeparatorOrientation.Vertical" />
-                <span class="text-sm">Source</span>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex items-center gap-4 h-5<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Blog<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Separator</span> <span class="token attr-name">Orientation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>SeparatorOrientation.Vertical<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Docs<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Separator</span> <span class="token attr-name">Orientation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>SeparatorOrientation.Vertical<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span>Source<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    @* ── Semantic ─────────────────────── *@
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Semantic</h2>
-        <div class="rounded-lg border bg-card p-6 space-y-4">
-            <p class="text-sm text-muted-foreground">Use <code class="text-xs bg-muted px-1 py-0.5 rounded">Decorative="false"</code> when the separator conveys meaningful structure (adds <code class="text-xs bg-muted px-1 py-0.5 rounded">role="separator"</code> and <code class="text-xs bg-muted px-1 py-0.5 rounded">aria-orientation</code>).</p>
-            <Separator Decorative="false" />
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Separator</span> <span class="token attr-name">Decorative</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Separator" />
 </div>

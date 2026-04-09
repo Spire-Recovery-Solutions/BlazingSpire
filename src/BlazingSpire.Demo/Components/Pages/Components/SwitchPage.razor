@@ -1,5 +1,5 @@
 @page "/components/switch"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Switch - BlazingSpire</PageTitle>
 
@@ -9,37 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">A toggle control that switches between on and off states.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Default</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center gap-4">
-                <Switch />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Switch</span> <span class="token punctuation">/></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">With Label</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center gap-2">
-                <Switch id="airplane-mode" />
-                <Label For="airplane-mode">Airplane Mode</Label>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Switch</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>airplane-mode<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">For</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>airplane-mode<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Airplane Mode<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Disabled</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center gap-4">
-                <Switch Disabled="true" />
-                <Switch Checked="true" Disabled="true" />
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Switch</span> <span class="token attr-name">Disabled</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Switch</span> <span class="token attr-name">Checked</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">Disabled</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Switch" />
 </div>

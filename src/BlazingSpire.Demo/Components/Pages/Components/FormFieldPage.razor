@@ -1,5 +1,5 @@
 @page "/components/form-field"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Form Field - BlazingSpire</PageTitle>
 
@@ -9,59 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">Composition layer that wires ARIA attributes across label, control, description, and error message.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Basic</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="max-w-sm">
-                <FormField Name="username-basic">
-                    <FormFieldLabel>Username</FormFieldLabel>
-                    <Input id="username-basic-form-item" Placeholder="Enter your username" />
-                    <FormFieldDescription>This is your public display name.</FormFieldDescription>
-                </FormField>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormField</span> <span class="token attr-name">Name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormFieldLabel</span><span class="token punctuation">></span></span>Username<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormFieldLabel</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username-form-item<span class="token punctuation">"</span></span> <span class="token attr-name">Placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Enter your username<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormFieldDescription</span><span class="token punctuation">></span></span>This is your public display name.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormFieldDescription</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormField</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">With Error</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="max-w-sm">
-                <FormField Name="username-error" ErrorMessage="Username is required.">
-                    <FormFieldLabel>Username</FormFieldLabel>
-                    <Input id="username-error-form-item" Placeholder="Enter your username" />
-                    <FormFieldDescription>This is your public display name.</FormFieldDescription>
-                    <FormFieldError />
-                </FormField>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormField</span> <span class="token attr-name">Name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">ErrorMessage</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Username is required.<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormFieldLabel</span><span class="token punctuation">></span></span>Username<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormFieldLabel</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username-form-item<span class="token punctuation">"</span></span> <span class="token attr-name">Placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Enter your username<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormFieldDescription</span><span class="token punctuation">></span></span>This is your public display name.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormFieldDescription</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormFieldError</span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormField</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Custom Error Content</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="max-w-sm">
-                <FormField Name="email-custom" ErrorMessage="placeholder">
-                    <FormFieldLabel>Email</FormFieldLabel>
-                    <Input id="email-custom-form-item" Type="email" Placeholder="you@example.com" />
-                    <FormFieldError>Please enter a valid email address.</FormFieldError>
-                </FormField>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormField</span> <span class="token attr-name">Name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">ErrorMessage</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>placeholder<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormFieldLabel</span><span class="token punctuation">></span></span>Email<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormFieldLabel</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email-form-item<span class="token punctuation">"</span></span> <span class="token attr-name">Type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span> <span class="token attr-name">Placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>you&#64;example.com<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FormFieldError</span><span class="token punctuation">></span></span>Please enter a valid email address.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormFieldError</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>FormField</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="FormField" />
 </div>

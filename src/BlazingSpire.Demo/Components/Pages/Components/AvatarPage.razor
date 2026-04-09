@@ -1,5 +1,5 @@
 @page "/components/avatar"
-@using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 
 <PageTitle>Avatar - BlazingSpire</PageTitle>
 
@@ -9,66 +9,5 @@
         <p class="text-lg text-muted-foreground mt-2">An image element with a fallback for representing the user.</p>
     </div>
 
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">With Image</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Avatar>
-                    <AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" />
-                </Avatar>
-                <Avatar>
-                    <AvatarImage Src="https://github.com/adamreed90.png" Alt="Adam Reed" />
-                </Avatar>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Avatar</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AvatarImage</span> <span class="token attr-name">Src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://github.com/shadcn.png<span class="token punctuation">"</span></span> <span class="token attr-name">Alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>shadcn<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Avatar</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Fallback</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex flex-wrap items-center gap-4">
-                <Avatar>
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <Avatar>
-                    <AvatarFallback>AR</AvatarFallback>
-                </Avatar>
-                <Avatar>
-                    <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Avatar</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AvatarFallback</span><span class="token punctuation">></span></span>CN<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AvatarFallback</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Avatar</span><span class="token punctuation">></span></span></code></pre>
-    </section>
-
-    <section class="space-y-4">
-        <h2 class="text-xl font-semibold tracking-tight">Avatar Group</h2>
-        <div class="rounded-lg border bg-card p-6">
-            <div class="flex items-center">
-                <Avatar Class="-mr-2 ring-2 ring-background">
-                    <AvatarImage Src="https://github.com/shadcn.png" Alt="shadcn" />
-                </Avatar>
-                <Avatar Class="-mr-2 ring-2 ring-background">
-                    <AvatarFallback>AR</AvatarFallback>
-                </Avatar>
-                <Avatar Class="-mr-2 ring-2 ring-background">
-                    <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-                <Avatar Class="ring-2 ring-background">
-                    <AvatarFallback>+3</AvatarFallback>
-                </Avatar>
-            </div>
-        </div>
-        <pre class="language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Avatar</span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>-mr-2 ring-2 ring-background<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AvatarImage</span> <span class="token attr-name">Src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://github.com/shadcn.png<span class="token punctuation">"</span></span> <span class="token attr-name">Alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>shadcn<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Avatar</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Avatar</span> <span class="token attr-name">Class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>-mr-2 ring-2 ring-background<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AvatarFallback</span><span class="token punctuation">></span></span>AR<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AvatarFallback</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Avatar</span><span class="token punctuation">></span></span></code></pre>
-    </section>
+    <ComponentPlayground ComponentName="Avatar" />
 </div>
