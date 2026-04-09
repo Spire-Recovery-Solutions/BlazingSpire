@@ -1,7 +1,7 @@
 @namespace BlazingSpire.Demo.Components.UI
 @inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
 
-<div class="@Classes" @attributes="AdditionalAttributes">
+<div class="@Classes" @attributes="AdditionalAttributes" @onclick="FocusInputAsync">
     <CascadingValue Value="this">
         @ChildContent
     </CascadingValue>
@@ -13,7 +13,10 @@
            value="@Value"
            aria-label="One-time password"
            class="sr-only"
-           @oninput="OnInput" />
+           @ref="_inputRef"
+           @oninput="OnInput"
+           @onfocus="() => _focused = true"
+           @onblur="() => _focused = false" />
 </div>
 
 @code {

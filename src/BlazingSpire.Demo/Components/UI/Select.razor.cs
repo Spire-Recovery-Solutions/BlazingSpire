@@ -16,6 +16,7 @@ public partial class Select : PopoverBase
     protected override string BaseClasses => "";
 
     private readonly List<string> _itemValues = new();
+    private readonly Dictionary<string, string> _itemTexts = new();
     private int _highlightedIndex = -1;
     private int? _pendingHighlightDirection;
 
@@ -23,9 +24,10 @@ public partial class Select : PopoverBase
         _highlightedIndex >= 0 && _highlightedIndex < _itemValues.Count
             ? _itemValues[_highlightedIndex] : null;
 
-    public void RegisterItem(string value)
+    public void RegisterItem(string value, string text)
     {
         if (!_itemValues.Contains(value)) _itemValues.Add(value);
+        _itemTexts[value] = text;
     }
 
     public void UnregisterItem(string value)
@@ -37,6 +39,7 @@ public partial class Select : PopoverBase
             if (_highlightedIndex >= _itemValues.Count)
                 _highlightedIndex = _itemValues.Count - 1;
         }
+        _itemTexts.Remove(value);
     }
 
     public void MoveHighlight(int direction)
@@ -72,7 +75,10 @@ public partial class Select : PopoverBase
     public async Task SelectHighlightedAsync()
     {
         if (HighlightedValue is { } val)
-            await SelectItemAsync(val, val);
+        {
+            var text = _itemTexts.TryGetValue(val, out var t) ? t : val;
+            await SelectItemAsync(val, text);
+        }
     }
 
     public new async Task SetIsOpenAsync(bool value)
