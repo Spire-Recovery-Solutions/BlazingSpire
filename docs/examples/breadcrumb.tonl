@@ -10,7 +10,7 @@ composition{role:str,parent:str,isComposite:bool}:
   role: Root
   parent: 
   isComposite: true
-children[5]: BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator
+children[1]: BreadcrumbList
 
 parameters[2]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample Breadcrumb content, The content to render inside the component.

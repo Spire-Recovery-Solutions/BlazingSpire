@@ -4,37 +4,42 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class TabsTrigger : ChildOf<Tabs>, IDisposable
+public partial class TabsTrigger : ChildOf<TabsList>, IDisposable
 {
+    // ChildOf<TabsList> declares visual nesting for the playground's tree walk.
+    // TabsTrigger interacts with the outer Tabs root for selection, navigation, and
+    // registration state. Tabs cascades itself so all descendants can pick it up here.
+    [CascadingParameter] private Tabs? TabsRoot { get; set; }
+
     [Parameter, EditorRequired] public string ItemValue { get; set; } = "";
     [Parameter] public bool Disabled { get; set; }
 
-    private bool IsActive => Parent?.ActiveValue == ItemValue;
+    private bool IsActive => TabsRoot?.ActiveValue == ItemValue;
     private string DataState => IsActive ? "active" : "inactive";
     private string TabIndex => IsActive ? "0" : "-1";
 
     protected override void OnInitialized()
     {
-        Parent?.RegisterTab(ItemValue);
+        TabsRoot?.RegisterTab(ItemValue);
     }
 
-    public void Dispose() => Parent?.UnregisterTab(ItemValue);
+    public void Dispose() => TabsRoot?.UnregisterTab(ItemValue);
 
     private async Task OnClickAsync()
     {
-        if (Disabled || Parent is null) return;
-        await Parent.SelectTabAsync(ItemValue);
+        if (Disabled || TabsRoot is null) return;
+        await TabsRoot.SelectTabAsync(ItemValue);
     }
 
     private async Task OnKeyDownAsync(KeyboardEventArgs e)
     {
-        if (Parent is null) return;
+        if (TabsRoot is null) return;
         switch (e.Key)
         {
-            case "ArrowRight": await Parent.NavigateTabAsync(1); break;
-            case "ArrowLeft": await Parent.NavigateTabAsync(-1); break;
-            case "Home": await Parent.NavigateToFirstAsync(); break;
-            case "End": await Parent.NavigateToLastAsync(); break;
+            case "ArrowRight": await TabsRoot.NavigateTabAsync(1); break;
+            case "ArrowLeft": await TabsRoot.NavigateTabAsync(-1); break;
+            case "Home": await TabsRoot.NavigateToFirstAsync(); break;
+            case "End": await TabsRoot.NavigateToLastAsync(); break;
         }
     }
 

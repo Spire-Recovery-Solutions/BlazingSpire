@@ -3,9 +3,11 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ContextMenuItem : ChildOf<ContextMenu>
+public partial class ContextMenuItem : ChildOf<ContextMenuContent>
 {
-    public ContextMenu? ParentMenu => Parent;
+    [CascadingParameter] private ContextMenu? ContextMenuRoot { get; set; }
+
+    public ContextMenu? ParentMenu => ContextMenuRoot;
 
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public bool Disabled { get; set; }

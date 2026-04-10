@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class BreadcrumbLink : ChildOf<Breadcrumb>
+public partial class BreadcrumbLink : ChildOf<BreadcrumbItem>
 {
     [Parameter] public string? Href { get; set; }
 

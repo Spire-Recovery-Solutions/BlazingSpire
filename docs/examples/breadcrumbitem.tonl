@@ -8,8 +8,9 @@ component{name:str,description:str,category:str,baseTier:str}:
 
 composition{role:str,parent:str,isComposite:bool}:
   role: Child
-  parent: Breadcrumb
-  isComposite: false
+  parent: BreadcrumbList
+  isComposite: true
+children[2]: BreadcrumbLink, BreadcrumbPage
 
 parameters[2]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample BreadcrumbItem content, The content to render inside the component.

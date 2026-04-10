@@ -10,7 +10,7 @@ composition{role:str,parent:str,isComposite:bool}:
   role: Root
   parent: 
   isComposite: true
-children[6]: PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious
+children[1]: PaginationContent
 
 parameters[2]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample Pagination content, The content to render inside the component.

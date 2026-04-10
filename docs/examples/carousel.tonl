@@ -10,7 +10,7 @@ composition{role:str,parent:str,isComposite:bool}:
   role: Root
   parent: 
   isComposite: true
-children[4]: CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
+children[3]: CarouselContent, CarouselNext, CarouselPrevious
 
 parameters[5]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample Carousel content, The content to render inside the component.

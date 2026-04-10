@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ContextMenuLabel : ChildOf<ContextMenu>
+public partial class ContextMenuLabel : ChildOf<ContextMenuContent>
 {
     [Parameter] public bool Inset { get; set; }
 

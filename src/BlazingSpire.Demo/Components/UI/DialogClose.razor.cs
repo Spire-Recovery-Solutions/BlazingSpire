@@ -3,10 +3,15 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class DialogClose : ChildOf<Dialog>
+public partial class DialogClose : ChildOf<DialogContent>
 {
-    // Backwards-compat alias for the old property name (to avoid changing .razor files)
-    public Dialog? ParentDialog => Parent;
+    // ChildOf<DialogContent> declares the visual nesting for the playground's tree
+    // walk. The runtime needs access to the outer Dialog for close actions and state
+    // attributes, which comes from the Dialog root via its own CascadingValue.
+    [CascadingParameter] private Dialog? DialogRoot { get; set; }
+
+    // Backwards-compat alias; .razor files still read ParentDialog?.X
+    public Dialog? ParentDialog => DialogRoot;
 
     protected override string BaseClasses =>
         "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity " +

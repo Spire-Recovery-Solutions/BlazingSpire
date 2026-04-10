@@ -8,12 +8,26 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace BlazingSpire.SourceGenerator;
 
+/// <summary>
+/// Builds the playground render factories purely from the type graph. The generator
+/// walks <c>ChildOf&lt;TParent&gt;</c> inheritance chains bottom-up to build a composition
+/// tree rooted at each top-level component, then emits nested render closures that
+/// mirror the tree. Slot-like repeating children implement
+/// <c>IRepeatingSlot&lt;TRoot&gt;</c>; the generator detects the interface and emits a
+/// <c>for</c>-loop that invokes the static count method at render time against the live
+/// root instance, so toggling parameters in the playground re-drives the loop.
+///
+/// <para>There are no suffix heuristics, no default-content maps, no attribute scans, and
+/// no partial overrides. The composition <i>is</i> the type graph; the generator is a
+/// dumb tree walker over it.</para>
+/// </summary>
 [Generator(LanguageNames.CSharp)]
 public sealed class PlaygroundGenerator : IIncrementalGenerator
 {
     private const string BaseClassName = "BlazingSpireComponentBase";
     private const string InfrastructureBaseName = "Infrastructure";
     private const string ChildOfBaseName = "ChildOf";
+    private const string RepeatingSlotInterfaceName = "IRepeatingSlot";
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -23,11 +37,9 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
     private static void GenerateSource(SourceProductionContext context, Compilation compilation)
     {
         // ── Phase 1: Discover all concrete component types ──────────────────
-        var allComponents = new Dictionary<string, ComponentInfo>();
-
-        // ── Phase 1: Discover all concrete components ─────────────────────────
         // A component is included if it inherits BlazingSpireComponentBase but is NOT
         // an Infrastructure marker (providers, internal types).
+        var allComponents = new Dictionary<string, ComponentInfo>();
         foreach (var tree in compilation.SyntaxTrees)
         {
             var model = compilation.GetSemanticModel(tree);
@@ -46,16 +58,15 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
 
                 var fullName = symbol.ToDisplayString();
                 if (!allComponents.ContainsKey(fullName))
-                    allComponents[fullName] = new ComponentInfo(symbol.Name, symbol.ContainingNamespace.ToDisplayString(), fullName, symbol);
+                    allComponents[fullName] = new ComponentInfo(
+                        symbol.Name, symbol.ContainingNamespace.ToDisplayString(), fullName, symbol);
             }
         }
-
         if (allComponents.Count == 0) return;
 
-        // ── Phase 2: Find ChildOf<TParent> relationships ─────────────────────
-        // A component is a Child if its base type is ChildOf<TParent>.
-        // Pure type-system check — no attribute scanning, no naming heuristics.
-        var parentToChildren = new Dictionary<string, List<ChildInfo>>();
+        // ── Phase 2: Build parent→children map from ChildOf<TParent> ─────────
+        // Each child declares its IMMEDIATE visual parent. ChildOf is the sole signal.
+        var parentToChildren = new Dictionary<string, List<ComponentInfo>>();
         var childSet = new HashSet<string>();
 
         foreach (var comp in allComponents.Values)
@@ -66,23 +77,20 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
             var parentFullName = parentType.ToDisplayString().TrimEnd('?');
             if (!allComponents.ContainsKey(parentFullName)) continue;
 
-            var parentName = parentType.Name;
-            var childName = comp.Name;
-            var suffix = childName.StartsWith(parentName, StringComparison.Ordinal)
-                ? childName.Substring(parentName.Length)
-                : childName;
-            if (string.IsNullOrEmpty(suffix)) suffix = childName;
-
-            if (!parentToChildren.TryGetValue(parentFullName, out var children))
+            if (!parentToChildren.TryGetValue(parentFullName, out var list))
             {
-                children = new List<ChildInfo>();
-                parentToChildren[parentFullName] = children;
+                list = new List<ComponentInfo>();
+                parentToChildren[parentFullName] = list;
             }
-            children.Add(new ChildInfo(comp.Name, suffix, comp.FullName));
+            list.Add(comp);
             childSet.Add(comp.FullName);
         }
 
-        // ── Phase 3: Top-level = not a child ────────────────────────────────
+        // Sort children at each level for deterministic emission.
+        foreach (var kv in parentToChildren)
+            kv.Value.Sort((a, b) => string.CompareOrdinal(a.Name, b.Name));
+
+        // ── Phase 3: Top-level = a component that is not a ChildOf anything ─
         var topLevel = allComponents.Values
             .Where(c => !childSet.Contains(c.FullName))
             .OrderBy(c => c.Name)
@@ -110,7 +118,7 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         sb.AppendLine("public static class PlaygroundFactories");
         sb.AppendLine("{");
 
-        // Registry: only top-level
+        // Registry: only top-level components get a playground factory.
         sb.AppendLine("    public static readonly IReadOnlyDictionary<string, System.Func<IReadOnlyDictionary<string, object?>, RenderFragment>> All = new Dictionary<string, System.Func<IReadOnlyDictionary<string, object?>, RenderFragment>>");
         sb.AppendLine("    {");
         foreach (var c in topLevel)
@@ -118,44 +126,11 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         sb.AppendLine("    };");
         sb.AppendLine();
 
-        // Factories
-        foreach (var c in topLevel)
-        {
-            if (parentToChildren.TryGetValue(c.FullName, out var children))
-                EmitCompositeFactory(sb, c, children);
-            else
-                EmitSimpleFactory(sb, c);
-        }
+        // Emit each top-level factory as a recursive tree walk over ChildOf.
+        foreach (var root in topLevel)
+            EmitRootFactory(sb, root, parentToChildren);
 
-        // Debug info
-        // Debug: trace the Phase 2 logic for PopoverContent specifically
-        var pcDebug = new List<string>();
-        foreach (var tree in compilation.SyntaxTrees)
-        {
-            var treeModel = compilation.GetSemanticModel(tree);
-            foreach (var propDecl in tree.GetRoot().DescendantNodes().OfType<PropertyDeclarationSyntax>())
-            {
-                var propAttrNames = propDecl.AttributeLists
-                    .SelectMany(al => al.Attributes)
-                    .Select(a => a.Name.ToString())
-                    .ToList();
-                if (!propAttrNames.Any(n => n.Contains("CascadingParameter"))) continue;
-
-                var containingClass = propDecl.Ancestors().OfType<ClassDeclarationSyntax>().FirstOrDefault();
-                var containingSymbol = containingClass is not null ? treeModel.GetDeclaredSymbol(containingClass) as INamedTypeSymbol : null;
-                var propSymbol = treeModel.GetDeclaredSymbol(propDecl) as IPropertySymbol;
-                var propTypeName = propSymbol?.Type?.ToDisplayString() ?? "null";
-                var containingName = containingSymbol?.ToDisplayString() ?? "null";
-                var isInAll = allComponents.ContainsKey(containingName);
-                var parentInherits = propSymbol?.Type is INamedTypeSymbol pt ? InheritsFrom(pt, BaseClassName) : false;
-
-                pcDebug.Add($"{containingSymbol?.Name}.{propDecl.Identifier}: type={propTypeName} inAll={isInAll} parentInherits={parentInherits}");
-            }
-        }
-        var debugStr = string.Join(" | ", pcDebug.Take(10)).Replace("\"", "'");
-        sb.AppendLine($"    public static readonly string DebugInfo = \"{allComponents.Count} total, {childSet.Count} children, {parentToChildren.Count} composites | {debugStr}\";");
-        sb.AppendLine();
-        // Type registry (all, for DocGen)
+        // Type registry (all, for DocGen).
         sb.AppendLine("    public static readonly IReadOnlyDictionary<string, System.Type> ComponentTypes = new Dictionary<string, System.Type>");
         sb.AppendLine("    {");
         foreach (var c in allComponents.Values.OrderBy(x => x.Name))
@@ -166,132 +141,126 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         context.AddSource("PlaygroundFactories.g.cs", sb.ToString());
     }
 
-    private static void EmitSimpleFactory(StringBuilder sb, ComponentInfo c)
+    /// <summary>
+    /// Emit <c>Render{Root.Name}</c> as a closed-generic RenderFragment factory. The root
+    /// receives the playground parameter dict splat; descendants (emitted recursively)
+    /// render with no user-controlled parameters beyond what their own IRepeatingSlot
+    /// implementation supplies.
+    /// </summary>
+    private static void EmitRootFactory(StringBuilder sb, ComponentInfo root, Dictionary<string, List<ComponentInfo>> parentToChildren)
     {
-        sb.AppendLine($"    public static RenderFragment Render{c.Name}(IReadOnlyDictionary<string, object?> parameters) => builder =>");
+        sb.AppendLine($"    public static RenderFragment Render{root.Name}(IReadOnlyDictionary<string, object?> parameters) => builder =>");
         sb.AppendLine("    {");
-        sb.AppendLine($"        builder.OpenComponent<{c.Name}>(0);");
-        sb.AppendLine("        var seq = 1;");
+        sb.AppendLine($"        builder.OpenComponent<{root.Name}>(0);");
+        sb.AppendLine("        var rootSeq = 1;");
         sb.AppendLine("        foreach (var (key, value) in parameters)");
         sb.AppendLine("        {");
         sb.AppendLine("            if (value is null) continue;");
         sb.AppendLine("            if (key == \"ChildContent\" && value is string text)");
-        sb.AppendLine("                builder.AddAttribute(seq++, key, (RenderFragment)(b => b.AddContent(0, text)));");
+        sb.AppendLine("                builder.AddAttribute(rootSeq++, key, (RenderFragment)(b => b.AddContent(0, text)));");
+        sb.AppendLine("            else if (key == \"ChildContent\")");
+        sb.AppendLine("                continue;");
         sb.AppendLine("            else");
-        sb.AppendLine("                builder.AddAttribute(seq++, key, value);");
+        sb.AppendLine("                builder.AddAttribute(rootSeq++, key, value);");
         sb.AppendLine("        }");
-        sb.AppendLine("        builder.CloseComponent();");
-        sb.AppendLine("    };");
-        sb.AppendLine();
-    }
 
-    private static void EmitCompositeFactory(StringBuilder sb, ComponentInfo parent, List<ChildInfo> children)
-    {
-        var ordered = children.OrderBy(c => GetRoleOrder(c.Suffix)).ThenBy(c => c.Name).ToList();
-
-        // Radix-style composites nest their body inside Content (e.g. Dialog/Title/Description/Action
-        // are rendered inside DialogContent, not as siblings of it). When a Content child exists,
-        // keep the Trigger at the parent's top level and nest everything else inside Content's
-        // ChildContent. Content-like children only render when IsOpen, so rendering the body inside
-        // avoids the bug where Title/Description/Action leak out and render next to the Trigger.
-        var contentChild = ordered.FirstOrDefault(c => c.Suffix == "Content");
-        var triggerChild = ordered.FirstOrDefault(c => c.Suffix == "Trigger");
-        var innerChildren = contentChild is not null
-            ? ordered.Where(c => c.Suffix != "Trigger" && c.Suffix != "Content").ToList()
-            : new List<ChildInfo>();
-        var topLevelChildren = contentChild is not null
-            ? new List<ChildInfo> { triggerChild!, contentChild }.Where(c => c is not null).ToList()
-            : ordered;
-
-        sb.AppendLine($"    public static RenderFragment Render{parent.Name}(IReadOnlyDictionary<string, object?> parameters) => builder =>");
-        sb.AppendLine("    {");
-        sb.AppendLine($"        builder.OpenComponent<{parent.Name}>(0);");
-        sb.AppendLine("        var seq = 1;");
-        sb.AppendLine("        foreach (var (key, value) in parameters)");
-        sb.AppendLine("        {");
-        sb.AppendLine("            if (value is null || key == \"ChildContent\") continue;");
-        sb.AppendLine("            builder.AddAttribute(seq++, key, value);");
-        sb.AppendLine("        }");
-        sb.AppendLine();
-        sb.AppendLine("        builder.AddAttribute(seq++, \"ChildContent\", (RenderFragment)(inner =>");
-        sb.AppendLine("        {");
-        sb.AppendLine("            #pragma warning disable CS0219");
-        sb.AppendLine("            var childSeq = 0;");
-        sb.AppendLine("            #pragma warning restore CS0219");
-
-        foreach (var child in topLevelChildren)
+        // Capture the root as a typed local so IRepeatingSlot.GetSampleCount(root) calls
+        // below can pass the live parent instance. We build a local ref cell that the
+        // inner render lambda closes over.
+        var hasChildren = parentToChildren.TryGetValue(root.FullName, out var rootChildren) && rootChildren.Count > 0;
+        if (hasChildren)
         {
-            if (child.Suffix is "Header" or "Footer" or "Group" or "List" or "Separator")
-                continue;
+            sb.AppendLine($"        var rootRef = new {root.Name}[1];");
+            sb.AppendLine($"        builder.AddComponentReferenceCapture(rootSeq++, inst => rootRef[0] = ({root.Name})inst);");
 
-            var defaultContent = GetDefaultContent(child.Suffix, parent.Name);
-            if (defaultContent is null && child.Suffix != "Content") continue;
-
-            sb.AppendLine($"            inner.OpenComponent<{child.Name}>(childSeq++);");
-
-            if (child.Suffix == "Content" && innerChildren.Count > 0)
-            {
-                // Nest inner children (Title, Description, Action, Cancel, etc.) inside Content
-                sb.AppendLine($"            inner.AddAttribute(childSeq++, \"ChildContent\", (RenderFragment)(body =>");
-                sb.AppendLine("            {");
-                sb.AppendLine("                #pragma warning disable CS0219");
-                sb.AppendLine("                var bodySeq = 0;");
-                sb.AppendLine("                #pragma warning restore CS0219");
-                foreach (var bodyChild in innerChildren)
-                {
-                    if (bodyChild.Suffix is "Header" or "Footer" or "Group" or "List" or "Separator")
-                        continue;
-                    var bodyDefault = GetDefaultContent(bodyChild.Suffix, parent.Name);
-                    if (bodyDefault is null) continue;
-                    sb.AppendLine($"                body.OpenComponent<{bodyChild.Name}>(bodySeq++);");
-                    if (!string.IsNullOrEmpty(bodyDefault))
-                    {
-                        var bodyEscaped = bodyDefault.Replace("\\", "\\\\").Replace("\"", "\\\"");
-                        sb.AppendLine($"                body.AddAttribute(bodySeq++, \"ChildContent\", (RenderFragment)(cb => cb.AddContent(0, \"{bodyEscaped}\")));");
-                    }
-                    sb.AppendLine($"                body.CloseComponent();");
-                }
-                sb.AppendLine("            }));");
-            }
-            else if (!string.IsNullOrEmpty(defaultContent))
-            {
-                var escaped = defaultContent!.Replace("\\", "\\\\").Replace("\"", "\\\"");
-                sb.AppendLine($"            inner.AddAttribute(childSeq++, \"ChildContent\", (RenderFragment)(cb => cb.AddContent(0, \"{escaped}\")));");
-            }
-
-            sb.AppendLine($"            inner.CloseComponent();");
+            sb.AppendLine("        builder.AddAttribute(rootSeq++, \"ChildContent\", (RenderFragment)(inner =>");
+            sb.AppendLine("        {");
+            sb.AppendLine("            var seq0 = 0;");
+            EmitChildrenList(sb, root, rootChildren!, parentToChildren, indent: "            ", builderVar: "inner", seqVar: "seq0", depth: 0);
+            sb.AppendLine("        }));");
         }
 
-        sb.AppendLine("        }));");
         sb.AppendLine("        builder.CloseComponent();");
         sb.AppendLine("    };");
         sb.AppendLine();
     }
 
-    private static int GetRoleOrder(string suffix) => suffix switch
+    /// <summary>
+    /// Recursively emits the children of a parent into the given builder variable. For
+    /// each child, checks IRepeatingSlot: if present, emits a for-loop that calls the
+    /// static GetSampleCount against the live root; otherwise emits a single instance
+    /// and recurses into its own children.
+    /// </summary>
+    private static void EmitChildrenList(
+        StringBuilder sb,
+        ComponentInfo rootForRepeatLookup,
+        List<ComponentInfo> children,
+        Dictionary<string, List<ComponentInfo>> parentToChildren,
+        string indent,
+        string builderVar,
+        string seqVar,
+        int depth)
     {
-        "Trigger" => 0, "Content" => 1, "Title" => 2, "Description" => 3,
-        "Close" => 6, "Action" => 7, "Cancel" => 8, "Input" => 9,
-        "Value" => 10, "Item" => 11, "Empty" => 12, "Label" => 13,
-        _ => 50
-    };
+        foreach (var child in children)
+        {
+            var repeating = GetRepeatingSlotRoot(child.Symbol);
+            if (repeating is not null)
+            {
+                var rootTypeName = repeating.ToDisplayString().TrimEnd('?');
+                var indexParam = GetRepeatingSlotIndexParameter(child.Symbol);
+                // Emit a runtime for-loop driven by the static GetSampleCount.
+                sb.AppendLine($"{indent}if (rootRef[0] is not null)");
+                sb.AppendLine($"{indent}{{");
+                sb.AppendLine($"{indent}    var count_{depth} = {child.Name}.GetSampleCount(rootRef[0]!);");
+                sb.AppendLine($"{indent}    for (var i_{depth} = 0; i_{depth} < count_{depth}; i_{depth}++)");
+                sb.AppendLine($"{indent}    {{");
+                sb.AppendLine($"{indent}        {builderVar}.OpenComponent<{child.Name}>({seqVar}++);");
+                sb.AppendLine($"{indent}        {builderVar}.AddAttribute({seqVar}++, \"{indexParam}\", i_{depth});");
+                EmitChildContentFragmentIfAny(sb, rootForRepeatLookup, child, parentToChildren,
+                    indent + "        ", builderVar, seqVar, depth + 1);
+                sb.AppendLine($"{indent}        {builderVar}.CloseComponent();");
+                sb.AppendLine($"{indent}    }}");
+                sb.AppendLine($"{indent}}}");
+                continue;
+            }
 
-    private static string? GetDefaultContent(string suffix, string parentName) => suffix switch
+            // Single-instance child. Open, optionally recurse into its children, close.
+            sb.AppendLine($"{indent}{builderVar}.OpenComponent<{child.Name}>({seqVar}++);");
+            EmitChildContentFragmentIfAny(sb, rootForRepeatLookup, child, parentToChildren,
+                indent, builderVar, seqVar, depth + 1);
+            sb.AppendLine($"{indent}{builderVar}.CloseComponent();");
+        }
+    }
+
+    /// <summary>
+    /// If a child has grandchildren in the ChildOf graph, emit a ChildContent RenderFragment
+    /// that recursively walks them. Otherwise no ChildContent is added — the child renders
+    /// its own template with no user-supplied body.
+    /// </summary>
+    private static void EmitChildContentFragmentIfAny(
+        StringBuilder sb,
+        ComponentInfo rootForRepeatLookup,
+        ComponentInfo child,
+        Dictionary<string, List<ComponentInfo>> parentToChildren,
+        string indent,
+        string parentBuilderVar,
+        string parentSeqVar,
+        int depth)
     {
-        "Trigger" => "Open " + parentName,
-        "Content" => parentName + " content goes here.",
-        "Title" => parentName,
-        "Description" => "This is a " + parentName.ToLowerInvariant() + " description.",
-        "Close" => "Close",
-        "Action" => "Confirm",
-        "Cancel" => "Cancel",
-        "Item" => "Sample item",
-        "Input" => "",
-        "Value" => "Select...",
-        "Empty" => "No results found.",
-        "Label" => "Label",
-        _ => null
-    };
+        if (!parentToChildren.TryGetValue(child.FullName, out var grand) || grand.Count == 0)
+            return;
+
+        var innerBuilderVar = $"b{depth}";
+        var innerSeqVar = $"s{depth}";
+        sb.AppendLine($"{indent}{parentBuilderVar}.AddAttribute({parentSeqVar}++, \"ChildContent\", (RenderFragment)({innerBuilderVar} =>");
+        sb.AppendLine($"{indent}{{");
+        sb.AppendLine($"{indent}    var {innerSeqVar} = 0;");
+        EmitChildrenList(sb, rootForRepeatLookup, grand, parentToChildren,
+            indent + "    ", innerBuilderVar, innerSeqVar, depth);
+        sb.AppendLine($"{indent}}}));");
+    }
+
+    // ── Type-graph helpers ──────────────────────────────────────────────────
 
     private static bool InheritsFrom(INamedTypeSymbol symbol, string baseName)
     {
@@ -305,8 +274,8 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
     }
 
     /// <summary>
-    /// Returns the parent component type if this component inherits from <c>ChildOf&lt;TParent&gt;</c>,
-    /// otherwise null. Walks the base class chain so subclasses of children also work.
+    /// Returns the parent component type if this component inherits from
+    /// <c>ChildOf&lt;TParent&gt;</c>, otherwise null.
     /// </summary>
     private static INamedTypeSymbol? GetChildOfParent(INamedTypeSymbol symbol)
     {
@@ -323,6 +292,62 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
             current = current.BaseType;
         }
         return null;
+    }
+
+    /// <summary>
+    /// Returns the <c>TRoot</c> type argument if the component implements
+    /// <c>IRepeatingSlot&lt;TRoot&gt;</c>, otherwise null.
+    /// </summary>
+    private static INamedTypeSymbol? GetRepeatingSlotRoot(INamedTypeSymbol symbol)
+    {
+        foreach (var iface in symbol.AllInterfaces)
+        {
+            if (iface.Name == RepeatingSlotInterfaceName
+                && iface.TypeArguments.Length == 1
+                && iface.TypeArguments[0] is INamedTypeSymbol root)
+            {
+                return root;
+            }
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// Returns the constant string returned by the component's
+    /// <c>IRepeatingSlot&lt;TRoot&gt;.IndexParameterName</c> static property. Falls back
+    /// to <c>"Index"</c> if the value can't be read at generation time (e.g. the property
+    /// isn't a literal).
+    /// </summary>
+    private static string GetRepeatingSlotIndexParameter(INamedTypeSymbol symbol)
+    {
+        foreach (var member in symbol.GetMembers())
+        {
+            if (member is IPropertySymbol prop
+                && prop.IsStatic
+                && prop.Name == "IndexParameterName")
+            {
+                // Look for a property body that returns a literal string.
+                foreach (var syntaxRef in prop.DeclaringSyntaxReferences)
+                {
+                    if (syntaxRef.GetSyntax() is PropertyDeclarationSyntax pds)
+                    {
+                        var literal = pds.ExpressionBody?.Expression as LiteralExpressionSyntax;
+                        if (literal is not null && literal.Token.ValueText is string s)
+                            return s;
+                        // Also handle `=> nameof(SomeProperty);`
+                        if (pds.ExpressionBody?.Expression is InvocationExpressionSyntax inv
+                            && inv.Expression is IdentifierNameSyntax id
+                            && id.Identifier.Text == "nameof"
+                            && inv.ArgumentList.Arguments.Count == 1
+                            && inv.ArgumentList.Arguments[0].Expression is IdentifierNameSyntax argId)
+                        {
+                            return argId.Identifier.Text;
+                        }
+                    }
+                }
+            }
+        }
+        return "Index";
     }
 
     private static bool HasBrowsableFalse(INamedTypeSymbol symbol)
@@ -343,14 +368,5 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         public INamedTypeSymbol Symbol { get; }
         public ComponentInfo(string name, string ns, string fullName, INamedTypeSymbol symbol)
         { Name = name; Namespace = ns; FullName = fullName; Symbol = symbol; }
-    }
-
-    private sealed class ChildInfo
-    {
-        public string Name { get; }
-        public string Suffix { get; }
-        public string FullName { get; }
-        public ChildInfo(string name, string suffix, string fullName)
-        { Name = name; Suffix = suffix; FullName = fullName; }
     }
 }

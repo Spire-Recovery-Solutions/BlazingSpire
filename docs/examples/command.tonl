@@ -10,7 +10,7 @@ composition{role:str,parent:str,isComposite:bool}:
   role: Root
   parent: 
   isComposite: true
-children[6]: CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator
+children[2]: CommandInput, CommandList
 
 parameters[2]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample Command content, The content to render inside the component.

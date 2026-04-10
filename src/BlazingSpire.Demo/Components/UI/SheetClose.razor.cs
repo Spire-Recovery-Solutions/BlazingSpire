@@ -3,10 +3,15 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class SheetClose : ChildOf<Sheet>
+public partial class SheetClose : ChildOf<SheetContent>
 {
+    // ChildOf<SheetContent> declares visual nesting for the playground's
+    // tree walk. The runtime needs Sheet-root state, which cascades from
+    // the outer Sheet component independently.
+    [CascadingParameter] private Sheet? SheetRoot { get; set; }
+
     // Backwards-compat alias for the old property name (to avoid changing .razor files)
-    public Sheet? ParentSheet => Parent;
+    public Sheet? ParentSheet => SheetRoot;
 
     protected override string BaseClasses =>
         "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity " +

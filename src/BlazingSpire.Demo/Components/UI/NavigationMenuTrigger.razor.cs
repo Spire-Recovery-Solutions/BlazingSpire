@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class NavigationMenuTrigger : ChildOf<NavigationMenu>
+public partial class NavigationMenuTrigger : ChildOf<NavigationMenuItem>
 {
     [CascadingParameter] public NavigationMenuItem? ParentItem { get; set; }
 

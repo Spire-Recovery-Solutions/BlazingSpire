@@ -2,7 +2,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class NavigationMenuItem : ChildOf<NavigationMenu>
+public partial class NavigationMenuItem : ChildOf<NavigationMenuList>
 {
     public bool IsOpen { get; private set; }
 

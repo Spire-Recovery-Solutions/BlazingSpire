@@ -7,9 +7,7 @@
     "composition": {
       "role": "Root",
       "children": [
-        "AccordionContent",
-        "AccordionItem",
-        "AccordionTrigger"
+        "AccordionItem"
       ],
       "isComposite": true
     },
@@ -36,7 +34,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Accordion",
+      "parent": "AccordionItem",
       "children": [],
       "isComposite": false
     },
@@ -64,8 +62,11 @@
     "composition": {
       "role": "Child",
       "parent": "Accordion",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "AccordionContent",
+        "AccordionTrigger"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -90,7 +91,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Accordion",
+      "parent": "AccordionItem",
       "children": [],
       "isComposite": false
     },
@@ -188,13 +189,7 @@
     "composition": {
       "role": "Root",
       "children": [
-        "AlertDialogAction",
-        "AlertDialogCancel",
         "AlertDialogContent",
-        "AlertDialogDescription",
-        "AlertDialogFooter",
-        "AlertDialogHeader",
-        "AlertDialogTitle",
         "AlertDialogTrigger"
       ],
       "isComposite": true
@@ -257,7 +252,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "AlertDialog",
+      "parent": "AlertDialogFooter",
       "children": [],
       "isComposite": false
     },
@@ -291,7 +286,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "AlertDialog",
+      "parent": "AlertDialogFooter",
       "children": [],
       "isComposite": false
     },
@@ -319,8 +314,11 @@
     "composition": {
       "role": "Child",
       "parent": "AlertDialog",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "AlertDialogFooter",
+        "AlertDialogHeader"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -345,7 +343,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "AlertDialog",
+      "parent": "AlertDialogHeader",
       "children": [],
       "isComposite": false
     },
@@ -372,9 +370,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "AlertDialog",
-      "children": [],
-      "isComposite": false
+      "parent": "AlertDialogContent",
+      "children": [
+        "AlertDialogAction",
+        "AlertDialogCancel"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -399,9 +400,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "AlertDialog",
-      "children": [],
-      "isComposite": false
+      "parent": "AlertDialogContent",
+      "children": [
+        "AlertDialogDescription",
+        "AlertDialogTitle"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -426,7 +430,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "AlertDialog",
+      "parent": "AlertDialogHeader",
       "children": [],
       "isComposite": false
     },
@@ -675,11 +679,7 @@
     "composition": {
       "role": "Root",
       "children": [
-        "BreadcrumbItem",
-        "BreadcrumbLink",
-        "BreadcrumbList",
-        "BreadcrumbPage",
-        "BreadcrumbSeparator"
+        "BreadcrumbList"
       ],
       "isComposite": true
     },
@@ -706,9 +706,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Breadcrumb",
-      "children": [],
-      "isComposite": false
+      "parent": "BreadcrumbList",
+      "children": [
+        "BreadcrumbLink",
+        "BreadcrumbPage"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -733,7 +736,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Breadcrumb",
+      "parent": "BreadcrumbItem",
       "children": [],
       "isComposite": false
     },
@@ -767,8 +770,11 @@
     "composition": {
       "role": "Child",
       "parent": "Breadcrumb",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "BreadcrumbItem",
+        "BreadcrumbSeparator"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -793,7 +799,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Breadcrumb",
+      "parent": "BreadcrumbItem",
       "children": [],
       "isComposite": false
     },
@@ -820,7 +826,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Breadcrumb",
+      "parent": "BreadcrumbList",
       "children": [],
       "isComposite": false
     },
@@ -995,10 +1001,8 @@
       "role": "Root",
       "children": [
         "CardContent",
-        "CardDescription",
         "CardFooter",
-        "CardHeader",
-        "CardTitle"
+        "CardHeader"
       ],
       "isComposite": true
     },
@@ -1052,7 +1056,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Card",
+      "parent": "CardHeader",
       "children": [],
       "isComposite": false
     },
@@ -1107,8 +1111,11 @@
     "composition": {
       "role": "Child",
       "parent": "Card",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "CardDescription",
+        "CardTitle"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -1133,7 +1140,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Card",
+      "parent": "CardHeader",
       "children": [],
       "isComposite": false
     },
@@ -1162,7 +1169,6 @@
       "role": "Root",
       "children": [
         "CarouselContent",
-        "CarouselItem",
         "CarouselNext",
         "CarouselPrevious"
       ],
@@ -1217,8 +1223,10 @@
     "composition": {
       "role": "Child",
       "parent": "Carousel",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "CarouselItem"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -1243,7 +1251,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Carousel",
+      "parent": "CarouselContent",
       "children": [],
       "isComposite": false
     },
@@ -1470,9 +1478,6 @@
       "role": "Root",
       "children": [
         "ComboboxContent",
-        "ComboboxEmpty",
-        "ComboboxInput",
-        "ComboboxItem",
         "ComboboxTrigger"
       ],
       "isComposite": true
@@ -1601,8 +1606,12 @@
     "composition": {
       "role": "Child",
       "parent": "Combobox",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "ComboboxEmpty",
+        "ComboboxInput",
+        "ComboboxItem"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -1627,7 +1636,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Combobox",
+      "parent": "ComboboxContent",
       "children": [],
       "isComposite": false
     },
@@ -1654,7 +1663,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Combobox",
+      "parent": "ComboboxContent",
       "children": [],
       "isComposite": false
     },
@@ -1681,7 +1690,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Combobox",
+      "parent": "ComboboxContent",
       "children": [],
       "isComposite": false
     },
@@ -1756,12 +1765,8 @@
     "composition": {
       "role": "Root",
       "children": [
-        "CommandEmpty",
-        "CommandGroup",
         "CommandInput",
-        "CommandItem",
-        "CommandList",
-        "CommandSeparator"
+        "CommandList"
       ],
       "isComposite": true
     },
@@ -1828,7 +1833,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Command",
+      "parent": "CommandList",
       "children": [],
       "isComposite": false
     },
@@ -1855,9 +1860,11 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Command",
-      "children": [],
-      "isComposite": false
+      "parent": "CommandList",
+      "children": [
+        "CommandItem"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -1921,7 +1928,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Command",
+      "parent": "CommandGroup",
       "children": [],
       "isComposite": false
     },
@@ -1969,8 +1976,12 @@
     "composition": {
       "role": "Child",
       "parent": "Command",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "CommandEmpty",
+        "CommandGroup",
+        "CommandSeparator"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -1995,7 +2006,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Command",
+      "parent": "CommandList",
       "children": [],
       "isComposite": false
     },
@@ -2024,9 +2035,6 @@
       "role": "Root",
       "children": [
         "ContextMenuContent",
-        "ContextMenuItem",
-        "ContextMenuLabel",
-        "ContextMenuSeparator",
         "ContextMenuTrigger"
       ],
       "isComposite": true
@@ -2129,8 +2137,12 @@
     "composition": {
       "role": "Child",
       "parent": "ContextMenu",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "ContextMenuItem",
+        "ContextMenuLabel",
+        "ContextMenuSeparator"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -2155,7 +2167,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "ContextMenu",
+      "parent": "ContextMenuContent",
       "children": [],
       "isComposite": false
     },
@@ -2196,7 +2208,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "ContextMenu",
+      "parent": "ContextMenuContent",
       "children": [],
       "isComposite": false
     },
@@ -2230,7 +2242,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "ContextMenu",
+      "parent": "ContextMenuContent",
       "children": [],
       "isComposite": false
     },
@@ -2397,12 +2409,7 @@
     "composition": {
       "role": "Root",
       "children": [
-        "DialogClose",
         "DialogContent",
-        "DialogDescription",
-        "DialogFooter",
-        "DialogHeader",
-        "DialogTitle",
         "DialogTrigger"
       ],
       "isComposite": true
@@ -2465,7 +2472,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Dialog",
+      "parent": "DialogContent",
       "children": [],
       "isComposite": false
     },
@@ -2493,8 +2500,12 @@
     "composition": {
       "role": "Child",
       "parent": "Dialog",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "DialogClose",
+        "DialogFooter",
+        "DialogHeader"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -2519,7 +2530,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Dialog",
+      "parent": "DialogHeader",
       "children": [],
       "isComposite": false
     },
@@ -2546,7 +2557,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Dialog",
+      "parent": "DialogContent",
       "children": [],
       "isComposite": false
     },
@@ -2573,9 +2584,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Dialog",
-      "children": [],
-      "isComposite": false
+      "parent": "DialogContent",
+      "children": [
+        "DialogDescription",
+        "DialogTitle"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -2600,7 +2614,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Dialog",
+      "parent": "DialogHeader",
       "children": [],
       "isComposite": false
     },
@@ -2655,12 +2669,7 @@
     "composition": {
       "role": "Root",
       "children": [
-        "DrawerClose",
         "DrawerContent",
-        "DrawerDescription",
-        "DrawerFooter",
-        "DrawerHeader",
-        "DrawerTitle",
         "DrawerTrigger"
       ],
       "isComposite": true
@@ -2723,7 +2732,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Drawer",
+      "parent": "DrawerContent",
       "children": [],
       "isComposite": false
     },
@@ -2751,8 +2760,12 @@
     "composition": {
       "role": "Child",
       "parent": "Drawer",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "DrawerClose",
+        "DrawerFooter",
+        "DrawerHeader"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -2777,7 +2790,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Drawer",
+      "parent": "DrawerHeader",
       "children": [],
       "isComposite": false
     },
@@ -2804,7 +2817,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Drawer",
+      "parent": "DrawerContent",
       "children": [],
       "isComposite": false
     },
@@ -2831,9 +2844,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Drawer",
-      "children": [],
-      "isComposite": false
+      "parent": "DrawerContent",
+      "children": [
+        "DrawerDescription",
+        "DrawerTitle"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -2858,7 +2874,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Drawer",
+      "parent": "DrawerHeader",
       "children": [],
       "isComposite": false
     },
@@ -2914,10 +2930,6 @@
       "role": "Root",
       "children": [
         "DropdownMenuContent",
-        "DropdownMenuGroup",
-        "DropdownMenuItem",
-        "DropdownMenuLabel",
-        "DropdownMenuSeparator",
         "DropdownMenuTrigger"
       ],
       "isComposite": true
@@ -3020,8 +3032,11 @@
     "composition": {
       "role": "Child",
       "parent": "DropdownMenu",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "DropdownMenuGroup",
+        "DropdownMenuSeparator"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -3046,9 +3061,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "DropdownMenu",
-      "children": [],
-      "isComposite": false
+      "parent": "DropdownMenuContent",
+      "children": [
+        "DropdownMenuItem",
+        "DropdownMenuLabel"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -3073,7 +3091,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "DropdownMenu",
+      "parent": "DropdownMenuGroup",
       "children": [],
       "isComposite": false
     },
@@ -3114,7 +3132,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "DropdownMenu",
+      "parent": "DropdownMenuGroup",
       "children": [],
       "isComposite": false
     },
@@ -3148,7 +3166,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "DropdownMenu",
+      "parent": "DropdownMenuContent",
       "children": [],
       "isComposite": false
     },
@@ -3718,8 +3736,7 @@
       "role": "Root",
       "children": [
         "InputOTPGroup",
-        "InputOTPSeparator",
-        "InputOTPSlot"
+        "InputOTPSeparator"
       ],
       "isComposite": true
     },
@@ -3775,8 +3792,10 @@
     "composition": {
       "role": "Child",
       "parent": "InputOTP",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "InputOTPSlot"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -3828,7 +3847,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "InputOTP",
+      "parent": "InputOTPGroup",
       "children": [],
       "isComposite": false
     },
@@ -3850,7 +3869,7 @@
         "name": "Index",
         "kind": "Number",
         "type": "int",
-        "description": "",
+        "description": "Zero-based index of this slot within the OTP input.",
         "defaultValue": "0"
       }
     ]
@@ -4105,11 +4124,7 @@
     "composition": {
       "role": "Root",
       "children": [
-        "NavigationMenuContent",
-        "NavigationMenuItem",
-        "NavigationMenuLink",
-        "NavigationMenuList",
-        "NavigationMenuTrigger"
+        "NavigationMenuList"
       ],
       "isComposite": true
     },
@@ -4136,7 +4151,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "NavigationMenu",
+      "parent": "NavigationMenuItem",
       "children": [],
       "isComposite": false
     },
@@ -4163,9 +4178,13 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "NavigationMenu",
-      "children": [],
-      "isComposite": false
+      "parent": "NavigationMenuList",
+      "children": [
+        "NavigationMenuContent",
+        "NavigationMenuLink",
+        "NavigationMenuTrigger"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -4190,7 +4209,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "NavigationMenu",
+      "parent": "NavigationMenuItem",
       "children": [],
       "isComposite": false
     },
@@ -4224,8 +4243,10 @@
     "composition": {
       "role": "Child",
       "parent": "NavigationMenu",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "NavigationMenuItem"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -4250,7 +4271,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "NavigationMenu",
+      "parent": "NavigationMenuItem",
       "children": [],
       "isComposite": false
     },
@@ -4278,12 +4299,7 @@
     "composition": {
       "role": "Root",
       "children": [
-        "PaginationContent",
-        "PaginationEllipsis",
-        "PaginationItem",
-        "PaginationLink",
-        "PaginationNext",
-        "PaginationPrevious"
+        "PaginationContent"
       ],
       "isComposite": true
     },
@@ -4311,8 +4327,13 @@
     "composition": {
       "role": "Child",
       "parent": "Pagination",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "PaginationEllipsis",
+        "PaginationItem",
+        "PaginationNext",
+        "PaginationPrevious"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -4337,7 +4358,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Pagination",
+      "parent": "PaginationContent",
       "children": [],
       "isComposite": false
     },
@@ -4364,9 +4385,11 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Pagination",
-      "children": [],
-      "isComposite": false
+      "parent": "PaginationContent",
+      "children": [
+        "PaginationLink"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -4391,7 +4414,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Pagination",
+      "parent": "PaginationItem",
       "children": [],
       "isComposite": false
     },
@@ -4431,7 +4454,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Pagination",
+      "parent": "PaginationContent",
       "children": [],
       "isComposite": false
     },
@@ -4464,7 +4487,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Pagination",
+      "parent": "PaginationContent",
       "children": [],
       "isComposite": false
     },
@@ -4797,12 +4820,7 @@
       "role": "Root",
       "children": [
         "SelectContent",
-        "SelectGroup",
-        "SelectItem",
-        "SelectLabel",
-        "SelectSeparator",
-        "SelectTrigger",
-        "SelectValue"
+        "SelectTrigger"
       ],
       "isComposite": true
     },
@@ -4923,8 +4941,11 @@
     "composition": {
       "role": "Child",
       "parent": "Select",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "SelectGroup",
+        "SelectSeparator"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -4949,9 +4970,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Select",
-      "children": [],
-      "isComposite": false
+      "parent": "SelectContent",
+      "children": [
+        "SelectItem",
+        "SelectLabel"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -4976,7 +5000,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Select",
+      "parent": "SelectGroup",
       "children": [],
       "isComposite": false
     },
@@ -5023,7 +5047,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Select",
+      "parent": "SelectGroup",
       "children": [],
       "isComposite": false
     },
@@ -5050,7 +5074,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Select",
+      "parent": "SelectContent",
       "children": [],
       "isComposite": false
     },
@@ -5078,8 +5102,10 @@
     "composition": {
       "role": "Child",
       "parent": "Select",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "SelectValue"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -5111,7 +5137,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Select",
+      "parent": "SelectTrigger",
       "children": [],
       "isComposite": false
     },
@@ -5183,12 +5209,7 @@
     "composition": {
       "role": "Root",
       "children": [
-        "SheetClose",
         "SheetContent",
-        "SheetDescription",
-        "SheetFooter",
-        "SheetHeader",
-        "SheetTitle",
         "SheetTrigger"
       ],
       "isComposite": true
@@ -5264,7 +5285,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Sheet",
+      "parent": "SheetContent",
       "children": [],
       "isComposite": false
     },
@@ -5292,8 +5313,12 @@
     "composition": {
       "role": "Child",
       "parent": "Sheet",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "SheetClose",
+        "SheetFooter",
+        "SheetHeader"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -5318,7 +5343,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Sheet",
+      "parent": "SheetHeader",
       "children": [],
       "isComposite": false
     },
@@ -5345,7 +5370,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Sheet",
+      "parent": "SheetContent",
       "children": [],
       "isComposite": false
     },
@@ -5372,9 +5397,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Sheet",
-      "children": [],
-      "isComposite": false
+      "parent": "SheetContent",
+      "children": [
+        "SheetDescription",
+        "SheetTitle"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -5399,7 +5427,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Sheet",
+      "parent": "SheetHeader",
       "children": [],
       "isComposite": false
     },
@@ -5788,11 +5816,8 @@
       "children": [
         "TableBody",
         "TableCaption",
-        "TableCell",
         "TableFooter",
-        "TableHead",
-        "TableHeader",
-        "TableRow"
+        "TableHeader"
       ],
       "isComposite": true
     },
@@ -5820,8 +5845,10 @@
     "composition": {
       "role": "Child",
       "parent": "Table",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "TableRow"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -5873,7 +5900,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Table",
+      "parent": "TableRow",
       "children": [],
       "isComposite": false
     },
@@ -5927,7 +5954,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Table",
+      "parent": "TableRow",
       "children": [],
       "isComposite": false
     },
@@ -5981,9 +6008,12 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Table",
-      "children": [],
-      "isComposite": false
+      "parent": "TableBody",
+      "children": [
+        "TableCell",
+        "TableHead"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -6010,8 +6040,7 @@
       "role": "Root",
       "children": [
         "TabsContent",
-        "TabsList",
-        "TabsTrigger"
+        "TabsList"
       ],
       "isComposite": true
     },
@@ -6086,8 +6115,10 @@
     "composition": {
       "role": "Child",
       "parent": "Tabs",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "TabsTrigger"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -6112,7 +6143,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Tabs",
+      "parent": "TabsList",
       "children": [],
       "isComposite": false
     },

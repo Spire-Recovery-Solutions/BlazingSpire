@@ -10,7 +10,7 @@ composition{role:str,parent:str,isComposite:bool}:
   role: Root
   parent: 
   isComposite: true
-children[7]: DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger
+children[2]: DialogContent, DialogTrigger
 
 parameters[7]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample Dialog content, The content to render inside the component.

@@ -3,9 +3,11 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class CommandItem : ChildOf<Command>
+public partial class CommandItem : ChildOf<CommandGroup>
 {
-    public Command? ParentCommand => Parent;
+    [CascadingParameter] private Command? CommandRoot { get; set; }
+
+    public Command? ParentCommand => CommandRoot;
 
     [Parameter] public string? FilterText { get; set; }
     [Parameter] public EventCallback OnSelect { get; set; }

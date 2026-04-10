@@ -3,9 +3,11 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class DropdownMenuItem : ChildOf<DropdownMenu>
+public partial class DropdownMenuItem : ChildOf<DropdownMenuGroup>
 {
-    public DropdownMenu? ParentMenu => Parent;
+    [CascadingParameter] private DropdownMenu? DropdownMenuRoot { get; set; }
+
+    public DropdownMenu? ParentMenu => DropdownMenuRoot;
 
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public bool Disabled { get; set; }

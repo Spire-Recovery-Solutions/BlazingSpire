@@ -2,7 +2,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class AlertDialogFooter : ChildOf<AlertDialog>
+public partial class AlertDialogFooter : ChildOf<AlertDialogContent>
 {
     protected override string BaseClasses => "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2";
 }

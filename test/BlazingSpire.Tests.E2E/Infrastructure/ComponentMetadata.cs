@@ -67,6 +67,16 @@ internal static class ComponentMetadata
             c.Composition.Children.Contains($"{c.Name}Description") &&
             c.Parameters.Any(p => p.Name == "IsOpen"));
 
+    /// <summary>
+    /// All top-level composite components (root components with at least 2 declared
+    /// children). Used by "non-empty playground" assertions to catch bugs where the
+    /// composite factory emits an empty ChildContent shell — e.g. a child suffix the
+    /// generator doesn't recognize (InputOTPSlot) leads to the entire playground
+    /// rendering nothing.
+    /// </summary>
+    public static IEnumerable<ComponentMeta> CompositesWithMultipleChildren =>
+        TopLevel.Where(c => c.Composition.Children.Count >= 2);
+
     private static string FindComponentsJson()
     {
         // Check deploy locations: next to the test DLL first, then walk up

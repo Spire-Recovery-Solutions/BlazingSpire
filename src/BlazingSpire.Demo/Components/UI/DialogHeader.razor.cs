@@ -2,7 +2,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class DialogHeader : ChildOf<Dialog>
+public partial class DialogHeader : ChildOf<DialogContent>
 {
     protected override string BaseClasses => "flex flex-col space-y-1.5 text-center sm:text-left";
 }

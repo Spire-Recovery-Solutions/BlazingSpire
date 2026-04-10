@@ -10,7 +10,7 @@ composition{role:str,parent:str,isComposite:bool}:
   role: Root
   parent: 
   isComposite: true
-children[3]: TabsContent, TabsList, TabsTrigger
+children[2]: TabsContent, TabsList
 
 parameters[4]{name:str,type:str,kind:str,default:str,description:str}:
   ActiveValue, string, String, , The value of the currently active tab.

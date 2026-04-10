@@ -55,6 +55,36 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         await Expect(Page.GetByText(description, new() { Exact = false }).First).ToBeVisibleAsync();
     }
 
+    // ── Non-empty preview invariant (metadata-driven) ─────────────────────────
+
+    public static IEnumerable<object[]> CompositesWithMultipleChildren() =>
+        ComponentMetadata.CompositesWithMultipleChildren.Select(c => new object[] { c.Name });
+
+    /// <summary>
+    /// Every composite component (≥ 2 declared children in metadata) must render a
+    /// non-trivial preview. "Non-trivial" is defined as at least 3 DOM descendants
+    /// inside <c>[data-playground-preview]</c> — an empty shell has 1–2 elements
+    /// (the parent wrapper, possibly an sr-only input).
+    ///
+    /// This catches bugs where the composite factory silently emits an empty
+    /// ChildContent because the generator's suffix conventions don't recognize the
+    /// child component roles (e.g. <c>InputOTPSlot</c>, which produced a blank
+    /// InputOTP playground until a partial override was added to
+    /// <c>PlaygroundFactories</c>).
+    /// </summary>
+    [Theory, MemberData(nameof(CompositesWithMultipleChildren))]
+    public async Task Composite_Playground_Renders_NonEmpty_Preview(string componentName)
+    {
+        var driver = new PlaygroundDriver(Page, BaseUrl);
+        await driver.NavigateTo(componentName);
+
+        var descendantCount = await Page.Locator("[data-playground-preview] *").CountAsync();
+        Assert.True(descendantCount >= 3,
+            $"Composite '{componentName}' rendered only {descendantCount} preview descendants — " +
+            "the composite factory likely emitted an empty ChildContent. Check suffix handling " +
+            "in PlaygroundGenerator.EmitCompositeFactory or add a partial Render override.");
+    }
+
     // ── Popover ───────────────────────────────────────────────────────────────
 
     [Fact]

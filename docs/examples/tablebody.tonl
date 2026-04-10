@@ -9,7 +9,8 @@ component{name:str,description:str,category:str,baseTier:str}:
 composition{role:str,parent:str,isComposite:bool}:
   role: Child
   parent: Table
-  isComposite: false
+  isComposite: true
+children[1]: TableRow
 
 parameters[2]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample TableBody content, The content to render inside the component.

@@ -3,10 +3,12 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class AlertDialogAction : ChildOf<AlertDialog>
+public partial class AlertDialogAction : ChildOf<AlertDialogFooter>
 {
+    [CascadingParameter] private AlertDialog? AlertDialogRoot { get; set; }
+
     // Backwards-compat alias for the old property name (to avoid changing .razor files)
-    public AlertDialog? ParentDialog => Parent;
+    public AlertDialog? ParentDialog => AlertDialogRoot;
 
     [Parameter] public EventCallback OnClick { get; set; }
 

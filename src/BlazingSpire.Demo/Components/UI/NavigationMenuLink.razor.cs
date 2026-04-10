@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class NavigationMenuLink : ChildOf<NavigationMenu>
+public partial class NavigationMenuLink : ChildOf<NavigationMenuItem>
 {
     [Parameter] public string? Href { get; set; }
 

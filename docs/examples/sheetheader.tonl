@@ -8,8 +8,9 @@ component{name:str,description:str,category:str,baseTier:str}:
 
 composition{role:str,parent:str,isComposite:bool}:
   role: Child
-  parent: Sheet
-  isComposite: false
+  parent: SheetContent
+  isComposite: true
+children[2]: SheetDescription, SheetTitle
 
 parameters[2]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample SheetHeader content, The content to render inside the component.

@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class PaginationPrevious : ChildOf<Pagination>
+public partial class PaginationPrevious : ChildOf<PaginationContent>
 {
     [Parameter] public string? Href { get; set; }
 
