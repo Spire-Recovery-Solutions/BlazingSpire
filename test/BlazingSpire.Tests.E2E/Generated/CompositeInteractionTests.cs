@@ -14,6 +14,47 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
 {
     public CompositeInteractionTests(PlaywrightBrowserFixture browserFixture) : base(browserFixture) { }
 
+    // ── Body-leak invariant (metadata-driven) ─────────────────────────────────
+
+    public static IEnumerable<object[]> OverlayComposites() =>
+        ComponentMetadata.OverlayComposites.Select(c => new object[] { c.Name });
+
+    /// <summary>
+    /// For every overlay-style composite (Dialog/AlertDialog/Sheet/Drawer/etc.), assert
+    /// that the body content is HIDDEN before the trigger is clicked and VISIBLE after.
+    ///
+    /// This catches a class of bug where the playground composite factory flattens inner
+    /// children (Title, Description, Action, Cancel) as siblings of Content instead of
+    /// nesting them inside Content's ChildContent. When flattened, those children render
+    /// unconditionally (they don't gate on IsOpen themselves — that's Content's job),
+    /// leaking the body text into the preview before the user ever clicks the trigger.
+    ///
+    /// The canary is the default Description string emitted by the source generator:
+    /// "This is a &lt;lowercase-name&gt; description." — unique enough that a plain text
+    /// match inside the preview pane is reliable.
+    /// </summary>
+    [Theory, MemberData(nameof(OverlayComposites))]
+    public async Task Composite_Body_Is_Hidden_Until_Trigger_Clicked(string componentName)
+    {
+        var driver = new PlaygroundDriver(Page, BaseUrl);
+        await driver.NavigateTo(componentName);
+
+        var description = $"This is a {componentName.ToLowerInvariant()} description.";
+        var body = driver.Preview.GetByText(description, new() { Exact = false });
+
+        // Before click: body must NOT be visible in the preview pane.
+        await Expect(body).Not.ToBeVisibleAsync();
+
+        // Click the trigger ("Open {Name}" is the default content the factory emits)
+        await driver.Preview.GetByText($"Open {componentName}").First.ClickAsync();
+        await Page.WaitForTimeoutAsync(300);
+
+        // After click: body must become visible somewhere on the page.
+        // (Overlay content uses position:fixed with a portal-style escape, so the visible
+        // description may land outside the preview pane — check the full page.)
+        await Expect(Page.GetByText(description, new() { Exact = false }).First).ToBeVisibleAsync();
+    }
+
     // ── Popover ───────────────────────────────────────────────────────────────
 
     [Fact]

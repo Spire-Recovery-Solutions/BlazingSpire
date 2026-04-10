@@ -189,6 +189,20 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
     {
         var ordered = children.OrderBy(c => GetRoleOrder(c.Suffix)).ThenBy(c => c.Name).ToList();
 
+        // Radix-style composites nest their body inside Content (e.g. Dialog/Title/Description/Action
+        // are rendered inside DialogContent, not as siblings of it). When a Content child exists,
+        // keep the Trigger at the parent's top level and nest everything else inside Content's
+        // ChildContent. Content-like children only render when IsOpen, so rendering the body inside
+        // avoids the bug where Title/Description/Action leak out and render next to the Trigger.
+        var contentChild = ordered.FirstOrDefault(c => c.Suffix == "Content");
+        var triggerChild = ordered.FirstOrDefault(c => c.Suffix == "Trigger");
+        var innerChildren = contentChild is not null
+            ? ordered.Where(c => c.Suffix != "Trigger" && c.Suffix != "Content").ToList()
+            : new List<ChildInfo>();
+        var topLevelChildren = contentChild is not null
+            ? new List<ChildInfo> { triggerChild!, contentChild }.Where(c => c is not null).ToList()
+            : ordered;
+
         sb.AppendLine($"    public static RenderFragment Render{parent.Name}(IReadOnlyDictionary<string, object?> parameters) => builder =>");
         sb.AppendLine("    {");
         sb.AppendLine($"        builder.OpenComponent<{parent.Name}>(0);");
@@ -205,20 +219,46 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         sb.AppendLine("            var childSeq = 0;");
         sb.AppendLine("            #pragma warning restore CS0219");
 
-        foreach (var child in ordered)
+        foreach (var child in topLevelChildren)
         {
             if (child.Suffix is "Header" or "Footer" or "Group" or "List" or "Separator")
                 continue;
 
             var defaultContent = GetDefaultContent(child.Suffix, parent.Name);
-            if (defaultContent is null) continue;
+            if (defaultContent is null && child.Suffix != "Content") continue;
 
             sb.AppendLine($"            inner.OpenComponent<{child.Name}>(childSeq++);");
-            if (!string.IsNullOrEmpty(defaultContent))
+
+            if (child.Suffix == "Content" && innerChildren.Count > 0)
             {
-                var escaped = defaultContent.Replace("\\", "\\\\").Replace("\"", "\\\"");
+                // Nest inner children (Title, Description, Action, Cancel, etc.) inside Content
+                sb.AppendLine($"            inner.AddAttribute(childSeq++, \"ChildContent\", (RenderFragment)(body =>");
+                sb.AppendLine("            {");
+                sb.AppendLine("                #pragma warning disable CS0219");
+                sb.AppendLine("                var bodySeq = 0;");
+                sb.AppendLine("                #pragma warning restore CS0219");
+                foreach (var bodyChild in innerChildren)
+                {
+                    if (bodyChild.Suffix is "Header" or "Footer" or "Group" or "List" or "Separator")
+                        continue;
+                    var bodyDefault = GetDefaultContent(bodyChild.Suffix, parent.Name);
+                    if (bodyDefault is null) continue;
+                    sb.AppendLine($"                body.OpenComponent<{bodyChild.Name}>(bodySeq++);");
+                    if (!string.IsNullOrEmpty(bodyDefault))
+                    {
+                        var bodyEscaped = bodyDefault.Replace("\\", "\\\\").Replace("\"", "\\\"");
+                        sb.AppendLine($"                body.AddAttribute(bodySeq++, \"ChildContent\", (RenderFragment)(cb => cb.AddContent(0, \"{bodyEscaped}\")));");
+                    }
+                    sb.AppendLine($"                body.CloseComponent();");
+                }
+                sb.AppendLine("            }));");
+            }
+            else if (!string.IsNullOrEmpty(defaultContent))
+            {
+                var escaped = defaultContent!.Replace("\\", "\\\\").Replace("\"", "\\\"");
                 sb.AppendLine($"            inner.AddAttribute(childSeq++, \"ChildContent\", (RenderFragment)(cb => cb.AddContent(0, \"{escaped}\")));");
             }
+
             sb.AppendLine($"            inner.CloseComponent();");
         }
 

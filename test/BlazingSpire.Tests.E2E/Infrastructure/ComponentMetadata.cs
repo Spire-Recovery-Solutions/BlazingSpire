@@ -53,6 +53,20 @@ internal static class ComponentMetadata
         from v in new[] { true, false }
         select (c, p, v);
 
+    /// <summary>
+    /// Overlay-style composites that have a Trigger child, a Content child, a Description
+    /// child, and an IsOpen parameter — i.e. components whose body must stay hidden until
+    /// the trigger is clicked. Used by body-leak assertions to catch bugs where the
+    /// playground composite factory flattens inner children as siblings of Content instead
+    /// of nesting them, causing the body to render unconditionally.
+    /// </summary>
+    public static IEnumerable<ComponentMeta> OverlayComposites =>
+        TopLevel.Where(c =>
+            c.Composition.Children.Contains($"{c.Name}Trigger") &&
+            c.Composition.Children.Contains($"{c.Name}Content") &&
+            c.Composition.Children.Contains($"{c.Name}Description") &&
+            c.Parameters.Any(p => p.Name == "IsOpen"));
+
     private static string FindComponentsJson()
     {
         // Check deploy locations: next to the test DLL first, then walk up
