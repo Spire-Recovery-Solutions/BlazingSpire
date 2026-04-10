@@ -4,7 +4,7 @@
 
 @if (_meta is not null)
 {
-    <Card>
+    <Card data-playground="@_meta.Name">
         <CardHeader>
             <CardTitle>@_meta.Name</CardTitle>
             <CardDescription>@_meta.Description</CardDescription>
@@ -12,7 +12,7 @@
         <CardContent Class="p-0">
             <div class="flex flex-col lg:flex-row">
                 @* Preview pane *@
-                <div class="flex-1 min-h-[200px] border-b lg:border-b-0 lg:border-r border-border p-8 flex items-center justify-center bg-muted/30">
+                <div data-playground-preview class="flex-1 min-h-[200px] border-b lg:border-b-0 lg:border-r border-border p-8 flex items-center justify-center bg-muted/30">
                     @_renderFragment
                 </div>
                 @* Controls pane *@

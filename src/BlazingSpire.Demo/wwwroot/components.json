@@ -779,7 +779,7 @@
         "kind": "Object",
         "type": "DateOnly",
         "description": "The month currently displayed.",
-        "defaultValue": "4/9/2026"
+        "defaultValue": "4/10/2026"
       },
       {
         "name": "SelectedDate",
