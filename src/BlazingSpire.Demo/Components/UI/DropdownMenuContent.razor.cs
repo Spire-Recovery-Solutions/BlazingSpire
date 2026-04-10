@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class DropdownMenuContent : BlazingSpireComponentBase
+public partial class DropdownMenuContent : ChildOf<DropdownMenu>
 {
-    [CascadingParameter] public DropdownMenu? ParentMenu { get; set; }
+    public DropdownMenu? ParentMenu => Parent;
 
     protected override string BaseClasses =>
         "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md";

@@ -1,0 +1,18 @@
+#version 1.0
+
+component{name:str,description:str,category:str,baseTier:str}:
+  name: CodeBlock
+  description: Renders a syntax-highlighted code block using Prism.js. Sets textContent via JS interop to keep Prism's DOM changes outside Blazor's render tree.
+  category: General
+  baseTier: BlazingSpireComponentBase
+
+composition{role:str,parent:str,isComposite:bool}:
+  role: Root
+  parent: 
+  isComposite: false
+
+parameters[4]{name:str,type:str,kind:str,default:str,description:str}:
+  ChildContent, RenderFragment, Content, Sample CodeBlock content, The content to render inside the component.
+  Class, string, String, , Additional CSS classes to apply to the root element.
+  Code, string, String, , Raw code to display. Pass plain text — HTML encoding is handled internally.
+  Language, string, String, xml, Prism language class (e.g., "xml", "csharp"). Default: "xml".

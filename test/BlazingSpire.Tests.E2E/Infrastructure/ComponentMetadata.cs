@@ -32,11 +32,12 @@ internal static class ComponentMetadata
     }
 
     /// <summary>
-    /// Top-level components that have their own playground page (not sub-components
+    /// Root components that have their own playground page (not Child components
     /// like AlertTitle, DialogContent, etc. which only render inside a parent).
+    /// Derived programmatically from composition.role in components.json.
     /// </summary>
     public static IEnumerable<ComponentMeta> TopLevel =>
-        All.Where(c => !IsSubComponent(c.Name));
+        All.Where(c => c.Composition.Role == "Root");
 
     /// <summary>Components with at least one Enum parameter.</summary>
     public static IEnumerable<(ComponentMeta Component, ParameterMeta Parameter, string Value)> EnumPermutations =>
@@ -51,29 +52,6 @@ internal static class ComponentMetadata
         from p in c.Parameters.Where(p => p.Kind == "Boolean" || p.Kind == "Bool")
         from v in new[] { true, false }
         select (c, p, v);
-
-    private static bool IsSubComponent(string name)
-    {
-        // Heuristic: names ending in structural suffixes are child components
-        // These only render inside a cascading parent and don't appear on their own page
-        var suffixes = new[]
-        {
-            "Content", "Trigger", "Title", "Description", "Header", "Footer",
-            "Close", "Action", "Cancel", "Input", "Value", "Item", "Empty",
-            "Label", "List", "Separator", "Group", "Slot"
-        };
-        foreach (var suffix in suffixes)
-        {
-            if (name.EndsWith(suffix, StringComparison.Ordinal) && name != suffix)
-            {
-                // The name has the suffix AND isn't literally just the suffix
-                // Additional check: the prefix should match a known parent component name
-                var prefix = name.Substring(0, name.Length - suffix.Length);
-                if (prefix.Length > 0) return true;
-            }
-        }
-        return false;
-    }
 
     private static string FindComponentsJson()
     {
@@ -99,7 +77,16 @@ internal sealed class ComponentMeta
     [JsonPropertyName("description")] public string Description { get; set; } = "";
     [JsonPropertyName("category")] public string Category { get; set; } = "";
     [JsonPropertyName("baseTier")] public string BaseTier { get; set; } = "";
+    [JsonPropertyName("composition")] public CompositionMeta Composition { get; set; } = new();
     [JsonPropertyName("parameters")] public List<ParameterMeta> Parameters { get; set; } = new();
+}
+
+internal sealed class CompositionMeta
+{
+    [JsonPropertyName("role")] public string Role { get; set; } = "Root";
+    [JsonPropertyName("parent")] public string? Parent { get; set; }
+    [JsonPropertyName("children")] public List<string> Children { get; set; } = new();
+    [JsonPropertyName("isComposite")] public bool IsComposite { get; set; }
 }
 
 internal sealed class ParameterMeta

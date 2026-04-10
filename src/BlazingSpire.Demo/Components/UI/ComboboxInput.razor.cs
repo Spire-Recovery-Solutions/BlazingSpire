@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ComboboxInput : BlazingSpireComponentBase
+public partial class ComboboxInput : ChildOf<Combobox>
 {
-    [CascadingParameter] public Combobox? ParentCombobox { get; set; }
+    public Combobox? ParentCombobox => Parent;
 
     protected override string BaseClasses =>
         "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none " +

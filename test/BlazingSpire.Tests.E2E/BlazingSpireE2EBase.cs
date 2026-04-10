@@ -16,7 +16,7 @@ public abstract class BlazingSpireE2EBase : IAsyncLifetime
     protected IPage Page { get; private set; } = null!;
 
     protected string BaseUrl =>
-        Environment.GetEnvironmentVariable("APP_URL") ?? "https://localhost:5001";
+        Environment.GetEnvironmentVariable("APP_URL") ?? "http://localhost:5299";
 
     public async Task InitializeAsync()
     {

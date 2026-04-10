@@ -3,9 +3,8 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class TabsContent : BlazingSpireComponentBase
+public partial class TabsContent : ChildOf<Tabs>
 {
-    [CascadingParameter] public Tabs? Parent { get; set; }
     [Parameter, EditorRequired] public string ItemValue { get; set; } = "";
 
     private bool IsActive => Parent?.ActiveValue == ItemValue;

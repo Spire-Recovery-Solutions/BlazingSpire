@@ -3,9 +3,11 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class AlertDialogAction : BlazingSpireComponentBase
+public partial class AlertDialogAction : ChildOf<AlertDialog>
 {
-    [CascadingParameter] public AlertDialog? ParentDialog { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public AlertDialog? ParentDialog => Parent;
+
     [Parameter] public EventCallback OnClick { get; set; }
 
     protected override string BaseClasses =>

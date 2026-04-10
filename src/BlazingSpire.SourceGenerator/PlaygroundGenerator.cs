@@ -12,6 +12,8 @@ namespace BlazingSpire.SourceGenerator;
 public sealed class PlaygroundGenerator : IIncrementalGenerator
 {
     private const string BaseClassName = "BlazingSpireComponentBase";
+    private const string InfrastructureBaseName = "Infrastructure";
+    private const string ChildOfBaseName = "ChildOf";
 
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
@@ -23,6 +25,9 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         // ── Phase 1: Discover all concrete component types ──────────────────
         var allComponents = new Dictionary<string, ComponentInfo>();
 
+        // ── Phase 1: Discover all concrete components ─────────────────────────
+        // A component is included if it inherits BlazingSpireComponentBase but is NOT
+        // an Infrastructure marker (providers, internal types).
         foreach (var tree in compilation.SyntaxTrees)
         {
             var model = compilation.GetSemanticModel(tree);
@@ -36,6 +41,8 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
                     continue;
                 if (HasBrowsableFalse(symbol))
                     continue;
+                if (InheritsFrom(symbol, InfrastructureBaseName))
+                    continue;
 
                 var fullName = symbol.ToDisplayString();
                 if (!allComponents.ContainsKey(fullName))
@@ -45,72 +52,34 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
 
         if (allComponents.Count == 0) return;
 
-        // ── Phase 2: Find [CascadingParameter] relationships via syntax ─────
-        // Scan all syntax trees for properties with [CascadingParameter] attribute
+        // ── Phase 2: Find ChildOf<TParent> relationships ─────────────────────
+        // A component is a Child if its base type is ChildOf<TParent>.
+        // Pure type-system check — no attribute scanning, no naming heuristics.
         var parentToChildren = new Dictionary<string, List<ChildInfo>>();
         var childSet = new HashSet<string>();
 
-        foreach (var tree in compilation.SyntaxTrees)
+        foreach (var comp in allComponents.Values)
         {
-            var model = compilation.GetSemanticModel(tree);
-            foreach (var propDecl in tree.GetRoot().DescendantNodes().OfType<PropertyDeclarationSyntax>())
+            var parentType = GetChildOfParent(comp.Symbol);
+            if (parentType is null) continue;
+
+            var parentFullName = parentType.ToDisplayString().TrimEnd('?');
+            if (!allComponents.ContainsKey(parentFullName)) continue;
+
+            var parentName = parentType.Name;
+            var childName = comp.Name;
+            var suffix = childName.StartsWith(parentName, StringComparison.Ordinal)
+                ? childName.Substring(parentName.Length)
+                : childName;
+            if (string.IsNullOrEmpty(suffix)) suffix = childName;
+
+            if (!parentToChildren.TryGetValue(parentFullName, out var children))
             {
-                // Check for [CascadingParameter] attribute in syntax
-                var attrNames = propDecl.AttributeLists
-                    .SelectMany(al => al.Attributes)
-                    .Select(a => a.Name.ToString())
-                    .ToList();
-
-                var hasCascading = attrNames.Any(n => n.Contains("CascadingParameter"));
-                if (!hasCascading) continue;
-
-                // Get the containing type
-                var containingClass = propDecl.Ancestors().OfType<ClassDeclarationSyntax>().FirstOrDefault();
-                if (containingClass is null) continue;
-
-                var containingSymbol = model.GetDeclaredSymbol(containingClass) as INamedTypeSymbol;
-                if (containingSymbol is null) continue;
-
-                var childFullName = containingSymbol.ToDisplayString();
-                if (!allComponents.ContainsKey(childFullName)) continue;
-
-                // Get the property type symbol
-                var propSymbol = model.GetDeclaredSymbol(propDecl) as IPropertySymbol;
-                if (propSymbol is null) continue;
-
-                var propType = propSymbol.Type;
-                // Unwrap Nullable<T> for value types
-                if (propType is INamedTypeSymbol namedType && namedType.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T)
-                    propType = namedType.TypeArguments[0];
-
-                if (propType is not INamedTypeSymbol parentType) continue;
-                if (!InheritsFrom(parentType, BaseClassName)) continue;
-
-                // Strip trailing ? from nullable reference type display string
-                var parentFullName = parentType.ToDisplayString().TrimEnd('?');
-                if (!allComponents.ContainsKey(parentFullName)) continue;
-
-                // Determine child's role from name suffix
-                var parentName = parentType.Name;
-                var childName = containingSymbol.Name;
-                var suffix = childName.StartsWith(parentName, StringComparison.Ordinal)
-                    ? childName.Substring(parentName.Length)
-                    : childName;
-
-                if (string.IsNullOrEmpty(suffix)) continue;
-
-                if (!parentToChildren.TryGetValue(parentFullName, out var children))
-                {
-                    children = new List<ChildInfo>();
-                    parentToChildren[parentFullName] = children;
-                }
-
-                if (!children.Any(c => c.Name == childName))
-                {
-                    children.Add(new ChildInfo(childName, suffix, childFullName));
-                    childSet.Add(childFullName);
-                }
+                children = new List<ChildInfo>();
+                parentToChildren[parentFullName] = children;
             }
+            children.Add(new ChildInfo(comp.Name, suffix, comp.FullName));
+            childSet.Add(comp.FullName);
         }
 
         // ── Phase 3: Top-level = not a child ────────────────────────────────
@@ -122,24 +91,7 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         // ── Phase 4: Generate code ──────────────────────────────────────────
         var sb = new StringBuilder();
         sb.AppendLine("// <auto-generated/>");
-        sb.AppendLine($"// Stats: {allComponents.Count} total, {childSet.Count} children, {parentToChildren.Count} composites, {topLevel.Count} top-level");
-        foreach (var kvp in parentToChildren.Take(5))
-            sb.AppendLine($"// Composite: {kvp.Key} -> [{string.Join(", ", kvp.Value.Select(c => c.Name))}]");
-        // Debug: count syntax trees and check for CascadingParameter
-        var treeCount = compilation.SyntaxTrees.Count();
-        var cascadingCount = 0;
-        foreach (var tree in compilation.SyntaxTrees)
-        {
-            foreach (var attr in tree.GetRoot().DescendantNodes().OfType<AttributeSyntax>())
-            {
-                if (attr.Name.ToString().Contains("Cascading"))
-                    cascadingCount++;
-            }
-        }
-        sb.AppendLine($"// Debug: {treeCount} syntax trees, {cascadingCount} [Cascading*] attributes found");
-        // Sample tree paths
-        foreach (var tree in compilation.SyntaxTrees.Take(3))
-            sb.AppendLine($"// Tree: {tree.FilePath}");
+        sb.AppendLine($"// {allComponents.Count} total, {childSet.Count} children, {parentToChildren.Count} composites, {topLevel.Count} top-level");
         sb.AppendLine("#nullable enable");
         sb.AppendLine();
         sb.AppendLine("using Microsoft.AspNetCore.Components;");
@@ -310,6 +262,27 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
             current = current.BaseType;
         }
         return false;
+    }
+
+    /// <summary>
+    /// Returns the parent component type if this component inherits from <c>ChildOf&lt;TParent&gt;</c>,
+    /// otherwise null. Walks the base class chain so subclasses of children also work.
+    /// </summary>
+    private static INamedTypeSymbol? GetChildOfParent(INamedTypeSymbol symbol)
+    {
+        var current = symbol.BaseType;
+        while (current is not null)
+        {
+            if (current.IsGenericType
+                && current.Name == ChildOfBaseName
+                && current.TypeArguments.Length == 1
+                && current.TypeArguments[0] is INamedTypeSymbol parentType)
+            {
+                return parentType;
+            }
+            current = current.BaseType;
+        }
+        return null;
     }
 
     private static bool HasBrowsableFalse(INamedTypeSymbol symbol)

@@ -6,6 +6,12 @@ component{name:str,description:str,category:str,baseTier:str}:
   category: Overlay
   baseTier: PopoverBase
 
+composition{role:str,parent:str,isComposite:bool}:
+  role: Root
+  parent: 
+  isComposite: true
+children[2]: TooltipContent, TooltipTrigger
+
 parameters[11]{name:str,type:str,kind:str,default:str,description:str}:
   Align, FloatingAlign, Enum, Start, Alignment along the side axis.
   AlignOffset, int, Number, 0, Offset in pixels along the alignment axis.

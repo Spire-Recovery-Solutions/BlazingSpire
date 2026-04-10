@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class SelectItem : BlazingSpireComponentBase, IDisposable
+public partial class SelectItem : ChildOf<Select>, IDisposable
 {
-    [CascadingParameter] public Select? ParentSelect { get; set; }
+    public Select? ParentSelect => Parent;
 
     [Parameter, EditorRequired] public string ItemValue { get; set; } = "";
     [Parameter] public string? ItemText { get; set; }

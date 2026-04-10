@@ -3,10 +3,8 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class CollapsibleTrigger : BlazingSpireComponentBase
+public partial class CollapsibleTrigger : ChildOf<Collapsible>
 {
-    [CascadingParameter] public Collapsible? Parent { get; set; }
-
     protected override string BaseClasses => "inline-block";
 
     private async Task OnClickAsync()

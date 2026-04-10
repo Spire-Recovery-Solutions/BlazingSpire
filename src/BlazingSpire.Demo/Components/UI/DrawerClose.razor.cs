@@ -3,9 +3,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class DrawerClose : BlazingSpireComponentBase
+public partial class DrawerClose : ChildOf<Drawer>
 {
-    [CascadingParameter] public Drawer? ParentDrawer { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public Drawer? ParentDrawer => Parent;
 
     protected override string BaseClasses =>
         "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity " +

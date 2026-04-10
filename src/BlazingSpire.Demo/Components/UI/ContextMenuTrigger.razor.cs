@@ -4,9 +4,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ContextMenuTrigger : BlazingSpireComponentBase
+public partial class ContextMenuTrigger : ChildOf<ContextMenu>
 {
-    [CascadingParameter] public ContextMenu? ParentMenu { get; set; }
+    public ContextMenu? ParentMenu => Parent;
 
     protected override string BaseClasses => "inline-block";
 

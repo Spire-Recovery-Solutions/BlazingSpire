@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class DropdownMenuLabel : BlazingSpireComponentBase
+public partial class DropdownMenuLabel : ChildOf<DropdownMenu>
 {
     [Parameter] public bool Inset { get; set; }
 

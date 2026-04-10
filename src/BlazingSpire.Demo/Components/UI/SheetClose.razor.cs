@@ -3,9 +3,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class SheetClose : BlazingSpireComponentBase
+public partial class SheetClose : ChildOf<Sheet>
 {
-    [CascadingParameter] public Sheet? ParentSheet { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public Sheet? ParentSheet => Parent;
 
     protected override string BaseClasses =>
         "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity " +

@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class SelectValue : BlazingSpireComponentBase
+public partial class SelectValue : ChildOf<Select>
 {
-    [CascadingParameter] public Select? ParentSelect { get; set; }
+    public Select? ParentSelect => Parent;
 
     protected override string BaseClasses => "";
 }

@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ToggleGroupItem : BlazingSpireComponentBase
+public partial class ToggleGroupItem : ChildOf<ToggleGroup>
 {
-    [CascadingParameter] public ToggleGroup? Group { get; set; }
+    public ToggleGroup? Group => Parent;
     [Parameter, EditorRequired] public string ItemValue { get; set; } = "";
     [Parameter] public bool Disabled { get; set; }
 

@@ -33,24 +33,89 @@ if (baseType is null)
     return 1;
 }
 
-// Infrastructure components to exclude
-var excludedNames = new HashSet<string>(StringComparer.Ordinal)
-{
-    "CodeBlock", "ExampleSection", "ComponentPlayground",
-    "MainLayout", "NavMenu", "ThemeToggle",
-    "DialogProvider", "ToastProvider", "TooltipProvider",
-    "MessageBoxDialog",
-};
+// ── Programmatic component discovery ────────────────────────────────────────
+//
+// All classification is derived from the type system — no naming conventions,
+// no exclusion lists, no attributes required:
+//
+//   • Component:        inherits BlazingSpireComponentBase, concrete, in UI namespace
+//   • Infrastructure:   inherits Components.Shared.Infrastructure → excluded
+//   • Child:            inherits Components.Shared.ChildOf<TParent> → role=Child, parent=TParent
+//   • Root:             everything else → role=Root, gets a playground page
+//   • Composite parent: a Root that other components declare ChildOf<thisType>
+//
+// One inheritance check per fact. Universal, structural, intrinsic.
 
-var components = assembly.GetTypes()
-    .Where(t => !t.IsAbstract
+const string UiNamespace = "BlazingSpire.Demo.Components.UI";
+const string InfrastructureBase = "Infrastructure";
+const string ChildOfBase = "ChildOf`1";
+
+bool InheritsByName(Type t, string baseName)
+{
+    var current = t.BaseType;
+    while (current is not null && current != typeof(object))
+    {
+        if (current.Name == baseName) return true;
+        current = current.BaseType;
+    }
+    return false;
+}
+
+Type? GetChildOfParent(Type t)
+{
+    var current = t.BaseType;
+    while (current is not null && current != typeof(object))
+    {
+        if (current.IsGenericType
+            && current.GetGenericTypeDefinition().Name == ChildOfBase)
+        {
+            return current.GetGenericArguments()[0];
+        }
+        current = current.BaseType;
+    }
+    return null;
+}
+
+// Discover all concrete UI components, excluding Infrastructure markers
+var allComponents = assembly.GetTypes()
+    .Where(t => t.Namespace == UiNamespace
+                && !t.IsAbstract
                 && !t.IsGenericTypeDefinition
                 && baseType.IsAssignableFrom(t)
-                && !excludedNames.Contains(t.Name))
+                && !InheritsByName(t, InfrastructureBase))
     .OrderBy(t => t.Name)
     .ToList();
 
-Console.WriteLine($"Found {components.Count} components.");
+Console.WriteLine($"Discovered {allComponents.Count} UI components.");
+
+// Build composition map from ChildOf<TParent> inheritance
+var parentChildMap = new Dictionary<string, List<string>>(StringComparer.Ordinal);
+var childParent = new Dictionary<string, string>(StringComparer.Ordinal);
+var childComponents = new HashSet<string>(StringComparer.Ordinal);
+
+foreach (var type in allComponents)
+{
+    var parentType = GetChildOfParent(type);
+    if (parentType is null) continue;
+
+    childComponents.Add(type.Name);
+    childParent[type.Name] = parentType.Name;
+    if (!parentChildMap.TryGetValue(parentType.Name, out var kids))
+    {
+        kids = new List<string>();
+        parentChildMap[parentType.Name] = kids;
+    }
+    if (!kids.Contains(type.Name)) kids.Add(type.Name);
+}
+
+Console.WriteLine($"Identified {childComponents.Count} children and {parentChildMap.Count} composite parents.");
+
+var components = allComponents;
+var sourceGenRoots = new HashSet<string>(
+    components.Where(c => !childComponents.Contains(c.Name)).Select(c => c.Name),
+    StringComparer.Ordinal);
+
+Console.WriteLine($"Final: {components.Count} components ({sourceGenRoots.Count} Roots, {childComponents.Count} Children).");
 
 // ── Parse XML docs ─────────────────────────────────────────────────────────
 var xmlDocs = new Dictionary<string, string>(StringComparer.Ordinal);
@@ -79,8 +144,22 @@ foreach (var type in components)
     try
     {
         var model = ExtractComponent(type, xmlDocs, baseType, assembly);
-        if (model is not null)
-            componentModels.Add(model);
+        if (model is null) continue;
+
+        // Populate composition from programmatic analysis
+        // Role is determined by source generator membership, not just cascading params,
+        // so structural children (without [CascadingParameter]) are still classified correctly.
+        var isChild = !sourceGenRoots.Contains(type.Name);
+        var hasCascadingParent = childComponents.Contains(type.Name);
+        model.Composition = new CompositionModel
+        {
+            Role = isChild ? "Child" : "Root",
+            Parent = hasCascadingParent ? childParent[type.Name] : null,
+            Children = parentChildMap.TryGetValue(type.Name, out var kids) ? kids : new List<string>(),
+            IsComposite = parentChildMap.ContainsKey(type.Name),
+        };
+
+        componentModels.Add(model);
     }
     catch (Exception ex)
     {
@@ -417,9 +496,22 @@ static void GenerateOpenApiSpec(List<ComponentModel> components, string outputDi
             {
                 ["x-base-tier"] = new OpenApiString(comp.BaseTier),
                 ["x-category"] = new OpenApiString(comp.Category),
+                ["x-composition-role"] = new OpenApiString(comp.Composition.Role),
+                ["x-composition-is-composite"] = new OpenApiBoolean(comp.Composition.IsComposite),
             },
             Properties = new Dictionary<string, OpenApiSchema>(),
         };
+
+        if (comp.Composition.Parent is not null)
+            schema.Extensions["x-composition-parent"] = new OpenApiString(comp.Composition.Parent);
+
+        if (comp.Composition.Children.Count > 0)
+        {
+            var childrenArray = new OpenApiArray();
+            foreach (var child in comp.Composition.Children)
+                childrenArray.Add(new OpenApiString(child));
+            schema.Extensions["x-composition-children"] = childrenArray;
+        }
 
         foreach (var param in comp.Parameters)
         {
@@ -495,6 +587,17 @@ static void GenerateTonlFile(ComponentModel comp, string examplesDir)
     sb.AppendLine($"  baseTier: {comp.BaseTier}");
     sb.AppendLine();
 
+    // Composition — structural relationships to other components
+    sb.AppendLine("composition{role:str,parent:str,isComposite:bool}:");
+    sb.AppendLine($"  role: {comp.Composition.Role}");
+    sb.AppendLine($"  parent: {comp.Composition.Parent ?? ""}");
+    sb.AppendLine($"  isComposite: {(comp.Composition.IsComposite ? "true" : "false")}");
+    if (comp.Composition.Children.Count > 0)
+    {
+        sb.AppendLine($"children[{comp.Composition.Children.Count}]: {string.Join(", ", comp.Composition.Children)}");
+    }
+    sb.AppendLine();
+
     // Parameters
     var paramCount = comp.Parameters.Count;
     sb.AppendLine($"parameters[{paramCount}]{{name:str,type:str,kind:str,default:str,description:str}}:");
@@ -537,7 +640,24 @@ class ComponentModel
     public string Description { get; set; } = "";
     public string Category { get; set; } = "";
     public string BaseTier { get; set; } = "";
+    public CompositionModel Composition { get; set; } = new();
     public List<ParameterModel> Parameters { get; set; } = [];
+}
+
+class CompositionModel
+{
+    /// <summary>"Root" (standalone) or "Child" (requires parent via cascading value).</summary>
+    public string Role { get; set; } = "Root";
+
+    /// <summary>For Child: the component type that must appear as an ancestor.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Parent { get; set; }
+
+    /// <summary>For Root: the child component types that can be rendered inside this one.</summary>
+    public List<string> Children { get; set; } = new();
+
+    /// <summary>True when this component accepts child components via cascading values.</summary>
+    public bool IsComposite { get; set; }
 }
 
 class ParameterModel

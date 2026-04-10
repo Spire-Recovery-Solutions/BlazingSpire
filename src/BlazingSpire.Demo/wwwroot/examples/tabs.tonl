@@ -6,6 +6,12 @@ component{name:str,description:str,category:str,baseTier:str}:
   category: General
   baseTier: BlazingSpireComponentBase
 
+composition{role:str,parent:str,isComposite:bool}:
+  role: Root
+  parent: 
+  isComposite: true
+children[3]: TabsContent, TabsList, TabsTrigger
+
 parameters[4]{name:str,type:str,kind:str,default:str,description:str}:
   ActiveValue, string, String, , The value of the currently active tab.
   ActiveValueChanged, EventCallback<string>, Event, Microsoft.AspNetCore.Components.EventCallback`1[System.String], Callback invoked when the active tab changes.

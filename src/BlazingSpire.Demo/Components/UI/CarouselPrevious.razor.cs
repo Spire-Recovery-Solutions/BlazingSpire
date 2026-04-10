@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class CarouselPrevious : BlazingSpireComponentBase
+public partial class CarouselPrevious : ChildOf<Carousel>
 {
     [CascadingParameter] private Carousel? _carousel { get; set; }
 

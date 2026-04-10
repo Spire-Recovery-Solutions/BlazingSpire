@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class CommandInput : BlazingSpireComponentBase
+public partial class CommandInput : ChildOf<Command>
 {
-    [CascadingParameter] public Command? ParentCommand { get; set; }
+    public Command? ParentCommand => Parent;
 
     [Parameter] public string? Placeholder { get; set; }
 

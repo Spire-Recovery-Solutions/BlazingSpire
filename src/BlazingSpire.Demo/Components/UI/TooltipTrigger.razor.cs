@@ -4,9 +4,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class TooltipTrigger : BlazingSpireComponentBase
+public partial class TooltipTrigger : ChildOf<Tooltip>
 {
-    [CascadingParameter] public Tooltip? ParentTooltip { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public Tooltip? ParentTooltip => Parent;
 
     protected override string BaseClasses => "";
 

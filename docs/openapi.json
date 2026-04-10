@@ -21,7 +21,14 @@
         },
         "description": "A vertically stacked set of collapsible sections.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "AccordionContent",
+          "AccordionItem",
+          "AccordionTrigger"
+        ]
       },
       "AccordionContent": {
         "type": "object",
@@ -36,8 +43,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Accordion"
       },
       "AccordionItem": {
         "type": "object",
@@ -52,8 +62,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Accordion"
       },
       "AccordionTrigger": {
         "type": "object",
@@ -68,8 +81,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Accordion"
       },
       "Alert": {
         "type": "object",
@@ -97,7 +113,13 @@
         },
         "description": "Display callout messages for important information or feedback.",
         "x-base-tier": "PresentationalBase",
-        "x-category": "Presentational"
+        "x-category": "Presentational",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "AlertDescription",
+          "AlertTitle"
+        ]
       },
       "AlertDescription": {
         "type": "object",
@@ -112,8 +134,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Alert"
       },
       "AlertDialog": {
         "type": "object",
@@ -154,7 +179,19 @@
         },
         "description": "",
         "x-base-tier": "OverlayBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "AlertDialogAction",
+          "AlertDialogCancel",
+          "AlertDialogContent",
+          "AlertDialogDescription",
+          "AlertDialogFooter",
+          "AlertDialogHeader",
+          "AlertDialogTitle",
+          "AlertDialogTrigger"
+        ]
       },
       "AlertDialogAction": {
         "type": "object",
@@ -174,8 +211,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "AlertDialog"
       },
       "AlertDialogCancel": {
         "type": "object",
@@ -190,8 +230,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "AlertDialog"
       },
       "AlertDialogContent": {
         "type": "object",
@@ -206,8 +249,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "AlertDialog"
       },
       "AlertDialogDescription": {
         "type": "object",
@@ -222,8 +268,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "AlertDialog"
       },
       "AlertDialogFooter": {
         "type": "object",
@@ -238,8 +287,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "AlertDialog"
       },
       "AlertDialogHeader": {
         "type": "object",
@@ -254,8 +306,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "AlertDialog"
       },
       "AlertDialogTitle": {
         "type": "object",
@@ -270,8 +325,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "AlertDialog"
       },
       "AlertDialogTrigger": {
         "type": "object",
@@ -286,8 +344,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "AlertDialog"
       },
       "AlertTitle": {
         "type": "object",
@@ -302,8 +363,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Alert"
       },
       "AspectRatio": {
         "type": "object",
@@ -323,7 +387,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Avatar": {
         "type": "object",
@@ -339,7 +405,13 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "AvatarFallback",
+          "AvatarImage"
+        ]
       },
       "AvatarFallback": {
         "type": "object",
@@ -354,8 +426,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Avatar"
       },
       "AvatarImage": {
         "type": "object",
@@ -378,8 +453,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Avatar"
       },
       "Badge": {
         "type": "object",
@@ -406,7 +484,9 @@
         },
         "description": "A small status indicator for counts, labels, or categories.",
         "x-base-tier": "PresentationalBase",
-        "x-category": "Presentational"
+        "x-category": "Presentational",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Breadcrumb": {
         "type": "object",
@@ -422,7 +502,16 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "BreadcrumbItem",
+          "BreadcrumbLink",
+          "BreadcrumbList",
+          "BreadcrumbPage",
+          "BreadcrumbSeparator"
+        ]
       },
       "BreadcrumbItem": {
         "type": "object",
@@ -437,8 +526,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Breadcrumb"
       },
       "BreadcrumbLink": {
         "type": "object",
@@ -457,8 +549,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Breadcrumb"
       },
       "BreadcrumbList": {
         "type": "object",
@@ -473,8 +568,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Breadcrumb"
       },
       "BreadcrumbPage": {
         "type": "object",
@@ -489,8 +587,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Breadcrumb"
       },
       "BreadcrumbSeparator": {
         "type": "object",
@@ -505,8 +606,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Breadcrumb"
       },
       "Button": {
         "type": "object",
@@ -577,7 +681,9 @@
         },
         "description": "A clickable button with variant and size options.",
         "x-base-tier": "ButtonBase",
-        "x-category": "Action"
+        "x-category": "Action",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Calendar": {
         "type": "object",
@@ -606,7 +712,9 @@
         },
         "description": "A month calendar for date selection.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Card": {
         "type": "object",
@@ -622,7 +730,16 @@
         },
         "description": "A container card with border and shadow.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "CardContent",
+          "CardDescription",
+          "CardFooter",
+          "CardHeader",
+          "CardTitle"
+        ]
       },
       "CardContent": {
         "type": "object",
@@ -637,8 +754,11 @@
           }
         },
         "description": "Main content area of a Card.",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Card"
       },
       "CardDescription": {
         "type": "object",
@@ -653,8 +773,11 @@
           }
         },
         "description": "Description text within a CardHeader.",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Card"
       },
       "CardFooter": {
         "type": "object",
@@ -669,8 +792,11 @@
           }
         },
         "description": "Footer section of a Card.",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Card"
       },
       "CardHeader": {
         "type": "object",
@@ -685,8 +811,11 @@
           }
         },
         "description": "Header section of a Card.",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Card"
       },
       "CardTitle": {
         "type": "object",
@@ -701,8 +830,11 @@
           }
         },
         "description": "Title element within a CardHeader.",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Card"
       },
       "Carousel": {
         "type": "object",
@@ -737,7 +869,15 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "CarouselContent",
+          "CarouselItem",
+          "CarouselNext",
+          "CarouselPrevious"
+        ]
       },
       "CarouselContent": {
         "type": "object",
@@ -752,8 +892,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Carousel"
       },
       "CarouselItem": {
         "type": "object",
@@ -768,8 +911,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Carousel"
       },
       "CarouselNext": {
         "type": "object",
@@ -784,8 +930,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Carousel"
       },
       "CarouselPrevious": {
         "type": "object",
@@ -800,8 +949,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Carousel"
       },
       "Checkbox": {
         "type": "object",
@@ -832,7 +984,9 @@
         },
         "description": "A toggle checkbox control.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Collapsible": {
         "type": "object",
@@ -858,7 +1012,13 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "CollapsibleContent",
+          "CollapsibleTrigger"
+        ]
       },
       "CollapsibleContent": {
         "type": "object",
@@ -873,8 +1033,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Collapsible"
       },
       "CollapsibleTrigger": {
         "type": "object",
@@ -889,8 +1052,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Collapsible"
       },
       "Combobox": {
         "type": "object",
@@ -979,7 +1145,16 @@
         },
         "description": "",
         "x-base-tier": "PopoverBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "ComboboxContent",
+          "ComboboxEmpty",
+          "ComboboxInput",
+          "ComboboxItem",
+          "ComboboxTrigger"
+        ]
       },
       "ComboboxContent": {
         "type": "object",
@@ -994,8 +1169,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Combobox"
       },
       "ComboboxEmpty": {
         "type": "object",
@@ -1010,8 +1188,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Combobox"
       },
       "ComboboxInput": {
         "type": "object",
@@ -1026,8 +1207,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Combobox"
       },
       "ComboboxItem": {
         "type": "object",
@@ -1055,8 +1239,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Combobox"
       },
       "ComboboxTrigger": {
         "type": "object",
@@ -1071,8 +1258,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Combobox"
       },
       "Command": {
         "type": "object",
@@ -1088,7 +1278,17 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "CommandEmpty",
+          "CommandGroup",
+          "CommandInput",
+          "CommandItem",
+          "CommandList",
+          "CommandSeparator"
+        ]
       },
       "CommandDialog": {
         "type": "object",
@@ -1114,7 +1314,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "CommandEmpty": {
         "type": "object",
@@ -1129,8 +1331,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Command"
       },
       "CommandGroup": {
         "type": "object",
@@ -1149,8 +1354,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Command"
       },
       "CommandInput": {
         "type": "object",
@@ -1169,8 +1377,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Command"
       },
       "CommandItem": {
         "type": "object",
@@ -1199,8 +1410,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Command"
       },
       "CommandList": {
         "type": "object",
@@ -1215,8 +1429,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Command"
       },
       "CommandSeparator": {
         "type": "object",
@@ -1231,8 +1448,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Command"
       },
       "ContextMenu": {
         "type": "object",
@@ -1304,7 +1524,16 @@
         },
         "description": "",
         "x-base-tier": "PopoverBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "ContextMenuContent",
+          "ContextMenuItem",
+          "ContextMenuLabel",
+          "ContextMenuSeparator",
+          "ContextMenuTrigger"
+        ]
       },
       "ContextMenuContent": {
         "type": "object",
@@ -1319,8 +1548,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "ContextMenu"
       },
       "ContextMenuItem": {
         "type": "object",
@@ -1345,8 +1577,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "ContextMenu"
       },
       "ContextMenuLabel": {
         "type": "object",
@@ -1366,8 +1601,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "ContextMenu"
       },
       "ContextMenuSeparator": {
         "type": "object",
@@ -1382,8 +1620,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "ContextMenu"
       },
       "ContextMenuTrigger": {
         "type": "object",
@@ -1398,8 +1639,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "ContextMenu"
       },
       "DataTableColumn": {
         "type": "object",
@@ -1424,7 +1668,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "DatePicker": {
         "type": "object",
@@ -1470,7 +1716,9 @@
         },
         "description": "A date picker combining an input field with a calendar popover.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Dialog": {
         "type": "object",
@@ -1511,7 +1759,18 @@
         },
         "description": "A modal dialog overlay with focus trapping.",
         "x-base-tier": "OverlayBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "DialogClose",
+          "DialogContent",
+          "DialogDescription",
+          "DialogFooter",
+          "DialogHeader",
+          "DialogTitle",
+          "DialogTrigger"
+        ]
       },
       "DialogClose": {
         "type": "object",
@@ -1526,8 +1785,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Dialog"
       },
       "DialogContent": {
         "type": "object",
@@ -1542,8 +1804,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Dialog"
       },
       "DialogDescription": {
         "type": "object",
@@ -1558,8 +1823,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Dialog"
       },
       "DialogFooter": {
         "type": "object",
@@ -1574,8 +1842,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Dialog"
       },
       "DialogHeader": {
         "type": "object",
@@ -1590,8 +1861,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Dialog"
       },
       "DialogTitle": {
         "type": "object",
@@ -1606,8 +1880,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Dialog"
       },
       "DialogTrigger": {
         "type": "object",
@@ -1622,8 +1899,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Dialog"
       },
       "Drawer": {
         "type": "object",
@@ -1664,7 +1944,18 @@
         },
         "description": "",
         "x-base-tier": "OverlayBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "DrawerClose",
+          "DrawerContent",
+          "DrawerDescription",
+          "DrawerFooter",
+          "DrawerHeader",
+          "DrawerTitle",
+          "DrawerTrigger"
+        ]
       },
       "DrawerClose": {
         "type": "object",
@@ -1679,8 +1970,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Drawer"
       },
       "DrawerContent": {
         "type": "object",
@@ -1695,8 +1989,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Drawer"
       },
       "DrawerDescription": {
         "type": "object",
@@ -1711,8 +2008,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Drawer"
       },
       "DrawerFooter": {
         "type": "object",
@@ -1727,8 +2027,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Drawer"
       },
       "DrawerHeader": {
         "type": "object",
@@ -1743,8 +2046,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Drawer"
       },
       "DrawerTitle": {
         "type": "object",
@@ -1759,8 +2065,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Drawer"
       },
       "DrawerTrigger": {
         "type": "object",
@@ -1775,8 +2084,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Drawer"
       },
       "DropdownMenu": {
         "type": "object",
@@ -1848,7 +2160,17 @@
         },
         "description": "",
         "x-base-tier": "PopoverBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "DropdownMenuContent",
+          "DropdownMenuGroup",
+          "DropdownMenuItem",
+          "DropdownMenuLabel",
+          "DropdownMenuSeparator",
+          "DropdownMenuTrigger"
+        ]
       },
       "DropdownMenuContent": {
         "type": "object",
@@ -1863,8 +2185,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "DropdownMenu"
       },
       "DropdownMenuGroup": {
         "type": "object",
@@ -1879,8 +2204,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "DropdownMenu"
       },
       "DropdownMenuItem": {
         "type": "object",
@@ -1905,8 +2233,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "DropdownMenu"
       },
       "DropdownMenuLabel": {
         "type": "object",
@@ -1926,8 +2257,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "DropdownMenu"
       },
       "DropdownMenuSeparator": {
         "type": "object",
@@ -1942,8 +2276,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "DropdownMenu"
       },
       "DropdownMenuTrigger": {
         "type": "object",
@@ -1958,8 +2295,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "DropdownMenu"
       },
       "FormField": {
         "type": "object",
@@ -1983,7 +2323,15 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "FormFieldControl",
+          "FormFieldDescription",
+          "FormFieldError",
+          "FormFieldLabel"
+        ]
       },
       "FormFieldControl": {
         "type": "object",
@@ -1998,8 +2346,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "FormField"
       },
       "FormFieldDescription": {
         "type": "object",
@@ -2014,8 +2365,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "FormField"
       },
       "FormFieldError": {
         "type": "object",
@@ -2030,8 +2384,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "FormField"
       },
       "FormFieldLabel": {
         "type": "object",
@@ -2046,8 +2403,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "FormField"
       },
       "FormSection": {
         "type": "object",
@@ -2076,7 +2436,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "HoverCard": {
         "type": "object",
@@ -2158,7 +2520,13 @@
         },
         "description": "",
         "x-base-tier": "PopoverBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "HoverCardContent",
+          "HoverCardTrigger"
+        ]
       },
       "HoverCardContent": {
         "type": "object",
@@ -2173,8 +2541,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "HoverCard"
       },
       "HoverCardTrigger": {
         "type": "object",
@@ -2189,8 +2560,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "HoverCard"
       },
       "Input": {
         "type": "object",
@@ -2290,7 +2664,9 @@
         },
         "description": "A form input field with two-way binding, sizes, and adornment slots.",
         "x-base-tier": "TextInputBase",
-        "x-category": "Form"
+        "x-category": "Form",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "InputOTP": {
         "type": "object",
@@ -2325,7 +2701,14 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "InputOTPGroup",
+          "InputOTPSeparator",
+          "InputOTPSlot"
+        ]
       },
       "InputOTPGroup": {
         "type": "object",
@@ -2340,8 +2723,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "InputOTP"
       },
       "InputOTPSeparator": {
         "type": "object",
@@ -2356,8 +2742,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "InputOTP"
       },
       "InputOTPSlot": {
         "type": "object",
@@ -2377,8 +2766,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "InputOTP"
       },
       "Label": {
         "type": "object",
@@ -2398,7 +2790,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Menubar": {
         "type": "object",
@@ -2414,7 +2808,12 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "MenubarMenu"
+        ]
       },
       "MenubarContent": {
         "type": "object",
@@ -2429,8 +2828,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "MenubarMenu"
       },
       "MenubarItem": {
         "type": "object",
@@ -2455,8 +2857,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "MenubarMenu"
       },
       "MenubarLabel": {
         "type": "object",
@@ -2471,8 +2876,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "MenubarMenu"
       },
       "MenubarMenu": {
         "type": "object",
@@ -2487,8 +2895,18 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": true,
+        "x-composition-parent": "Menubar",
+        "x-composition-children": [
+          "MenubarContent",
+          "MenubarItem",
+          "MenubarLabel",
+          "MenubarSeparator",
+          "MenubarTrigger"
+        ]
       },
       "MenubarSeparator": {
         "type": "object",
@@ -2503,8 +2921,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "MenubarMenu"
       },
       "MenubarTrigger": {
         "type": "object",
@@ -2519,8 +2940,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "MenubarMenu"
       },
       "NavigationMenu": {
         "type": "object",
@@ -2536,7 +2960,16 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "NavigationMenuContent",
+          "NavigationMenuItem",
+          "NavigationMenuLink",
+          "NavigationMenuList",
+          "NavigationMenuTrigger"
+        ]
       },
       "NavigationMenuContent": {
         "type": "object",
@@ -2551,8 +2984,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "NavigationMenu"
       },
       "NavigationMenuItem": {
         "type": "object",
@@ -2567,8 +3003,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "NavigationMenu"
       },
       "NavigationMenuLink": {
         "type": "object",
@@ -2587,8 +3026,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "NavigationMenu"
       },
       "NavigationMenuList": {
         "type": "object",
@@ -2603,8 +3045,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "NavigationMenu"
       },
       "NavigationMenuTrigger": {
         "type": "object",
@@ -2619,8 +3064,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "NavigationMenu"
       },
       "Pagination": {
         "type": "object",
@@ -2636,7 +3084,17 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "PaginationContent",
+          "PaginationEllipsis",
+          "PaginationItem",
+          "PaginationLink",
+          "PaginationNext",
+          "PaginationPrevious"
+        ]
       },
       "PaginationContent": {
         "type": "object",
@@ -2651,8 +3109,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Pagination"
       },
       "PaginationEllipsis": {
         "type": "object",
@@ -2667,8 +3128,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Pagination"
       },
       "PaginationItem": {
         "type": "object",
@@ -2683,8 +3147,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Pagination"
       },
       "PaginationLink": {
         "type": "object",
@@ -2708,8 +3175,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Pagination"
       },
       "PaginationNext": {
         "type": "object",
@@ -2728,8 +3198,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Pagination"
       },
       "PaginationPrevious": {
         "type": "object",
@@ -2748,8 +3221,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Pagination"
       },
       "Popover": {
         "type": "object",
@@ -2821,7 +3297,13 @@
         },
         "description": "A positioned floating panel anchored to a trigger.",
         "x-base-tier": "PopoverBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "PopoverContent",
+          "PopoverTrigger"
+        ]
       },
       "PopoverContent": {
         "type": "object",
@@ -2836,8 +3318,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Popover"
       },
       "PopoverTrigger": {
         "type": "object",
@@ -2852,8 +3337,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Popover"
       },
       "Progress": {
         "type": "object",
@@ -2874,7 +3362,9 @@
         },
         "description": "A horizontal progress bar indicating completion.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "RadioGroup": {
         "type": "object",
@@ -2899,7 +3389,12 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "RadioGroupItem"
+        ]
       },
       "RadioGroupItem": {
         "type": "object",
@@ -2923,8 +3418,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "RadioGroup"
       },
       "ScrollArea": {
         "type": "object",
@@ -2940,7 +3438,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Select": {
         "type": "object",
@@ -3025,7 +3525,18 @@
         },
         "description": "A dropdown select control for choosing from a list.",
         "x-base-tier": "PopoverBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "SelectContent",
+          "SelectGroup",
+          "SelectItem",
+          "SelectLabel",
+          "SelectSeparator",
+          "SelectTrigger",
+          "SelectValue"
+        ]
       },
       "SelectContent": {
         "type": "object",
@@ -3040,8 +3551,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Select"
       },
       "SelectGroup": {
         "type": "object",
@@ -3056,8 +3570,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Select"
       },
       "SelectItem": {
         "type": "object",
@@ -3085,8 +3602,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Select"
       },
       "SelectLabel": {
         "type": "object",
@@ -3101,8 +3621,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Select"
       },
       "SelectSeparator": {
         "type": "object",
@@ -3117,8 +3640,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Select"
       },
       "SelectTrigger": {
         "type": "object",
@@ -3138,8 +3664,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Select"
       },
       "SelectValue": {
         "type": "object",
@@ -3154,8 +3683,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Select"
       },
       "Separator": {
         "type": "object",
@@ -3185,7 +3717,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Sheet": {
         "type": "object",
@@ -3237,7 +3771,18 @@
         },
         "description": "",
         "x-base-tier": "OverlayBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "SheetClose",
+          "SheetContent",
+          "SheetDescription",
+          "SheetFooter",
+          "SheetHeader",
+          "SheetTitle",
+          "SheetTrigger"
+        ]
       },
       "SheetClose": {
         "type": "object",
@@ -3252,8 +3797,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sheet"
       },
       "SheetContent": {
         "type": "object",
@@ -3268,8 +3816,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sheet"
       },
       "SheetDescription": {
         "type": "object",
@@ -3284,8 +3835,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sheet"
       },
       "SheetFooter": {
         "type": "object",
@@ -3300,8 +3854,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sheet"
       },
       "SheetHeader": {
         "type": "object",
@@ -3316,8 +3873,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sheet"
       },
       "SheetTitle": {
         "type": "object",
@@ -3332,8 +3892,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sheet"
       },
       "SheetTrigger": {
         "type": "object",
@@ -3348,8 +3911,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sheet"
       },
       "Sidebar": {
         "type": "object",
@@ -3375,7 +3941,15 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "SidebarContent",
+          "SidebarFooter",
+          "SidebarHeader",
+          "SidebarTrigger"
+        ]
       },
       "SidebarContent": {
         "type": "object",
@@ -3390,8 +3964,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sidebar"
       },
       "SidebarFooter": {
         "type": "object",
@@ -3406,8 +3983,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sidebar"
       },
       "SidebarHeader": {
         "type": "object",
@@ -3422,8 +4002,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sidebar"
       },
       "SidebarTrigger": {
         "type": "object",
@@ -3438,8 +4021,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Sidebar"
       },
       "Skeleton": {
         "type": "object",
@@ -3455,7 +4041,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Slider": {
         "type": "object",
@@ -3501,7 +4089,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Spinner": {
         "type": "object",
@@ -3527,7 +4117,9 @@
         },
         "description": "A circular loading indicator for async operations.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Switch": {
         "type": "object",
@@ -3558,7 +4150,9 @@
         },
         "description": "A toggle switch for on/off states.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Table": {
         "type": "object",
@@ -3574,7 +4168,18 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "TableBody",
+          "TableCaption",
+          "TableCell",
+          "TableFooter",
+          "TableHead",
+          "TableHeader",
+          "TableRow"
+        ]
       },
       "TableBody": {
         "type": "object",
@@ -3589,8 +4194,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Table"
       },
       "TableCaption": {
         "type": "object",
@@ -3605,8 +4213,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Table"
       },
       "TableCell": {
         "type": "object",
@@ -3621,8 +4232,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Table"
       },
       "TableFooter": {
         "type": "object",
@@ -3637,8 +4251,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Table"
       },
       "TableHead": {
         "type": "object",
@@ -3653,8 +4270,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Table"
       },
       "TableHeader": {
         "type": "object",
@@ -3669,8 +4289,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Table"
       },
       "TableRow": {
         "type": "object",
@@ -3685,8 +4308,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Table"
       },
       "Tabs": {
         "type": "object",
@@ -3711,7 +4337,14 @@
         },
         "description": "A tabbed interface for switching between content panels.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "TabsContent",
+          "TabsList",
+          "TabsTrigger"
+        ]
       },
       "TabsContent": {
         "type": "object",
@@ -3730,8 +4363,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Tabs"
       },
       "TabsList": {
         "type": "object",
@@ -3746,8 +4382,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Tabs"
       },
       "TabsTrigger": {
         "type": "object",
@@ -3771,8 +4410,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Tabs"
       },
       "Textarea": {
         "type": "object",
@@ -3797,7 +4439,9 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "TimePicker": {
         "type": "object",
@@ -3844,7 +4488,9 @@
         },
         "description": "A time picker with hour, minute, and AM/PM selection.",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "Toast": {
         "type": "object",
@@ -3878,7 +4524,15 @@
         },
         "description": "",
         "x-base-tier": "PresentationalBase",
-        "x-category": "Presentational"
+        "x-category": "Presentational",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "ToastAction",
+          "ToastClose",
+          "ToastDescription",
+          "ToastTitle"
+        ]
       },
       "ToastAction": {
         "type": "object",
@@ -3897,8 +4551,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Toast"
       },
       "ToastClose": {
         "type": "object",
@@ -3918,8 +4575,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Toast"
       },
       "ToastDescription": {
         "type": "object",
@@ -3934,8 +4594,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Toast"
       },
       "ToastTitle": {
         "type": "object",
@@ -3950,8 +4613,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Toast"
       },
       "Toggle": {
         "type": "object",
@@ -3991,7 +4657,9 @@
         },
         "description": "",
         "x-base-tier": "PresentationalBase",
-        "x-category": "Presentational"
+        "x-category": "Presentational",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": false
       },
       "ToggleGroup": {
         "type": "object",
@@ -4039,7 +4707,12 @@
         },
         "description": "",
         "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-category": "General",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "ToggleGroupItem"
+        ]
       },
       "ToggleGroupItem": {
         "type": "object",
@@ -4063,8 +4736,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "ToggleGroup"
       },
       "Tooltip": {
         "type": "object",
@@ -4136,7 +4812,13 @@
         },
         "description": "",
         "x-base-tier": "PopoverBase",
-        "x-category": "Overlay"
+        "x-category": "Overlay",
+        "x-composition-role": "Root",
+        "x-composition-is-composite": true,
+        "x-composition-children": [
+          "TooltipContent",
+          "TooltipTrigger"
+        ]
       },
       "TooltipContent": {
         "type": "object",
@@ -4151,8 +4833,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Tooltip"
       },
       "TooltipTrigger": {
         "type": "object",
@@ -4167,8 +4852,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
-        "x-category": "General"
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "Tooltip"
       }
     }
   }

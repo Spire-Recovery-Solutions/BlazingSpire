@@ -3,9 +3,8 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class InputOTPSlot : BlazingSpireComponentBase
+public partial class InputOTPSlot : ChildOf<InputOTP>
 {
-    [CascadingParameter] public InputOTP? Parent { get; set; }
     [Parameter] public int Index { get; set; }
 
     private char? DisplayChar => Parent?.GetChar(Index);

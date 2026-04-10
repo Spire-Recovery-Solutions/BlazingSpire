@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class RadioGroupItem : BlazingSpireComponentBase
+public partial class RadioGroupItem : ChildOf<RadioGroup>
 {
-    [CascadingParameter] public RadioGroup? Group { get; set; }
+    public RadioGroup? Group => Parent;
     [Parameter, EditorRequired] public string ItemValue { get; set; } = "";
     [Parameter] public bool Disabled { get; set; }
 

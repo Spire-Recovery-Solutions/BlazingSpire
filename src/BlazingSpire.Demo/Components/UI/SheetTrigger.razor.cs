@@ -3,9 +3,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class SheetTrigger : BlazingSpireComponentBase
+public partial class SheetTrigger : ChildOf<Sheet>
 {
-    [CascadingParameter] public Sheet? ParentSheet { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public Sheet? ParentSheet => Parent;
 
     protected override string BaseClasses => "inline-block";
 

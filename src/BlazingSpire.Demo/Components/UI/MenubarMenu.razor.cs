@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class MenubarMenu : BlazingSpireComponentBase
+public partial class MenubarMenu : ChildOf<Menubar>
 {
     public bool IsOpen { get; private set; }
 

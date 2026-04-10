@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ToastProvider : BlazingSpireComponentBase, IDisposable
+public partial class ToastProvider : Infrastructure, IDisposable
 {
     [Inject] private IToastService ToastService { get; set; } = default!;
 

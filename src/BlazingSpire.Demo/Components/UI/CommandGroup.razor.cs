@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class CommandGroup : BlazingSpireComponentBase
+public partial class CommandGroup : ChildOf<Command>
 {
     [Parameter] public string? Heading { get; set; }
 

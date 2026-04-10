@@ -3,9 +3,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class AlertDialogDescription : BlazingSpireComponentBase
+public partial class AlertDialogDescription : ChildOf<AlertDialog>
 {
-    [CascadingParameter] public AlertDialog? ParentDialog { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public AlertDialog? ParentDialog => Parent;
 
     protected override string BaseClasses => "text-sm text-muted-foreground";
 }

@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ComboboxTrigger : BlazingSpireComponentBase
+public partial class ComboboxTrigger : ChildOf<Combobox>
 {
-    [CascadingParameter] public Combobox? ParentCombobox { get; set; }
+    public Combobox? ParentCombobox => Parent;
 
     protected override string BaseClasses =>
         "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 " +

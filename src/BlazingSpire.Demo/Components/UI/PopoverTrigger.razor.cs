@@ -3,9 +3,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class PopoverTrigger : BlazingSpireComponentBase
+public partial class PopoverTrigger : ChildOf<Popover>
 {
-    [CascadingParameter] public Popover? ParentPopover { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public Popover? ParentPopover => Parent;
 
     protected override string BaseClasses => "inline-block";
 

@@ -4,9 +4,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class SheetContent : BlazingSpireComponentBase
+public partial class SheetContent : ChildOf<Sheet>
 {
-    [CascadingParameter] public Sheet? ParentSheet { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public Sheet? ParentSheet => Parent;
 
     private static readonly FrozenDictionary<SheetSide, string> s_sideClasses = new Dictionary<SheetSide, string>
     {

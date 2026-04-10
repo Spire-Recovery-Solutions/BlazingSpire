@@ -1,5 +1,5 @@
 @namespace BlazingSpire.Demo.Components.UI
-@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+@inherits BlazingSpire.Demo.Components.Shared.ChildOf<BlazingSpire.Demo.Components.UI.RadioGroup>
 
 <button type="button" role="radio" aria-checked="@IsSelected.ToString().ToLowerInvariant()" data-state="@DataState"
         disabled="@Disabled" class="@Classes" @onclick="SelectAsync" @attributes="AdditionalAttributes">

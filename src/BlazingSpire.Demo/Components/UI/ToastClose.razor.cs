@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ToastClose : BlazingSpireComponentBase
+public partial class ToastClose : ChildOf<Toast>
 {
     [Parameter] public EventCallback OnDismiss { get; set; }
 

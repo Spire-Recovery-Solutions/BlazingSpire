@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class FormFieldError : BlazingSpireComponentBase
+public partial class FormFieldError : ChildOf<FormField>
 {
     [CascadingParameter] public FormField? Field { get; set; }
     protected override string BaseClasses => "text-sm font-medium text-destructive";

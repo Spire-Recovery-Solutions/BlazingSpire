@@ -3,9 +3,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class HoverCardTrigger : BlazingSpireComponentBase
+public partial class HoverCardTrigger : ChildOf<HoverCard>
 {
-    [CascadingParameter] public HoverCard? ParentHoverCard { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public HoverCard? ParentHoverCard => Parent;
 
     protected override string BaseClasses => "";
 

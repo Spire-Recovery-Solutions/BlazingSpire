@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ToastAction : BlazingSpireComponentBase
+public partial class ToastAction : ChildOf<Toast>
 {
     [Parameter] public Action? OnClick { get; set; }
 

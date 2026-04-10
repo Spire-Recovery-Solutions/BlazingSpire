@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class ComboboxItem : BlazingSpireComponentBase
+public partial class ComboboxItem : ChildOf<Combobox>
 {
-    [CascadingParameter] public Combobox? ParentCombobox { get; set; }
+    public Combobox? ParentCombobox => Parent;
 
     [Parameter, EditorRequired] public string ItemValue { get; set; } = "";
     [Parameter] public string? FilterText { get; set; }

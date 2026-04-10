@@ -4,7 +4,12 @@ component{name:str,description:str,category:str,baseTier:str}:
   name: CarouselPrevious
   description: 
   category: General
-  baseTier: BlazingSpireComponentBase
+  baseTier: ChildOf
+
+composition{role:str,parent:str,isComposite:bool}:
+  role: Child
+  parent: Carousel
+  isComposite: false
 
 parameters[2]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample CarouselPrevious content, The content to render inside the component.

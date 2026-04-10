@@ -4,9 +4,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class SelectTrigger : BlazingSpireComponentBase
+public partial class SelectTrigger : ChildOf<Select>
 {
-    [CascadingParameter] public Select? ParentSelect { get; set; }
+    public Select? ParentSelect => Parent;
 
     [Parameter] public bool Disabled { get; set; }
 

@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class MenubarItem : BlazingSpireComponentBase
+public partial class MenubarItem : ChildOf<MenubarMenu>
 {
-    [CascadingParameter] public MenubarMenu? ParentMenu { get; set; }
+    public MenubarMenu? ParentMenu => Parent;
 
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public bool Disabled { get; set; }

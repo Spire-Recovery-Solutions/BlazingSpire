@@ -3,9 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class CollapsibleContent : BlazingSpireComponentBase
+public partial class CollapsibleContent : ChildOf<Collapsible>
 {
-    [CascadingParameter] public Collapsible? Parent { get; set; }
-
     protected override string BaseClasses => "space-y-2";
 }

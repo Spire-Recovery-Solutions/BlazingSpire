@@ -3,9 +3,10 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class AlertDialogCancel : BlazingSpireComponentBase
+public partial class AlertDialogCancel : ChildOf<AlertDialog>
 {
-    [CascadingParameter] public AlertDialog? ParentDialog { get; set; }
+    // Backwards-compat alias for the old property name (to avoid changing .razor files)
+    public AlertDialog? ParentDialog => Parent;
 
     protected override string BaseClasses =>
         "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium cursor-pointer " +

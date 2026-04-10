@@ -4,6 +4,15 @@
     "description": "A vertically stacked set of collapsible sections.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "AccordionContent",
+        "AccordionItem",
+        "AccordionTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -24,7 +33,13 @@
     "name": "AccordionContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Accordion",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -45,7 +60,13 @@
     "name": "AccordionItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Accordion",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -66,7 +87,13 @@
     "name": "AccordionTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Accordion",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -88,6 +115,14 @@
     "description": "Display callout messages for important information or feedback.",
     "category": "Presentational",
     "baseTier": "PresentationalBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "AlertDescription",
+        "AlertTitle"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -122,7 +157,13 @@
     "name": "AlertDescription",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Alert",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -144,6 +185,20 @@
     "description": "",
     "category": "Overlay",
     "baseTier": "OverlayBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "AlertDialogAction",
+        "AlertDialogCancel",
+        "AlertDialogContent",
+        "AlertDialogDescription",
+        "AlertDialogFooter",
+        "AlertDialogHeader",
+        "AlertDialogTitle",
+        "AlertDialogTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -199,7 +254,13 @@
     "name": "AlertDialogAction",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "AlertDialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -227,7 +288,13 @@
     "name": "AlertDialogCancel",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "AlertDialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -248,7 +315,13 @@
     "name": "AlertDialogContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "AlertDialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -269,7 +342,13 @@
     "name": "AlertDialogDescription",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "AlertDialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -290,7 +369,13 @@
     "name": "AlertDialogFooter",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "AlertDialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -311,7 +396,13 @@
     "name": "AlertDialogHeader",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "AlertDialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -332,7 +423,13 @@
     "name": "AlertDialogTitle",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "AlertDialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -353,7 +450,13 @@
     "name": "AlertDialogTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "AlertDialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -374,7 +477,13 @@
     "name": "AlertTitle",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Alert",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -396,6 +505,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -424,6 +538,14 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "AvatarFallback",
+        "AvatarImage"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -444,7 +566,13 @@
     "name": "AvatarFallback",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Avatar",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -465,7 +593,13 @@
     "name": "AvatarImage",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Avatar",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "Alt",
@@ -499,6 +633,11 @@
     "description": "A small status indicator for counts, labels, or categories.",
     "category": "Presentational",
     "baseTier": "PresentationalBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -533,6 +672,17 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "BreadcrumbItem",
+        "BreadcrumbLink",
+        "BreadcrumbList",
+        "BreadcrumbPage",
+        "BreadcrumbSeparator"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -553,7 +703,13 @@
     "name": "BreadcrumbItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Breadcrumb",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -574,7 +730,13 @@
     "name": "BreadcrumbLink",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Breadcrumb",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -601,7 +763,13 @@
     "name": "BreadcrumbList",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Breadcrumb",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -622,7 +790,13 @@
     "name": "BreadcrumbPage",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Breadcrumb",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -643,7 +817,13 @@
     "name": "BreadcrumbSeparator",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Breadcrumb",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -665,6 +845,11 @@
     "description": "A clickable button with variant and size options.",
     "category": "Action",
     "baseTier": "ButtonBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -760,6 +945,11 @@
     "description": "A month calendar for date selection.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -801,6 +991,17 @@
     "description": "A container card with border and shadow.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "CardContent",
+        "CardDescription",
+        "CardFooter",
+        "CardHeader",
+        "CardTitle"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -821,7 +1022,13 @@
     "name": "CardContent",
     "description": "Main content area of a Card.",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Card",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -842,7 +1049,13 @@
     "name": "CardDescription",
     "description": "Description text within a CardHeader.",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Card",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -863,7 +1076,13 @@
     "name": "CardFooter",
     "description": "Footer section of a Card.",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Card",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -884,7 +1103,13 @@
     "name": "CardHeader",
     "description": "Header section of a Card.",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Card",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -905,7 +1130,13 @@
     "name": "CardTitle",
     "description": "Title element within a CardHeader.",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Card",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -927,6 +1158,16 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "CarouselContent",
+        "CarouselItem",
+        "CarouselNext",
+        "CarouselPrevious"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -972,7 +1213,13 @@
     "name": "CarouselContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Carousel",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -993,7 +1240,13 @@
     "name": "CarouselItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Carousel",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1014,7 +1267,13 @@
     "name": "CarouselNext",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Carousel",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1035,7 +1294,13 @@
     "name": "CarouselPrevious",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Carousel",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1057,6 +1322,11 @@
     "description": "A toggle checkbox control.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "Checked",
@@ -1099,6 +1369,14 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "CollapsibleContent",
+        "CollapsibleTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1133,7 +1411,13 @@
     "name": "CollapsibleContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Collapsible",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1154,7 +1438,13 @@
     "name": "CollapsibleTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Collapsible",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1176,6 +1466,17 @@
     "description": "",
     "category": "Overlay",
     "baseTier": "PopoverBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "ComboboxContent",
+        "ComboboxEmpty",
+        "ComboboxInput",
+        "ComboboxItem",
+        "ComboboxTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "Align",
@@ -1296,7 +1597,13 @@
     "name": "ComboboxContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Combobox",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1317,7 +1624,13 @@
     "name": "ComboboxEmpty",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Combobox",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1338,7 +1651,13 @@
     "name": "ComboboxInput",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Combobox",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1359,7 +1678,13 @@
     "name": "ComboboxItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Combobox",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1400,7 +1725,13 @@
     "name": "ComboboxTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Combobox",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1422,6 +1753,18 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "CommandEmpty",
+        "CommandGroup",
+        "CommandInput",
+        "CommandItem",
+        "CommandList",
+        "CommandSeparator"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1443,6 +1786,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1477,7 +1825,13 @@
     "name": "CommandEmpty",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Command",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1498,7 +1852,13 @@
     "name": "CommandGroup",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Command",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1525,7 +1885,13 @@
     "name": "CommandInput",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Command",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1552,7 +1918,13 @@
     "name": "CommandItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Command",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1593,7 +1965,13 @@
     "name": "CommandList",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Command",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1614,7 +1992,13 @@
     "name": "CommandSeparator",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Command",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1636,6 +2020,17 @@
     "description": "",
     "category": "Overlay",
     "baseTier": "PopoverBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "ContextMenuContent",
+        "ContextMenuItem",
+        "ContextMenuLabel",
+        "ContextMenuSeparator",
+        "ContextMenuTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "Align",
@@ -1730,7 +2125,13 @@
     "name": "ContextMenuContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "ContextMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1751,7 +2152,13 @@
     "name": "ContextMenuItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "ContextMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1786,7 +2193,13 @@
     "name": "ContextMenuLabel",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "ContextMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1814,7 +2227,13 @@
     "name": "ContextMenuSeparator",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "ContextMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1835,7 +2254,13 @@
     "name": "ContextMenuTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "ContextMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1857,6 +2282,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1891,6 +2321,11 @@
     "description": "A date picker combining an input field with a calendar popover.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -1958,6 +2393,19 @@
     "description": "A modal dialog overlay with focus trapping.",
     "category": "Overlay",
     "baseTier": "OverlayBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "DialogClose",
+        "DialogContent",
+        "DialogDescription",
+        "DialogFooter",
+        "DialogHeader",
+        "DialogTitle",
+        "DialogTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2013,7 +2461,13 @@
     "name": "DialogClose",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Dialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2034,7 +2488,13 @@
     "name": "DialogContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Dialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2055,7 +2515,13 @@
     "name": "DialogDescription",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Dialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2076,7 +2542,13 @@
     "name": "DialogFooter",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Dialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2097,7 +2569,13 @@
     "name": "DialogHeader",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Dialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2118,7 +2596,13 @@
     "name": "DialogTitle",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Dialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2139,7 +2623,13 @@
     "name": "DialogTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Dialog",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2161,6 +2651,19 @@
     "description": "",
     "category": "Overlay",
     "baseTier": "OverlayBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "DrawerClose",
+        "DrawerContent",
+        "DrawerDescription",
+        "DrawerFooter",
+        "DrawerHeader",
+        "DrawerTitle",
+        "DrawerTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2216,7 +2719,13 @@
     "name": "DrawerClose",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Drawer",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2237,7 +2746,13 @@
     "name": "DrawerContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Drawer",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2258,7 +2773,13 @@
     "name": "DrawerDescription",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Drawer",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2279,7 +2800,13 @@
     "name": "DrawerFooter",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Drawer",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2300,7 +2827,13 @@
     "name": "DrawerHeader",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Drawer",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2321,7 +2854,13 @@
     "name": "DrawerTitle",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Drawer",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2342,7 +2881,13 @@
     "name": "DrawerTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Drawer",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2364,6 +2909,18 @@
     "description": "",
     "category": "Overlay",
     "baseTier": "PopoverBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "DropdownMenuContent",
+        "DropdownMenuGroup",
+        "DropdownMenuItem",
+        "DropdownMenuLabel",
+        "DropdownMenuSeparator",
+        "DropdownMenuTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "Align",
@@ -2458,7 +3015,13 @@
     "name": "DropdownMenuContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "DropdownMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2479,7 +3042,13 @@
     "name": "DropdownMenuGroup",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "DropdownMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2500,7 +3069,13 @@
     "name": "DropdownMenuItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "DropdownMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2535,7 +3110,13 @@
     "name": "DropdownMenuLabel",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "DropdownMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2563,7 +3144,13 @@
     "name": "DropdownMenuSeparator",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "DropdownMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2584,7 +3171,13 @@
     "name": "DropdownMenuTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "DropdownMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2606,6 +3199,16 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "FormFieldControl",
+        "FormFieldDescription",
+        "FormFieldError",
+        "FormFieldLabel"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2638,7 +3241,13 @@
     "name": "FormFieldControl",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "FormField",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2659,7 +3268,13 @@
     "name": "FormFieldDescription",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "FormField",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2680,7 +3295,13 @@
     "name": "FormFieldError",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "FormField",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2701,7 +3322,13 @@
     "name": "FormFieldLabel",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "FormField",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2723,6 +3350,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2763,6 +3395,14 @@
     "description": "",
     "category": "Overlay",
     "baseTier": "PopoverBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "HoverCardContent",
+        "HoverCardTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "Align",
@@ -2871,7 +3511,13 @@
     "name": "HoverCardContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "HoverCard",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2892,7 +3538,13 @@
     "name": "HoverCardTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "HoverCard",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -2914,6 +3566,11 @@
     "description": "A form input field with two-way binding, sizes, and adornment slots.",
     "category": "Form",
     "baseTier": "TextInputBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "AutoComplete",
@@ -3056,6 +3713,15 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "InputOTPGroup",
+        "InputOTPSeparator",
+        "InputOTPSlot"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3104,7 +3770,13 @@
     "name": "InputOTPGroup",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "InputOTP",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3125,7 +3797,13 @@
     "name": "InputOTPSeparator",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "InputOTP",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3146,7 +3824,13 @@
     "name": "InputOTPSlot",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "InputOTP",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3175,6 +3859,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3202,6 +3891,13 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "MenubarMenu"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3222,7 +3918,13 @@
     "name": "MenubarContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "MenubarMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3243,7 +3945,13 @@
     "name": "MenubarItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "MenubarMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3278,7 +3986,13 @@
     "name": "MenubarLabel",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "MenubarMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3299,7 +4013,19 @@
     "name": "MenubarMenu",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Menubar",
+      "children": [
+        "MenubarContent",
+        "MenubarItem",
+        "MenubarLabel",
+        "MenubarSeparator",
+        "MenubarTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3320,7 +4046,13 @@
     "name": "MenubarSeparator",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "MenubarMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3341,7 +4073,13 @@
     "name": "MenubarTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "MenubarMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3363,6 +4101,17 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "NavigationMenuContent",
+        "NavigationMenuItem",
+        "NavigationMenuLink",
+        "NavigationMenuList",
+        "NavigationMenuTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3383,7 +4132,13 @@
     "name": "NavigationMenuContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "NavigationMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3404,7 +4159,13 @@
     "name": "NavigationMenuItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "NavigationMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3425,7 +4186,13 @@
     "name": "NavigationMenuLink",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "NavigationMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3452,7 +4219,13 @@
     "name": "NavigationMenuList",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "NavigationMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3473,7 +4246,13 @@
     "name": "NavigationMenuTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "NavigationMenu",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3495,6 +4274,18 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "PaginationContent",
+        "PaginationEllipsis",
+        "PaginationItem",
+        "PaginationLink",
+        "PaginationNext",
+        "PaginationPrevious"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3515,7 +4306,13 @@
     "name": "PaginationContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Pagination",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3536,7 +4333,13 @@
     "name": "PaginationEllipsis",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Pagination",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3557,7 +4360,13 @@
     "name": "PaginationItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Pagination",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3578,7 +4387,13 @@
     "name": "PaginationLink",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Pagination",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3612,7 +4427,13 @@
     "name": "PaginationNext",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Pagination",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3639,7 +4460,13 @@
     "name": "PaginationPrevious",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Pagination",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3667,6 +4494,14 @@
     "description": "A positioned floating panel anchored to a trigger.",
     "category": "Overlay",
     "baseTier": "PopoverBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "PopoverContent",
+        "PopoverTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "Align",
@@ -3761,7 +4596,13 @@
     "name": "PopoverContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Popover",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3782,7 +4623,13 @@
     "name": "PopoverTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Popover",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3804,6 +4651,11 @@
     "description": "A horizontal progress bar indicating completion.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3832,6 +4684,13 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "RadioGroupItem"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3865,7 +4724,13 @@
     "name": "RadioGroupItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "RadioGroup",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3901,6 +4766,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -3922,6 +4792,19 @@
     "description": "A dropdown select control for choosing from a list.",
     "category": "Overlay",
     "baseTier": "PopoverBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "SelectContent",
+        "SelectGroup",
+        "SelectItem",
+        "SelectLabel",
+        "SelectSeparator",
+        "SelectTrigger",
+        "SelectValue"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "Align",
@@ -4035,7 +4918,13 @@
     "name": "SelectContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Select",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4056,7 +4945,13 @@
     "name": "SelectGroup",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Select",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4077,7 +4972,13 @@
     "name": "SelectItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Select",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4118,7 +5019,13 @@
     "name": "SelectLabel",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Select",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4139,7 +5046,13 @@
     "name": "SelectSeparator",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Select",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4160,7 +5073,13 @@
     "name": "SelectTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Select",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4188,7 +5107,13 @@
     "name": "SelectValue",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Select",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4210,6 +5135,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4249,6 +5179,19 @@
     "description": "",
     "category": "Overlay",
     "baseTier": "OverlayBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "SheetClose",
+        "SheetContent",
+        "SheetDescription",
+        "SheetFooter",
+        "SheetHeader",
+        "SheetTitle",
+        "SheetTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4317,7 +5260,13 @@
     "name": "SheetClose",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sheet",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4338,7 +5287,13 @@
     "name": "SheetContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sheet",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4359,7 +5314,13 @@
     "name": "SheetDescription",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sheet",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4380,7 +5341,13 @@
     "name": "SheetFooter",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sheet",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4401,7 +5368,13 @@
     "name": "SheetHeader",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sheet",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4422,7 +5395,13 @@
     "name": "SheetTitle",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sheet",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4443,7 +5422,13 @@
     "name": "SheetTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sheet",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4465,6 +5450,16 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "SidebarContent",
+        "SidebarFooter",
+        "SidebarHeader",
+        "SidebarTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4499,7 +5494,13 @@
     "name": "SidebarContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sidebar",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4520,7 +5521,13 @@
     "name": "SidebarFooter",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sidebar",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4541,7 +5548,13 @@
     "name": "SidebarHeader",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sidebar",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4562,7 +5575,13 @@
     "name": "SidebarTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Sidebar",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4584,6 +5603,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4605,6 +5629,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4668,6 +5697,11 @@
     "description": "A circular loading indicator for async operations.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4701,6 +5735,11 @@
     "description": "A toggle switch for on/off states.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "Checked",
@@ -4743,6 +5782,19 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "TableBody",
+        "TableCaption",
+        "TableCell",
+        "TableFooter",
+        "TableHead",
+        "TableHeader",
+        "TableRow"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4763,7 +5815,13 @@
     "name": "TableBody",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Table",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4784,7 +5842,13 @@
     "name": "TableCaption",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Table",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4805,7 +5869,13 @@
     "name": "TableCell",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Table",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4826,7 +5896,13 @@
     "name": "TableFooter",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Table",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4847,7 +5923,13 @@
     "name": "TableHead",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Table",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4868,7 +5950,13 @@
     "name": "TableHeader",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Table",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4889,7 +5977,13 @@
     "name": "TableRow",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Table",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4911,6 +6005,15 @@
     "description": "A tabbed interface for switching between content panels.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "TabsContent",
+        "TabsList",
+        "TabsTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ActiveValue",
@@ -4944,7 +6047,13 @@
     "name": "TabsContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Tabs",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4972,7 +6081,13 @@
     "name": "TabsList",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Tabs",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -4993,7 +6108,13 @@
     "name": "TabsTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Tabs",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5029,6 +6150,11 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5063,6 +6189,11 @@
     "description": "A time picker with hour, minute, and AM/PM selection.",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5130,6 +6261,16 @@
     "description": "",
     "category": "Presentational",
     "baseTier": "PresentationalBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "ToastAction",
+        "ToastClose",
+        "ToastDescription",
+        "ToastTitle"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5174,7 +6315,13 @@
     "name": "ToastAction",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Toast",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5201,7 +6348,13 @@
     "name": "ToastClose",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Toast",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5229,7 +6382,13 @@
     "name": "ToastDescription",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Toast",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5250,7 +6409,13 @@
     "name": "ToastTitle",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Toast",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5272,6 +6437,11 @@
     "description": "",
     "category": "Presentational",
     "baseTier": "PresentationalBase",
+    "composition": {
+      "role": "Root",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5325,6 +6495,13 @@
     "description": "",
     "category": "General",
     "baseTier": "BlazingSpireComponentBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "ToggleGroupItem"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5390,7 +6567,13 @@
     "name": "ToggleGroupItem",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "ToggleGroup",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5426,6 +6609,14 @@
     "description": "",
     "category": "Overlay",
     "baseTier": "PopoverBase",
+    "composition": {
+      "role": "Root",
+      "children": [
+        "TooltipContent",
+        "TooltipTrigger"
+      ],
+      "isComposite": true
+    },
     "parameters": [
       {
         "name": "Align",
@@ -5520,7 +6711,13 @@
     "name": "TooltipContent",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Tooltip",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",
@@ -5541,7 +6738,13 @@
     "name": "TooltipTrigger",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "Tooltip",
+      "children": [],
+      "isComposite": false
+    },
     "parameters": [
       {
         "name": "ChildContent",

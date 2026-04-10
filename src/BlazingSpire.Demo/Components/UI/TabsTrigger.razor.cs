@@ -4,9 +4,8 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class TabsTrigger : BlazingSpireComponentBase, IDisposable
+public partial class TabsTrigger : ChildOf<Tabs>, IDisposable
 {
-    [CascadingParameter] public Tabs? Parent { get; set; }
     [Parameter, EditorRequired] public string ItemValue { get; set; } = "";
     [Parameter] public bool Disabled { get; set; }
 

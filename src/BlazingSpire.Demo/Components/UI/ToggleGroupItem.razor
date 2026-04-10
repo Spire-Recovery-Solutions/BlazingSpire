@@ -1,5 +1,5 @@
 @namespace BlazingSpire.Demo.Components.UI
-@inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
+@inherits BlazingSpire.Demo.Components.Shared.ChildOf<BlazingSpire.Demo.Components.UI.ToggleGroup>
 
 <button type="button" aria-pressed="@IsSelected.ToString().ToLowerInvariant()" data-state="@DataState"
         disabled="@IsDisabled" class="@Classes" @onclick="OnClickAsync" @attributes="AdditionalAttributes">

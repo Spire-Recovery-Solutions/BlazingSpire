@@ -8,7 +8,7 @@ namespace BlazingSpire.Demo.Components.UI;
 /// Renders a syntax-highlighted code block using Prism.js.
 /// Sets textContent via JS interop to keep Prism's DOM changes outside Blazor's render tree.
 /// </summary>
-public partial class CodeBlock : BlazingSpireComponentBase
+public partial class CodeBlock : Infrastructure
 {
     [Inject] private IJSRuntime JS { get; set; } = default!;
 

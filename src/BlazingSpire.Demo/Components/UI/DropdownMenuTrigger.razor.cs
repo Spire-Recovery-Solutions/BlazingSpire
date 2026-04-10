@@ -3,9 +3,9 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class DropdownMenuTrigger : BlazingSpireComponentBase
+public partial class DropdownMenuTrigger : ChildOf<DropdownMenu>
 {
-    [CascadingParameter] public DropdownMenu? ParentMenu { get; set; }
+    public DropdownMenu? ParentMenu => Parent;
 
     protected override string BaseClasses => "inline-block";
 
