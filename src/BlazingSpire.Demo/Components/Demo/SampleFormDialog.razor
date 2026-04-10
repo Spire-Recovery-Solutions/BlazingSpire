@@ -1,0 +1,31 @@
+@namespace BlazingSpire.Demo.Components.Demo
+@using BlazingSpire.Demo.Components.UI
+
+<DialogHeader>
+    <DialogTitle>Rename Item</DialogTitle>
+    <DialogDescription>Enter a new name and click Save to return the value.</DialogDescription>
+</DialogHeader>
+
+<div class="py-4">
+    <Input @bind-Value="_name" Placeholder="Enter a name" Immediate="true" />
+</div>
+
+<DialogFooter>
+    <Button Variant="ButtonVariant.Outline" OnClick="Cancel">Cancel</Button>
+    <Button OnClick="Save">Save</Button>
+</DialogFooter>
+
+@code {
+    /// <summary>The dialog reference injected via CascadingValue by DialogProvider.</summary>
+    [CascadingParameter] public DialogReference? Dialog { get; set; }
+
+    /// <summary>Initial value for the name field. Passed in via DialogParameters.Set("InitialName", ...).</summary>
+    [Parameter] public string InitialName { get; set; } = "";
+
+    private string _name = "";
+
+    protected override void OnInitialized() => _name = InitialName;
+
+    private void Save() => Dialog?.Close(DialogResult.Ok(_name));
+    private void Cancel() => Dialog?.Close(DialogResult.Cancel());
+}

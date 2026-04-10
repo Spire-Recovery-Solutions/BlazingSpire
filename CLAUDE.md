@@ -25,8 +25,10 @@ dotnet publish -c Release -o publish                                # production
 
 # Tests
 dotnet test test/BlazingSpire.Tests.Unit                            # bUnit + xUnit
-dotnet test test/BlazingSpire.Tests.E2E                             # Playwright
+dotnet test test/BlazingSpire.Tests.E2E                             # Playwright, ~32s for 253 tests
 ```
+
+The E2E suite is parallelized to 10 threads via `xunit.runner.json`. Each test class takes `IClassFixture<BlazorAppFixture>` (a static-singleton demo app shared across all classes) and `IClassFixture<PlaywrightBrowserFixture>` (a class-scoped browser + page so WASM only boots once per class). `BlazorAppFixture` auto-kills any orphaned `blazor-devserver` on :5299 at startup — a killed test run can't poison the next one. `ParameterPermutationTests` is sharded into 8 classes (`ParameterPermutationTestsShard0..7`) to saturate the 10-thread cap.
 
 Prerequisites: .NET 10 SDK (`~/.dotnet/dotnet`), Node.js 22+, `wasm-tools` workload (`dotnet workload install wasm-tools`). Add `export PATH="$HOME/.dotnet:$PATH"` if `dotnet` is not on PATH.
 
@@ -61,6 +63,8 @@ BlazingSpireComponentBase              → ChildContent, Class, AdditionalAttrib
 ```
 
 **Component pattern:** Each UI component lives in `Components/UI/` as a `.razor` + `.razor.cs` pair. The `.razor` file uses `@inherits` to specify the base class. The `.razor.cs` provides `BaseClasses`, variant/size `FrozenDictionary` mappings, and component-specific parameters. Enums are at namespace scope (e.g., `ButtonVariant.Default`, not `Button.ButtonVariant.Default`). No component sets its own `@rendermode`.
+
+**Parent/child composition:** Sub-components that only make sense nested inside a specific parent (e.g., `AlertTitle`, `DialogContent`, `TabsTrigger`) inherit from `ChildOf<TParent>` in `Components/Shared/`. This is an intrinsic type-system declaration — the source generator and DocGen discover composition programmatically by walking the base-type chain, no naming conventions, attributes, or markers required. `ChildOf<TParent>` also exposes `Parent` as a `[CascadingParameter]` for children that need to reach their parent. Playground and smoke tests skip `Child`-role components automatically (they're rendered via their parent's playground).
 
 **Theming:** All colors defined as OKLCH tokens in `wwwroot/app.css` under `@theme` (light) and `.dark` (dark override). Dark mode uses `@custom-variant dark (&:where(.dark, .dark *))`. Theme toggle persists to `localStorage` via `wwwroot/js/theme.js` (no eval).
 

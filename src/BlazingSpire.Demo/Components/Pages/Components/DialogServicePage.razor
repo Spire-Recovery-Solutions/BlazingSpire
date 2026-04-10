@@ -1,5 +1,6 @@
 @page "/components/dialog-service"
 @using BlazingSpire.Demo.Components.UI
+@using BlazingSpire.Demo.Components.Demo
 @inject IDialogService DialogService
 
 <PageTitle>Dialog Service - BlazingSpire</PageTitle>
@@ -34,10 +35,49 @@
     }
 }</code></pre>
     </section>
+
+    <section class="space-y-4">
+        <h2 class="text-xl font-semibold tracking-tight">Custom Dialog with Typed Result</h2>
+        <div class="rounded-lg border bg-card p-6">
+            <div class="space-y-4">
+                <Button OnClick="ShowFormDialog">Show Form Dialog</Button>
+                @if (_formResult is not null)
+                {
+                    <p class="text-sm text-muted-foreground">
+                        @if (_formResult.Cancelled)
+                        {
+                            <text>Cancelled.</text>
+                        }
+                        else
+                        {
+                            <text>Saved: <strong class="text-foreground">@_formResult.Data</strong></text>
+                        }
+                    </p>
+                }
+            </div>
+        </div>
+        <pre class="language-xml"><code class="language-xml">@@inject IDialogService DialogService
+
+&lt;Button OnClick="ShowFormDialog"&gt;Show Form Dialog&lt;/Button&gt;
+
+@@code {
+    private async Task ShowFormDialog()
+    {
+        var parameters = new DialogParameters().Set("InitialName", "Untitled");
+        var result = await DialogService.ShowAsync&lt;SampleFormDialog&gt;("Rename", parameters);
+        if (!result.Cancelled)
+        {
+            var newName = (string?)result.Data;
+            // ... use the typed result
+        }
+    }
+}</code></pre>
+    </section>
 </div>
 
 @code {
     private DialogResult? _messageBoxResult;
+    private DialogResult? _formResult;
 
     private async Task ShowMessageBox()
     {
@@ -46,5 +86,11 @@
             "Are you sure you want to proceed?",
             "Yes, proceed",
             "Cancel");
+    }
+
+    private async Task ShowFormDialog()
+    {
+        var parameters = new DialogParameters().Set("InitialName", "Untitled");
+        _formResult = await DialogService.ShowAsync<SampleFormDialog>("Rename", parameters);
     }
 }

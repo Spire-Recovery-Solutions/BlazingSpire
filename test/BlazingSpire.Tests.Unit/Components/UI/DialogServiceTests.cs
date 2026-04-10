@@ -57,6 +57,19 @@ public class DialogServiceTests : BlazingSpireTestBase
     }
 
     [Fact]
+    public async Task Close_Raises_OnDialogsChanged_Again()
+    {
+        var service = new DialogService();
+        var task = service.ShowAsync<MessageBoxDialog>("Test");
+        var changeCount = 0;
+        service.OnDialogsChanged += () => changeCount++;
+        service.OpenDialogs[0].Close(DialogResult.Ok());
+        await task;
+        await Task.Delay(50);
+        Assert.Equal(1, changeCount);
+    }
+
+    [Fact]
     public void ShowMessageBoxAsync_Adds_Dialog_With_Parameters()
     {
         var service = new DialogService();
@@ -65,6 +78,8 @@ public class DialogServiceTests : BlazingSpireTestBase
         var dialog = service.OpenDialogs[0];
         Assert.Equal("Title", dialog.Title);
         Assert.Equal("Message", dialog.Message);
+        Assert.Equal("Yes", dialog.Parameters?["ConfirmText"]);
+        Assert.Equal("No", dialog.Parameters?["CancelText"]);
     }
 
     [Fact]

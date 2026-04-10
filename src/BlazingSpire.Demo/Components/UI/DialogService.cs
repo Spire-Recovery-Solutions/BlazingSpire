@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 
 namespace BlazingSpire.Demo.Components.UI;
 
@@ -33,14 +34,31 @@ public sealed class DialogParameters
 public sealed class DialogReference
 {
     internal TaskCompletionSource<DialogResult> Tcs { get; } = new();
+    /// <summary>The component type backing this dialog. Used by DialogProvider to branch on the built-in MessageBox path; custom dialogs render via <see cref="RenderFactory"/>.</summary>
     public Type ComponentType { get; init; } = default!;
+    /// <summary>Dialog title (MessageBox only).</summary>
     public string? Title { get; init; }
+    /// <summary>Dialog message (MessageBox only).</summary>
     public string? Message { get; init; }
+    /// <summary>Parameters that will be applied to the rendered component.</summary>
     public Dictionary<string, object?>? Parameters { get; init; }
+
+    /// <summary>
+    /// Closure that renders the dialog's component into a RenderTreeBuilder. Captured at
+    /// <see cref="DialogService.ShowAsync{TDialog}"/> call time with a closed generic
+    /// (<c>builder.OpenComponent&lt;TDialog&gt;()</c>) so the trimmer can statically see
+    /// every component type that ever flows through <see cref="IDialogService"/> — no
+    /// reflection, no runtime Type lookup. Null for the built-in MessageBox branch,
+    /// which the provider renders inline without going through a component type.
+    /// </summary>
+    internal Action<RenderTreeBuilder>? RenderFactory { get; init; }
+
     internal Guid Id { get; } = Guid.NewGuid();
 
+    /// <summary>Task completed when the dialog closes.</summary>
     public Task<DialogResult> Result => Tcs.Task;
 
+    /// <summary>Close the dialog and complete <see cref="Result"/> with the given outcome.</summary>
     public void Close(DialogResult result) => Tcs.TrySetResult(result);
 }
 
@@ -68,11 +86,30 @@ public sealed class DialogService : IDialogService
     public Task<DialogResult> ShowAsync<TDialog>(string? title = null, DialogParameters? parameters = null)
         where TDialog : ComponentBase
     {
+        var paramDict = parameters?.ToDictionary();
+
+        // Closed generic: the trimmer statically sees every TDialog that ever flows
+        // through ShowAsync<T>. No runtime Type lookup, no reflection.
+        var factory = new Action<RenderTreeBuilder>(builder =>
+        {
+            builder.OpenComponent<TDialog>(0);
+            if (paramDict is not null)
+            {
+                var seq = 1;
+                foreach (var (key, value) in paramDict)
+                {
+                    builder.AddAttribute(seq++, key, value);
+                }
+            }
+            builder.CloseComponent();
+        });
+
         var reference = new DialogReference
         {
             ComponentType = typeof(TDialog),
             Title = title,
-            Parameters = parameters?.ToDictionary(),
+            Parameters = paramDict,
+            RenderFactory = factory,
         };
         _dialogs.Add(reference);
         OnDialogsChanged?.Invoke();
