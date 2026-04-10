@@ -91,14 +91,27 @@ public partial class ComponentPlayground
     {
         if (meta is null || value is null) return value;
 
-        return meta.Kind switch
+        if (meta.Kind == "Enum" && value is string enumStr)
+            return ResolveEnum(meta.Type, enumStr);
+
+        if (meta.Kind == "Boolean" && value is string bs)
+            return bool.TryParse(bs, out var b) && b;
+
+        // For numeric kinds, use the declared parameter Type to pick the right parser
+        if (meta.Kind == "Number" && value is string ns)
         {
-            "Enum" when value is string s => ResolveEnum(meta.Type, s),
-            "Number" or "Int" when value is string s => int.TryParse(s, out var i) ? i : 0,
-            "Double" when value is string s => double.TryParse(s, out var d) ? d : 0.0,
-            "Boolean" or "Bool" when value is string s => bool.TryParse(s, out var b) && b,
-            _ => value
-        };
+            var culture = System.Globalization.CultureInfo.InvariantCulture;
+            return meta.Type switch
+            {
+                "double" => double.TryParse(ns, System.Globalization.NumberStyles.Any, culture, out var d) ? d : 0.0,
+                "float"  => float.TryParse(ns, System.Globalization.NumberStyles.Any, culture, out var f) ? f : 0f,
+                "decimal" => decimal.TryParse(ns, System.Globalization.NumberStyles.Any, culture, out var dec) ? dec : 0m,
+                "long" => long.TryParse(ns, System.Globalization.NumberStyles.Any, culture, out var l) ? l : 0L,
+                _ => int.TryParse(ns, System.Globalization.NumberStyles.Any, culture, out var i) ? i : 0,
+            };
+        }
+
+        return value;
     }
 
     private static readonly string[] s_enumNamespaces =
@@ -134,7 +147,7 @@ public partial class ComponentPlayground
             var value = _paramValues.GetValueOrDefault(param.Name);
             var defaultStr = param.DefaultValue;
 
-            if (param.Kind == "RenderFragment")
+            if (param.Kind == "Content")
             {
                 childContent = value?.ToString();
                 continue;
@@ -145,7 +158,7 @@ public partial class ComponentPlayground
             if (valueStr == defaultStr || (string.IsNullOrEmpty(valueStr) && string.IsNullOrEmpty(defaultStr)))
                 continue;
 
-            if (param.Kind == "Bool")
+            if (param.Kind == "Boolean")
             {
                 if (value is true)
                     sb.Append($" {param.Name}=\"true\"");
@@ -180,16 +193,8 @@ public partial class ComponentPlayground
     private static object? ParseDefault(ParameterMeta param)
     {
         if (string.IsNullOrEmpty(param.DefaultValue)) return null;
-
-        return param.Kind switch
-        {
-            "Boolean" or "Bool" => bool.TryParse(param.DefaultValue, out var b) && b,
-            "Number" or "Int" => int.TryParse(param.DefaultValue, out var i) ? i : 0,
-            "Double" => double.TryParse(param.DefaultValue, out var d) ? d : 0.0,
-            "String" => param.DefaultValue,
-            "Enum" => param.DefaultValue,
-            "Content" => param.DefaultValue,
-            _ => param.DefaultValue
-        };
+        // Delegate to CoerceValue so numeric, boolean, and enum parsing all
+        // honor the actual parameter Type rather than assuming int.
+        return CoerceValue(param, param.DefaultValue);
     }
 }

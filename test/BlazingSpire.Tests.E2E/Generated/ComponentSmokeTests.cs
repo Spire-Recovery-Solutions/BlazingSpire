@@ -13,9 +13,12 @@ namespace BlazingSpire.Tests.E2E.Generated;
 /// Generated dynamically via [MemberData] from components.json at runtime,
 /// so new components are automatically covered without code changes.
 /// </summary>
-[Collection("BlazorApp")]
-public class ComponentSmokeTests : BlazingSpireE2EBase
+public class ComponentSmokeTests : BlazingSpireE2EBase,
+    IClassFixture<BlazorAppFixture>,
+    IClassFixture<PlaywrightBrowserFixture>
 {
+    public ComponentSmokeTests(PlaywrightBrowserFixture browserFixture) : base(browserFixture) { }
+
     public static IEnumerable<object[]> AllComponents() =>
         ComponentMetadata.TopLevel.Select(c => new object[] { c.Name });
 

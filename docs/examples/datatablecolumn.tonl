@@ -4,11 +4,11 @@ component{name:str,description:str,category:str,baseTier:str}:
   name: DataTableColumn
   description: 
   category: General
-  baseTier: BlazingSpireComponentBase
+  baseTier: ChildOf
 
 composition{role:str,parent:str,isComposite:bool}:
-  role: Root
-  parent: 
+  role: Child
+  parent: DataTable
   isComposite: false
 
 parameters[4]{name:str,type:str,kind:str,default:str,description:str}:

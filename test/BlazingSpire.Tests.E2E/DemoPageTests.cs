@@ -7,8 +7,12 @@ namespace BlazingSpire.Tests.E2E;
 /// Covers page load, hero section, stats, preview, and category cards.
 /// Requires the demo app running at APP_URL (default: https://localhost:5001).
 /// </summary>
-public class DemoPageTests : BlazingSpireE2EBase
+public class DemoPageTests : BlazingSpireE2EBase,
+    IClassFixture<BlazorAppFixture>,
+    IClassFixture<PlaywrightBrowserFixture>
 {
+    public DemoPageTests(PlaywrightBrowserFixture browserFixture) : base(browserFixture) { }
+
     // ── Boot / Page structure ─────────────────────────────────────────────────
 
     [Fact]
@@ -48,7 +52,7 @@ public class DemoPageTests : BlazingSpireE2EBase
     public async Task Hero_GitHub_Link_Is_Visible()
     {
         await NavigateAndWaitForBlazor();
-        await Expect(Page.GetByRole(AriaRole.Link, new() { Name = "GitHub" }))
+        await Expect(Page.Locator("a[href*='github.com'][target='_blank']").First)
             .ToBeVisibleAsync();
     }
 

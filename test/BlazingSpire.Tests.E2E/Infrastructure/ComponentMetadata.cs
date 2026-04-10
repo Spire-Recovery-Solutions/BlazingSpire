@@ -49,7 +49,7 @@ internal static class ComponentMetadata
     /// <summary>Components with at least one Bool parameter.</summary>
     public static IEnumerable<(ComponentMeta Component, ParameterMeta Parameter, bool Value)> BoolPermutations =>
         from c in TopLevel
-        from p in c.Parameters.Where(p => p.Kind == "Boolean" || p.Kind == "Bool")
+        from p in c.Parameters.Where(p => p.Kind == "Boolean")
         from v in new[] { true, false }
         select (c, p, v);
 

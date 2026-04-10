@@ -2281,9 +2281,10 @@
     "name": "DataTableColumn",
     "description": "",
     "category": "General",
-    "baseTier": "BlazingSpireComponentBase",
+    "baseTier": "ChildOf",
     "composition": {
-      "role": "Root",
+      "role": "Child",
+      "parent": "DataTable",
       "children": [],
       "isComposite": false
     },

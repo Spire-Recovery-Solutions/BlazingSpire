@@ -1667,10 +1667,11 @@
           }
         },
         "description": "",
-        "x-base-tier": "BlazingSpireComponentBase",
+        "x-base-tier": "ChildOf",
         "x-category": "General",
-        "x-composition-role": "Root",
-        "x-composition-is-composite": false
+        "x-composition-role": "Child",
+        "x-composition-is-composite": false,
+        "x-composition-parent": "DataTable"
       },
       "DatePicker": {
         "type": "object",

@@ -3,7 +3,7 @@ using BlazingSpire.Demo.Components.Shared;
 
 namespace BlazingSpire.Demo.Components.UI;
 
-public partial class DataTableColumn : BlazingSpireComponentBase
+public partial class DataTableColumn : ChildOf<DataTable>
 {
     [CascadingParameter] private DataTableContext? Context { get; set; }
     [Parameter] public string? SortKey { get; set; }

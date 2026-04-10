@@ -8,9 +8,12 @@ namespace BlazingSpire.Tests.E2E.Generated;
 /// These test the full open/close/position flow that metadata-driven
 /// tests cannot express — the actual user-facing behavior.
 /// </summary>
-[Collection("BlazorApp")]
-public class CompositeInteractionTests : BlazingSpireE2EBase
+public class CompositeInteractionTests : BlazingSpireE2EBase,
+    IClassFixture<BlazorAppFixture>,
+    IClassFixture<PlaywrightBrowserFixture>
 {
+    public CompositeInteractionTests(PlaywrightBrowserFixture browserFixture) : base(browserFixture) { }
+
     // ── Popover ───────────────────────────────────────────────────────────────
 
     [Fact]

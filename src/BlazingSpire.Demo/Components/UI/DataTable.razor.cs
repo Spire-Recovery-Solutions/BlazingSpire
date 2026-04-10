@@ -10,7 +10,10 @@ public class DataTableContext
     public Func<string, Task> ToggleSort { get; set; } = _ => Task.CompletedTask;
 }
 
-public partial class DataTable<TItem> : BlazingSpireComponentBase
+/// <summary>Non-generic marker base for <see cref="DataTable{TItem}"/> so children can declare their parent via the type system without needing to know TItem.</summary>
+public abstract class DataTable : BlazingSpireComponentBase { }
+
+public partial class DataTable<TItem> : DataTable
 {
     [Parameter, EditorRequired] public IReadOnlyList<TItem> Items { get; set; } = [];
     [Parameter, EditorRequired] public RenderFragment Columns { get; set; } = default!;

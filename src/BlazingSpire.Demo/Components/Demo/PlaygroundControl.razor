@@ -36,7 +36,7 @@
             </select>
             break;
 
-        case "Bool":
+        case "Boolean":
             <div class="flex items-center gap-2">
                 <Switch Checked="@(Value is true)"
                         CheckedChanged="@(v => ValueChanged.InvokeAsync(v))" />
@@ -44,7 +44,7 @@
             break;
 
         case "String":
-        case "RenderFragment":
+        case "Content":
             <Input Type="text"
                    Value="@(Value?.ToString() ?? "")"
                    ValueChanged="@(v => ValueChanged.InvokeAsync(v))"
@@ -53,9 +53,7 @@
                    Size="InputSize.Sm" />
             break;
 
-        case "Int":
-        case "Double":
-        case "Decimal":
+        case "Number":
             <Input Type="number"
                    Value="@(Value?.ToString() ?? "")"
                    ValueChanged="@(v => ValueChanged.InvokeAsync(v))"

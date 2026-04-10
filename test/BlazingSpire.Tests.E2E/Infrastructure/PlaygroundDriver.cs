@@ -47,18 +47,20 @@ internal sealed class PlaygroundDriver
         var route = ToKebabCase(componentName);
         await _page.GotoAsync($"{_baseUrl}/components/{route}");
 
-        // Wait for the playground card to render (it appears after components.json loads)
+        // Wait for the playground card to render (it appears after components.json loads).
+        // Generous timeout because 10 parallel Playwright browsers all hitting the dev
+        // server for the WASM bundle can push the first navigation past 30s.
         await _page.Locator($"[data-playground='{componentName}']").WaitForAsync(new()
         {
             State = WaitForSelectorState.Visible,
-            Timeout = 30_000,
+            Timeout = 90_000,
         });
 
         // Wait for the preview pane to settle
         await _page.Locator("[data-playground-preview]").WaitForAsync(new()
         {
             State = WaitForSelectorState.Visible,
-            Timeout = 5_000,
+            Timeout = 10_000,
         });
     }
 
@@ -110,12 +112,21 @@ internal sealed class PlaygroundDriver
     private static string ToKebabCase(string name)
     {
         // DatePicker -> date-picker, AlertDialog -> alert-dialog
+        // InputOTP -> input-otp (treat consecutive caps as one acronym)
         var sb = new System.Text.StringBuilder();
         for (var i = 0; i < name.Length; i++)
         {
-            if (i > 0 && char.IsUpper(name[i]))
-                sb.Append('-');
-            sb.Append(char.ToLowerInvariant(name[i]));
+            var c = name[i];
+            if (i > 0 && char.IsUpper(c))
+            {
+                // Insert dash only at boundary between lowercase→uppercase
+                // OR between uppercase→uppercase followed by lowercase (acronym → word)
+                var prev = name[i - 1];
+                var nextLower = i + 1 < name.Length && char.IsLower(name[i + 1]);
+                if (char.IsLower(prev) || (char.IsUpper(prev) && nextLower))
+                    sb.Append('-');
+            }
+            sb.Append(char.ToLowerInvariant(c));
         }
         return sb.ToString();
     }
