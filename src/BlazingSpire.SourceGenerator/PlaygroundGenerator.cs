@@ -165,19 +165,27 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         sb.AppendLine("        }");
 
         // Capture the root as a typed local so IRepeatingSlot.GetSampleCount(root) calls
-        // below can pass the live parent instance. We build a local ref cell that the
-        // inner render lambda closes over.
+        // below can pass the live parent instance. The inner render lambda closes over
+        // this array. Critical: Blazor's RenderTreeBuilder requires ALL AddAttribute calls
+        // to come immediately after OpenComponent — AddComponentReferenceCapture must come
+        // AFTER all attributes, otherwise the builder throws "Attributes may only be added
+        // immediately after frames of type Element or Component".
         var hasChildren = parentToChildren.TryGetValue(root.FullName, out var rootChildren) && rootChildren.Count > 0;
         if (hasChildren)
         {
             sb.AppendLine($"        var rootRef = new {root.Name}[1];");
-            sb.AppendLine($"        builder.AddComponentReferenceCapture(rootSeq++, inst => rootRef[0] = ({root.Name})inst);");
 
+            // ChildContent attribute goes FIRST (while we're still in "attributes allowed" mode).
             sb.AppendLine("        builder.AddAttribute(rootSeq++, \"ChildContent\", (RenderFragment)(inner =>");
             sb.AppendLine("        {");
             sb.AppendLine("            var seq0 = 0;");
             EmitChildrenList(sb, root, rootChildren!, parentToChildren, indent: "            ", builderVar: "inner", seqVar: "seq0", depth: 0);
             sb.AppendLine("        }));");
+
+            // Then the reference capture. By render time the closure above hasn't fired yet;
+            // Blazor processes the reference capture frame first (setting rootRef[0]) and
+            // then invokes the ChildContent RenderFragment, which sees the populated array.
+            sb.AppendLine($"        builder.AddComponentReferenceCapture(rootSeq++, inst => rootRef[0] = ({root.Name})inst);");
         }
 
         sb.AppendLine("        builder.CloseComponent();");
