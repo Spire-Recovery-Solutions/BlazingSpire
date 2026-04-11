@@ -201,7 +201,7 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
     /// </summary>
     private static void EmitChildrenList(
         StringBuilder sb,
-        ComponentInfo rootForRepeatLookup,
+        ComponentInfo root,
         List<ComponentInfo> children,
         Dictionary<string, List<ComponentInfo>> parentToChildren,
         string indent,
@@ -214,7 +214,6 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
             var repeating = GetRepeatingSlotRoot(child.Symbol);
             if (repeating is not null)
             {
-                var rootTypeName = repeating.ToDisplayString().TrimEnd('?');
                 var indexParam = GetRepeatingSlotIndexParameter(child.Symbol);
                 // Emit a runtime for-loop driven by the static GetSampleCount.
                 sb.AppendLine($"{indent}if (rootRef[0] is not null)");
@@ -224,7 +223,7 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
                 sb.AppendLine($"{indent}    {{");
                 sb.AppendLine($"{indent}        {builderVar}.OpenComponent<{child.Name}>({seqVar}++);");
                 sb.AppendLine($"{indent}        {builderVar}.AddAttribute({seqVar}++, \"{indexParam}\", i_{depth});");
-                EmitChildContentFragmentIfAny(sb, rootForRepeatLookup, child, parentToChildren,
+                EmitChildBody(sb, root, child, parentToChildren,
                     indent + "        ", builderVar, seqVar, depth + 1);
                 sb.AppendLine($"{indent}        {builderVar}.CloseComponent();");
                 sb.AppendLine($"{indent}    }}");
@@ -234,20 +233,25 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
 
             // Single-instance child. Open, optionally recurse into its children, close.
             sb.AppendLine($"{indent}{builderVar}.OpenComponent<{child.Name}>({seqVar}++);");
-            EmitChildContentFragmentIfAny(sb, rootForRepeatLookup, child, parentToChildren,
+            EmitChildBody(sb, root, child, parentToChildren,
                 indent, builderVar, seqVar, depth + 1);
             sb.AppendLine($"{indent}{builderVar}.CloseComponent();");
         }
     }
 
     /// <summary>
-    /// If a child has grandchildren in the ChildOf graph, emit a ChildContent RenderFragment
-    /// that recursively walks them. Otherwise no ChildContent is added — the child renders
-    /// its own template with no user-supplied body.
+    /// Emits a child's body as a ChildContent attribute. Three cases:
+    ///   (1) Child has grandchildren in the ChildOf graph → recurse into them.
+    ///   (2) Child is a leaf AND has a ChildContent parameter → emit a placeholder
+    ///       text derived purely from the class name: strip the root's name as a
+    ///       prefix. PopoverTrigger → "Trigger", AlertDialogTitle → "Title",
+    ///       AlertDialogAction → "Action". Derivation is uniform; there is no
+    ///       hand-maintained suffix map.
+    ///   (3) Child is a leaf with no ChildContent parameter → emit nothing.
     /// </summary>
-    private static void EmitChildContentFragmentIfAny(
+    private static void EmitChildBody(
         StringBuilder sb,
-        ComponentInfo rootForRepeatLookup,
+        ComponentInfo root,
         ComponentInfo child,
         Dictionary<string, List<ComponentInfo>> parentToChildren,
         string indent,
@@ -255,17 +259,59 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         string parentSeqVar,
         int depth)
     {
-        if (!parentToChildren.TryGetValue(child.FullName, out var grand) || grand.Count == 0)
+        if (parentToChildren.TryGetValue(child.FullName, out var grand) && grand.Count > 0)
+        {
+            // Case 1: recurse into grandchildren.
+            var innerBuilderVar = $"b{depth}";
+            var innerSeqVar = $"s{depth}";
+            sb.AppendLine($"{indent}{parentBuilderVar}.AddAttribute({parentSeqVar}++, \"ChildContent\", (RenderFragment)({innerBuilderVar} =>");
+            sb.AppendLine($"{indent}{{");
+            sb.AppendLine($"{indent}    var {innerSeqVar} = 0;");
+            EmitChildrenList(sb, root, grand, parentToChildren,
+                indent + "    ", innerBuilderVar, innerSeqVar, depth);
+            sb.AppendLine($"{indent}}}));");
+            return;
+        }
+
+        // Case 2/3: leaf. If it has a ChildContent parameter, emit a placeholder
+        // text derived from stripping the root's name prefix from the child's name.
+        if (!HasChildContentParameter(child.Symbol))
             return;
 
-        var innerBuilderVar = $"b{depth}";
-        var innerSeqVar = $"s{depth}";
-        sb.AppendLine($"{indent}{parentBuilderVar}.AddAttribute({parentSeqVar}++, \"ChildContent\", (RenderFragment)({innerBuilderVar} =>");
-        sb.AppendLine($"{indent}{{");
-        sb.AppendLine($"{indent}    var {innerSeqVar} = 0;");
-        EmitChildrenList(sb, rootForRepeatLookup, grand, parentToChildren,
-            indent + "    ", innerBuilderVar, innerSeqVar, depth);
-        sb.AppendLine($"{indent}}}));");
+        var placeholder = DerivePlaceholderText(root.Name, child.Name);
+        if (string.IsNullOrEmpty(placeholder))
+            return;
+
+        var escaped = placeholder!.Replace("\\", "\\\\").Replace("\"", "\\\"");
+        sb.AppendLine($"{indent}{parentBuilderVar}.AddAttribute({parentSeqVar}++, \"ChildContent\", (RenderFragment)(cb => cb.AddContent(0, \"{escaped}\")));");
+    }
+
+    /// <summary>
+    /// Derive a leaf's placeholder text purely from class names: strip the root
+    /// prefix and return the remainder, or the child name itself if it doesn't
+    /// start with the root name. No hand-maintained lists.
+    /// </summary>
+    private static string DerivePlaceholderText(string rootName, string childName)
+    {
+        if (childName.StartsWith(rootName, StringComparison.Ordinal) && childName.Length > rootName.Length)
+            return childName.Substring(rootName.Length);
+        return childName;
+    }
+
+    /// <summary>
+    /// True if the component (or any base class) declares a ChildContent parameter.
+    /// </summary>
+    private static bool HasChildContentParameter(INamedTypeSymbol symbol)
+    {
+        var current = symbol;
+        while (current is not null && current.SpecialType != SpecialType.System_Object)
+        {
+            foreach (var m in current.GetMembers())
+                if (m is IPropertySymbol p && p.Name == "ChildContent")
+                    return true;
+            current = current.BaseType;
+        }
+        return false;
     }
 
     // ── Type-graph helpers ──────────────────────────────────────────────────
