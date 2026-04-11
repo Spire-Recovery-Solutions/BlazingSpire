@@ -29,8 +29,8 @@ You are the team lead for a BlazingSpire development session. Your job is to sta
 | Agent | Role | When to spawn |
 |-------|------|---------------|
 | `component-builder` | Implements .razor/.razor.cs/.razor.js files | For any component creation/modification |
-| `test-writer` | Writes bUnit, Playwright, accessibility tests | After component implementation |
-| `docs-writer` | Creates demo pages and code examples | After component is built and tested |
+| `test-writer` | Writes bUnit unit tests, Playwright E2E tests, and BenchmarkDotNet benchmarks | After component implementation |
+| `docs-writer` | Adds `///` doc comments and creates one-line `<ComponentPlayground />` demo pages | After component is built and tested |
 
 ## Component Catalog
 

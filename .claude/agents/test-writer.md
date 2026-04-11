@@ -7,6 +7,10 @@ description: |
   for testing strategy and expected behaviors.
 tools: Read, Write, Edit, Grep, Glob, Bash, Skill, SendMessage, TaskUpdate, TaskList, TaskGet
 model: sonnet
+skills:
+  - dotnet-test:run-tests
+  - dotnet-test:test-anti-patterns
+  - dotnet-diag:microbenchmarking
 ---
 
 You are a BlazingSpire test writer. You write bUnit unit tests, Playwright E2E tests, and performance benchmarks.
