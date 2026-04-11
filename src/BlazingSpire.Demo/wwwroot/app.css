@@ -5,37 +5,47 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  /* Light mode — Spire Recovery Solutions brand palette
-   * Primary crimson:  #be1d2c → oklch(0.517 0.182 13.7)
-   * Accent green:     #65bc7b → H=163
-   * Dark navy:        #212934 → oklch(0.278 0.013 245.4)
-   * Warm surface:     #f5f5f5 → oklch(0.970 0.001 70.2)
-   * Warm border:      #eae8e8 → oklch(0.919 0.002 70.2) */
-  --color-background: oklch(0.970 0.001 70.2);
-  --color-foreground: oklch(0.278 0.013 245.4);
-  --color-primary: oklch(0.517 0.182 13.7);
+  /* Light mode — Spire Recovery Solutions brand palette (recalibrated 2026-04)
+   * Conversions via culori (Ottosson 2020 Oklab). All values tool-verified.
+   * Brand primary:    #be1d2c → oklch(0.517 0.193 23.6)  contrast 6.17:1 on white
+   * Brand hover:      #a51825 → oklch(0.466 0.174 23.6)  contrast 7.5:1
+   * Brand active:     #8f1521 → oklch(0.421 0.155 22.9)  contrast 8.8:1
+   * Brand tint:       #fdf0f1 → oklch(0.966 0.014 12.0)  subtle highlight bg
+   * Text primary:     #1d1d1f → oklch(0.232 0.004 286.1) contrast 17.3:1
+   * Text secondary:   #6e6e73 → oklch(0.540 0.008 286.1) contrast 5.2:1
+   * Border subtle:    #d2d2d7 → oklch(0.865 0.007 286.3) 1px borders
+   * Border emphasis:  #86868b → oklch(0.622 0.007 286.2) focus/hover borders on inputs
+   * Surface bg:       #ffffff → oklch(1.000 0.000 0)     cards, inputs
+   * Page bg:          #fafafa → oklch(0.985 0.000 0)     outside cards
+   * Success:          #1a7f37 → oklch(0.524 0.140 148.0) contrast 5.1:1
+   * Accent green:     #65bc7b → H=163 (unchanged) */
+  --color-background: oklch(0.985 0 0);
+  --color-foreground: oklch(0.232 0.004 286.1);
+  --color-primary: oklch(0.517 0.193 23.6);
   --color-primary-foreground: oklch(0.985 0 0);
-  --color-secondary: oklch(0.950 0.008 13.7);
-  --color-secondary-foreground: oklch(0.278 0.013 245.4);
+  --color-primary-hover: oklch(0.466 0.174 23.6);
+  --color-primary-active: oklch(0.421 0.155 22.9);
+  --color-secondary: oklch(0.966 0.014 12.0);
+  --color-secondary-foreground: oklch(0.232 0.004 286.1);
   --color-muted: oklch(0.960 0 0);
-  --color-muted-foreground: oklch(0.528 0.001 90.0);
+  --color-muted-foreground: oklch(0.540 0.008 286.1);
   --color-accent: oklch(0.940 0.012 163.0);
-  --color-accent-foreground: oklch(0.278 0.013 245.4);
+  --color-accent-foreground: oklch(0.232 0.004 286.1);
   --color-destructive: oklch(0.530 0.215 22.0);
   --color-destructive-foreground: oklch(0.985 0 0);
-  --color-success: oklch(0.520 0.150 163.0);
+  --color-success: oklch(0.524 0.140 148.0);
   --color-success-foreground: oklch(0.985 0 0);
   --color-warning: oklch(0.680 0.160 85.0);
   --color-warning-foreground: oklch(0.200 0.020 85.0);
   --color-info: oklch(0.550 0.140 245.0);
   --color-info-foreground: oklch(0.985 0 0);
-  --color-border: oklch(0.919 0.002 70.2);
-  --color-input: oklch(0.919 0.002 70.2);
-  --color-ring: oklch(0.517 0.182 13.7);
+  --color-border: oklch(0.865 0.007 286.3);
+  --color-input: oklch(0.622 0.007 286.2);
+  --color-ring: oklch(0.517 0.193 23.6);
   --color-card: oklch(1 0 0);
-  --color-card-foreground: oklch(0.278 0.013 245.4);
+  --color-card-foreground: oklch(0.232 0.004 286.1);
   --color-popover: oklch(1 0 0);
-  --color-popover-foreground: oklch(0.278 0.013 245.4);
+  --color-popover-foreground: oklch(0.232 0.004 286.1);
 
   --radius-sm: calc(0.625rem * 0.6);
   --radius-md: calc(0.625rem * 0.8);
@@ -44,40 +54,44 @@
 }
 
 .dark {
-  /* Dark mode — navy-tinted surfaces (C=0.020), brand crimson primary
-   * Fixes from design audit:
-   * 1. Popover elevated above card (was identical — floating menus invisible)
-   * 2. Primary: H locked to brand 13.7 (was drifting to 8.4 coral), L=0.560 for white-text AA
-   * 3. Primary foreground: white (dark navy failed AA at ~4.06:1)
-   * 4. Borders raised from 0.285→0.380 (were near-invisible against card)
-   * 5. Navy tint committed at C=0.020 (was 0.010 — too subtle to read as intentional)
-   * 6. Ring decoupled from primary (lighter for focus indicator visibility)
-   * 7. Destructive pushed to H=27 (was H=22, too close to brand crimson H=13.7) */
-  --color-background: oklch(0.155 0.020 245.4);
-  --color-foreground: oklch(0.970 0.001 70.2);
-  --color-primary: oklch(0.560 0.165 13.7);
+  /* Dark mode — navy-tinted surfaces, brand red primary (recalibrated 2026-04)
+   * Brand H=23.6 throughout. Navy tint C=0.020, H=245.4 on surfaces.
+   * Rule 1: primary lightens +0.063 L (0.517→0.580), full chroma preserved
+   * Rule 2: hover/active LIGHTEN in dark (+0.040 each step vs. darkening in light)
+   * Rule 3: secondary = very-low-chroma dark brand tint (L=0.180 C=0.030)
+   * Rule 4: foreground = near-white oklch(0.960) — not pure white
+   * Rule 5: muted-foreground at L=0.680, same perceptual distance as light
+   * Rule 6: border-subtle L≈0.280, border-emphasis L≈0.500
+   * Rule 7: page bg L≈0.110, card L≈0.150, popover elevated to L≈0.190
+   * Rule 8: success brightens to L=0.650 for 5:1+ on dark surface
+   * Destructive H=27 (unchanged; kept clear of brand H=23.6) */
+  --color-background: oklch(0.110 0.020 245.4);
+  --color-foreground: oklch(0.960 0 0);
+  --color-primary: oklch(0.580 0.193 23.6);
   --color-primary-foreground: oklch(0.985 0 0);
-  --color-secondary: oklch(0.200 0.020 13.7);
-  --color-secondary-foreground: oklch(0.970 0.001 70.2);
+  --color-primary-hover: oklch(0.620 0.193 23.6);
+  --color-primary-active: oklch(0.660 0.193 23.6);
+  --color-secondary: oklch(0.180 0.030 23.6);
+  --color-secondary-foreground: oklch(0.960 0 0);
   --color-muted: oklch(0.220 0 0);
-  --color-muted-foreground: oklch(0.630 0.001 90.0);
+  --color-muted-foreground: oklch(0.680 0.008 286.1);
   --color-accent: oklch(0.215 0.018 163.0);
-  --color-accent-foreground: oklch(0.970 0.001 70.2);
+  --color-accent-foreground: oklch(0.960 0 0);
   --color-destructive: oklch(0.650 0.215 27.0);
   --color-destructive-foreground: oklch(0.985 0 0);
-  --color-success: oklch(0.620 0.150 163.0);
+  --color-success: oklch(0.650 0.140 148.0);
   --color-success-foreground: oklch(0.985 0 0);
   --color-warning: oklch(0.750 0.160 85.0);
   --color-warning-foreground: oklch(0.200 0.020 85.0);
   --color-info: oklch(0.650 0.140 245.0);
   --color-info-foreground: oklch(0.985 0 0);
-  --color-border: oklch(0.380 0.010 245.4);
-  --color-input: oklch(0.380 0.010 245.4);
-  --color-ring: oklch(0.650 0.165 13.7);
-  --color-card: oklch(0.210 0.020 245.4);
-  --color-card-foreground: oklch(0.970 0.001 70.2);
-  --color-popover: oklch(0.250 0.020 245.4);
-  --color-popover-foreground: oklch(0.970 0.001 70.2);
+  --color-border: oklch(0.280 0.010 245.4);
+  --color-input: oklch(0.500 0.010 245.4);
+  --color-ring: oklch(0.660 0.193 23.6);
+  --color-card: oklch(0.150 0.020 245.4);
+  --color-card-foreground: oklch(0.960 0 0);
+  --color-popover: oklch(0.190 0.020 245.4);
+  --color-popover-foreground: oklch(0.960 0 0);
 }
 
 @layer base {
