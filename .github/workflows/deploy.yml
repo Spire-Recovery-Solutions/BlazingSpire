@@ -3,8 +3,17 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+    # Anything that can change the published WASM output must retrigger the deploy.
+    # Previously only src/BlazingSpire.Demo/** did — meaning source-generator fixes
+    # silently skipped deployment while still affecting the emitted playground code.
     paths:
       - 'src/BlazingSpire.Demo/**'
+      - 'src/BlazingSpire.SourceGenerator/**'
+      - 'tools/BlazingSpire.DocGen/**'
+      - 'Directory.Build.props'
+      - 'Directory.Build.targets'
+      - 'Directory.Packages.props'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 jobs:

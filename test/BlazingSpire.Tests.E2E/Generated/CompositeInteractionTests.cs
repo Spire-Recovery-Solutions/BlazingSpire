@@ -39,20 +39,21 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         var driver = new PlaygroundDriver(Page, BaseUrl);
         await driver.NavigateTo(componentName);
 
-        var description = $"This is a {componentName.ToLowerInvariant()} description.";
-        var body = driver.Preview.GetByText(description, new() { Exact = false });
+        // The generator derives leaf placeholder text from class-name suffix:
+        //   {Root}Description → "Description", {Root}Trigger → "Trigger", etc.
+        var body = driver.Preview.GetByText("Description", new() { Exact = true });
 
         // Before click: body must NOT be visible in the preview pane.
         await Expect(body).Not.ToBeVisibleAsync();
 
-        // Click the trigger ("Open {Name}" is the default content the factory emits)
-        await driver.Preview.GetByText($"Open {componentName}").First.ClickAsync();
+        // Click the trigger (derived placeholder = "Trigger").
+        await driver.Preview.GetByText("Trigger", new() { Exact = true }).First.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
 
         // After click: body must become visible somewhere on the page.
         // (Overlay content uses position:fixed with a portal-style escape, so the visible
         // description may land outside the preview pane — check the full page.)
-        await Expect(Page.GetByText(description, new() { Exact = false }).First).ToBeVisibleAsync();
+        await Expect(Page.GetByText("Description", new() { Exact = true }).First).ToBeVisibleAsync();
     }
 
     // ── Non-empty preview invariant (metadata-driven) ─────────────────────────
@@ -97,7 +98,7 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         await Expect(Page.Locator("[data-side]")).ToHaveCountAsync(0);
 
         // Click the trigger
-        await Page.GetByText("Open Popover").First.ClickAsync();
+        await Page.GetByText("Trigger").First.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
 
         // Content should appear with data-side attribute set by Floating UI
@@ -111,7 +112,7 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         await driver.NavigateTo("Popover");
 
         // Open popover with Start align (default)
-        await Page.GetByText("Open Popover").First.ClickAsync();
+        await Page.GetByText("Trigger").First.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
 
         var startBox = await Page.Locator("[data-side]").First.BoundingBoxAsync();
@@ -120,7 +121,7 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         // Switch to End alignment
         await driver.SetEnumParam("Align", "End");
         await Page.WaitForTimeoutAsync(300);
-        await Page.GetByText("Open Popover").First.ClickAsync();
+        await Page.GetByText("Trigger").First.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
 
         var endBox = await Page.Locator("[data-side]").First.BoundingBoxAsync();
@@ -138,7 +139,7 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         var driver = new PlaygroundDriver(Page, BaseUrl);
         await driver.NavigateTo("Dialog");
 
-        await Page.GetByText("Open Dialog").First.ClickAsync();
+        await Page.GetByText("Trigger").First.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
 
         await Expect(Page.GetByRole(AriaRole.Dialog)).ToBeVisibleAsync();
@@ -150,7 +151,7 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         var driver = new PlaygroundDriver(Page, BaseUrl);
         await driver.NavigateTo("Dialog");
 
-        await Page.GetByText("Open Dialog").First.ClickAsync();
+        await Page.GetByText("Trigger").First.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
         await Expect(Page.GetByRole(AriaRole.Dialog)).ToBeVisibleAsync();
 
@@ -180,7 +181,7 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         var driver = new PlaygroundDriver(Page, BaseUrl);
         await driver.NavigateTo("Collapsible");
 
-        var trigger = Page.GetByText("Open Collapsible").First;
+        var trigger = Page.GetByText("Trigger").First;
         await trigger.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
 
@@ -195,7 +196,7 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         var driver = new PlaygroundDriver(Page, BaseUrl);
         await driver.NavigateTo("Sheet");
 
-        await Page.GetByText("Open Sheet").First.ClickAsync();
+        await Page.GetByText("Trigger").First.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
 
         Assert.Empty(driver.ConsoleErrors);
@@ -209,7 +210,7 @@ public class CompositeInteractionTests : BlazingSpireE2EBase,
         var driver = new PlaygroundDriver(Page, BaseUrl);
         await driver.NavigateTo("AlertDialog");
 
-        await Page.GetByText("Open AlertDialog").First.ClickAsync();
+        await Page.GetByText("Trigger").First.ClickAsync();
         await Page.WaitForTimeoutAsync(300);
 
         Assert.Empty(driver.ConsoleErrors);
