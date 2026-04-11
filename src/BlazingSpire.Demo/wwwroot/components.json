@@ -3849,7 +3849,11 @@
       "role": "Child",
       "parent": "InputOTPGroup",
       "children": [],
-      "isComposite": false
+      "isComposite": false,
+      "isRepeatingSlot": true,
+      "countParameterOwner": "InputOTP",
+      "countParameterName": "MaxLength",
+      "indexParameterName": "Index"
     },
     "parameters": [
       {
@@ -5928,8 +5932,10 @@
     "composition": {
       "role": "Child",
       "parent": "Table",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "TableFooterRow"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -5948,13 +5954,69 @@
     ]
   },
   {
+    "name": "TableFooterCell",
+    "description": "",
+    "category": "General",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "TableFooterRow",
+      "children": [],
+      "isComposite": false
+    },
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableFooterCell content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "TableFooterRow",
+    "description": "",
+    "category": "General",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "TableFooter",
+      "children": [
+        "TableFooterCell"
+      ],
+      "isComposite": true
+    },
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableFooterRow content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
     "name": "TableHead",
     "description": "",
     "category": "General",
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "TableRow",
+      "parent": "TableHeaderRow",
       "children": [],
       "isComposite": false
     },
@@ -5982,8 +6044,10 @@
     "composition": {
       "role": "Child",
       "parent": "Table",
-      "children": [],
-      "isComposite": false
+      "children": [
+        "TableHeaderRow"
+      ],
+      "isComposite": true
     },
     "parameters": [
       {
@@ -6002,6 +6066,35 @@
     ]
   },
   {
+    "name": "TableHeaderRow",
+    "description": "",
+    "category": "General",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "TableHeader",
+      "children": [
+        "TableHead"
+      ],
+      "isComposite": true
+    },
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample TableHeaderRow content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
     "name": "TableRow",
     "description": "",
     "category": "General",
@@ -6010,8 +6103,7 @@
       "role": "Child",
       "parent": "TableBody",
       "children": [
-        "TableCell",
-        "TableHead"
+        "TableCell"
       ],
       "isComposite": true
     },
@@ -6298,8 +6390,7 @@
       "children": [
         "ToastAction",
         "ToastClose",
-        "ToastDescription",
-        "ToastTitle"
+        "ToastHeader"
       ],
       "isComposite": true
     },
@@ -6417,7 +6508,7 @@
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
-      "parent": "Toast",
+      "parent": "ToastHeader",
       "children": [],
       "isComposite": false
     },
@@ -6438,13 +6529,43 @@
     ]
   },
   {
-    "name": "ToastTitle",
+    "name": "ToastHeader",
     "description": "",
     "category": "General",
     "baseTier": "ChildOf",
     "composition": {
       "role": "Child",
       "parent": "Toast",
+      "children": [
+        "ToastDescription",
+        "ToastTitle"
+      ],
+      "isComposite": true
+    },
+    "parameters": [
+      {
+        "name": "ChildContent",
+        "kind": "Content",
+        "type": "RenderFragment",
+        "description": "The content to render inside the component.",
+        "defaultValue": "Sample ToastHeader content"
+      },
+      {
+        "name": "Class",
+        "kind": "String",
+        "type": "string",
+        "description": "Additional CSS classes to apply to the root element."
+      }
+    ]
+  },
+  {
+    "name": "ToastTitle",
+    "description": "",
+    "category": "General",
+    "baseTier": "ChildOf",
+    "composition": {
+      "role": "Child",
+      "parent": "ToastHeader",
       "children": [],
       "isComposite": false
     },

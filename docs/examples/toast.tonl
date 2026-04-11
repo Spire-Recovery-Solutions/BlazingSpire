@@ -10,7 +10,7 @@ composition{role:str,parent:str,isComposite:bool}:
   role: Root
   parent: 
   isComposite: true
-children[4]: ToastAction, ToastClose, ToastDescription, ToastTitle
+children[3]: ToastAction, ToastClose, ToastHeader
 
 parameters[5]{name:str,type:str,kind:str,default:str,description:str}:
   ChildContent, RenderFragment, Content, Sample Toast content, The content to render inside the component.

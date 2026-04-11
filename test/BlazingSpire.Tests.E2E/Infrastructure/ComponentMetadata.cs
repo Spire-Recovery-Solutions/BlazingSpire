@@ -102,6 +102,25 @@ internal static class ComponentMetadata
     public static IEnumerable<ComponentMeta> CompositesWithMultipleChildren =>
         TopLevel.Where(c => c.Composition.Children.Count >= 1);
 
+    /// <summary>
+    /// PopoverBase-derived components: have Side + Align floating parameters and
+    /// render their content in a floating layer positioned by Floating UI.
+    /// Excludes ContextMenu (right-click trigger) and hover-triggered components.
+    /// </summary>
+    public static IEnumerable<ComponentMeta> PopoverComponents =>
+        TopLevel.Where(c => c.BaseTier == "PopoverBase");
+
+    /// <summary>
+    /// Components implementing IRepeatingSlot&lt;TRoot&gt;, with the root and count
+    /// parameter name they depend on. Use for slot-count liveness tests that toggle
+    /// the count parameter and assert the DOM slot count follows.
+    /// </summary>
+    public static IEnumerable<(ComponentMeta Slot, string CountOwner, string CountParam)> RepeatingSlots =>
+        All.Where(c => c.Composition.IsRepeatingSlot == true
+                    && c.Composition.CountParameterOwner is not null
+                    && c.Composition.CountParameterName is not null)
+           .Select(c => (c, c.Composition.CountParameterOwner!, c.Composition.CountParameterName!));
+
     private static string FindComponentsJson()
     {
         // Check deploy locations: next to the test DLL first, then walk up
@@ -136,6 +155,10 @@ internal sealed class CompositionMeta
     [JsonPropertyName("parent")] public string? Parent { get; set; }
     [JsonPropertyName("children")] public List<string> Children { get; set; } = new();
     [JsonPropertyName("isComposite")] public bool IsComposite { get; set; }
+    [JsonPropertyName("isRepeatingSlot")] public bool IsRepeatingSlot { get; set; }
+    [JsonPropertyName("countParameterOwner")] public string? CountParameterOwner { get; set; }
+    [JsonPropertyName("countParameterName")] public string? CountParameterName { get; set; }
+    [JsonPropertyName("indexParameterName")] public string? IndexParameterName { get; set; }
 }
 
 internal sealed class ParameterMeta

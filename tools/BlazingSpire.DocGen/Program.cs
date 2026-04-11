@@ -151,12 +151,17 @@ foreach (var type in components)
         // so structural children (without [CascadingParameter]) are still classified correctly.
         var isChild = !sourceGenRoots.Contains(type.Name);
         var hasCascadingParent = childComponents.Contains(type.Name);
+        var slotInfo = GetRepeatingSlotInfo(type);
         model.Composition = new CompositionModel
         {
             Role = isChild ? "Child" : "Root",
             Parent = hasCascadingParent ? childParent[type.Name] : null,
             Children = parentChildMap.TryGetValue(type.Name, out var kids) ? kids : new List<string>(),
             IsComposite = parentChildMap.ContainsKey(type.Name),
+            IsRepeatingSlot = slotInfo.IsSlot ? true : null,
+            CountParameterOwner = slotInfo.RootName,
+            CountParameterName = slotInfo.CountParam,
+            IndexParameterName = slotInfo.IndexParam,
         };
 
         componentModels.Add(model);
@@ -313,6 +318,74 @@ static string ClassifyCategory(Type type, Type baseType, Assembly assembly)
         return "Presentational";
 
     return "General";
+}
+
+/// <summary>
+/// Detect if a type implements IRepeatingSlot&lt;TRoot&gt; and, if so, extract:
+///   - RootName: the TRoot type name (e.g., "InputOTP")
+///   - CountParam: the name of the [Parameter] on TRoot that drives GetSampleCount
+///   - IndexParam: the value of IndexParameterName (e.g., "Index")
+/// Uses reflection to probe GetSampleCount with fresh instances — changes the value
+/// of each numeric [Parameter] on TRoot and detects which one shifts the count.
+/// </summary>
+static (bool IsSlot, string? RootName, string? CountParam, string? IndexParam) GetRepeatingSlotInfo(Type type)
+{
+    const string interfaceName = "IRepeatingSlot`1";
+    var slotInterface = type.GetInterfaces()
+        .FirstOrDefault(i => i.IsGenericType && i.Name == interfaceName);
+
+    if (slotInterface is null) return (false, null, null, null);
+
+    var rootType = slotInterface.GetGenericArguments()[0];
+
+    // IndexParameterName: static property on the implementing type
+    string? indexParam = null;
+    try
+    {
+        var indexProp = type.GetProperty("IndexParameterName",
+            BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+        if (indexProp is not null)
+            indexParam = indexProp.GetValue(null) as string;
+    }
+    catch { /* ignore */ }
+
+    // CountParameterName: probe GetSampleCount(root) with fresh instances,
+    // bumping each numeric [Parameter] by +2 to find which one changes the result.
+    string? countParam = null;
+    try
+    {
+        var getSampleCount = type.GetMethod("GetSampleCount",
+            BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+        if (getSampleCount is not null)
+        {
+            var baselineRoot = Activator.CreateInstance(rootType);
+            if (baselineRoot is not null)
+            {
+                var baseline = (int)getSampleCount.Invoke(null, [baselineRoot])!;
+                var rootParams = rootType
+                    .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy)
+                    .Where(p => p.GetCustomAttributes().Any(a => a.GetType().Name == "ParameterAttribute")
+                             && (p.PropertyType == typeof(int) || p.PropertyType == typeof(long)));
+
+                foreach (var prop in rootParams)
+                {
+                    var probe = Activator.CreateInstance(rootType);
+                    if (probe is null) continue;
+                    var orig = (int)(prop.GetValue(baselineRoot) ?? 0);
+                    prop.SetValue(probe, orig + 2);
+                    var probeResult = (int)getSampleCount.Invoke(null, [probe])!;
+                    if (probeResult != baseline)
+                    {
+                        countParam = prop.Name;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    catch { /* ignore */ }
+
+    return (true, rootType.Name, countParam, indexParam);
 }
 
 static string ClassifyBaseTier(Type type, Type baseType)
@@ -658,6 +731,22 @@ class CompositionModel
 
     /// <summary>True when this component accepts child components via cascading values.</summary>
     public bool IsComposite { get; set; }
+
+    /// <summary>True when this component implements IRepeatingSlot&lt;TRoot&gt;.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? IsRepeatingSlot { get; set; }
+
+    /// <summary>For IRepeatingSlot: the root component whose parameter drives the slot count.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? CountParameterOwner { get; set; }
+
+    /// <summary>For IRepeatingSlot: the name of the parameter on CountParameterOwner that controls count.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? CountParameterName { get; set; }
+
+    /// <summary>For IRepeatingSlot: the name of the [Parameter] that receives the loop index.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? IndexParameterName { get; set; }
 }
 
 class ParameterModel

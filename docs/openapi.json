@@ -4311,8 +4311,52 @@
         "x-base-tier": "ChildOf",
         "x-category": "General",
         "x-composition-role": "Child",
+        "x-composition-is-composite": true,
+        "x-composition-parent": "Table",
+        "x-composition-children": [
+          "TableFooterRow"
+        ]
+      },
+      "TableFooterCell": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
         "x-composition-is-composite": false,
-        "x-composition-parent": "Table"
+        "x-composition-parent": "TableFooterRow"
+      },
+      "TableFooterRow": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": true,
+        "x-composition-parent": "TableFooter",
+        "x-composition-children": [
+          "TableFooterCell"
+        ]
       },
       "TableHead": {
         "type": "object",
@@ -4331,7 +4375,7 @@
         "x-category": "General",
         "x-composition-role": "Child",
         "x-composition-is-composite": false,
-        "x-composition-parent": "TableRow"
+        "x-composition-parent": "TableHeaderRow"
       },
       "TableHeader": {
         "type": "object",
@@ -4349,8 +4393,33 @@
         "x-base-tier": "ChildOf",
         "x-category": "General",
         "x-composition-role": "Child",
-        "x-composition-is-composite": false,
-        "x-composition-parent": "Table"
+        "x-composition-is-composite": true,
+        "x-composition-parent": "Table",
+        "x-composition-children": [
+          "TableHeaderRow"
+        ]
+      },
+      "TableHeaderRow": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": true,
+        "x-composition-parent": "TableHeader",
+        "x-composition-children": [
+          "TableHead"
+        ]
       },
       "TableRow": {
         "type": "object",
@@ -4371,8 +4440,7 @@
         "x-composition-is-composite": true,
         "x-composition-parent": "TableBody",
         "x-composition-children": [
-          "TableCell",
-          "TableHead"
+          "TableCell"
         ]
       },
       "Tabs": {
@@ -4593,8 +4661,7 @@
         "x-composition-children": [
           "ToastAction",
           "ToastClose",
-          "ToastDescription",
-          "ToastTitle"
+          "ToastHeader"
         ]
       },
       "ToastAction": {
@@ -4661,7 +4728,30 @@
         "x-category": "General",
         "x-composition-role": "Child",
         "x-composition-is-composite": false,
-        "x-composition-parent": "Toast"
+        "x-composition-parent": "ToastHeader"
+      },
+      "ToastHeader": {
+        "type": "object",
+        "properties": {
+          "ChildContent": {
+            "type": "string",
+            "description": "The content to render inside the component. (render fragment)"
+          },
+          "Class": {
+            "type": "string",
+            "description": "Additional CSS classes to apply to the root element."
+          }
+        },
+        "description": "",
+        "x-base-tier": "ChildOf",
+        "x-category": "General",
+        "x-composition-role": "Child",
+        "x-composition-is-composite": true,
+        "x-composition-parent": "Toast",
+        "x-composition-children": [
+          "ToastDescription",
+          "ToastTitle"
+        ]
       },
       "ToastTitle": {
         "type": "object",
@@ -4680,7 +4770,7 @@
         "x-category": "General",
         "x-composition-role": "Child",
         "x-composition-is-composite": false,
-        "x-composition-parent": "Toast"
+        "x-composition-parent": "ToastHeader"
       },
       "Toggle": {
         "type": "object",
