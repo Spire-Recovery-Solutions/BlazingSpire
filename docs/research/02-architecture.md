@@ -41,6 +41,34 @@ Styled components extend a tiered base class hierarchy defined in `Components/Sh
 
 Key tiers: `BlazingSpireComponentBase` (structural) → `PresentationalBase<T>` (variants) → `InteractiveBase` (interactive) → `ButtonBase<V,S>` / `FormControlBase<T>` / `DisclosureBase` → `OverlayBase` → `PopoverBase` → `MenuBase`.
 
+## Composition: Hierarchical `ChildOf<T>` + `IRepeatingSlot<T>`
+
+Sub-components of a composite declare their immediate visual parent through the type system via `ChildOf<TImmediateContainer>`. The type argument is the component that directly wraps them in the rendered output — not the outer composite root. The source generator walks this chain to build a composition tree, and the playground factory emits a recursive `RenderFragment` closure that mirrors the visual hierarchy. There are no suffix heuristics, default-content maps, or hand-maintained child registries: the composition is the type graph, full stop.
+
+```csharp
+public partial class DialogContent     : ChildOf<Dialog>         { }
+public partial class DialogHeader      : ChildOf<DialogContent>  { }
+public partial class DialogTitle       : ChildOf<DialogHeader>   { }
+public partial class DialogDescription : ChildOf<DialogHeader>   { }
+public partial class DialogFooter      : ChildOf<DialogContent>  { }
+public partial class DialogClose       : ChildOf<DialogFooter>   { }
+```
+
+`ChildOf<T>.Parent` is a `[CascadingParameter]` matching the immediate container. When a child needs state from an outer root (e.g., `DialogTitle` reading `Dialog.TitleId` for ARIA), it declares a second `[CascadingParameter] Dialog? DialogRoot` alongside `ChildOf<DialogHeader>`. Visual nesting (for the generator) and data flow (for the runtime) are two orthogonal type-system signals — do not conflate them.
+
+Repeating slots implement `IRepeatingSlot<TRoot>` with C# 11 static abstract members. The generator emits a runtime `for`-loop that calls `GetSampleCount(root)` against a ref-captured root instance, so parameter toggles in the playground re-drive the loop count at render time:
+
+```csharp
+public partial class InputOTPSlot : ChildOf<InputOTPGroup>, IRepeatingSlot<InputOTP>
+{
+    public static int GetSampleCount(InputOTP root) => root.MaxLength;
+    public static string IndexParameterName => nameof(Index);
+    [Parameter] public int Index { get; set; }
+}
+```
+
+See `.claude/agents/blazor-architecture.md` and `.claude/agents/component-builder.md` for the full authoring guide.
+
 ## Render Mode Strategy: Islands Architecture
 
 - Components never set their own `@rendermode`

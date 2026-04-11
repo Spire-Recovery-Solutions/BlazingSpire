@@ -71,6 +71,68 @@ Every component MUST extend the appropriate base class from `Components/Shared/`
 - Provide SSR fallback (native HTML equivalents)
 - Use tiered CascadingValue (Tier 1 for simple components, Tier 2 for collections)
 
+### Composite Components: Hierarchical `ChildOf<T>` + `IRepeatingSlot<T>`
+
+Sub-components of a composite (e.g., `DialogHeader`, `DialogTitle`) declare their parent through the type system, not via naming conventions or attributes. Two rules:
+
+**1. Every non-root child inherits from `ChildOf<TImmediateContainer>`**, where the type argument is the component that *directly wraps* it in the rendered markup — not the outer composite root:
+
+```csharp
+// Dialog family — each ChildOf type argument is the IMMEDIATE visual parent
+public partial class DialogTrigger     : ChildOf<Dialog>         { }
+public partial class DialogContent     : ChildOf<Dialog>         { }
+public partial class DialogHeader      : ChildOf<DialogContent>  { }
+public partial class DialogFooter      : ChildOf<DialogContent>  { }
+public partial class DialogTitle       : ChildOf<DialogHeader>   { }
+public partial class DialogDescription : ChildOf<DialogHeader>   { }
+public partial class DialogClose       : ChildOf<DialogFooter>   { }
+```
+
+The source generator walks this chain bottom-up to discover the composition tree. The playground's render factory is a recursive tree walker over the graph — no hand-written samples, no suffix heuristics, no default-content maps. Declaring the wrong `TImmediateContainer` will produce structurally wrong markup in the playground.
+
+**2. When a child needs state from the outer root, declare a separate `[CascadingParameter]`** alongside `ChildOf<>`:
+
+```csharp
+public partial class DialogTitle : ChildOf<DialogHeader>
+{
+    // Root cascades itself via <CascadingValue Value="this">, so any
+    // descendant can resolve it regardless of nesting depth.
+    [CascadingParameter] private Dialog? DialogRoot { get; set; }
+
+    // .razor uses @DialogRoot?.TitleId (for aria-labelledby), not @Parent?.TitleId.
+}
+```
+
+`ChildOf<T>.Parent` is the *immediate* container — use it only when the child genuinely needs data from that container. For root state (TitleId, IsOpen, OnClose, etc.) always declare an explicit `[CascadingParameter]`. Do not conflate visual nesting with data flow.
+
+**3. Repeating slots implement `IRepeatingSlot<TRoot>`** with C# 11 static abstract members. The generator emits a runtime `for`-loop driven by `GetSampleCount(root)` called against the live parent instance. Use this for fixed-count structural repetition (OTP slots, calendar cells) where the count comes from a parameter on the root:
+
+```csharp
+public partial class InputOTPSlot : ChildOf<InputOTPGroup>, IRepeatingSlot<InputOTP>
+{
+    [CascadingParameter] private InputOTP? InputOTPRoot { get; set; }
+    [Parameter] public int Index { get; set; }
+
+    public static int GetSampleCount(InputOTP root) => root.MaxLength;
+    public static string IndexParameterName => nameof(Index);
+
+    // ... instance members use InputOTPRoot?.GetChar(Index), etc.
+}
+```
+
+The parent (`InputOTPGroup` in this case) does not need to do anything special — just `ChildOf<InputOTP>` for its own declaration. The slot's static interface members are invoked at render time with a ref-captured root, so toggling `MaxLength` in the playground re-drives the loop instantly.
+
+**Rules of thumb for ChildOf design:**
+- If the user would reasonably write `<X>` *directly inside* `<Y>` in real usage, then `X : ChildOf<Y>`.
+- If the user would *always* nest `<X>` inside `<Z>` inside `<Y>`, then `X : ChildOf<Z>`, not `ChildOf<Y>`.
+- If a child needs access to the outer root's state, add a named `[CascadingParameter]` for the root alongside `ChildOf<>`. Never read `Parent.Parent.Parent` — that path is fragile.
+- If a child is purely a layout wrapper with no runtime state needs, it doesn't need any cascading parameter at all — just `ChildOf<T>`.
+- Do not add suffix conventions like `{Name}Item`, `{Name}List`, `{Name}Separator` and expect the generator to interpret them. Only the type graph is read.
+
+### Leaf Placeholder Text (Automatic)
+
+The playground factory emits placeholder text for every leaf child with a `ChildContent` parameter. The rule is a uniform `childName.Substring(rootName.Length)` — so `DialogTitle` renders `"Title"`, `DialogDescription` renders `"Description"`, `PopoverTrigger` renders `"Trigger"`, `AlertDialogAction` renders `"Action"`. Do not manually wire this — just name your components naturally (`{Root}{Role}`) and the placeholder text falls out of the class name. If the suffix would produce awkward text (e.g., a component genuinely named in a non-root-prefixed way), that's a sign the class name is wrong for the composite pattern.
+
 ## Documentation (Required)
 
 Every component class and `[Parameter]` property MUST have a `/// <summary>` doc comment. This drives the auto-generated playground, OpenAPI spec, and TONL output. No separate demo pages needed — the playground generates everything from doc comments.

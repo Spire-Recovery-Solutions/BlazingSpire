@@ -106,6 +106,67 @@ BlazingSpireComponentBase                    — ChildContent, Class, Additional
 - **Controlled/uncontrolled:** Used in `DisclosureBase` and `OverlayBase`.
 - **Virtual behavior toggles:** `OverlayBase` uses virtual properties (`ShouldTrapFocus`, `ShouldLockScroll`, etc.) that `PopoverBase` overrides.
 
+### Canonical Composition Pattern: `ChildOf<TParent>` + `IRepeatingSlot<TRoot>`
+
+Composite components are declared through two type-system signals in `Components/Shared/`. These are the canonical way to express composition — prefer them over bespoke `[CascadingParameter]` plumbing unless you specifically need multi-cast runtime data.
+
+**1. Hierarchical `ChildOf<T>` — the type graph IS the composition tree.**
+
+Every non-root child inherits from `ChildOf<TImmediateContainer>`, where the type argument is the component that directly wraps it in the rendered output — NOT the outer composite root. The source generator walks this chain bottom-up to build a composition tree, and the playground factory emitter recursively descends it to produce nested `RenderFragment` closures that mirror the visual hierarchy.
+
+```csharp
+// Dialog family — hierarchical, each link is the immediate visual parent
+public partial class DialogTrigger     : ChildOf<Dialog>         { }
+public partial class DialogContent     : ChildOf<Dialog>         { }
+public partial class DialogHeader      : ChildOf<DialogContent>  { }
+public partial class DialogFooter      : ChildOf<DialogContent>  { }
+public partial class DialogClose       : ChildOf<DialogFooter>   { }
+public partial class DialogTitle       : ChildOf<DialogHeader>   { }
+public partial class DialogDescription : ChildOf<DialogHeader>   { }
+```
+
+`ChildOf<T>` exposes a `[CascadingParameter] TParent? Parent` that matches the immediate container. When a leaf needs access to an *outer* root's state (e.g., `DialogTitle` reading `Dialog.TitleId` for ARIA wiring), it declares an explicit separate cascading parameter alongside `ChildOf<>`:
+
+```csharp
+public partial class DialogTitle : ChildOf<DialogHeader>
+{
+    // Visual nesting (for the playground generator)
+    // — Parent is DialogHeader, resolved via ChildOf's CascadingParameter.
+
+    // Data flow (for runtime state)
+    [CascadingParameter] private Dialog? DialogRoot { get; set; }
+    // Dialog cascades itself via <CascadingValue Value="this">,
+    // so this resolves regardless of how deeply DialogTitle is nested.
+
+    // .razor uses @DialogRoot?.TitleId, not @Parent?.TitleId.
+}
+```
+
+Visual nesting and data flow are two orthogonal concerns that happen to share Blazor's cascading mechanism. Keep them separate in the code: `ChildOf<T>` for the former, named `[CascadingParameter]` fields for the latter.
+
+**2. `IRepeatingSlot<TRoot>` — runtime-driven slot counts.**
+
+Components that should emit N instances driven by a live parameter implement `IRepeatingSlot<TRoot>` with C# 11 static abstract members. The generator detects the interface via type-graph walk and emits a `for`-loop against the live root instance captured through `AddComponentReferenceCapture`, so toggling the count parameter in the playground re-drives the loop.
+
+```csharp
+public partial class InputOTPSlot : ChildOf<InputOTPGroup>, IRepeatingSlot<InputOTP>
+{
+    [CascadingParameter] private InputOTP? InputOTPRoot { get; set; }
+    [Parameter] public int Index { get; set; }
+
+    public static int GetSampleCount(InputOTP root) => root.MaxLength;
+    public static string IndexParameterName => nameof(Index);
+}
+```
+
+The interface is purely a type-system signal — no attributes, no naming conventions. Use it only when the slot count comes from a parameter; for fixed-count layouts use plain `ChildOf<T>`.
+
+**3. What the playground generator emits.**
+
+The generator in `src/BlazingSpire.SourceGenerator/PlaygroundGenerator.cs` is a ~40-line recursive tree walker over `ChildOf<T>` chains. It has **zero** suffix heuristics, default-content maps, or hardcoded component lists. Leaf placeholder text is derived uniformly from class names: `childName.Substring(rootName.Length)` — so `PopoverTrigger` renders `"Trigger"`, `AlertDialogAction` renders `"Action"`, etc. The rule is the same for every composite; there is no per-component table to maintain.
+
+When designing a new composite, the first question is "what's the natural visual hierarchy?" — that IS the ChildOf graph. The playground, DocGen, OpenAPI schema, TONL output, and component metadata all flow from it automatically.
+
 ### AOT Safety Per Tier
 
 All tiers are AOT-safe. Specific notes:

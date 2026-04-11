@@ -36,14 +36,23 @@ Solution file: `BlazingSpire.sln`. Central Package Management via `Directory.Pac
 
 ## Deployment
 
-Pushes to `main` (under `src/BlazingSpire.Demo/`) trigger `.github/workflows/deploy.yml`:
-1. Build Tailwind CSS
-2. `dotnet publish` Blazor WASM
-3. Deploy `publish/wwwroot` to Cloudflare Pages via `wrangler-action@v3`
+Pushes to `main` trigger `.github/workflows/deploy.yml` on any change under:
+- `src/BlazingSpire.Demo/**`
+- `src/BlazingSpire.SourceGenerator/**` (generator output is baked into the published WASM)
+- `tools/BlazingSpire.DocGen/**` (DocGen runs post-build and emits `components.json`)
+- `Directory.Build.*` / `Directory.Packages.props` / the workflow file itself
+
+The workflow:
+1. Build Tailwind CSS (`app.build.css`, minified)
+2. Pre-highlight code blocks (`highlight-code.js`)
+3. `dotnet publish` Blazor WASM in `Release`
+4. Deploy `publish/wwwroot` to Cloudflare Pages via `wrangler-action@v3`
 
 Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`. Project name: `blazingspire`.
 
 `app.build.css` is gitignored — CI regenerates it. Never commit it.
+
+The workflow's path filter is intentionally broader than just the demo project: a generator-only change (e.g., fixing the playground factory emission) still affects the final WASM payload, and the old narrower filter silently skipped deploys on those commits.
 
 ## Architecture
 
@@ -64,7 +73,35 @@ BlazingSpireComponentBase              → ChildContent, Class, AdditionalAttrib
 
 **Component pattern:** Each UI component lives in `Components/UI/` as a `.razor` + `.razor.cs` pair. The `.razor` file uses `@inherits` to specify the base class. The `.razor.cs` provides `BaseClasses`, variant/size `FrozenDictionary` mappings, and component-specific parameters. Enums are at namespace scope (e.g., `ButtonVariant.Default`, not `Button.ButtonVariant.Default`). No component sets its own `@rendermode`.
 
-**Parent/child composition:** Sub-components that only make sense nested inside a specific parent (e.g., `AlertTitle`, `DialogContent`, `TabsTrigger`) inherit from `ChildOf<TParent>` in `Components/Shared/`. This is an intrinsic type-system declaration — the source generator and DocGen discover composition programmatically by walking the base-type chain, no naming conventions, attributes, or markers required. `ChildOf<TParent>` also exposes `Parent` as a `[CascadingParameter]` for children that need to reach their parent. Playground and smoke tests skip `Child`-role components automatically (they're rendered via their parent's playground).
+**Parent/child composition:** Sub-components inherit from `ChildOf<TParent>` in `Components/Shared/`, where `TParent` is the **immediate visual container**, not the outer composite root. The type graph literally encodes the composition tree:
+
+```csharp
+public partial class DialogContent     : ChildOf<Dialog>         { }
+public partial class DialogHeader      : ChildOf<DialogContent>  { }
+public partial class DialogTitle       : ChildOf<DialogHeader>   { }
+public partial class DialogDescription : ChildOf<DialogHeader>   { }
+public partial class DialogFooter      : ChildOf<DialogContent>  { }
+public partial class DialogClose       : ChildOf<DialogFooter>   { }
+```
+
+`ChildOf<T>` exposes `Parent` as a `[CascadingParameter]` matching the immediate container. When a child needs access to the outer root's state (e.g., `DialogTitle` reading `Dialog.TitleId`), it adds an explicit `[CascadingParameter] Dialog? DialogRoot` alongside the `ChildOf<DialogHeader>` declaration — the root component cascades itself via `<CascadingValue Value="this">` so any descendant can resolve it regardless of nesting depth. Visual nesting (`ChildOf<T>`) and data-flow cascading are two orthogonal type-system signals.
+
+The source generator and DocGen discover composition by walking `ChildOf<T>` base-type chains — no naming conventions, no attributes, no registries. The playground's tree-walk factory emitter (see `src/BlazingSpire.SourceGenerator/PlaygroundGenerator.cs`) recursively descends the graph, producing nested `RenderFragment` closures that mirror the visual hierarchy. Leaf children with a `ChildContent` parameter get placeholder text derived uniformly from class names — `PopoverTrigger` → `"Trigger"`, `AlertDialogAction` → `"Action"` — computed as `childName.Substring(rootName.Length)` with zero hand-maintained maps.
+
+**Repeating slots:** Components that should emit N instances (driven by a runtime parameter) implement `IRepeatingSlot<TRoot>` with C# 11 static abstract members:
+
+```csharp
+public partial class InputOTPSlot : ChildOf<InputOTPGroup>, IRepeatingSlot<InputOTP>
+{
+    public static int GetSampleCount(InputOTP root) => root.MaxLength;
+    public static string IndexParameterName => nameof(Index);
+    [Parameter] public int Index { get; set; }
+}
+```
+
+The generator detects the interface via type-graph walk and emits a runtime `for`-loop against the live root instance (captured via `AddComponentReferenceCapture`). Toggling `MaxLength` in the playground re-drives the loop — the count is live, not static.
+
+Playground and smoke tests skip `Child`-role components automatically (they're rendered via their parent's playground).
 
 **Theming:** All colors defined as OKLCH tokens in `wwwroot/app.css` under `@theme` (light) and `.dark` (dark override). Dark mode uses `@custom-variant dark (&:where(.dark, .dark *))`. Theme toggle persists to `localStorage` via `wwwroot/js/theme.js` (no eval).
 
@@ -84,11 +121,15 @@ Use `/team <component-name>` to orchestrate a multi-agent team for building comp
 
 Components self-document via `///` XML doc comments and `[Description]` attributes on `[Parameter]` properties. Three outputs flow automatically from the C# source:
 
-1. **Source Generator** (`BlazingSpire.SourceGenerator`) — emits `PlaygroundFactories.g.cs` with closed-generic render factories per component
-2. **DocGen Tool** (`tools/BlazingSpire.DocGen`) — runs post-build, generates `docs/openapi.json`, `docs/examples/*.tonl`, and `wwwroot/components.json`
-3. **ComponentPlayground** (`Components/Demo/`) — interactive playground with live preview, auto-generated controls, and live code snippet
+1. **Source Generator** (`BlazingSpire.SourceGenerator`) — emits `PlaygroundFactories.g.cs` with closed-generic render factories per top-level component. For composites, the emitter is a recursive tree walker over the `ChildOf<T>` graph: each level produces a nested `RenderFragment` closure that mirrors the visual hierarchy. No suffix heuristics, no default-content maps, no hardcoded component lists — the composition *is* the type graph. Repeating slots implementing `IRepeatingSlot<TRoot>` become runtime `for`-loops driven by the static `GetSampleCount(root)` method, evaluated against the live root instance via `AddComponentReferenceCapture`, so parameter toggles re-drive the loop.
+2. **DocGen Tool** (`tools/BlazingSpire.DocGen`) — runs post-build, generates `docs/openapi.json`, `docs/examples/*.tonl`, and `wwwroot/components.json`. Walks `ChildOf<T>` chains the same way the generator does.
+3. **ComponentPlayground** (`Components/Demo/`) — interactive playground with live preview, auto-generated controls, and live code snippet.
 
 Demo pages use: `<ComponentPlayground ComponentName="Alert" />` — that's the entire page.
+
+**Generator trimming safety:** every factory opens components via `builder.OpenComponent<TComponent>(0)` (closed generic). The trimmer statically sees every component type that can flow through the playground, so `TrimMode=full` works without manual `[DynamicallyAccessedMembers]` annotations.
+
+**Frame ordering rule (important):** Blazor's `RenderTreeBuilder` requires all `AddAttribute` calls to come immediately after `OpenComponent`, before any other frame type. The generator emits the `ChildContent` attribute *before* the root's `AddComponentReferenceCapture` so this rule holds. The reference-capture fires before the `ChildContent` RenderFragment closures run, so `rootRef[0]` is populated by the time any `IRepeatingSlot.GetSampleCount(rootRef[0])` call executes.
 
 ## Key Files
 
@@ -98,7 +139,7 @@ Demo pages use: `<ComponentPlayground ComponentName="Alert" />` — that's the e
 - `wwwroot/app.css` — Tailwind v4 source with OKLCH theme tokens (light + dark)
 - `wwwroot/index.html` — Skeleton, boot sequence, script loading order
 - `wwwroot/components.json` — Generated component metadata for playground (auto-generated, do not hand-edit)
-- `Components/Shared/` — Base component hierarchy (13 files)
+- `Components/Shared/` — Base component hierarchy + `ChildOf<T>` + `IRepeatingSlot<T>` (14 files)
 - `Components/UI/` — All UI components (Alert, Button, Badge, Card, Input, etc.)
 - `Components/UI/CodeBlock.razor` — Code snippet renderer (Prism highlighting)
 - `Components/Demo/` — ComponentPlayground, PlaygroundControl, ComponentMetaService
