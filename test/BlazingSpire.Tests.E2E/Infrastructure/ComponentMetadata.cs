@@ -54,28 +54,53 @@ internal static class ComponentMetadata
         select (c, p, v);
 
     /// <summary>
-    /// Overlay-style composites that have a Trigger child, a Content child, a Description
-    /// child, and an IsOpen parameter — i.e. components whose body must stay hidden until
-    /// the trigger is clicked. Used by body-leak assertions to catch bugs where the
-    /// playground composite factory flattens inner children as siblings of Content instead
-    /// of nesting them, causing the body to render unconditionally.
+    /// Recursively collects every descendant of a root component by walking the
+    /// composition tree. After the hierarchical ChildOf refactor, direct children
+    /// are only the immediate visual containers; true descendants (Title, Description,
+    /// Action, Cancel, etc.) live inside nested containers and need a tree walk.
+    /// </summary>
+    public static IEnumerable<string> AllDescendantNames(ComponentMeta root)
+    {
+        var byName = All.ToDictionary(c => c.Name, c => c);
+        var seen = new HashSet<string>();
+        var stack = new Stack<ComponentMeta>();
+        stack.Push(root);
+        while (stack.Count > 0)
+        {
+            var cur = stack.Pop();
+            foreach (var childName in cur.Composition.Children)
+            {
+                if (!seen.Add(childName)) continue;
+                yield return childName;
+                if (byName.TryGetValue(childName, out var child))
+                    stack.Push(child);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Overlay-style composites: have an IsOpen parameter, a Trigger descendant, and
+    /// a Description descendant. Walks the full composition tree (Description may
+    /// live several levels deep, e.g. Dialog → Content → Header → Description).
     /// </summary>
     public static IEnumerable<ComponentMeta> OverlayComposites =>
         TopLevel.Where(c =>
-            c.Composition.Children.Contains($"{c.Name}Trigger") &&
-            c.Composition.Children.Contains($"{c.Name}Content") &&
-            c.Composition.Children.Contains($"{c.Name}Description") &&
-            c.Parameters.Any(p => p.Name == "IsOpen"));
+        {
+            if (!c.Parameters.Any(p => p.Name == "IsOpen")) return false;
+            var descendants = AllDescendantNames(c).ToHashSet();
+            return descendants.Contains($"{c.Name}Trigger")
+                && descendants.Contains($"{c.Name}Description");
+        });
 
     /// <summary>
-    /// All top-level composite components (root components with at least 2 declared
-    /// children). Used by "non-empty playground" assertions to catch bugs where the
-    /// composite factory emits an empty ChildContent shell — e.g. a child suffix the
-    /// generator doesn't recognize (InputOTPSlot) leads to the entire playground
-    /// rendering nothing.
+    /// Every top-level composite (root with at least one declared child). Used by
+    /// "non-empty playground" assertions to catch bugs where the composite factory
+    /// produces nothing visible. Overlay composites intentionally show only their
+    /// trigger until clicked — the non-empty test accounts for this by accepting
+    /// any count >= 1.
     /// </summary>
     public static IEnumerable<ComponentMeta> CompositesWithMultipleChildren =>
-        TopLevel.Where(c => c.Composition.Children.Count >= 2);
+        TopLevel.Where(c => c.Composition.Children.Count >= 1);
 
     private static string FindComponentsJson()
     {
