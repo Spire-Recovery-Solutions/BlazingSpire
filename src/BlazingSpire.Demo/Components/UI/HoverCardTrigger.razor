@@ -4,14 +4,14 @@
 @if (_isLink)
 {
     <a @onmouseenter="OnMouseEnterAsync" @onmouseleave="OnMouseLeaveAsync"
-       @ref="_ref" class="@Classes" @attributes="AdditionalAttributes">
+       @ref="_ref" class="@(string.IsNullOrEmpty(Classes) ? null : Classes)" @attributes="AdditionalAttributes">
         @ChildContent
     </a>
 }
 else
 {
     <span @onmouseenter="OnMouseEnterAsync" @onmouseleave="OnMouseLeaveAsync"
-          @ref="_ref" class="@Classes" @attributes="AdditionalAttributes">
+          @ref="_ref" class="@(string.IsNullOrEmpty(Classes) ? null : Classes)" @attributes="AdditionalAttributes">
         @ChildContent
     </span>
 }

@@ -31,7 +31,17 @@ public partial class DatePicker : BlazingSpireComponentBase
     protected override void OnParametersSet()
     {
         if (SelectedDate.HasValue)
+        {
             _displayMonth = new DateOnly(SelectedDate.Value.Year, SelectedDate.Value.Month, 1);
+        }
+        else if (MinDate.HasValue && _displayMonth < MinDate.Value)
+        {
+            _displayMonth = new DateOnly(MinDate.Value.Year, MinDate.Value.Month, 1);
+        }
+        else if (MaxDate.HasValue && _displayMonth > MaxDate.Value)
+        {
+            _displayMonth = new DateOnly(MaxDate.Value.Year, MaxDate.Value.Month, 1);
+        }
     }
 
     private async Task OnDateSelectedAsync(DateOnly? date)

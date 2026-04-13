@@ -2,7 +2,7 @@
 @inherits BlazingSpire.Demo.Components.Shared.ChildOf<BlazingSpire.Demo.Components.UI.NavigationMenuList>
 
 <CascadingValue Value="this" IsFixed="false">
-    <li class="@Classes" @attributes="AdditionalAttributes">
+    <li class="@(string.IsNullOrEmpty(Classes) ? null : Classes)" @attributes="AdditionalAttributes">
         @ChildContent
     </li>
 </CascadingValue>

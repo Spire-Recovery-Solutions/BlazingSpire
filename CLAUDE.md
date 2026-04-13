@@ -158,7 +158,9 @@ If any answer is "no," the mission is not served.
 
 **Generator trimming safety:** every factory opens components via `builder.OpenComponent<TComponent>(0)` (closed generic). The trimmer statically sees every component type that can flow through the playground, so `TrimMode=full` works without manual `[DynamicallyAccessedMembers]` annotations.
 
-**Frame ordering rule (important):** Blazor's `RenderTreeBuilder` requires all `AddAttribute` calls to come immediately after `OpenComponent`, before any other frame type. The generator emits the `ChildContent` attribute *before* the root's `AddComponentReferenceCapture` so this rule holds. The reference-capture fires before the `ChildContent` RenderFragment closures run, so `rootRef[0]` is populated by the time any `IRepeatingSlot.GetSampleCount(rootRef[0])` call executes.
+**Frame ordering rule (important):** Blazor's `RenderTreeBuilder` requires all `AddAttribute` calls to come immediately after `OpenComponent`, before any other frame type. The generator emits the `ChildContent` attribute immediately after parameter attributes.
+
+**Repeating slot count:** `IRepeatingSlot<TRoot>` components declare a `CountParameterName` static property identifying which root parameter drives the slot count. The generator reads this parameter from the `parameters` dict (already resolved and typed by `CoerceValue`) rather than capturing a component reference. Reference captures only fire on initial component creation, not on re-renders, so they cannot reliably provide the count after parameter changes.
 
 ## Test-Driven Correctness (zero human review)
 

@@ -146,6 +146,11 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
     /// receives the playground parameter dict splat; descendants (emitted recursively)
     /// render with no user-controlled parameters beyond what their own IRepeatingSlot
     /// implementation supplies.
+    ///
+    /// <para>Repeating slots read their count from <c>parameters[CountParameterName]</c>
+    /// (the same dict the root's parameters come from) rather than from a component-reference
+    /// capture. Blazor only fires reference captures on initial creation, not on re-renders,
+    /// so a reference-capture-based count would always see null after the first render cycle.</para>
     /// </summary>
     private static void EmitRootFactory(StringBuilder sb, ComponentInfo root, Dictionary<string, List<ComponentInfo>> parentToChildren)
     {
@@ -164,28 +169,16 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
         sb.AppendLine("                builder.AddAttribute(rootSeq++, key, value);");
         sb.AppendLine("        }");
 
-        // Capture the root as a typed local so IRepeatingSlot.GetSampleCount(root) calls
-        // below can pass the live parent instance. The inner render lambda closes over
-        // this array. Critical: Blazor's RenderTreeBuilder requires ALL AddAttribute calls
-        // to come immediately after OpenComponent — AddComponentReferenceCapture must come
-        // AFTER all attributes, otherwise the builder throws "Attributes may only be added
-        // immediately after frames of type Element or Component".
         var hasChildren = parentToChildren.TryGetValue(root.FullName, out var rootChildren) && rootChildren.Count > 0;
         if (hasChildren)
         {
-            sb.AppendLine($"        var rootRef = new {root.Name}[1];");
-
-            // ChildContent attribute goes FIRST (while we're still in "attributes allowed" mode).
+            // ChildContent attribute: the `parameters` variable is in scope here via closure.
+            // Repeating slots read their count from parameters[slot.CountParameterName].
             sb.AppendLine("        builder.AddAttribute(rootSeq++, \"ChildContent\", (RenderFragment)(inner =>");
             sb.AppendLine("        {");
             sb.AppendLine("            var seq0 = 0;");
             EmitChildrenList(sb, root, rootChildren!, parentToChildren, indent: "            ", builderVar: "inner", seqVar: "seq0", depth: 0);
             sb.AppendLine("        }));");
-
-            // Then the reference capture. By render time the closure above hasn't fired yet;
-            // Blazor processes the reference capture frame first (setting rootRef[0]) and
-            // then invokes the ChildContent RenderFragment, which sees the populated array.
-            sb.AppendLine($"        builder.AddComponentReferenceCapture(rootSeq++, inst => rootRef[0] = ({root.Name})inst);");
         }
 
         sb.AppendLine("        builder.CloseComponent();");
@@ -215,10 +208,12 @@ public sealed class PlaygroundGenerator : IIncrementalGenerator
             if (repeating is not null)
             {
                 var indexParam = GetRepeatingSlotIndexParameter(child.Symbol);
-                // Emit a runtime for-loop driven by the static GetSampleCount.
-                sb.AppendLine($"{indent}if (rootRef[0] is not null)");
+                // Read the count from the playground parameters dict via CountParameterName.
+                // This is reliable across all renders because `parameters` is always current.
+                // (Reference captures only fire on initial creation, not on re-renders, so
+                // a rootRef-based approach would always see null after the first render cycle.)
                 sb.AppendLine($"{indent}{{");
-                sb.AppendLine($"{indent}    var count_{depth} = {child.Name}.GetSampleCount(rootRef[0]!);");
+                sb.AppendLine($"{indent}    var count_{depth} = parameters.TryGetValue({child.Name}.CountParameterName, out var __cnt_{depth}) ? System.Convert.ToInt32(__cnt_{depth}) : 0;");
                 sb.AppendLine($"{indent}    for (var i_{depth} = 0; i_{depth} < count_{depth}; i_{depth}++)");
                 sb.AppendLine($"{indent}    {{");
                 sb.AppendLine($"{indent}        {builderVar}.OpenComponent<{child.Name}>({seqVar}++);");

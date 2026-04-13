@@ -712,6 +712,14 @@
             "type": "object",
             "description": "The month currently displayed."
           },
+          "MaxDate": {
+            "type": "object",
+            "description": "Latest selectable date. Days after this date are rendered disabled."
+          },
+          "MinDate": {
+            "type": "object",
+            "description": "Earliest selectable date. Days before this date are rendered disabled."
+          },
           "SelectedDate": {
             "type": "object",
             "description": "The currently selected date."

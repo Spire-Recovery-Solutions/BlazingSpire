@@ -4,5 +4,5 @@ namespace BlazingSpire.Demo.Components.UI;
 
 public partial class PaginationItem : ChildOf<PaginationContent>
 {
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-flex";
 }

@@ -9,7 +9,7 @@ public partial class TooltipTrigger : ChildOf<Tooltip>
     // Backwards-compat alias for the old property name (to avoid changing .razor files)
     public Tooltip? ParentTooltip => Parent;
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-flex";
 
     private CancellationTokenSource? _delayCts;
 

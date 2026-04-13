@@ -975,7 +975,19 @@
         "kind": "Object",
         "type": "DateOnly",
         "description": "The month currently displayed.",
-        "defaultValue": "4/11/2026"
+        "defaultValue": "4/13/2026"
+      },
+      {
+        "name": "MaxDate",
+        "kind": "Object",
+        "type": "DateOnly",
+        "description": "Latest selectable date. Days after this date are rendered disabled."
+      },
+      {
+        "name": "MinDate",
+        "kind": "Object",
+        "type": "DateOnly",
+        "description": "Earliest selectable date. Days before this date are rendered disabled."
       },
       {
         "name": "SelectedDate",
@@ -3622,7 +3634,8 @@
         "kind": "Boolean",
         "type": "bool",
         "description": "Update value on every keystroke instead of on blur.",
-        "defaultValue": "false"
+        "defaultValue": "false",
+        "behaviorOnly": true
       },
       {
         "name": "InputMode",
@@ -6685,7 +6698,8 @@
         "enumValues": [
           "Single",
           "Multiple"
-        ]
+        ],
+        "behaviorOnly": true
       },
       {
         "name": "Value",

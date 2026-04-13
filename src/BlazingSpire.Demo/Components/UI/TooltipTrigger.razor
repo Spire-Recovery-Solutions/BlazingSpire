@@ -2,7 +2,7 @@
 @inherits BlazingSpire.Demo.Components.Shared.ChildOf<BlazingSpire.Demo.Components.UI.Tooltip>
 
 <span @onmouseenter="OnMouseEnterAsync" @onmouseleave="OnMouseLeaveAsync"
-      @ref="_spanRef" class="@Classes" @attributes="AdditionalAttributes">
+      @ref="_spanRef" class="@(string.IsNullOrEmpty(Classes) ? null : Classes)" @attributes="AdditionalAttributes">
     @ChildContent
 </span>
 

@@ -1,30 +1,23 @@
-using BlazingSpire.Tests.E2E.Infrastructure;
+using BlazingSpire.Tests.E2E;
 
-namespace BlazingSpire.Tests.E2E.Generated;
+namespace BlazingSpire.Tests.E2E.Infrastructure;
 
 /// <summary>
-/// Metadata-driven structural invariant sweep.
-///
-/// For every top-level component's playground page, injects a single JS function that
-/// walks the preview DOM and returns a list of violated invariants. Any non-empty list
-/// fails the test. No baseline files, no screenshots — pure structural correctness.
-///
-/// Invariants checked (universal, no component-specific knowledge):
-///   1. No duplicate id attributes within the preview
-///   2. aria-labelledby / aria-describedby refs resolve to existing DOM elements
-///   3. aria-controls refs resolve to existing DOM elements
-///   4. No element has an empty class attribute (broken variant map produces class="")
-///   5. No &lt;th&gt; element inside &lt;tbody&gt; (catches TableHead ChildOf hierarchy bug)
-///   6. No &lt;td&gt; element inside &lt;thead&gt;
-///   7. No &lt;button&gt; without an accessible name (text content or aria-label)
+/// Abstract base for metadata-driven structural invariant sweep.
+/// Concrete class is emitted by BlazingSpire.TestGenerator.
 /// </summary>
-public class StructuralInvariantTests : BlazingSpireE2EBase,
+public abstract class StructuralInvariantTestsBase : BlazingSpireE2EBase,
     IClassFixture<BlazorAppFixture>,
     IClassFixture<PlaywrightBrowserFixture>
 {
-    public StructuralInvariantTests(PlaywrightBrowserFixture browserFixture) : base(browserFixture) { }
+    protected StructuralInvariantTestsBase(PlaywrightBrowserFixture browserFixture)
+        : base(browserFixture) { }
 
-    private const string InvariantScript = """
+    /// <summary>
+    /// JavaScript function injected into each playground page to check universal
+    /// structural invariants. Returns a list of violation strings; empty = pass.
+    /// </summary>
+    protected const string InvariantScript = """
         (function checkInvariants() {
           const preview = document.querySelector('[data-playground-preview]');
           if (!preview) return ['NO_PREVIEW'];
@@ -86,16 +79,14 @@ public class StructuralInvariantTests : BlazingSpireE2EBase,
         })()
         """;
 
-    public static IEnumerable<object[]> TopLevelComponents() =>
+    protected static System.Collections.Generic.IEnumerable<object[]> TopLevelComponentsData() =>
         ComponentMetadata.TopLevel.Select(c => new object[] { c.Name });
 
-    [Theory, MemberData(nameof(TopLevelComponents))]
-    public async Task Component_Passes_Structural_Invariants(string componentName)
+    protected async Task RunStructuralInvariantAsync(string componentName)
     {
         var driver = new PlaygroundDriver(Page, BaseUrl);
         await driver.NavigateTo(componentName);
 
-        // Allow the preview to fully settle before checking
         await Page.WaitForTimeoutAsync(300);
 
         var violations = await Page.EvaluateAsync<string[]>(InvariantScript);

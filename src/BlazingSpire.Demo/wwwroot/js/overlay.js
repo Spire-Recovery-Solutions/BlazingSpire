@@ -91,6 +91,26 @@ export function lockBodyScroll() {
 }
 
 /**
+ * Registers a document-level Escape key listener.
+ * Used by overlays that don't trap focus but still need to close on Escape.
+ * @param {object} dotNetRef - .NET object reference with HandleEscapeKey method
+ * @returns {{ dispose: () => void }}
+ */
+export function createEscapeHandler(dotNetRef) {
+    function onKeyDown(e) {
+        if (e.key === 'Escape') {
+            dotNetRef.invokeMethodAsync('HandleEscapeKey');
+        }
+    }
+    document.addEventListener('keydown', onKeyDown);
+    return {
+        dispose() {
+            document.removeEventListener('keydown', onKeyDown);
+        }
+    };
+}
+
+/**
  * Detects clicks outside a container element.
  * @param {HTMLElement} container
  * @param {object} dotNetRef - .NET object reference with HandleInteractOutside method

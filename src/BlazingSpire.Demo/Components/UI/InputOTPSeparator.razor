@@ -1,7 +1,7 @@
 @namespace BlazingSpire.Demo.Components.UI
 @inherits BlazingSpire.Demo.Components.Shared.ChildOf<BlazingSpire.Demo.Components.UI.InputOTP>
 
-<div role="separator" class="@Classes" @attributes="AdditionalAttributes">
+<div role="separator" class="@(string.IsNullOrEmpty(Classes) ? null : Classes)" @attributes="AdditionalAttributes">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
          class="h-4 w-4" aria-hidden="true">

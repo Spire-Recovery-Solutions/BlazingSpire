@@ -8,7 +8,7 @@ public partial class HoverCardTrigger : ChildOf<HoverCard>
     // Backwards-compat alias for the old property name (to avoid changing .razor files)
     public HoverCard? ParentHoverCard => Parent;
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "inline-flex";
 
     private async Task OnMouseEnterAsync()
     {

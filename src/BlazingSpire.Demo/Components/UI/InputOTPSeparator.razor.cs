@@ -4,5 +4,5 @@ namespace BlazingSpire.Demo.Components.UI;
 
 public partial class InputOTPSeparator : ChildOf<InputOTP>
 {
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "flex items-center";
 }

@@ -16,6 +16,7 @@ public partial class InputOTPSlot : ChildOf<InputOTPGroup>, IRepeatingSlot<Input
     // setting the Index parameter to the loop variable on each iteration.
     public static int GetSampleCount(InputOTP root) => root.MaxLength;
     public static string IndexParameterName => nameof(Index);
+    public static string CountParameterName => nameof(InputOTP.MaxLength);
 
     private char? DisplayChar => InputOTPRoot?.GetChar(Index);
     private bool IsActive => InputOTPRoot?.Value.Length == Index;

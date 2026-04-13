@@ -6,7 +6,7 @@ public partial class NavigationMenuItem : ChildOf<NavigationMenuList>
 {
     public bool IsOpen { get; private set; }
 
-    protected override string BaseClasses => "";
+    protected override string BaseClasses => "relative";
 
     public Task ToggleAsync()
     {

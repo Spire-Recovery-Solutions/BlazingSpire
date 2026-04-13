@@ -15,6 +15,7 @@ public partial class Input : TextInputBase
     /// <summary>The size of the input field.</summary>
     [Parameter] public InputSize Size { get; set; } = InputSize.Default;
     /// <summary>Update value on every keystroke instead of on blur.</summary>
+    [BehaviorOnly]
     [Parameter] public bool Immediate { get; set; }
     /// <summary>Hint for virtual keyboard type (numeric, tel, etc.).</summary>
     [Parameter] public string? InputMode { get; set; }

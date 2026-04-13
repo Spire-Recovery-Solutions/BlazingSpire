@@ -44,6 +44,7 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
 
     private IJSObjectReference? _jsModule;
     private IJSObjectReference? _focusTrapHandle;
+    private IJSObjectReference? _escapeHandle;
     private IJSObjectReference? _scrollLockHandle;
     private IJSObjectReference? _clickOutsideHandle;
     private DotNetObjectReference<OverlayBase>? _selfRef;
@@ -81,6 +82,12 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
             _focusTrapHandle = await _jsModule.InvokeAsync<IJSObjectReference>(
                 "createFocusTrap", ContentRef, _selfRef);
 
+        // When we don't trap focus (e.g. Popover), we still need an Escape listener
+        // since createFocusTrap is the only place it would otherwise be registered.
+        if (ShouldCloseOnEscape && !ShouldTrapFocus && _escapeHandle is null)
+            _escapeHandle = await _jsModule.InvokeAsync<IJSObjectReference>(
+                "createEscapeHandler", _selfRef);
+
         if (ShouldLockScroll && _scrollLockHandle is null)
             _scrollLockHandle = await _jsModule.InvokeAsync<IJSObjectReference>(
                 "lockBodyScroll");
@@ -96,6 +103,11 @@ public abstract class OverlayBase : BlazingSpireComponentBase, IAsyncDisposable
         {
             await _focusTrapHandle.InvokeVoidAsync("dispose");
             _focusTrapHandle = null;
+        }
+        if (_escapeHandle is not null)
+        {
+            await _escapeHandle.InvokeVoidAsync("dispose");
+            _escapeHandle = null;
         }
         if (_scrollLockHandle is not null)
         {

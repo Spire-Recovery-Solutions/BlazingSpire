@@ -4,7 +4,6 @@
 @if (ParentHoverCard?.CurrentIsOpen == true)
 {
     <div data-state="@ParentHoverCard.DataState"
-         data-side="@ParentHoverCard.Side.ToString().ToLowerInvariant()"
          class="@Classes" @attributes="AdditionalAttributes" @ref="ParentHoverCard.ContentRef"
          @onmouseenter="OnMouseEnterAsync" @onmouseleave="OnMouseLeaveAsync">
         @ChildContent

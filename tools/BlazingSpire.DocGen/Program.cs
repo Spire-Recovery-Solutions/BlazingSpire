@@ -349,39 +349,14 @@ static (bool IsSlot, string? RootName, string? CountParam, string? IndexParam) G
     }
     catch { /* ignore */ }
 
-    // CountParameterName: probe GetSampleCount(root) with fresh instances,
-    // bumping each numeric [Parameter] by +2 to find which one changes the result.
+    // CountParameterName: read directly from the static property on the implementing type.
     string? countParam = null;
     try
     {
-        var getSampleCount = type.GetMethod("GetSampleCount",
+        var countProp = type.GetProperty("CountParameterName",
             BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
-        if (getSampleCount is not null)
-        {
-            var baselineRoot = Activator.CreateInstance(rootType);
-            if (baselineRoot is not null)
-            {
-                var baseline = (int)getSampleCount.Invoke(null, [baselineRoot])!;
-                var rootParams = rootType
-                    .GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy)
-                    .Where(p => p.GetCustomAttributes().Any(a => a.GetType().Name == "ParameterAttribute")
-                             && (p.PropertyType == typeof(int) || p.PropertyType == typeof(long)));
-
-                foreach (var prop in rootParams)
-                {
-                    var probe = Activator.CreateInstance(rootType);
-                    if (probe is null) continue;
-                    var orig = (int)(prop.GetValue(baselineRoot) ?? 0);
-                    prop.SetValue(probe, orig + 2);
-                    var probeResult = (int)getSampleCount.Invoke(null, [probe])!;
-                    if (probeResult != baseline)
-                    {
-                        countParam = prop.Name;
-                        break;
-                    }
-                }
-            }
-        }
+        if (countProp is not null)
+            countParam = countProp.GetValue(null) as string;
     }
     catch { /* ignore */ }
 
@@ -466,6 +441,10 @@ static ComponentModel? ExtractComponent(Type type, Dictionary<string, string> xm
         // Enum values
         if (effectiveType.IsEnum)
             paramModel.EnumValues = Enum.GetNames(effectiveType).ToList();
+
+        // BehaviorOnly: parameter changes event timing or interaction mode, not the initial DOM
+        if (prop.GetCustomAttributes().Any(a => a.GetType().Name == "BehaviorOnlyAttribute"))
+            paramModel.BehaviorOnly = true;
 
         parameters.Add(paramModel);
     }
@@ -758,4 +737,7 @@ class ParameterModel
     public string? DefaultValue { get; set; }
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public List<string>? EnumValues { get; set; }
+    /// <summary>True when the parameter changes event timing or interaction mode, not the initial DOM.</summary>
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public bool? BehaviorOnly { get; set; }
 }

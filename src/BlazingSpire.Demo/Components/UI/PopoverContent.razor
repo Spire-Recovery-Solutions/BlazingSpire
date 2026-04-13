@@ -3,7 +3,7 @@
 
 @if (ParentPopover?.CurrentIsOpen == true)
 {
-    <div data-state="@ParentPopover.DataState" data-side="@ParentPopover.Side.ToString().ToLowerInvariant()"
+    <div data-state="@ParentPopover.DataState"
          class="@Classes" @attributes="AdditionalAttributes" @ref="ParentPopover.ContentRef">
         @ChildContent
     </div>

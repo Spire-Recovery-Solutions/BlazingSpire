@@ -7,6 +7,7 @@ public enum ToggleGroupType { Single, Multiple }
 
 public partial class ToggleGroup : BlazingSpireComponentBase
 {
+    [BehaviorOnly]
     [Parameter] public ToggleGroupType Type { get; set; } = ToggleGroupType.Single;
     [Parameter] public string? Value { get; set; }
     [Parameter] public EventCallback<string?> ValueChanged { get; set; }

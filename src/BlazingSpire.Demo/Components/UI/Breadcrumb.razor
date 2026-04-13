@@ -1,6 +1,6 @@
 @namespace BlazingSpire.Demo.Components.UI
 @inherits BlazingSpire.Demo.Components.Shared.BlazingSpireComponentBase
 
-<nav aria-label="breadcrumb" class="@Classes" @attributes="AdditionalAttributes">
+<nav aria-label="breadcrumb" class="@(string.IsNullOrEmpty(Classes) ? null : Classes)" @attributes="AdditionalAttributes">
     @ChildContent
 </nav>

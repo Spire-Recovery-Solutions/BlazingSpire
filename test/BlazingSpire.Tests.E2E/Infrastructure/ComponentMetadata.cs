@@ -169,4 +169,5 @@ internal sealed class ParameterMeta
     [JsonPropertyName("description")] public string Description { get; set; } = "";
     [JsonPropertyName("defaultValue")] public string? DefaultValue { get; set; }
     [JsonPropertyName("enumValues")] public List<string>? EnumValues { get; set; }
+    [JsonPropertyName("behaviorOnly")] public bool? BehaviorOnly { get; set; }
 }

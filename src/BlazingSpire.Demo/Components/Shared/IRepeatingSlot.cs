@@ -29,4 +29,12 @@ public interface IRepeatingSlot<TRoot> where TRoot : ComponentBase
     /// (0-based). Validated via <c>nameof</c> at the call site so renames stay safe.
     /// </summary>
     static abstract string IndexParameterName { get; }
+
+    /// <summary>
+    /// Name of the <c>[Parameter]</c> on <typeparamref name="TRoot"/> that drives the
+    /// slot count. The playground generator reads this parameter value from the live
+    /// playground parameter dictionary rather than relying on a reference capture
+    /// (which only fires on initial component creation, not on re-renders).
+    /// </summary>
+    static abstract string CountParameterName { get; }
 }

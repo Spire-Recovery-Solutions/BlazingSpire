@@ -35,10 +35,21 @@ export function computePosition(referenceEl, floatingEl, options = {}) {
     // Floating UI uses: "bottom", "bottom-start", "bottom-end", "top", "top-start", etc.
     const placement = align === 'center' ? side : `${side}-${align}`;
 
-    // autoUpdate repositions on scroll, resize, and DOM mutations
+    // Immediately remove element from normal document flow and hide it.
+    // PopoverContent renders inline (below the trigger in DOM order) before floating.js
+    // fires asynchronously. Without this, the content briefly appears at the wrong position
+    // and participates in layout, which can shift the trigger and corrupt measurements.
+    floatingEl.style.position = 'fixed';
+    floatingEl.style.visibility = 'hidden';
+
+    // autoUpdate repositions on scroll, resize, and DOM mutations.
+    // strategy:'fixed' is required because the floating element uses position:fixed —
+    // Floating UI must use viewport coordinates throughout so CSS top/left values are
+    // correct regardless of page scroll position.
     const cleanup = autoUpdate(referenceEl, floatingEl, () => {
         floatingCompute(referenceEl, floatingEl, {
             placement,
+            strategy: 'fixed',
             middleware: [
                 offset({ mainAxis: sideOffset, crossAxis: alignOffset }),
                 flip(),
@@ -46,11 +57,12 @@ export function computePosition(referenceEl, floatingEl, options = {}) {
             ],
         }).then(({ x, y, placement: actualPlacement }) => {
             Object.assign(floatingEl.style, {
-                position: 'fixed',
                 left: `${x}px`,
                 top: `${y}px`,
             });
             floatingEl.dataset.side = actualPlacement.split('-')[0];
+            // Reveal element now that it is correctly positioned.
+            floatingEl.style.visibility = '';
         });
     });
 
